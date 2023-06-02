@@ -50,8 +50,8 @@ export class AddDrugComponent implements OnInit {
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200},
     {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
-    {field: 'package', headerName: 'Package', filter: true, width: 200},
-    {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
+    {field: 'package', headerName: 'Package', filter: true, width: 250},
+    {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
       headerName: 'Actions',

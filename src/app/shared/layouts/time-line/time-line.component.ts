@@ -12,10 +12,10 @@ export class TimeLineComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  dataList = [{workStageId: 1 , stage: 'Basics'},
-    {workStageId: 2 , stage: 'LIS'},
-    {workStageId: 3 , stage: 'Prescription Drugs'},
-    {workStageId: 4 , stage: 'Pharmacies'},
+  dataList = [{workStageId: 1 , stage: 'Basics(LIS)'},
+    {workStageId: 2 , stage: 'Prescription Drugs'},
+    {workStageId: 3 , stage: 'Pharmacies'},
+    {workStageId: 4 , stage: 'Doctors'},
     {workStageId: 5 , stage: 'Quote'},
   ]
 }

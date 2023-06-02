@@ -6,7 +6,7 @@ button {
 }
 
 button.active {
-  background-color: #f00; /* Change to your desired active color */
+  background-color: #4b8bb2; /* Change to your desired active color */
   color: #fff; /* Change to your desired active text color */
 }
 .bottom-bar{

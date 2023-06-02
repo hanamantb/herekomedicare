@@ -1,8 +1,8 @@
 
 .timeline{
-  counter-reset: test 0;
+  /*counter-reset: test 0;*/
   position: relative;
-  margin-top: 80px;
+  margin-top: 32px;
   display: flex;
   justify-content: space-evenly;
   padding-left: 0;
@@ -18,7 +18,7 @@
   position: relative;
   text-align: center;
   text-transform: uppercase;
-  width: calc(100% / 5);
+  width: calc(100% / 9);
 }
 
 ul:nth-child(1){
@@ -26,10 +26,10 @@ ul:nth-child(1){
 }
 
 .timeline li:before{
-  counter-increment: test;
-  content: counter(test);
-  width: 50px;
-  height: 50px;
+  /*counter-increment: test;*/
+  content: "";
+  width: 20px;
+  height: 20px;
   /*border: 3px solid #4caf50;*/
   border-radius: 50%;
   display: block;
@@ -61,7 +61,7 @@ ul:nth-child(1){
   color: #555555;
 }
 .timeline li.active-tl:before{
-  background: #4b8bb2;
+  background: #87e077;
   color: #F1F1F1;
 }
 .timeline li.active-ash:before{
@@ -73,11 +73,11 @@ ul:nth-child(1){
   color: #F1F1F1;
 }
 .timeline li.active-green:before{
-  background: #4b8bb2;
+  background: #87e077;
   color: #F1F1F1;
 }
 .green{
-  color: #4b8bb2;
+  color: #87e077;
   font-size: 10px;
 }
 .ash{
@@ -90,17 +90,17 @@ ul:nth-child(1){
 }
 
 .timeline li.active-tl + li:after{
-  background: #4b8bb2;
+  background: #87e077;
 }
 
 
 
 .timeline::before{
   content: "";
-  width: 80%;
+  width: 75%;
   height: 1px;
   position: absolute;
-  top: 30px;
+  top: 11px;
   left: 50%;
   transform:  translateX(-50%);
   background: black;

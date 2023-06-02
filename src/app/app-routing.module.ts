@@ -8,6 +8,7 @@ import {PrescriptionDrugsComponent} from "./quoting/prescription-drugs/prescript
 import {AddDrugComponent} from "./quoting/add-drug/add-drug.component";
 import {AddPharmacyComponent} from "./quoting/add-pharmacy/add-pharmacy.component";
 import {DoctorsComponent} from "./quoting/doctors/doctors.component";
+import {PlanPresentModule} from "./plan-present/plan-present.module";
 
 const routes: Routes = [
   // {
@@ -33,7 +34,10 @@ const routes: Routes = [
   },
   {
     path:'doctors',component:DoctorsComponent
-  }
+  },
+  // {
+  //   path:'Plans',loadChildren: ()=> import('./plan-present/plan-present.module').then(m=> PlanPresentModule),
+  // },
 ];
 
 @NgModule({

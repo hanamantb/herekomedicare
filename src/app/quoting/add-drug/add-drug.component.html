@@ -1,109 +1,119 @@
 <div class="container">
-  <h2 class="p-2">Add your prescription drugs</h2>
-  <app-time-line [curentWorkStageId]="3"></app-time-line>
-  <div class="d-flex col-5 p-2">
-    <h3>Drug Name (Begin Typing)</h3>
-  </div>
-  <div class="d-flex col-3 p-2">
-    <input type="text" placeholder="Search">
-  </div>
-  <div class="d-flex col-3 p-2">
-    <button mat-raised-button color="primary" (click)="open(content)">Browse Drugs (A-Z)</button>
-  </div>
-
-  <div class="d-flex col-12 p-2">
-    <h3>Edit the information to match your prescription</h3>
-  </div>
-
   <div class="d-flex">
-    <div class="col-2 p-2">
-      <p>Dosage</p>
-      <mat-select placeholder="Select">
-        <mat-option>
-          none
-        </mat-option>
-      </mat-select>
+    <div class="col-3 side-img">
+      <img src="../../../assets/sidepic.png" alt="">
     </div>
-    <div class="col-2 p-2">
-      <p>Package</p>
-      <mat-select placeholder="Select">
-        <mat-option>
-          none
-        </mat-option>
-      </mat-select>
-    </div>
-    <div class="col-2 p-2">
-      <p>Quantity</p>
-      <input type="number">
-    </div>
-    <div class="col-2 p-2">
-      <p>Frequency</p>
-      <mat-select placeholder="Select">
-        <mat-option>
-          none
-        </mat-option>
-      </mat-select>
-    </div>
-  </div>
-  <div class="d-flex col-8 p-2  justify-content-end">
-      <button mat-raised-button color="danger">cancel</button>
-      <button mat-raised-button color="primary" class="ms-2">Add Drug</button>
-  </div>
-  <div class="d-flex col-12 p-2">
-    <h3>Your Prescriptions</h3>
-  </div>
-  <div class="d-flex col-12 p-2 justify-content-center">
-    <ag-grid-angular style="width: 100%;margin-top: 1%;height: 100px" class="ag-theme-alpine"
-                     [scrollbarWidth]="8" [headerHeight]="35"
-                     rowSelection="multiple"
-                     [rowHeight]="35" [rowData]="rowData"
-                     [columnDefs]="columnDefs"
-    >
-    </ag-grid-angular>
-  </div>
-  <div class="d-flex col-9 p-2 justify-content-end">
-    <div class="d-flex p-2 ">
-      <button mat-raised-button color="accent" >See Plans without drugs</button>
-      <button mat-raised-button color="primary" class="ms-2" (click)="addPharmacy()">Continue</button>
-    </div>
-  </div>
-  <!--  <app-bottom-bar></app-bottom-bar>-->
-  <ng-template #content let-offcanvas>
-    <div class="offcanvas-header">
-      <h3 class="offcanvas-title" id="offcanvas-basic-title">Browse drugs A-Z</h3>
-      <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
-    </div>
-
-    <div class="d-flex p-2">
-      <div class="col-6">SELECT A LETTER</div>
-      <div class="col-4">
-        <select name="alphabet" >
-          <option value="A" *ngFor="let alphabet of alphabets" [value]="alphabet">{{ alphabet }}</option>
-        </select>
+    <div class="col-9">
+      <h2 class="p-2">Add your prescription drugs</h2>
+      <app-time-line [curentWorkStageId]="2"></app-time-line>
+      <div class="d-flex col-5 p-2">
+        <h3>Drug Name (Begin Typing)</h3>
       </div>
-    </div>
-    <div>
-      <ul>
-        <li *ngFor="let item of items"  >
-          <div class="card li-card" [class.selected]="item.selected" (click)="toggleItemSelection(item)">
-            {{ item.name }}
+      <div class="d-flex col-3 p-2">
+        <input type="text" placeholder="Search">
+      </div>
+      <div class="d-flex col-3 p-2">
+        <button mat-raised-button color="primary" (click)="open(content)">Browse Drugs (A-Z)</button>
+      </div>
+
+      <div class="d-flex col-12 p-2">
+        <h3>Edit the information to match your prescription</h3>
+      </div>
+
+      <div class="d-flex">
+        <div class="col-2 p-2">
+          <p>Dosage</p>
+          <mat-select placeholder="Select">
+            <mat-option>
+              none
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="col-2 p-2">
+          <p>Package</p>
+          <mat-select placeholder="Select">
+            <mat-option>
+              none
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="col-2 p-2">
+          <p>Quantity</p>
+          <input type="number">
+        </div>
+        <div class="col-2 p-2">
+          <p>Frequency</p>
+          <mat-select placeholder="Select">
+            <mat-option>
+              none
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+      <div class="d-flex col-8 p-2  justify-content-end">
+        <button mat-raised-button color="danger">Cancel</button>
+        <button mat-raised-button style="background-color: #4b8bb2;color: white" class="ms-2">Add Drug</button>
+      </div>
+      <div class="d-flex col-12 p-2">
+        <h3>Your Prescriptions</h3>
+      </div>
+      <div class="d-flex col-12 p-2 justify-content-center">
+        <ag-grid-angular style="width: 100%;margin-top: 1%;height: 100px" class="ag-theme-alpine"
+                         [scrollbarWidth]="8" [headerHeight]="35"
+                         rowSelection="multiple"
+                         [rowHeight]="35" [rowData]="rowData"
+                         [columnDefs]="columnDefs"
+        >
+        </ag-grid-angular>
+      </div>
+      <div class="d-flex col-9 p-2 justify-content-end">
+        <div class="d-flex p-2 ">
+          <button mat-raised-button color="primary">See Plans without drugs</button>
+          <button mat-raised-button style="background-color: #4b8bb2;color: white" class="ms-2" (click)="addPharmacy()">
+            Continue
+          </button>
+        </div>
+      </div>
+      <!--  <app-bottom-bar></app-bottom-bar>-->
+      <ng-template #content let-offcanvas>
+        <div class="offcanvas-header">
+          <h3 class="offcanvas-title" id="offcanvas-basic-title">Browse drugs A-Z</h3>
+          <button type="button" class="btn-close" aria-label="Close"
+                  (click)="offcanvas.dismiss('Cross click')"></button>
+        </div>
+
+        <div class="d-flex p-2">
+          <div class="col-6">SELECT A LETTER</div>
+          <div class="col-4">
+            <select name="alphabet">
+              <option value="A" *ngFor="let alphabet of alphabets" [value]="alphabet">{{ alphabet }}</option>
+            </select>
           </div>
-        </li>
-      </ul>
+        </div>
+        <div>
+          <ul>
+            <li *ngFor="let item of items">
+              <div class="card li-card" [class.selected]="item.selected" (click)="toggleItemSelection(item)">
+                {{ item.name }}
+              </div>
+            </li>
+          </ul>
 
-    </div>
+        </div>
 
-  <div class="card" style="background-color: #0e0e87;position: fixed;bottom: 0">
-    <div class="d-flex">
-      <div class="p-2">
-        <button mat-raised-button color="warn">Add Drug</button>
-      </div>
-      <div class="p-2">
-        <button mat-raised-button color="danger">cancel</button>
-      </div>
+        <div class="card" style="background-color: #0e0e87;position: fixed;bottom: 0">
+          <div class="d-flex">
+            <div class="p-2">
+              <button mat-raised-button style="background-color: #4b8bb2;color: white">Add Drug</button>
+            </div>
+            <div class="p-2">
+              <button mat-raised-button color="danger">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </div>
   </div>
-  </ng-template>
 </div>
 
 

@@ -36,5 +36,17 @@ p{
   border-bottom: 0 !important;
   margin-bottom: 10px;
 }
+.side-img{
+  background-color:#4b8bb2 ;
+  /*height: calc(100vh - 77px);*/
+  position: relative;
 
+}
+.side-img img{
+  width: 92%;
+}
+.container{
+  padding: 0;
+  margin: 0;
+}
 
