@@ -16,7 +16,6 @@ export class TimeLineComponent implements OnInit {
     {workStageId: 2 , stage: 'LIS'},
     {workStageId: 3 , stage: 'Prescription Drugs'},
     {workStageId: 4 , stage: 'Pharmacies'},
-    {workStageId: 5 , stage: 'Doctors'},
-    {workStageId: 6 , stage: 'Quote'},
+    {workStageId: 5 , stage: 'Quote'},
   ]
 }

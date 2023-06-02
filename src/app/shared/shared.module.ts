@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './layouts/toolbar/toolbar.component';
 import { BottomBarComponent } from './layouts/bottom-bar/bottom-bar.component';
 import { TimeLineComponent } from './layouts/time-line/time-line.component';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 
 
@@ -10,7 +11,8 @@ import { TimeLineComponent } from './layouts/time-line/time-line.component';
   declarations: [
     ToolbarComponent,
     BottomBarComponent,
-    TimeLineComponent
+    TimeLineComponent,
+    SidebarComponent
   ],
   imports: [
 
