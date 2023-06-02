@@ -1,0 +1,21 @@
+.top-btns{
+  width: 100%;
+}
+
+/*p{*/
+/*  text-align: center;*/
+/*}*/
+
+mat-icon{
+  color: black;
+}
+.sub-line{
+  font-size: 11px;
+  color: gray;
+  margin-top: -12px;
+  font-weight: 400;
+}
+.benefit-icon{
+  background-color: #5cf15c;
+  border-radius: 50%;
+}

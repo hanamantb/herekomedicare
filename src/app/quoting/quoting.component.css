@@ -1,0 +1,38 @@
+button {
+  background-color: #ccc;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+button.active {
+  background-color: #f00; /* Change to your desired active color */
+  color: #fff; /* Change to your desired active text color */
+}
+.bottom-bar{
+  bottom: 0;
+  position:absolute;
+  width: -webkit-fill-available;
+  margin-bottom: 10px;
+}
+
+button{
+  border-radius: unset;
+  height: 40px;
+}
+
+img{
+  width: 92%;
+}
+.container{
+  background-color: aliceblue;
+  padding: 0px;
+  margin: 2px;
+}
+
+
+.side-img{
+  background-color:#4b8bb2 ;
+  /*height: calc(100vh - 77px);*/
+  position: relative;
+}

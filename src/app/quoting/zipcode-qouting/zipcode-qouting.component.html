@@ -1,0 +1,68 @@
+<div class="container">
+  <div class="d-flex mb-0">
+    <div class="col-12 mt-1">
+      <div class="d-flex p-2">
+        <div class="col-md-2">
+          <p>ZIP Code</p>
+        </div>
+        <div class="col-md-3">
+          <input type="text" placeholder="Enter Zip Code">
+        </div>
+      </div>
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+      <div class="d-flex p-2 mb-1">
+        <div class="col-2">
+          <p>LIS </p>
+        </div>
+        <div class="col-3">
+          <mat-select placeholder="LIS" value="none">
+            <mat-option value="none">
+              None
+            </mat-option>
+            <mat-option value="25">
+              25%
+            </mat-option>
+            <mat-option value="50">
+              50%
+            </mat-option>
+            <mat-option value="75">
+              75%
+            </mat-option>
+            <mat-option value="100">
+              100%
+            </mat-option>
+          </mat-select>
+        </div>
+
+      </div>
+
+      <div class="col-12">
+
+          <div class="card">
+            <div class="tittle p-2">
+              <p>Do you take prescription drugs?</p>
+            </div>
+            <div class=" d-flex body">
+              <div class="col-8">
+                Would you like to add/change prescription drugs in your medicine cabinet?
+              </div>
+             <div class="col-4">
+               NO <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
+             </div>
+
+            </div>
+          </div>
+<!--          <button mat-raised-button color="primary" class="btn" (click)="drug()">Prescription Drugs</button>-->
+
+        <!--    <div class="d-flex p-2 justify-content-end"><button mat-raised-button color="warn" class="btn" (click)="doctrs()">Doctors</button></div>-->
+      </div>
+      <div class="col-12">
+        <div class="d-flex p-2 justify-content-end ">
+          <button mat-raised-button color="primary" class="btn" (click)="navToPlans()">See Plans</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

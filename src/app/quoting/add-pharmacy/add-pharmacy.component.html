@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="d-flex">
+    <div class="p-2" style="margin-right: auto">
+            <p><mat-icon style="float: left;margin-top: -2px;">chevron_left</mat-icon> Back to Drug Selection</p>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button color="accent" >Skip adding pharmacies</button>
+    </div>
+  </div>
+  <div class="d-flex p-2 justify-content-end">
+<!--      <p><mat-icon style="float: left;margin-top: -2px;">chevron_left</mat-icon> Back to Drug Selection</p>-->
+  </div>
+  <app-time-line [curentWorkStageId]="4"></app-time-line>
+  <div class="p-2">
+    <h3>Choose upto 5 Pharmacies</h3>
+    <p>Choosing a nearby pharmacy helps us in significantly reducing your costs</p>
+  </div>
+  <div class="d-flex">
+    <div class="col-5 p-2">
+      <p >Enter your complete address of ZIP code</p>
+      <input type="text" >
+    </div>
+    <div class="col-5 p-2">
+      <p >Enter your pharmacy name (Optional)</p>
+      <input type="text" >
+    </div>
+    <div class="col-2 p-2">
+      <button mat-raised-button color="primary" style="margin-top: 26px;">Find Pharmacy</button>
+    </div>
+  </div>
+  <div class="d-flex p-2">
+  <div class="col-1 p-2">
+    <p>Filter by</p>
+  </div>
+  <div class="col-3 p-2">
+    <mat-select placeholder="Select">
+      <mat-option value="5">
+        Distance: 5 km
+      </mat-option>
+    </mat-select>
+  </div>
+  </div>
+
+  <div class="d-flex p-2">
+    <div class="col">
+      <h3>Mail Order Pharmacy</h3>
+      <p>Add both mail-order and retail pharmacies to save cost</p>
+
+      <div class="card">
+        <div class="tittle p-2">
+          <div class="d-flex justify-content-end ">
+            Add Pharmacy <input type="radio">
+          </div>
+          <h3>1, XXX Pharmacy XXX</h3>
+        </div>
+        <div class="card-body">
+          <p>xxx, xx state 12345</p>
+          <p>(000)00 000000</p>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="tittle p-2">
+          <div class="d-flex justify-content-end ">
+            Add Pharmacy <input type="radio">
+          </div>
+          <h3>1, XXX Pharmacy XXX</h3>
+        </div>
+        <div class="card-body">
+          <p>xxx, xx state 12345</p>
+          <p>(000)00 000000</p>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class="tittle p-2">
+          <div class="d-flex justify-content-end ">
+            Add Pharmacy <input type="radio">
+          </div>
+          <h3>1, XXX Pharmacy XXX</h3>
+        </div>
+        <div class="card-body">
+          <p>xxx, xx state 12345</p>
+          <p>(000)00 000000</p>
+        </div>
+
+      </div>
+    </div>
+
+<!--    <div class="col-6 p-2">-->
+<!--      <img src="../../../assets/map.jfif" alt="">-->
+<!--    </div>-->
+
+
+  </div>
+  <div class="col-12">
+    <div class="d-flex p-2 justify-content-end ">
+      <button mat-raised-button color="primary" class="btn" (click)="nav()">See Plans</button>
+    </div>
+  </div>
+</div>

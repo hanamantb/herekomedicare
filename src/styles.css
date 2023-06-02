@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~ag-grid-community/styles//ag-grid.css";
+@import "~ag-grid-community/styles//ag-theme-alpine.css";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+input {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  border: #B8C0D4 solid 1px;
+}
+
+mat-select {
+  background-color: white;
+  height: 30px;
+  border: #B8C0D4 1px ridge;
+  border-radius: 5px;
+  padding: 4px;
+}
+
+p{
+  font-size:13px;
+}
+
+.ag-theme-alpine {
+  --ag-row-border-color: rgba(0, 0, 0, 0.12);
+  --ag-header-foreground-color: #3A4448;
+  --ag-header-background-color: #D7DFE2;
+}
+
+
+.ag-header {
+  border-radius: 5px;
+  border-bottom: 0 !important;
+  margin-bottom: 10px;
+}
+
+

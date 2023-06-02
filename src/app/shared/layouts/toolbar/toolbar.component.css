@@ -1,0 +1,36 @@
+/* navbar*/
+.navbar.navbar .navlink{
+  font-size: 14px;
+  font-weight: 600;
+}
+.toolbar{
+  background-color: #d9e3f1;
+}
+.navbar.navbar .navlink.active{
+  color: #7b8ab8;
+}
+
+
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-nav .nav-link{
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}
+.navbar-brand{
+  color: #485785;
+}
+
+.nav-link{
+  color: #7b8ab8;
+}
+
+.btn{
+  position: relative;
+  color: #7b8ab8;
+  border-radius: 50rem;
+  background-color: #d9e3f1;
+  border: none;
+  box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.4);
+  transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
+}

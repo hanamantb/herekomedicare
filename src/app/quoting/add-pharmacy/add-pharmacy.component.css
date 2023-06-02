@@ -1,0 +1,9 @@
+.card{
+  height: 30vh;
+  margin-bottom: 10px;
+}
+.tittle input{
+  width: 16px;
+  height: 20px;
+  margin-left:4px
+}

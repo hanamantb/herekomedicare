@@ -1,0 +1,11 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-12 text-start mt-0">
+    <div >
+      <ul class="timeline" >
+        <li *ngFor="let data of dataList" class="active-green"  [ngClass]="{'active-green': data.workStageId <= curentWorkStageId, 'active-orange': data.workStageId === curentWorkStageId, 'active-ash' : data.workStageId >= curentWorkStageId ,'deactive-ash' : data.workStageId === unCompleteWorkStageId  }">
+          <div  [ngClass]="{'green': data.workStageId <= curentWorkStageId, 'orange': data.workStageId === curentWorkStageId, 'ash' : data.workStageId >= curentWorkStageId }">{{data.stage}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

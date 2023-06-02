@@ -1,0 +1,43 @@
+button {
+  background-color: #ccc;
+  /*padding: 5px 10px;*/
+  border: none;
+  cursor: pointer;
+}
+
+button.active {
+  background-color: #33d433; /* Change to your desired active color */
+  color: #fff; /* Change to your desired active text color */
+}
+
+input {
+  width: 100%;
+  height: 30px;
+  border-radius: 3px;
+  border: #B8C0D4 solid 1px;
+  margin-left: 5px;
+}
+
+mat-select {
+  background-color: white;
+  height: 30px;
+  border: #B8C0D4 1px ridge;
+  border-radius: 5px;
+  padding: 4px;
+  margin-left: 5px;
+}
+
+.btn {
+  width: 142px;
+  font-size: 14px;
+  height: 35px;
+}
+
+.container {
+  background-color: aliceblue;
+}
+
+.card {
+  padding-bottom: 2%;
+  width: 100%;
+}

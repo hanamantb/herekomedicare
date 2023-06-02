@@ -1,0 +1,149 @@
+<div class="container" >
+  <br>
+  <br>
+  <div>
+    <button [ngClass]="{'active': button1Active}" (click)="toggleButton1('MBI')"
+            style="border-radius: 5px 0px 0px 5px;">MBI Search
+    </button>
+    <button [ngClass]="{'active': button2Active}" (click)="toggleButton2('SSN')"
+            style="border-radius: 0px 5px 5px 0px;">SSN Search
+    </button>
+  </div>
+  <div class="section">
+    <div class="container-fluid">
+      <div class="d-flex p-2">
+        <div class="col-6">
+          <div class="d-flex p-2">
+            <div class="col-3">
+              <p>{{textChange}} Number :</p></div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter {{textChange}} Number">
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">First Name :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter First Name">
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">Last Name :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter Last Name">
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="d-flex p-2">
+            <div class="col-3">ZIP Code :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter Zip Code">
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">DOB :</div>
+            <div class="col-5">
+              <input matInput type="date">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-12">
+      <div class="d-flex p-3 justify-content-end ">
+        <button mat-raised-button color="primary" class="btn" (click)="search()">Search</button>
+      </div>
+    </div>
+    <div class="card mb-2" *ngIf="!searchView">
+      <div class="d-flex p-2">
+        <div class="col-5">
+          <div class="d-flex p-2">
+            <div class="col-3">LIS :</div>
+            <div class="col-5">
+              <mat-select placeholder="LIS" value="none">
+                <mat-option value="none">
+                  None
+                </mat-option>
+                <mat-option value="25">
+                  25%
+                </mat-option>
+                <mat-option value="50">
+                  50%
+                </mat-option>
+                <mat-option value="75">
+                  75%
+                </mat-option>
+                <mat-option value="100">
+                  100%
+                </mat-option>
+              </mat-select>
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">First Name :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter First Name">
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">Last Name :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter Last Name">
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-3">SSN :</div>
+            <div class="col-5">
+              <input type="text" placeholder="Enter SSN ">
+            </div>
+          </div>
+
+        </div>
+        <div class="col-7">
+          <div class="d-flex p-2">
+            <div class="col-4">Current Plan :</div>
+            <div class="col-4">
+              <input type="text">
+            </div>
+            <div class="col-4">
+              <div class="d-flex justify-content-end">
+                <button mat-raised-button color="primary" class="btn" (click)="drug()">Prescription Drugs</button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-4">Previous Plan :</div>
+            <div class="col-4">
+              <input type="text">
+            </div>
+            <div class="col-4">
+              <div class="d-flex justify-content-end">
+                <button mat-raised-button color="warn" class="btn" (click)="doctrs()">Doctors</button>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-4">Part A effective Date :</div>
+            <div class="col-4">
+              <input type="text" placeholder="mm-dd-yyyy" readonly>
+            </div>
+          </div>
+          <div class="d-flex p-2">
+            <div class="col-4">Part B effective Date :</div>
+            <div class="col-4">
+              <input type="text" placeholder="mm-dd-yyyy" readonly>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex p-2 justify-content-end">
+        <button mat-raised-button color="primary" class="btn" (click)="navToPlans()">See Plans</button>
+      </div>
+
+    </div>
+  </div>
+</div>

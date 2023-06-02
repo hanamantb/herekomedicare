@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="d-flex p-2 justify-content-end"><p class="search-case"> <u>Save My Progress</u> </p></div>
+  <div class="d-flex">
+    <div class="col-3 p-2">
+      <p>Search Doctors</p>
+      <input type="text">
+    </div>
+    <div class="col-3 p-2">
+      <p>Near</p>
+      <input type="text">
+    </div>
+    <div class="col-3 p-2">
+      <p>Distance</p>
+      <mat-select placeholder="Select">
+        <mat-option value="5">
+          With in 5 km
+        </mat-option>
+      </mat-select>
+    </div>
+    <div class="col-2 d-flex justify-content-end">
+      <button mat-icon-button color="primary" >
+        Filters
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div class="d-flex">
+    <div class="col-2 p-2">Related Search :</div>
+    <div class="col-2 p-2"><p class="search-case">Cardiology</p></div>
+    <div class="col-2 p-2"><p class="search-case">Gynaecology</p></div>
+    <div class="col-2 p-2"><p class="search-case">General Medicine</p></div>
+    <div class="col-2 p-2"><p class="search-case">Family Practice</p></div>
+    <div class="col-2 p-2"><p class="search-case"><u>View More</u></p></div>
+  </div>
+  <h3>XX Results near AL</h3>
+
+  <div class="d-flex">
+    <div class="col-1 p-2">
+      Sort BY
+    </div>
+    <div class="col-3 p-2">
+      <mat-select placeholder="Select">
+        <mat-option value="5">
+          Distance
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+
+  <div class="p-2">
+    <div class="card col-6 m-2">
+      <div class="d-flex">
+        <div class="col-6 p-2">
+          <h3>XX, MD</h3>
+          <p>General Medicine</p>
+          <p>⭐ (No Reviews yet)</p>
+          <p>📍 123, ABC road,FL 3476</p>
+          <button mat-raised-button color="primary">Select</button>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="col-6 p-2">
+          <p>Distance : 123 miles from you</p>
+          <p class="search-case"><u>Wheelchair Accessible</u></p>
+        </div>
+      </div>
+    </div>
+    <div class="card col-6 m-2">
+      <div class="d-flex">
+        <div class="col-6 p-2">
+          <h3>XX, MD</h3>
+          <p>General Medicine</p>
+          <p>⭐ (No Reviews yet)</p>
+          <p>📍 123, ABC road,FL 3476</p>
+          <button mat-raised-button color="primary">Select</button>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="col-6 p-2">
+          <p>Distance : 123 miles from you</p>
+          <p class="search-case"><u>Wheelchair Accessible</u></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

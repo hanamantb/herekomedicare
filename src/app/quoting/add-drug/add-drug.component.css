@@ -1,0 +1,39 @@
+p{
+  text-align: center;
+}
+.card {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 20px;
+}
+.notification {
+  background-color: #ff0000;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 4px;
+}
+select {
+  background-color: white;
+  height: 30px;
+  border: #B8C0D4 1px ridge;
+  border-radius: 5px;
+  padding: 4px;
+  width: 100%;
+}
+.selected {
+  background-color: #0e0e87;
+  color: white;
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+}
+.li-card{
+  width: 90%;
+}
+.offcanvas-title{
+  font-weight: 500;
+  font-size: x-large;
+}
