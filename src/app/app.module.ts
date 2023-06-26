@@ -23,6 +23,16 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import { BrowseDrugComponent } from './quoting/add-drug/browse-drug/browse-drug.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {HttpClientModule} from "@angular/common/http";
+import { DrugCostComponent } from './quoting/drug-cost/drug-cost.component';
+import {MatExpansionModule} from "@angular/material/expansion";
+import { CartComponent } from './quoting/cart/cart.component';
+import { CartHomeComponent } from './quoting/cart/cart-home/cart-home.component';
+import { EmailProposalComponent } from './quoting/cart/email-proposal/email-proposal.component';
+import {SharedService} from "./services/shared.service";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
 
 
 @NgModule({
@@ -37,6 +47,10 @@ import { BrowseDrugComponent } from './quoting/add-drug/browse-drug/browse-drug.
     AddPharmacyComponent,
     DoctorsComponent,
     BrowseDrugComponent,
+    DrugCostComponent,
+    CartComponent,
+    CartHomeComponent,
+    EmailProposalComponent,
 
   ],
   imports: [
@@ -55,9 +69,13 @@ import { BrowseDrugComponent } from './quoting/add-drug/browse-drug/browse-drug.
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-
+    MatTabsModule,
+    MatExpansionModule,
+    HttpClientModule,
+    MatAutocompleteModule
   ],
-  providers: [],
+  exports:[MatTabsModule],
+  providers: [HttpClientModule,SharedService],
   bootstrap: [AppComponent],
   entryComponents:[
     AddDrugComponent

@@ -1,5 +1,7 @@
 .top-btns{
   width: 100%;
+  border: none;
+  height: 40px;
 }
 
 /*p{*/
@@ -18,4 +20,60 @@ mat-icon{
 .benefit-icon{
   background-color: #5cf15c;
   border-radius: 50%;
+}
+.container{
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.lis{
+  color: #3f51b5;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-right: 7px;
+}
+mat-select{
+  margin-top: 5px;
+}
+.side-img{
+  background-color:#4b8bb2 ;
+  color: white;
+}
+.mat-icon-button{
+  width: 86px;
+}
+.benfit-btn{
+  font-size: 12px;
+}
+.card{
+  margin: 2px;
+  height: auto;
+}
+.rate{
+  font-weight: bold;
+}
+.component {
+  position: relative;
+}
+
+.content {
+  /* Your component styles here */
+}
+
+.sectionbtm {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 50%; /* Half of the component width */
+  height: 70px;
+  background-color: #4b8bb2;
+  color: white;
+  /* Your section styles here */
+}
+.comparebtn{
+  color: black;
+  background-color: white;
+  margin-left: 10px;
+  font-size: 12px;
 }

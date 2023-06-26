@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Route, Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {AddDrugComponent} from "../add-drug/add-drug.component";
-import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, FormControl} from '@angular/forms';
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
+import {CommonService} from "../../services/common.service";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 
 @Component({
@@ -13,9 +15,17 @@ import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 })
 export class ZipcodeQoutingComponent implements OnInit {
   isChecked = true;
-  constructor(private route:Router,public dialog: MatDialog,private offcanvasService: NgbOffcanvas) { }
+  zipcode: any;
+  myControl = new FormControl();
+  couties: any
+
+  constructor(private route: Router, public dialog: MatDialog,
+              private offcanvasService: NgbOffcanvas,
+              private commonService: CommonService, private http: HttpClient) {
+  }
 
   ngOnInit(): void {
+    this.getDrugByAlphbet()
   }
 
   drug() {
@@ -25,19 +35,59 @@ export class ZipcodeQoutingComponent implements OnInit {
   doctrs() {
     this.route.navigate(['doctors'])
   }
+
   navToPlans() {
     // this.route.navigate(['Plans'])
-    console.log('checked---',this.isChecked)
-    if (this.isChecked){
-      this.dialog.open(AddDrugComponent,{
+    console.log('checked---', this.isChecked)
+    if (this.isChecked) {
+      this.dialog.open(AddDrugComponent, {
         autoFocus: false,
         maxHeight: '90vh',
-        width:'140vh'
+        width: '140vh'
       })
-    }else{
+    } else {
       this.route.navigate(['Plans'])
     }
 
   }
 
+  getCounties(event: any) {
+    console.log('event', event)
+    if (event.target.value.length == 5) {
+      this.commonService.getCounties(event.target.value).subscribe(response => {
+        console.log('Response:', response);
+        this.couties = response.data.counties
+      })
+    } else {
+      console.log('Not valid')
+    }
+  }
+
+
+  _displayplantname(countie: any) {
+    console.log('countie', countie)
+    if (countie) {
+      return countie.name
+    }
+    return '';
+  }
+
+  getDrugByAlphbet() {
+    const body = {
+      "letter": "A",
+      "year": "2023"
+    };
+    this.http.post('http://66.193.196.108:8080/medicare-service/v1/search_drug-by-letter', body)
+      .subscribe(
+        (response: any) => {
+          console.log('Response:', response);
+
+          // Handle the response here
+        },
+        error => {
+          console.error('Error:', error);
+          // Handle errors here
+        }
+      );
+  }
 }

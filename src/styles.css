@@ -42,11 +42,27 @@ p{
   position: relative;
 
 }
-.side-img img{
-  width: 92%;
-}
 .container{
-  padding: 0;
-  margin: 0;
+  max-width: 100% !important;
 }
-
+/*.mat-expansion-panel-body{*/
+/* background-color: #4b8bb2;*/
+/*  color: white;*/
+/*}*/
+.mat-expansion-panel{
+  background:  #4b8bb2;
+}
+.mat-slider-wrapper{
+  background-color: #ffe600;
+}
+.mat-slider-thumb{
+  background-color: #ffe600 !important;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: white;
+  padding: 0;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 0 0;
+  padding: 0em 0.75em 0 0.75em !important;
+}

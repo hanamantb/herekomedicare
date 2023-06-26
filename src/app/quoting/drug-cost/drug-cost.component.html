@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="d-flex" style="height: 86vh">
+    <div class="col-3 side-img">
+      <img src="../../../assets/sidepic.png" alt="">
+    </div>
+    <div class="col-9">
+      <div class="d-flex p-2">
+        <div class="col-6">
+          <span class="d-cost-label">Estimated Cost and Savings</span>
+          <p>Plan - Cigna No Premium (HMO)(H1215-002-0)</p>
+        </div>
+        <div class="col-6 d-flex justify-content-end ">
+          <div class="btn-icon">
+          <button mat-button>
+            <mat-icon>email</mat-icon>
+          </button>
+          <button mat-button>
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+          <button mat-button>
+            <mat-icon>local_printshop</mat-icon>
+          </button>
+          </div>
+          <div class="me-2">
+            <button mat-raised-button color="primary" style="width:100%;" class="ms-2"> <mat-icon>arrow_back</mat-icon>
+              Back to all plans</button>
+          </div>
+        </div>
+      </div>
+      <div class="p-2">
+        <mat-accordion>
+          <mat-expansion-panel expanded="true">
+            <mat-expansion-panel-header>
+              <p class="main-panel-headers">Drug Details (2 Drugs Selected)</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Drug Name</th>
+                <th scope="col">Package</th>
+                <th scope="col">Drug Type</th>
+                <th scope="col">tier</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Prior Authorization</th>
+                <th scope="col">Quantity Limit</th>
+                <th scope="col">Step Therapy</th>
+                <th scope="col">Covered</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Abacavir 300mg Tablet</td>
+                <td></td>
+                <td>Generic</td>
+                <td>2</td>
+                <td>60</td>
+                <td>Every month</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th scope="row">1</th>
+                <td>Lisiniporil 10mg Tablet</td>
+                <td></td>
+                <td>Generic</td>
+                <td>6</td>
+                <td>30</td>
+                <td>Every month</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">NEBRASKA CVS PHARMACY LLC</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Drug Name</th>
+                <th scope="col">Package</th>
+                <th scope="col">Drug Type</th>
+                <th scope="col">tier</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Prior Authorization</th>
+                <th scope="col">Quantity Limit</th>
+                <th scope="col">Step Therapy</th>
+                <th scope="col">Covered</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Abacavir 300mg Tablet</td>
+                <td></td>
+                <td>Generic</td>
+                <td>2</td>
+                <td>60</td>
+                <td>Every month</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">WALMART INC.</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Drug Name</th>
+                <th scope="col">Package</th>
+                <th scope="col">Drug Type</th>
+                <th scope="col">tier</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Prior Authorization</th>
+                <th scope="col">Quantity Limit</th>
+                <th scope="col">Step Therapy</th>
+                <th scope="col">Covered</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Abacavir 300mg Tablet</td>
+                <td></td>
+                <td>Generic</td>
+                <td>2</td>
+                <td>60</td>
+                <td>Every month</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">WALGREEN CO</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Drug Name</th>
+                <th scope="col">Package</th>
+                <th scope="col">Drug Type</th>
+                <th scope="col">tier</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Frequency</th>
+                <th scope="col">Prior Authorization</th>
+                <th scope="col">Quantity Limit</th>
+                <th scope="col">Step Therapy</th>
+                <th scope="col">Covered</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Abacavir 300mg Tablet</td>
+                <td></td>
+                <td>Generic</td>
+                <td>2</td>
+                <td>60</td>
+                <td>Every month</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </div>
+</div>

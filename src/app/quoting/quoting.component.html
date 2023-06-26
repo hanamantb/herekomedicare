@@ -1,11 +1,12 @@
 
 <div class="container">
-  <div class="d-flex">
+  <div class="d-flex" style="height: 86vh">
       <div class="col-3 side-img">
         <img src="../../../assets/sidepic.png" alt="">
       </div>
     <div class="col-9 mt-2">
-      <app-time-line></app-time-line>
+      <br>
+<!--      <app-time-line></app-time-line>-->
       <button [ngClass]="{'active': button1Active}" (click)="toggleButton1()" style="border-radius: 5px 0px 0px 5px;margin-left: 15px">Zip Code</button>
       <button [ngClass]="{'active': button2Active}" (click)="toggleButton2()" style="border-radius: 0px 5px 5px 0px;">Customer Lookup</button>
       <app-zipcode-qouting *ngIf="button1Active" ></app-zipcode-qouting>

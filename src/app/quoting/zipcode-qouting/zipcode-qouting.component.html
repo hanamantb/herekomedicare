@@ -1,12 +1,25 @@
 <div class="container">
   <div class="d-flex mb-0">
     <div class="col-12 mt-1">
-      <div class="d-flex p-2">
+      <div class="d-flex p-2  mt-3">
         <div class="col-md-2">
-          <p>ZIP Code</p>
+          <p>Zip Code</p>
         </div>
         <div class="col-md-3">
-          <input type="text" placeholder="Enter Zip Code">
+          <form class="example-form">
+              <input type="text" class="mat-in"
+                     matInput
+                     (input) ="getCounties($event)"
+                     [formControl]="myControl"
+                     [matAutocomplete]="auto">
+              <mat-autocomplete  #auto="matAutocomplete"
+                                 [displayWith]="_displayplantname">
+                <mat-option *ngFor="let option of couties" [value]="option" >
+                  {{option.name}}
+                </mat-option>
+              </mat-autocomplete>
+          </form>
+<!--          <input type="text" placeholder="Enter Zip Code" [(ngModel)]="zipcode">-->
         </div>
       </div>
       <br>
@@ -40,19 +53,23 @@
 
       <div class="col-12">
 
-          <div class="card">
-            <div class="tittle p-2">
-              <p>Do you take prescription drugs?</p>
-            </div>
-            <div class=" d-flex body">
-              <div class="col-8">
-                Would you like to add/change prescription drugs in your medicine cabinet?
-              </div>
-             <div class="col-4">
-               NO <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
-             </div>
+          <div class="card mt-2">
+            <div class="  tittle p-2">
+              <p>Drugs in your Medicine Cabinet will be used while generating quotes.
+                Review and make changes to the Medicine Cabinet by selecting the checkbox. <br>
+                <input class="form-check-input ms-2"  [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckChecked" checked style="height: 20px;width: 20px" >
+              </p>
 
             </div>
+<!--            <div class=" d-flex body">-->
+<!--              <div class="col-8">-->
+<!--                Would you like to add/change prescription drugs in your medicine cabinet?-->
+<!--              </div>-->
+<!--             <div class="col-4">-->
+<!--               NO <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>-->
+<!--             </div>-->
+
+<!--            </div>-->
           </div>
 <!--          <button mat-raised-button color="primary" class="btn" (click)="drug()">Prescription Drugs</button>-->
 

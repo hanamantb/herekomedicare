@@ -1,197 +1,414 @@
 <div class="container">
-  <div class="p-2">
-  <div class="d-flex" style="background-color: white">
-    <div class="col-1">
-      <button mat-icon-button color="primary" >
-        <mat-icon>menu</mat-icon>
-      </button>
+  <div class="d-flex">
+    <div class="col-3 side-img">
+<app-sidebar></app-sidebar>
     </div>
-    <div class="col-3">
-      <button mat-icon-button color="primary" >
-        <mat-icon>people</mat-icon> Covered member
-      </button>
-    </div>
-    <div class="col-3">
-      <button mat-icon-button color="primary" >
-        <mat-icon> location_on</mat-icon> 36695 Moble,Albama(Moble)
-      </button>
-    </div>
-    <div class="col-3">
-      <button mat-icon-button color="primary" >
-        <mat-icon> calendar_today</mat-icon> Effective Date - 05/01/2023
-      </button>
-    </div>
-    <div class="col justify-content-end">
-      <button mat-icon-button color="primary" style="float: right;" >
-        <mat-icon> edit</mat-icon>
-      </button>
-    </div>
-  </div>
-  </div>
-  <div class="d-flex p-2">
-    <div class="col-md-3">
-      <button class="top-btns" style="background-color: white">Medicare Advantage & Prescription plans</button>
-    </div>
-    <div class="col-md-3">
-      <button class="top-btns">Medicare Advantage plans (Part C)</button>
-    </div>
-    <div class="col-md-3">
-      <button class="top-btns">Prescriptions (Plan D)</button>
-    </div>
-  </div>
-  <div class="section">
-    <p class="p-2">Showing xx of xx Medicare Advantage & Prescription Plans</p>
-    <div class="d-flex p-2">
-      <div class="col-2">
-        <img src="../../../assets/cigna.png" alt="" style="height: 100px;">
-      </div>
-      <div class="col-6">
-        <p>xxx Medicare Select <br> (HMO) <br> xxx Medicare <br> Plan  iD:xxxx-xx-xx</p>
-      </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="d-flex p-2">
-      <div class="col-8 p-2">
-        <div class="d-flex">
-        <div class="d-flex col-4 justify-content-center">Deductable <Br>  $0</div>
-        <div class="d-flex col-4 justify-content-center"> Max OOP <br> $xxx in-network</div>
-        <div class="d-flex col-4">overal star rating <br> 4 ⭐</div>
+    <div class="col-9 mt-2">
+<!--      <app-time-line [curentWorkStageId]="5"></app-time-line>-->
+      <div class="p-2">
+        <div class="d-flex justify-content-center" style="background-color: white">
+          <div class="col-1">
+            <button mat-icon-button color="primary">
+              <mat-icon (click)="onMenuClicked()">menu</mat-icon>
+            </button>
+          </div>
+          <!--    <div class="col-3">-->
+          <!--      <button mat-icon-button color="primary" >-->
+          <!--        <mat-icon>people</mat-icon> Covered member-->
+          <!--      </button>-->
+          <!--    </div>-->
+          <div class="col-5">
+            <button mat-icon-button color="primary">
+              <mat-icon> location_on</mat-icon>
+              <input type="text" value="55408"> Moble,Albama(Moble)
+            </button>
+          </div>
+          <div class="col-3 d-flex">
+            <p class="lis">LIS</p>
+            <mat-select placeholder="LIS" value="none">
+                              <mat-option value="none">
+                                None
+                              </mat-option>
+                              <mat-option value="25">
+                                25%
+                              </mat-option>
+                              <mat-option value="50">
+                                50%
+                              </mat-option>
+                              <mat-option value="75">
+                                75%
+                              </mat-option>
+                              <mat-option value="100">
+                                100%
+                              </mat-option>
+                            </mat-select>
+              </div>
+          <div class="col justify-content-end">
+            <button mat-icon-button color="primary" style="float: right;background-color: #3c6f8e;border-radius: 0;color: white;width: 50px">
+              <mat-icon> edit</mat-icon>
+            </button>
+          </div>
         </div>
-        <div class="section p-2" *ngIf="showmore">
-          <h3 style="font-weight: 500;">Office Visits</h3>
+      </div>
+      <div class="d-flex p-2">
+        <div class="col-md-4">
+          <button class="top-btns" style="background-color: white">Medicare Advantage & Prescription plans</button>
+        </div>
+        <div class="col-md-4">
+          <button class="top-btns">Medicare Advantage plans (Part C)</button>
+        </div>
+        <div class="col-md-4">
+          <button class="top-btns">Prescriptions (Plan D)</button>
+        </div>
+      </div>
+      <div class="section p-2">
+        <p class="p-2">Showing <span style="font-weight: bold;font-size: large">199</span>  of <span style="font-weight: bold;font-size: large">199</span> Medicare Advantage & Prescription Plans</p>
+
+        <!--plan-tile-->
+
+        <div class="card">
           <div class="d-flex">
-            <div class="col-4">
-              <h3>Primary care visit</h3>
-              <p class="sub-line">In-network:$X co-pay per visit</p>
+            <div class="col-9">
+              <div class="d-flex" style="border-bottom: solid 1px">
+                <div class="col-4" style="border-right: solid 1px">
+                  <img src="../../../assets/cigna.png" alt="" style="height: 70px;">
+                </div>
+                <div class="col-8 p-2">
+                  <h3>Cigna health and life insurance company</h3>
+                  <p>(HMO) ☆☆☆☆☆ &nbsp; xxx Medicare &nbsp;  Plan iD:xxxx-xx-xx</p>
+                </div>
+              </div>
+
+              <div class="d-flex">
+                <div class="d-flex col-4 justify-content-center">deductible <Br> $0</div>
+                <div class="d-flex col-4 justify-content-center"> Max OOP <br> $xxx in-network</div>
+                <div class="d-flex col-4">overal star rating <br> 4 ⭐</div>
+              </div>
+              <div class="section p-2" *ngIf="showmore">
+                <h3 style="font-weight: 500;">Office Visits</h3>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Primary care visit</h3>
+                    <p class="sub-line">In-network:$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Emergency Room</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>OutPatient Services</h3>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Specialist Visit</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Urgent Care</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Facility Fees</h3>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Preventive Care/Screening Immunization</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Ambulance</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button (click)="showMore()" *ngIf="!showmore">Show more
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button *ngIf="showmore" (click)="showMore()">Show Less
+                  <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+              </div>
+              <div class="d-flex p-2" *ngIf="benefits">
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Meal Delivery
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Silver Snickers
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Part B Giveback
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Wigs (Chemotherapy)
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex p-2" *ngIf="benefits">
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Healthy Options Allowance
+                  </button>
+                </div>
+<!--                <div class="col-3"></div>-->
+              </div>
             </div>
-            <div class="col-4">
-              <h3>Emergency Room</h3>
-              <p class="sub-line">$X co-pay per visit</p>
+            <div class="col-3">
+              <div class="card p-2">
+                <div class="card-title">
+                  <p align="right"> <span style="font-size: large;font-weight: bolder;text-align: right">Monthly Premium</span></p>
+                </div>
+                <div class="p-2 justify-content-end" style="text-align: end">
+                  <p> <span style="font-size: large;font-weight: bolder;text-align: right">$110.00</span></p>
+                  <p>Orginal Rate:</p>
+                  <p>110.00</p>
+                  <a href="">About this rate</a><br>
+                  <p>Estimated Annual Cost</p>
+                  <p>(Drug Cost + Premium)</p>
+                  <p> <span style="font-size: large;font-weight: bolder;text-align: right">$322</span></p>
+                  <a href="/drug-cost">Drug Cost Details</a><br>
+                </div>
+              </div>
             </div>
-            <div class="col-4">
-              <h3>OutPatient Services</h3>
+
+          </div>
+          <div class="card-footer">
+            <div class="d-flex">
+            <div class="col-1 form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="isChecked1" >
+              <label class="form-check-label" for="flexCheckChecked">
+                Compare
+              </label>
+            </div>
+              <div class=" col-3 ms-2" >
+                <span class="d-flex justify-content-center" (click)="showOp()">
+                  <p>Optional Packages</p>
+                  <mat-icon >keyboard_arrow_down</mat-icon>
+                  </span>
+              </div>
+            <div class="col-1">
+              <div class="dropdown" >
+                <button class="btn  dropdown-toggle" style="padding: 0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                  SBC
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">SBC</a></li>
+                </ul>
+              </div>
+            </div>
+              <div class="d-flex col-2">
+                <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>
+              </div>
+              <div class=" d-flex col-2">
+<!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
+<!--                <label  class="ms-2"> Additional Details</label>-->
+                <button mat-raised-button  >
+                  <mat-icon >remove_red_eye</mat-icon>
+                  Plan Details</button>
+              </div>
+              <div class=" d-flex col-3 justify-content-end">
+                <button mat-raised-button color="primary" style="width:100%;" (click)="cart()" >Add to cart</button>
+              </div>
+            </div>
+            <div class="card p-2" *ngIf="optnpkShow">
+              <div class="d-flex">
+                <input class="form-check-input" type="checkbox" checked value="" id="flexCheckChecked" > &nbsp;
+                <label class="form-check-label" for="flexCheckChecked" style="font-weight: bold">
+                  Package #1
+                </label>
+              </div>
+              <p>Include preventive dental and comprehensive dental</p>
+              <p>Monthly premium - <span class="rate">$28.50</span></p>
+              <p>deductible - <span class="rate">$50</span></p>
             </div>
           </div>
+        </div>
+        <div class="card">
           <div class="d-flex">
-            <div class="col-4">
-              <h3>Specialist Visit</h3>
-              <p class="sub-line">$X co-pay per visit</p>
-            </div>
-            <div class="col-4">
-              <h3>Urgent Care</h3>
-              <p class="sub-line">$X co-pay per visit</p>
-            </div>
-            <div class="col-4">
-              <h3>Facility Fees</h3>
-            </div>
-          </div>
-          <div class="d-flex">
-            <div class="col-4">
-              <h3>Preventive Care/Screening Immunization</h3>
-              <p class="sub-line">$X co-pay per visit</p>
-            </div>
-            <div class="col-4">
-              <h3>Ambulance</h3>
-              <p class="sub-line">$X co-pay per visit</p>
-            </div>
-          </div>
-        </div>
+            <div class="col-9">
+              <div class="d-flex" style="border-bottom: solid 1px">
+                <div class="col-4" style="border-right: solid 1px">
+                  <img src="../../../assets/cigna.png" alt="" style="height: 70px;">
+                </div>
+                <div class="col-8 p-2">
+                  <h3>Cigna health and life insurance company</h3>
+                  <p>(HMO) ☆☆☆☆☆ &nbsp; xxx Medicare &nbsp;  Plan iD:xxxx-xx-xx</p>
+                </div>
+              </div>
 
-        <div class="d-flex col-12 justify-content-center p-2">
-          <button mat-icon-button (click)="showMore()" *ngIf="!showmore">Show more <mat-icon>keyboard_arrow_down</mat-icon></button>
-        </div>
-        <div class="d-flex col-12 justify-content-center p-2">
-          <button mat-icon-button *ngIf="showmore" (click)="showMore()">Show Less<mat-icon>keyboard_arrow_up</mat-icon></button>
-        </div>
-        <br>
-        <mat-divider></mat-divider>
-        <br>
-        <div class="d-flex p-2">
-          <div class="col-6">Drugs Covered</div>
-          <div class="col-6">
-            <button mat-stroked-button color="primary">Add/Edit Prescribed Drugs</button>
+              <div class="d-flex">
+                <div class="d-flex col-4 justify-content-center">deductible <Br> $0</div>
+                <div class="d-flex col-4 justify-content-center"> Max OOP <br> $xxx in-network</div>
+                <div class="d-flex col-4">overal star rating <br> 4 ⭐</div>
+              </div>
+              <div class="section p-2" *ngIf="showmore">
+                <h3 style="font-weight: 500;">Office Visits</h3>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Primary care visit</h3>
+                    <p class="sub-line">In-network:$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Emergency Room</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>OutPatient Services</h3>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Specialist Visit</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Urgent Care</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Facility Fees</h3>
+                  </div>
+                </div>
+                <div class="d-flex">
+                  <div class="col-4">
+                    <h3>Preventive Care/Screening Immunization</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Ambulance</h3>
+                    <p class="sub-line">$X co-pay per visit</p>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button (click)="showMore()" *ngIf="!showmore">Show more
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button *ngIf="showmore" (click)="showMore()">Show Less
+                  <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
+              </div>
+              <div class="d-flex p-2" *ngIf="benefits">
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Meal Delivery
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Silver Snickers
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Part B Giveback
+                  </button>
+                </div>
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Wigs (Chemotherapy)
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex p-2" *ngIf="benefits">
+                <div class="col-3">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Healthy Options Allowance
+                  </button>
+                </div>
+<!--                <div class="col-3"></div>-->
+              </div>
+            </div>
+            <div class="col-3">
+              <div class="card p-2">
+                <div class="card-title">
+                  <p align="right"> <span style="font-size: large;font-weight: bolder;text-align: right">Monthly Premium</span></p>
+                </div>
+                <div class="p-2 justify-content-end" style="text-align: end">
+                  <p> <span style="font-size: large;font-weight: bolder;text-align: right">$99.00</span></p>
+                  <p>Orginal Rate:</p>
+                  <p>$99.00</p>
+                  <a href="">About this rate</a><br>
+                  <p>Estimated Annual Cost</p>
+                  <p>(Drug Cost + Premium)</p>
+                  <p> <span style="font-size: large;font-weight: bolder;text-align: right">$594</span></p>
+                  <a href="/drug-cost">Drug Cost Details</a><br>
+                </div>
+              </div>
+            </div>
+
           </div>
-        </div>
-        <div class="d-flex p-2">
-          <div class="col-6">Doctor Services</div>
-          <div class="col-6">
-            <button mat-stroked-button color="warn">Add/Edit Doctor</button>
-          </div>
-        </div>
-        <div class="p-2">
-          <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>
-          <div class="section" *ngIf="benefits">
+          <div class="card-footer">
             <div class="d-flex">
-              <div class="col-6">
-                <button mat-icon-button >
-                  <mat-icon class="benefit-icon" >check_circle_outline</mat-icon> Meal Delivery
+            <div class="col-4 form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="isChecked2">
+              <label class="form-check-label" for="flexCheckChecked">
+                Compare
+              </label>
+            </div>
+            <div class="col-1">
+              <div class="dropdown" >
+                <button class="btn  dropdown-toggle" style="padding: 0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" >
+                  SBC
                 </button>
-              </div>
-              <div class="col-6">
-                <button mat-icon-button >
-                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon> Silver Snickers
-                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">SBC</a></li>
+                </ul>
               </div>
             </div>
-            <div class="d-flex">
-              <div class="col-6">
-                <button mat-icon-button >
-                  <mat-icon class="benefit-icon" >check_circle_outline</mat-icon> Healthy Options Allowance
-                </button>
+              <div class="col-2">
+                <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>
               </div>
-              <div class="col-6">
-                <button mat-icon-button >
-                  <mat-icon class="benefit-icon" >check_circle_outline</mat-icon> Wigs (Chemotherapy)
-                </button>
+              <div class=" d-flex col-2">
+<!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
+<!--                <label  class="ms-2"> Additional Details</label>-->
+                <button mat-raised-button  >
+                  <mat-icon >remove_red_eye</mat-icon>
+                  Plan Details</button>
               </div>
-            </div>
-            <div class="d-flex">
-              <div class="col-6">
-                <button mat-icon-button  >
-                  <mat-icon class="benefit-icon" >check_circle_outline</mat-icon> Part B Giveback
-                </button>
+              <div class=" d-flex col-3 justify-content-end">
+                <button mat-raised-button color="primary" style="width:100%;" (click)="cart()">Add to cart</button>
               </div>
             </div>
+
           </div>
         </div>
-        <mat-divider></mat-divider>
-
-        <div class="d-flex p-3">
-          <div class="col-4">
-            <input type="radio"> Add to compare
-          </div>
-          <div class="col-4 ">
-            <select name="SBC" id="SBC">
-              <option value="SBC">SBC</option>
-            </select>
-          </div>
-          <div class="col-4">
-            <button mat-raised-button color="accent">Plan Details</button>
-          </div>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="card p-2">
-          <div class="card-title">
-              <h3 align="center">Monthly Premium</h3>
-          </div>
-          <div class="p-2 justify-content-center">
-            <p>$0.00 Includes</p>
-            <p>Doesn't Include</p>
-            <p>Total drug and the premium Cost (for the rest of 2023)</p>
-            <p>$0.00 Only includes premiums for months left</p>
-            <h3 align="center">Other Costs</h3>
-            <p><b>$XX Maximum payment for health services</b></p>
-            <a href="">About this rate</a><br>
-            <div class="d-flex p-3">
-              <button mat-raised-button color="primary" style="width:100%;">Add to cart</button>
-            </div>
-
-          </div>
-
-
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
+
+
+        <div class="sectionbtm" *ngIf="isChecked1 && isChecked2">
+          <!-- Your section content here -->
+          <div class="d-flex p-2">
+            <div class="col-6">
+              2 Plans selected for comparison
+            </div>
+            <div class="d-flex col-6 justify-content-end">
+              <button mat-button class="comparebtn" ><mat-icon> clear_all</mat-icon> Clear</button>
+              <button mat-button class="comparebtn" ><mat-icon>compare</mat-icon> Compare Plans</button>
+            </div>
+          </div>
+        </div>
+

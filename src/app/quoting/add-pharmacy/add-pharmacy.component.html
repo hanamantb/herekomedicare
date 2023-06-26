@@ -18,7 +18,7 @@
       <div class="d-flex p-2 justify-content-end">
         <!--      <p><mat-icon style="float: left;margin-top: -2px;">chevron_left</mat-icon> Back to Drug Selection</p>-->
       </div>
-      <app-time-line [curentWorkStageId]="3"></app-time-line>
+<!--      <app-time-line [curentWorkStageId]="3"></app-time-line>-->
       <div class="p-2">
         <h3>Choose upto 5 Pharmacies</h3>
         <p>Choosing a nearby pharmacy helps us in significantly reducing your costs</p>
@@ -26,14 +26,14 @@
       <div class="d-flex">
         <div class="col-5 p-2">
           <p>Enter your complete address or ZIP code</p>
-          <input type="text">
+          <input type="text" [(ngModel)]= 'zipcode'>
         </div>
         <div class="col-5 p-2">
           <p>Enter your pharmacy name (Optional)</p>
           <input type="text">
         </div>
         <div class="col-2 p-2">
-          <button mat-raised-button color="primary" style="margin-top: 26px;">Find Pharmacy</button>
+          <button mat-raised-button color="primary" style="margin-top: 26px;" (click)="findPharmacy()">Find Pharmacy</button>
         </div>
       </div>
       <div class="d-flex p-2">
@@ -41,9 +41,12 @@
           <p>Filter by</p>
         </div>
         <div class="col-3 p-2">
-          <mat-select placeholder="Select">
+          <mat-select placeholder="Select" [(ngModel)]="radius_miles">
             <mat-option value="5">
               Distance: 5 km
+            </mat-option>
+            <mat-option value="10">
+              Distance: 10 km
             </mat-option>
           </mat-select>
         </div>
@@ -52,47 +55,23 @@
       <div class="d-flex p-2">
         <div class="col-6">
           <div class="d-flex sub-head p-2">
-            Mail Order Pharmacy <input type="radio">
+            Include Mail Order Pharmacy &nbsp;
+            <input class="form-check-input" type="checkbox"
+                   style="height: 15px;width: 15px" value="" id="flexCheckChecked" >
           </div>
-          <p class="p-2">Add both mail-order and retail pharmacies to save cost</p>
-          <div class="card p-2">
+          <p class="p-2">Add both mail-order and retail pharmacies to save cost.</p>
+          <div class="card p-2" *ngFor="let pharm of pharmacies">
             <div class="tittle p-2">
               <div class="d-flex justify-content-end ">
-                Add Pharmacy <input type="radio">
+                Add Pharmacy
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (change)="check($event,pharm)" >
               </div>
-              <h3>1, XXX Pharmacy XXX</h3>
+              <h3>{{pharm.name}}</h3>
             </div>
             <div class="card-body">
-              <p>xxx, xx state 12345</p>
-              <p>(000)00 000000</p>
-            </div>
+              <p>{{pharm.street}},{{pharm.city}}</p>
 
-          </div>
-          <div class="card">
-            <div class="tittle p-2">
-              <div class="d-flex justify-content-end ">
-                Add Pharmacy <input type="radio">
-              </div>
-              <h3>1, XXX Pharmacy XXX</h3>
             </div>
-            <div class="card-body">
-              <p>xxx, xx state 12345</p>
-              <p>(000)00 000000</p>
-            </div>
-
-          </div>
-          <div class="card">
-            <div class="tittle p-2">
-              <div class="d-flex justify-content-end ">
-                Add Pharmacy <input type="radio">
-              </div>
-              <h3>1, XXX Pharmacy XXX</h3>
-            </div>
-            <div class="card-body">
-              <p>xxx, xx state 12345</p>
-              <p>(000)00 000000</p>
-            </div>
-
           </div>
         </div>
 
@@ -101,6 +80,16 @@
         </div>
 
 
+      </div>
+      <div class="d-flex p-2">
+        <ag-grid-angular style="width: 80%;margin-top: 1%;min-height: 100px" class="ag-theme-alpine"
+                         [scrollbarWidth]="8" [headerHeight]="35"
+                         rowSelection="multiple"
+                         [rowHeight]="35" [rowData]="rowData"
+                         [columnDefs]="columnDefs" (cellClicked)="onGridCellClicked($event)"
+                         (gridReady)="onGridReady($event)" domLayout='autoHeight'
+        >
+        </ag-grid-angular>
       </div>
       <div class="col-12">
         <div class="d-flex p-2 justify-content-end ">

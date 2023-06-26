@@ -8,3 +8,47 @@
   color: #fff;
   padding: 20px;
 }
+/deep/ .mat-tab-label{
+  min-width: 120px !important;
+  color: white;
+}
+mat-expansion-panel-header{
+  background-color:#4b8bb2 ;
+color: black;
+}
+/*.mat-expansion-panel-header.mat-expanded,*/
+/*.mat-expansion-panel-header.mat-expanded:hover {*/
+/*  background: #4b8bb2;*/
+/*}*/
+/*/deep/ .mat-expansion-panel-header .mat-expanded{*/
+/*  background-color: #4b8bb2;*/
+/*}*/
+.panel-headers{
+  font-weight: 500;
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+
+}
+.sort-list input{
+  width: 30% !important;
+  height: 20px;
+  border-radius: 3px;
+}
+mat-slider {
+  width: 300px;
+}
+.exp-sub{
+  padding-left: 10px;
+  font-size: 15px;
+}
+.sort{
+  font-size: 15px;
+}
+.pricevaluesliderValue{
+  width: 60%;
+}
+.form-check-label{
+  padding-left: 10px;
+  font-size: 15px;
+}

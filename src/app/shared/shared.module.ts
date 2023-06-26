@@ -4,7 +4,15 @@ import { ToolbarComponent } from './layouts/toolbar/toolbar.component';
 import { BottomBarComponent } from './layouts/bottom-bar/bottom-bar.component';
 import { TimeLineComponent } from './layouts/time-line/time-line.component';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatSliderModule} from '@angular/material/slider';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SharedService} from "../services/shared.service";
+import {MatBadgeModule} from '@angular/material/badge';
 
 
 @NgModule({
@@ -12,16 +20,27 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     ToolbarComponent,
     BottomBarComponent,
     TimeLineComponent,
-    SidebarComponent
+    SidebarComponent,
   ],
   imports: [
-
-    CommonModule
+    CommonModule,
+    BrowserAnimationsModule,
+    MatTabsModule,
+    MatExpansionModule,
+    MatIconModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatSliderModule,
+    MatBadgeModule
   ],
     exports: [
         ToolbarComponent,
         BottomBarComponent,
-        TimeLineComponent
-    ]
+        TimeLineComponent,
+        SidebarComponent,
+
+    ],
+  providers: [SharedService],
+
 })
 export class SharedModule { }

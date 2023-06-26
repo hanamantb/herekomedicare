@@ -1,0 +1,14 @@
+.top-btn button{
+  font-size: 10px;
+  border: solid #d2caca 1px;
+  border-radius: 0;
+}
+.card-footer{
+  padding: 0;
+}
+.mat-form-field{
+  display: block !important;
+}
+mat-select{
+  border: none;
+}

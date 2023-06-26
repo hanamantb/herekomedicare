@@ -1,0 +1,284 @@
+<div class="container">
+  <div class="d-flex">
+    <div class="col-9">
+      <div class="d-flex justify-content-end top-btn">
+        <button mat-button (click)="cpyShowtog()">
+          <mat-icon>file_copy</mat-icon>
+          COPY PROPOSAL LINK
+        </button>
+        <!--        <img src="../../../../assets/sample.pdf" alt="">-->
+        <button mat-button (click)="navbutton('email-proposal')">
+          <mat-icon> email</mat-icon>
+          EMAIL PROPOSAL
+        </button>
+        <button mat-button (click)="navbutton('cart')">
+          <mat-icon>save</mat-icon>
+          SAVE PROPOSAL
+        </button>
+        <button mat-button (click)="f1()">
+          <mat-icon>cloud_download</mat-icon>
+          DOWNLOAD PROPOSAL
+        </button>
+      </div>
+      <div class="card p-2 m-1" *ngIf="cpyShow">
+        <div class=" d-flex p-2">
+          <div class="col-4 p-2">
+            <mat-form-field appearance="fill">
+              <mat-label>First Name</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-4 p-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Last Name</mat-label>
+              <input type="text" matInput>
+            </mat-form-field>
+          </div>
+          <div class="col-4 p-2">
+            <mat-form-field appearance="fill">
+              <mat-label>Select the format to generate proposal</mat-label>
+              <mat-select value="0">
+                <mat-option [value]="0">
+                  PDF Format
+                </mat-option>
+                <mat-option [value]="1">
+                  Excel Format
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <div class="d-flex p-2 justify-content-end">
+          <button mat-raised-button STYLE="background-color: white">Cancel</button>
+          <button mat-raised-button style="background-color: #4b8bb2;color: white" class="ms-2">
+            Send
+          </button>
+        </div>
+      </div>
+      <div class="d-flex mt-2">
+        <div class="col-4 p-2" style="background-color: #4b8bb2; color: white">
+          Medicare Advantage/Medicare Part D Plan
+        </div>
+        <div class="col-5 p-2" style="background-color: white">
+          32004, Saint Johns, Ponte Vedra,Florida 1 Member
+        </div>
+        <div class="col-3 d-flex p-2 justify-content-end" style="background-color: white;color: green">
+          Effective date: 07/01/2023
+        </div>
+      </div>
+
+      <div class="card mt-2">
+        <div class="d-flex">
+          <div class="col-9">
+            <div class="d-flex" style="border-bottom: solid 1px">
+              <div class="col-4" style="border-right: solid 1px">
+                <img src="../../../assets/cigna.png" alt="" style="height: 70px;">
+              </div>
+              <div class="col-8 p-2">
+                <h3>Cigna health and life insurance company</h3>
+                <p>(HMO) ☆☆☆☆☆ &nbsp; xxx Medicare &nbsp; Plan iD:xxxx-xx-xx</p>
+              </div>
+            </div>
+
+            <div class="d-flex">
+              <div class="d-flex col-4 justify-content-center">deductible <Br> $0</div>
+              <div class="d-flex col-4 justify-content-center"> Max OOP <br> $xxx in-network</div>
+              <div class="d-flex col-4">overal star rating <br> 4 ⭐</div>
+            </div>
+            <div class="section p-2" *ngIf="showmore">
+              <h3 style="font-weight: 500;">Office Visits</h3>
+              <div class="d-flex">
+                <div class="col-4">
+                  <h3>Primary care visit</h3>
+                  <p class="sub-line">In-network:$X co-pay per visit</p>
+                </div>
+                <div class="col-4">
+                  <h3>Emergency Room</h3>
+                  <p class="sub-line">$X co-pay per visit</p>
+                </div>
+                <div class="col-4">
+                  <h3>OutPatient Services</h3>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="col-4">
+                  <h3>Specialist Visit</h3>
+                  <p class="sub-line">$X co-pay per visit</p>
+                </div>
+                <div class="col-4">
+                  <h3>Urgent Care</h3>
+                  <p class="sub-line">$X co-pay per visit</p>
+                </div>
+                <div class="col-4">
+                  <h3>Facility Fees</h3>
+                </div>
+              </div>
+              <div class="d-flex">
+                <div class="col-4">
+                  <h3>Preventive Care/Screening Immunization</h3>
+                  <p class="sub-line">$X co-pay per visit</p>
+                </div>
+                <div class="col-4">
+                  <h3>Ambulance</h3>
+                  <p class="sub-line">$X co-pay per visit</p>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex col-12 justify-content-center p-2">
+              <button mat-icon-button (click)="showMore()" *ngIf="!showmore">Show more
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </button>
+            </div>
+            <div class="d-flex col-12 justify-content-center p-2">
+              <button mat-icon-button *ngIf="showmore" (click)="showMore()">Show Less
+                <mat-icon>keyboard_arrow_up</mat-icon>
+              </button>
+            </div>
+            <div class="d-flex p-2" style="border-top:solid 1px ">
+              Drugs Covered: <span class="d-flex ms-2" style="color: #4b8bb2;"><mat-icon>library_add</mat-icon>Add Drug</span>
+            </div>
+            <div class="d-flex p-2" style="border-top:solid 1px ">
+              Doctor Services: <span class="d-flex ms-2" style="color: #4b8bb2;"><mat-icon>add_box</mat-icon>In-Network Providers</span>
+            </div>
+            <div class="d-flex p-2" *ngIf="benefits">
+              <div class="col-3">
+                <button mat-icon-button class="benfit-btn">
+                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                  Meal Delivery
+                </button>
+              </div>
+              <div class="col-3">
+                <button mat-icon-button class="benfit-btn">
+                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                  Silver Snickers
+                </button>
+              </div>
+              <div class="col-3">
+                <button mat-icon-button class="benfit-btn">
+                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                  Part B Giveback
+                </button>
+              </div>
+              <div class="col-3">
+                <button mat-icon-button class="benfit-btn">
+                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                  Wigs (Chemotherapy)
+                </button>
+              </div>
+            </div>
+            <div class="d-flex p-2" *ngIf="benefits">
+              <div class="col-3">
+                <button mat-icon-button class="benfit-btn">
+                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                  Healthy Options Allowance
+                </button>
+              </div>
+              <!--                <div class="col-3"></div>-->
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="card p-2 mt-2" style="border: none">
+              <div class="card-title">
+                <p align="right"><span
+                  style="font-size: large;font-weight: bolder;text-align: right">Monthly Premium</span></p>
+              </div>
+              <div class="p-2 justify-content-end" style="text-align: end">
+                <p><span style="font-size: large;font-weight: bolder;text-align: right">$99.00</span></p>
+                <p>Orginal Rate:</p>
+                <p>$99.00</p>
+                <a href="">About this rate</a><br>
+                <!--                <p>Estimated Annual Cost</p>-->
+                <!--                <p>(Drug Cost + Premium)</p>-->
+                <!--                <p><span style="font-size: large;font-weight: bolder;text-align: right">$594</span></p>-->
+                <!--                <a href="/drug-cost">Drug Cost Details</a><br>-->
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="d-flex">
+            <div class="col-6">
+              <button mat-button style="color: red; background-color: #ff595959">
+                <mat-icon>delete_forever</mat-icon>
+                Remove from cart
+              </button>
+            </div>
+            <div class="col-1">
+              <div class="dropdown">
+                <button class="btn  dropdown-toggle" style="padding: 0" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown">
+                  SBC
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">SBC</a></li>
+                </ul>
+              </div>
+            </div>
+            <!--            <div class="d-flex col-2">-->
+            <!--              <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>-->
+            <!--            </div>-->
+            <div class=" d-flex col-2">
+              <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
+              <!--                <label  class="ms-2"> Additional Details</label>-->
+              <button mat-raised-button>
+                <mat-icon>remove_red_eye</mat-icon>
+                More Details
+              </button>
+            </div>
+            <div class=" d-flex col-3 justify-content-end">
+              <button mat-raised-button style="width:100%; background-color: #4b8bb2;color: white" (click)="cart()">
+                Select
+              </button>
+            </div>
+          </div>
+          <div class="card p-2" *ngIf="optnpkShow">
+            <div class="d-flex">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked" style="font-weight: bold">
+                Package #1
+              </label>
+            </div>
+            <p>Include preventive dental and comprehensive dental</p>
+            <p>Monthly premium - <span class="rate">$28.50</span></p>
+            <p>deductible - <span class="rate">$50</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="p-2 pb-0">
+        <h2 style="color: #4b8bb2;font-weight: bold">Custom Plans</h2> <br>
+        <p> Do you waant to add custom plan in proposal? &nbsp;&nbsp; NO
+          <mat-slide-toggle checked="false">YES</mat-slide-toggle>
+        </p>
+      </div>
+      <div class="d-flex justify-content-end pb-1">
+        <button mat-button style="background-color: white" class="ms-2"> Continue Shopping</button>
+        <button mat-button style="background-color: white" class="ms-2">Cancel</button>
+        <button mat-button style="background-color: #4b8bb2; color: white" class="ms-2">Begin Enrollment</button>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card p-2 ms-2">
+        <div class="d-flex justify-content-center p-2" style="background-color: #64bdf4;color: white">
+          <mat-icon>add_shopping_cart</mat-icon>
+          My cart
+        </div>
+        <div class="body p-5 " style="font-size: 18px;text-align: center">
+          You have 0 item(s) to apply & enroll
+        </div>
+        <div class="card-footer">
+          <div class="d-flex ">
+            <div class="col-6 p-2" style="text-align: center">
+              Total Amount
+              $0.00
+            </div>
+            <div class="col-6 p-2" style="background-color: #4b8bb2; color: white;text-align: center">
+              Begin Enrollment
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

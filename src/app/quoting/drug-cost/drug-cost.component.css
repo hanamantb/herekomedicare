@@ -1,0 +1,41 @@
+.side-img img{
+  width: 92%;
+}
+.container{
+  padding: 0;
+  margin: 0;
+}
+.d-cost-label{
+  font-size: 18px;
+  color: #4b8bb2;
+  font-weight: 500;
+}
+.btn-icon{
+  display: flex;
+}
+.btn-icon button{
+  display: flow-root;
+  margin: 0;
+  padding: 0;
+  border-radius: unset;
+  border: solid 1px;
+  height: 36px;
+}
+.btn-icon mat-icon{
+  color: #4b8bb2;
+}
+.mat-expansion-panel{
+  background:  white;
+  margin-bottom: 5vh;
+}
+
+.panel-headers{
+  font-size: 18px;
+  color: #4b8bb2;
+  font-weight: 500;
+}
+.main-panel-headers{
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+}
