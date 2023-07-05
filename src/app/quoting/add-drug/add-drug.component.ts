@@ -77,6 +77,8 @@ export class AddDrugComponent implements OnInit {
    const dataDialog = this.dialog.open(BrowseDrugComponent, {width: '350px',
      position: { right: '0'}});
     dataDialog.afterClosed().subscribe(ret=>{
+      this.selectedItem=[];
+      this.packages=[];
       console.log('retData',ret)
       this.itemName = ret.name
       this.getDosageDetails(ret.rxcui)
@@ -84,6 +86,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   toggleItemSelection(item: any) {
+
     this.selectedItem = item
     this.itemName = item.name
     console.log(item.name)
@@ -97,7 +100,8 @@ export class AddDrugComponent implements OnInit {
   addDrug() {
     console.log('drgggg', this.drugForm.value)
     this.drugForm.patchValue({
-      drugName:this.itemName
+      drugName:this.itemName,
+      package:this.drugForm.value.package.package_description
     })
     this.rowData.push(this.drugForm.value)
     this.gridapi?.setRowData(this.rowData)
@@ -125,6 +129,8 @@ export class AddDrugComponent implements OnInit {
 
   change(event: any) {
     console.log(event.option.value)
+    this.selectedItem=[];
+    this.packages=[];
     this.itemName = event.option.value.name
     this.getDosageDetails( event.option.value.rxcui)
   }
@@ -132,17 +138,40 @@ export class AddDrugComponent implements OnInit {
     this.commonservice.drugDosage(rxcui).subscribe((response)=>{
       console.log('getDosageDetails',response)
       this.dosagesDetails = response.data
-      const distinctValues = Array.from(new Set(this.dosagesDetails.map((item:any) => item.dosage_form)));
+      const distinctValues = Array.from(new Set(this.dosagesDetails.map((item:any) => item)));
       this.dosages = distinctValues;
+      this.drugForm.patchValue({
+        dosage:  this.dosages[0].dosage_form,
+        quantity:Number( this.dosages[0].default_quantity
+        )
+      })
       console.log('distinctValues',distinctValues)
     })
 
   }
 
   dosageChange(event:any) {
-
+    this.packages=[]
     const filteredData = this.dosagesDetails.filter((item:any) => item.dosage_form === event.value);
-    console.log('filteredData---',filteredData)
-    this.packages = Array.from(new Set(filteredData.map((item:any) => item.package_description)));
+    const pack = Array.from(new Set(filteredData.map((item:any) => item)));
+    pack.forEach((element:any)=>{
+      if (element.package_description != ""){
+        this.packages.push(element)
+      }
+    })
+    this.drugForm.patchValue({
+      package:this.packages[0],
+      quantity:Number( this.packages[0].default_quantity)
+    })
+
+  }
+
+  packageChange(event: any) {
+    console.log('event.value---',event.value)
+    this.drugForm.patchValue({
+      quantity:Number(event.value.default_quantity
+      )
+    })
+
   }
 }

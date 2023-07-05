@@ -24,7 +24,7 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.searchDrug, {name,year},'');
   }
 
-  public searchPharmacy(zipcode:any,radius_miles="",page="0",count=5,name="",address=""): Observable<any> {
+  public searchPharmacy(zipcode:any,radius_miles="",address="",page="0",count=5,name=""): Observable<any> {
     return this.apiProvider.post(UrlConstants.searchPharmacy, {zipcode,radius_miles,page,count,address},'');
   }
 

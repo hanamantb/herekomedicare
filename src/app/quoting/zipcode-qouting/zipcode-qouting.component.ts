@@ -18,6 +18,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   zipcode: any;
   myControl = new FormControl();
   couties: any
+  selectedCountie:any;
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -40,11 +41,12 @@ export class ZipcodeQoutingComponent implements OnInit {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
     if (this.isChecked) {
-      this.dialog.open(AddDrugComponent, {
-        autoFocus: false,
-        maxHeight: '90vh',
-        width: '140vh'
-      })
+      this.route.navigate(['add-drugs'])
+      // this.dialog.open(AddDrugComponent, {
+      //   autoFocus: false,
+      //   maxHeight: '90vh',
+      //   width: '140vh'
+      // })
     } else {
       this.route.navigate(['Plans'])
     }
@@ -53,7 +55,8 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   getCounties(event: any) {
     console.log('event', event)
-    if (event.target.value.length == 5) {
+    if (event.target.value.length === 5) {
+      this.selectedCountie =event.target.value
       this.commonService.getCounties(event.target.value).subscribe(response => {
         console.log('Response:', response);
         this.couties = response.data.counties

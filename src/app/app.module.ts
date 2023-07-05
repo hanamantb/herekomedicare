@@ -32,6 +32,7 @@ import { CartHomeComponent } from './quoting/cart/cart-home/cart-home.component'
 import { EmailProposalComponent } from './quoting/cart/email-proposal/email-proposal.component';
 import {SharedService} from "./services/shared.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 
@@ -72,7 +73,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     MatTabsModule,
     MatExpansionModule,
     HttpClientModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatTooltipModule
   ],
   exports:[MatTabsModule],
   providers: [HttpClientModule,SharedService],

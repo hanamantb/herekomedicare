@@ -16,6 +16,7 @@ export class AddPharmacyComponent implements OnInit {
   gridapi?: GridApi;
   zipcode:any='32007';
   radius_miles:any='10';
+  pharmName:any='';
 
   constructor(private route: Router,private commonservice: CommonService) {
   }
@@ -78,7 +79,7 @@ export class AddPharmacyComponent implements OnInit {
     }
 
   findPharmacy() {
-    this.commonservice.searchPharmacy(this.zipcode,this.radius_miles).subscribe((response)=>{
+    this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName).subscribe((response)=>{
       this.pharmacies = response.data.listOfPharmacy
       console.log('pharmacy',response)
     })
