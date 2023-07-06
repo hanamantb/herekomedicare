@@ -1,7 +1,7 @@
 <div class="container">
   <div class="offcanvas-header">
     <h3 class="offcanvas-title" id="offcanvas-basic-title">Browse drugs A-Z</h3>
-    <button type="button"  aria-label="Close" >X</button>
+    <button type="button"  aria-label="Close" (click)="cancel()" >X</button>
   </div>
   <div class="d-flex p-2">
     <div class="col-6">SELECT A LETTER</div>
@@ -30,7 +30,7 @@
         </button>
       </div>
       <div class="p-2">
-        <button mat-raised-button color="danger">Cancel</button>
+        <button mat-raised-button color="danger" (click)="cancel()">Cancel</button>
       </div>
     </div>
   </div>

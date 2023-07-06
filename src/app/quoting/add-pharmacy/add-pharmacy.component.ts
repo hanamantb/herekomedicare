@@ -14,7 +14,7 @@ export class AddPharmacyComponent implements OnInit {
   pharmacies:any = []
   @ViewChild('agGrid', {static: true}) ahGrid!: AgGridAngular;
   gridapi?: GridApi;
-  zipcode:any='32007';
+  zipcode:any;
   radius_miles:any='10';
   pharmName:any='';
 
@@ -22,6 +22,8 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const zip = localStorage.getItem('zipcode')
+    console.log('zip',zip)
   }
 
   colDef5 = function () {

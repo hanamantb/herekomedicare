@@ -15,10 +15,15 @@ export class PrescriptionDrugsComponent implements OnInit {
   optnpkShow: boolean = false
   isChecked:boolean =false
   checkedData:any=[];
+  value = 4.5;
+  stars: number[] = [1, 2, 3, 4, 5];
+  selectedCardIndex:any;
   plans:any=[{
     "id": 3812,
     "checked": false,
     "showmore":false,
+    "optnpkShow":false,
+    "cartAdded":false,
     "name": "HealthSun HealthAdvantage Plan (HMO)",
     "url": "www.HealthSun.com",
     "contract_year": "2023",
@@ -413,6 +418,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "id": 3817,
       "checked": false,
       "showmore":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "HealthSun HealthAdvantage Plus (HMO)",
       "url": "www.HealthSun.com",
       "contract_year": "2023",
@@ -808,6 +815,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "Devoted CORE Palm Beach (HMO)",
       "url": "www.Devoted.com",
       "contract_year": "2023",
@@ -1203,6 +1212,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "Simply More (HMO)",
       "url": "shop.simplyhealthcareplans.com/medicare",
       "contract_year": "2023",
@@ -1598,6 +1609,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "Simply Level (HMO C-SNP)",
       "url": "shop.simplyhealthcareplans.com/medicare",
       "contract_year": "2023",
@@ -1993,6 +2006,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "SOLIS SPF 008 (HMO)",
       "url": "https://solishealthplans.com",
       "contract_year": "2023",
@@ -2388,6 +2403,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "Wellcare No Premium (HMO)",
       "url": "www.wellcare.com/medicare",
       "contract_year": "2023",
@@ -2783,6 +2800,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "checked": false,
       "showmore":false,
       "benefits":false,
+      "optnpkShow":false,
+      "cartAdded":false,
       "name": "Wellcare Specialty No Premium (HMO C-SNP)",
       "url": "www.wellcare.com/medicare",
       "contract_year": "2023",
@@ -3183,7 +3202,9 @@ export class PrescriptionDrugsComponent implements OnInit {
   ngOnInit(): void {
     // this.getPlans()
   }
-
+  showbenfit(plan:any) {
+    plan.optnpkShow = true
+  }
   showMore(plan:any) {
     plan.showmore = true
   }
@@ -3200,13 +3221,13 @@ export class PrescriptionDrugsComponent implements OnInit {
     // this.menuClicked.emit('');
   }
 
-  showOp() {
-    this.optnpkShow=!this.optnpkShow
+  showOp(plan:any) {
+    plan.optnpkShow=!plan.optnpkShow
     console.log('cli')
   }
 
-  cart() {
-    // this.route.navigate(['cart-home'])
+  cart(plan:any) {
+    plan.cartAdded =true
     this.sharedService.incrementNumber();
   }
 
@@ -3253,5 +3274,18 @@ export class PrescriptionDrugsComponent implements OnInit {
     if (this.checkedData.length >= 2){
       this.isChecked = true
     }
+  }
+  get fullStars(): number[] {
+    return Array(Math.floor(this.value)).fill(0);
+  }
+
+  get halfStar(): boolean {
+    return this.value % 1 !== 0;
+  }
+
+  get emptyStars(): number[] {
+    const totalStars = 5;
+    const fullAndHalfStars = Math.floor(this.value) + (this.halfStar ? 1 : 0);
+    return Array(totalStars - fullAndHalfStars).fill(0);
   }
 }

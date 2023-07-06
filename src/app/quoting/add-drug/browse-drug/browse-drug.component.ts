@@ -44,4 +44,9 @@ this.dialogRef.close(this.selectedItem)
       console.log('drugs',response)
     })
   }
+
+
+  cancel() {
+    this.dialog.closeAll()
+  }
 }

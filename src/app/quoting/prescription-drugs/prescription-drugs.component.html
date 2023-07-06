@@ -66,7 +66,7 @@
 
         <!--plan-tile-->
 
-        <div class="card" *ngFor="let plan of plans">
+        <div class="card" *ngFor="let plan of plans ; let i = index">
           <div class="d-flex">
             <div class="col-9">
               <div class="d-flex" style="border-bottom: solid 1px">
@@ -74,7 +74,7 @@
                   <img src="../../../assets/cigna.png" alt="" style="height: 70px;">
                 </div>
                 <div class="col-8 p-2">
-                  <h3>{{plan.name}}</h3>
+                  <h3>{{plan.name}} </h3>
                   <p>(HMO) &nbsp; {{plan.category}} Medicare &nbsp;  Plan ID:{{plan.contract_id}}-{{plan.plan_id}}-{{plan.segment_id}}</p>
                 </div>
               </div>
@@ -82,10 +82,18 @@
               <div class="d-flex">
                 <div class="d-flex col-4 justify-content-center">Deductible <Br> {{plan.annual_deductible}}</div>
                 <div class="d-flex col-4 justify-content-center"> Max OOP <br> {{plan.maximum_oopc}}</div>
-                <div class="d-flex col-4">Overal Star Rating <br> {{plan.overall_star_rating.rating}} ⭐</div>
+                <div class="col-4">Overal Star Rating <br>
+                  <div class="star-rating">
+                    <span *ngFor="let star of stars" [ngClass]="{'filled': star <= plan.overall_star_rating.rating, 'half-filled': star === plan.overall_star_rating.rating - 0.5}"></span>
+                  </div>
+                </div>
               </div>
               <div class="section p-2" *ngIf="plan.showmore">
-                <h3 style="font-weight: 500;">Office Visits</h3>
+                <div class="d-flex">
+                  <div class="col-4"> <h3 style="font-weight: 500;">Office Visits</h3></div>
+                  <div class="col-4"><h3 style="font-weight: 500;">Emergency Services</h3> </div>
+                  <div class="col-4"><h3 style="font-weight: 500;">Outpatient Services</h3> </div>
+                  </div>
                 <div class="d-flex">
                   <div class="col-4">
                     <h3>Primary care visit</h3>
@@ -96,7 +104,7 @@
                     <p class="sub-line">{{plan.emergency_care_cost}} co-pay per visit</p>
                   </div>
                   <div class="col-4">
-                    <h3>OutPatient Services</h3>
+                    <h3>Facility Fees</h3>
                   </div>
                 </div>
                 <div class="d-flex">
@@ -109,7 +117,7 @@
                     <p class="sub-line">$0 co-pay per visit</p>
                   </div>
                   <div class="col-4">
-                    <h3>Facility Fees</h3>
+                    <h3>Diagnostic Tests (x-ray, blood work)</h3>
                   </div>
                 </div>
                 <div class="d-flex">
@@ -119,6 +127,10 @@
                   </div>
                   <div class="col-4">
                     <h3>Ambulance</h3>
+                    <p class="sub-line">$0 co-pay per visit</p>
+                  </div>
+                  <div class="col-4">
+                    <h3>Skilled Nursing Care Cost Share</h3>
                     <p class="sub-line">$0 co-pay per visit</p>
                   </div>
                 </div>
@@ -133,57 +145,80 @@
                   <mat-icon>keyboard_arrow_up</mat-icon>
                 </button>
               </div>
-              <div class="d-flex p-2" *ngIf="plan.benefits">
-                <div class="col-3">
+              <div class="row p-2" >
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Vision
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Dental
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Hearing
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Transportation
                   </button>
                 </div>
-              </div>
-              <div class="d-flex p-2" *ngIf="plan.benefits">
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Fitness
+                    Fitness benefits
                   </button>
                 </div>
-                <div class="col-3">
+              </div>
+
+              <div class="row p-2" *ngIf="plan.benefits">
+                <div class="col ms-2">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Worldwide emergency
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Telehealth
                   </button>
                 </div>
-                <div class="col-3">
+                <div class="col">
                   <button mat-icon-button class="benfit-btn">
                     <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                     Over-the-counter drugs
                   </button>
                 </div>
+                <div class="col">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    In-home support
+                  </button>
+                </div>
+                <div class="col">
+                  <button mat-icon-button class="benfit-btn">
+                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                    Emergency response
+                  </button>
+                </div>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button (click)="benefitShow(plan)" *ngIf="!plan.benefits">Show more
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </button>
+              </div>
+              <div class="d-flex col-12 justify-content-center p-2">
+                <button mat-icon-button *ngIf="plan.benefits" (click)="benefitShow(plan)">Show Less
+                  <mat-icon>keyboard_arrow_up</mat-icon>
+                </button>
               </div>
             </div>
             <div class="col-3">
@@ -214,7 +249,7 @@
               </label>
             </div>
               <div class=" col-3 ms-2" >
-                <span class="d-flex justify-content-center" (click)="showOp()">
+                <span class="d-flex justify-content-center" (click)="showOp(plan)">
                   <p>Optional Packages</p>
                   <mat-icon >keyboard_arrow_down</mat-icon>
                   </span>
@@ -230,7 +265,7 @@
               </div>
             </div>
               <div class="d-flex col-2">
-                <a (click)="benefitShow(plan)" style="color: blue;cursor: pointer">Plan Benefits</a>
+<!--                <a (click)="benefitShow(plan)" style="color: blue;cursor: pointer">Plan Benefits</a>-->
               </div>
               <div class=" d-flex col-2">
 <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
@@ -240,12 +275,12 @@
                   Plan Details</button>
               </div>
               <div class=" d-flex col-3 justify-content-end">
-                <button mat-raised-button color="primary" style="width:100%;" (click)="cart()" >Add to cart</button>
+                <button mat-raised-button color="primary" style="width:100%;" [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)" >Add to cart</button>
               </div>
             </div>
-            <div class="card p-2" *ngIf="optnpkShow">
+            <div class="card p-2" *ngIf="plan.optnpkShow">
               <div class="d-flex">
-                <input class="form-check-input" type="checkbox" checked value="" id="flexCheckChecked" > &nbsp;
+                <input class="form-check-input" type="checkbox"  value="" id="flexCheckChecked" > &nbsp;
                 <label class="form-check-label" for="flexCheckChecked" style="font-weight: bold">
                   Package #1
                 </label>
@@ -421,7 +456,7 @@
           <!-- Your section content here -->
           <div class="d-flex p-2">
             <div class="col-6">
-              2 Plans selected for comparison
+              {{this.checkedData.length}} Plans selected for comparison
             </div>
             <div class="d-flex col-6 justify-content-end">
               <button mat-button class="comparebtn" ><mat-icon> clear_all</mat-icon> Clear</button>

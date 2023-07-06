@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
@@ -13,6 +13,7 @@ import {CommonService} from "../../services/common.service";
   styleUrls: ['./add-drug.component.css']
 })
 export class AddDrugComponent implements OnInit {
+  @ViewChild('generic', {static: true}) generic!: TemplateRef<any>;
   rowData: any = [];
   alphabets: string[] = [];
   items = [];
@@ -21,10 +22,12 @@ export class AddDrugComponent implements OnInit {
   drugname = new FormControl()
   selectedItem: any;
   itemName = ''
-  drugs:any =[];
-  dosagesDetails:any=[];
-  dosages:any=[];
-  packages:any=[];
+  item: any;
+  rxcui: any;
+  drugs: any = [  ];
+  dosagesDetails: any = [];
+  dosages: any = [];
+  packages: any = [];
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -74,14 +77,21 @@ export class AddDrugComponent implements OnInit {
   }
 
   open() {
-   const dataDialog = this.dialog.open(BrowseDrugComponent, {width: '350px',
-     position: { right: '0'}});
-    dataDialog.afterClosed().subscribe(ret=>{
-      this.selectedItem=[];
-      this.packages=[];
-      console.log('retData',ret)
+    const dataDialog = this.dialog.open(BrowseDrugComponent, {
+      width: '600px',
+      position: {right: '0'}
+    });
+    dataDialog.afterClosed().subscribe(ret => {
+      this.selectedItem = [];
+      this.packages = [];
+      console.log('retData', ret)
+      this.item=ret
       this.itemName = ret.name
-      this.getDosageDetails(ret.rxcui)
+      this.rxcui = ret.rxcui
+        if (!ret.is_generic) {
+          this.dialog.open(this.generic, {width: '600px'})
+        }
+      this.getDosageDetails()
     })
   }
 
@@ -99,12 +109,20 @@ export class AddDrugComponent implements OnInit {
 
   addDrug() {
     console.log('drgggg', this.drugForm.value)
+    let pack = this.drugForm.value.package.package_description
+    if (pack === "") {
+      pack = 'NA'
+    }
     this.drugForm.patchValue({
-      drugName:this.itemName,
-      package:this.drugForm.value.package.package_description
+      drugName: this.itemName,
+      package: pack
     })
     this.rowData.push(this.drugForm.value)
     this.gridapi?.setRowData(this.rowData)
+    this.itemName = ''
+    this.drugForm.reset()
+    this.drugname.reset()
+
   }
 
   onGridReady(params: any): void {
@@ -115,7 +133,7 @@ export class AddDrugComponent implements OnInit {
   getDrugs(event: any) {
     console.log(event)
     this.commonservice.searchDrug(event.target.value).subscribe((response) => {
-      this.drugs= response.data.drugs
+      this.drugs = response.data.drugs
       console.log(response)
     })
   }
@@ -129,49 +147,65 @@ export class AddDrugComponent implements OnInit {
 
   change(event: any) {
     console.log(event.option.value)
-    this.selectedItem=[];
-    this.packages=[];
+    this.item = event.option.value
+    this.rxcui = event.option.value.rxcui
+    if (!this.item.is_generic) {
+      this.dialog.open(this.generic, {width: '600px'})
+    }
+    this.selectedItem = [];
+    this.packages = '';
     this.itemName = event.option.value.name
-    this.getDosageDetails( event.option.value.rxcui)
+    this.getDosageDetails()
   }
-  getDosageDetails(rxcui:any){
-    this.commonservice.drugDosage(rxcui).subscribe((response)=>{
-      console.log('getDosageDetails',response)
+
+  rxcuichange(event: any) {
+    console.log('rxcui', event)
+    this.rxcui = event
+  }
+
+  getDosageDetails() {
+    this.commonservice.drugDosage("2623").subscribe((response) => {
+      console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
-      const distinctValues = Array.from(new Set(this.dosagesDetails.map((item:any) => item)));
+      const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
       this.drugForm.patchValue({
-        dosage:  this.dosages[0].dosage_form,
-        quantity:Number( this.dosages[0].default_quantity
+        dosage: this.dosages[0].dosage_form,
+        quantity: Number(this.dosages[0].default_quantity
         )
       })
-      console.log('distinctValues',distinctValues)
+      console.log('distinctValues', distinctValues)
     })
 
   }
 
-  dosageChange(event:any) {
-    this.packages=[]
-    const filteredData = this.dosagesDetails.filter((item:any) => item.dosage_form === event.value);
-    const pack = Array.from(new Set(filteredData.map((item:any) => item)));
-    pack.forEach((element:any)=>{
-      if (element.package_description != ""){
+  dosageChange(event: any) {
+    this.packages = []
+    const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value);
+    const pack = Array.from(new Set(filteredData.map((item: any) => item)));
+    pack.forEach((element: any) => {
+      if (element.package_description != "") {
         this.packages.push(element)
       }
     })
     this.drugForm.patchValue({
-      package:this.packages[0],
-      quantity:Number( this.packages[0].default_quantity)
+      package: this.packages[0],
+      quantity: Number(this.packages[0].default_quantity)
     })
 
   }
 
   packageChange(event: any) {
-    console.log('event.value---',event.value)
+    console.log('event.value---', event.value)
     this.drugForm.patchValue({
-      quantity:Number(event.value.default_quantity
+      quantity: Number(event.value.default_quantity
       )
     })
 
+  }
+
+  cancel() {
+    this.dialog.closeAll()
+    this.getDosageDetails()
   }
 }
