@@ -58,7 +58,7 @@ export class AddDrugComponent implements OnInit {
   columnDefs = [
     {
       field: 'index', headerName: '#', width: 80,
-
+      valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
     {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
@@ -109,9 +109,11 @@ export class AddDrugComponent implements OnInit {
 
   addDrug() {
     console.log('drgggg', this.drugForm.value)
-    let pack = this.drugForm.value.package.package_description
-    if (pack === "") {
+    let pack = this.drugForm.value.package
+    if (pack === null) {
       pack = 'NA'
+    }else{
+      pack = this.drugForm.value.package.package_description
     }
     this.drugForm.patchValue({
       drugName: this.itemName,
@@ -169,6 +171,7 @@ export class AddDrugComponent implements OnInit {
       this.dosagesDetails = response.data
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
+
       this.drugForm.patchValue({
         dosage: this.dosages[0].dosage_form,
         quantity: Number(this.dosages[0].default_quantity
