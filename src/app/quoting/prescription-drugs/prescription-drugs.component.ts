@@ -3192,6 +3192,7 @@ export class PrescriptionDrugsComponent implements OnInit {
         "biosimilars": []
       }
     }];
+  zipcode:any
   // @Output() menuClicked = new EventEmitter();
 
   constructor(private route: Router,
@@ -3200,7 +3201,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getPlans()
+    this.zipcode = localStorage.getItem('zipcode')
   }
   showbenfit(plan:any) {
     plan.optnpkShow = true

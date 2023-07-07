@@ -22,20 +22,20 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const zip = localStorage.getItem('zipcode')
-    console.log('zip',zip)
+    this.zipcode = localStorage.getItem('zipcode')
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
   };
   columnDefs = [
     {
       field: 'index', headerName: '#', width: 80,
-
+      valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'name', headerName: 'Pharmacy Name', filter: true, width: 200},
     {field: 'street', headerName: 'Address', filter: true, width: 250,flex:1},
+    {field: 'distance_miles', headerName: 'Distance', filter: true, width: 250,flex:1},
     {
       field: 'delete',
       headerName: 'Action',
@@ -48,7 +48,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   check(event:any,data: any) {
-    console.log("laassssss", event.target.checked)
+    console.log("laassssss", data)
     const index = this.rowData.findIndex((item:any) => item.name === data.name);
     if (index > -1) {
       // Item exists in the array, remove it
