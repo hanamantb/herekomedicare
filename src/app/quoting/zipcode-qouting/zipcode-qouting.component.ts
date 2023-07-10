@@ -54,14 +54,13 @@ export class ZipcodeQoutingComponent implements OnInit {
   }
 
   getCounties(event: any) {
-
     if (event.target.value.length === 5) {
       console.log('event', event.target.value)
       this.selectedCountie =event.target.value
       localStorage.setItem('zipcode',event.target.value)
       this.commonService.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
-      })
+         })
     } else {
       console.log('Not valid')
     }
@@ -72,7 +71,9 @@ export class ZipcodeQoutingComponent implements OnInit {
     console.log('countie', this.selectedCountie)
     const zip = localStorage.getItem('zipcode')
     if (countie) {
-      return   zip +'-'+countie.name +','+countie.state
+      const dispname= zip +'-'+countie.name +','+countie.state
+      localStorage.setItem('displayzipcode',dispname)
+      return   dispname
     }
     return '';
   }

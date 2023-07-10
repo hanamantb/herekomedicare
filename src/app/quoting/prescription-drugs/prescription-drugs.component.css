@@ -44,6 +44,14 @@ mat-select{
 }
 .benfit-btn{
   font-size: 12px;
+  width: 100%;
+  text-align: left;
+}
+.premium .card{
+  margin: 2px;
+  height: auto;
+  border: none;
+  font-size: 15px;
 }
 .card{
   margin: 2px;
@@ -68,6 +76,7 @@ mat-select{
   height: 70px;
   background-color: #4b8bb2;
   color: white;
+  font-size: 20px;
   /* Your section styles here */
 }
 .comparebtn{
@@ -110,3 +119,61 @@ mat-select{
 .baseBenifit span{
   font-weight: bold;
 }
+
+
+
+/**/
+
+
+.plan-head button{
+  background-color: #777777;
+  color: white;
+  border: none;
+  padding: 2px;
+  height: 24px;
+  width: 100px;
+  font-size: initial;
+}
+
+.plan-head p {
+  font-size: initial;
+  font-weight: 500;
+}
+
+.base-dtl p {
+  font-size: 22px;
+  font-weight: lighter;
+  line-height: 23px;
+  pointer-events: none;
+}
+.base-dtl h2{
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 1px;
+}
+h6{
+  font-size: 18px;
+  margin-bottom: 10px;
+  float: left;
+  border-bottom: dashed 1px #ccc;
+  font-weight: 500;
+}
+.sub-prop {
+  display: block;
+  margin-bottom: 8px;
+  color: #252525 !important;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: normal;
+}
+.clear{
+  clear: both;
+}
+bdo{
+  display: block;
+  margin-bottom: 4px;
+  color: #252525 !important;
+  font-size: 18px;
+  font-weight: 400;
+}
+

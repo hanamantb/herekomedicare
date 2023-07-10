@@ -52,7 +52,10 @@ export class AddDrugComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/edit.png" height="32" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+  };
+  colDef6 = function () {
+    return '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
   };
 
   columnDefs = [
@@ -66,8 +69,14 @@ export class AddDrugComponent implements OnInit {
     {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
-      headerName: 'Actions',
+      field: 'delete',
+      headerName: 'Delete',
       cellRenderer: this.colDef5, width: 100
+    },
+    {
+      field: 'edit',
+      headerName: 'Edit',
+      cellRenderer: this.colDef6, width: 100
     },
   ];
 
@@ -210,5 +219,33 @@ export class AddDrugComponent implements OnInit {
   cancel() {
     this.dialog.closeAll()
     this.getDosageDetails()
+  }
+
+  onGridCellClicked(event: any): void {
+    console.log(event.data)
+    if (event.colDef.field === 'delete') {
+      this.rowData.forEach((element: any, index: any) => {
+        console.log(element)
+        if (event.data.drugName == element.drugName) {
+          this.rowData.splice(index,1)
+          this.gridapi?.setRowData(this.rowData)
+        }
+      })
+    }else if (event.colDef.field === 'edit'){
+      this.itemName = event.data.drugName
+      this.drugForm.patchValue({
+        drugName: event.data.drugName,
+        dosage: event.data.dosage,
+        package: event.data.package,
+        quantity: event.data.quantity,
+        frequency: event.data.frequency,
+      })
+      this.rowData.forEach((element: any, index: any) => {
+        console.log(element)
+        if (event.data.drugName == element.drugName) {
+          this.rowData.splice(index,1)
+          this.gridapi?.setRowData(this.rowData)
+        }
+    })}
   }
 }
