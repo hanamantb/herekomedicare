@@ -12,7 +12,7 @@
   height: 15px;
 }
 .map-img{
-  height: 75%;
+  height: 75vh;
   margin-top: 17%;
 }
 
@@ -20,6 +20,7 @@
   background-color:#4b8bb2 ;
   /*height: calc(100vh - 77px);*/
   position: relative;
+  min-height: 100vh;
 }
 .side-img img{
   width: 92%;

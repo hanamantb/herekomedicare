@@ -33,6 +33,7 @@ import { EmailProposalComponent } from './quoting/cart/email-proposal/email-prop
 import {SharedService} from "./services/shared.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 
 
@@ -74,7 +75,8 @@ import {MatTooltipModule} from "@angular/material/tooltip";
     MatExpansionModule,
     HttpClientModule,
     MatAutocompleteModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatButtonToggleModule
   ],
   exports:[MatTabsModule],
   providers: [HttpClientModule,SharedService],

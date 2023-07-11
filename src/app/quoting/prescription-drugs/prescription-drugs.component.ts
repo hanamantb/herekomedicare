@@ -22,10 +22,12 @@ export class PrescriptionDrugsComponent implements OnInit {
   stars: number[] = [1, 2, 3, 4, 5];
   selectedCardIndex:any;
   plans:any=[];
+  filtrPlans:any=[];
   zipcode:any
   myControl = new FormControl();
   couties: any
   selectedCountie:any;
+  fontStyle:any ="MAPD"
   // @Output() menuClicked = new EventEmitter();
 
   constructor(private route: Router,
@@ -69,11 +71,15 @@ export class PrescriptionDrugsComponent implements OnInit {
     this.sharedService.incrementNumber();
   }
 
-  clear() {
+  selected: boolean = false;
 
+  selectButton() {
+    this.selected = true;
   }
 
   getPlans(){
+    const zip = this.myControl.value.myControl
+    console.log('zipcode',zip)
     const searchPlanReqBody ={
       npis: [
         1073617049,
@@ -100,7 +106,7 @@ export class PrescriptionDrugsComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type).subscribe((response)=>{
+    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip).subscribe((response)=>{
       this.plans = response.data.plans
       this.plans = this.plans.map((element:any, index:any) => {
         return { ...element, checked: false,
@@ -109,6 +115,7 @@ export class PrescriptionDrugsComponent implements OnInit {
           cartAdded:false,
           benefits:false};
       });
+      this.filtrPlans = this.plans
       console.log('response',this.plans)
     })
   }
@@ -144,7 +151,6 @@ export class PrescriptionDrugsComponent implements OnInit {
 
   getCounties(event: any) {
     if (event.target.value.length === 5) {
-      console.log('event', event.target.value)
       this.selectedCountie =event.target.value
       localStorage.setItem('zipcode',event.target.value)
       this.commonservice.getCounties(event.target.value).subscribe(response => {
@@ -167,5 +173,14 @@ export class PrescriptionDrugsComponent implements OnInit {
   prescription() {
     this.route.navigate(['add-pharmacy'])
     this.dialog.closeAll()
+  }
+
+
+  planType(event: any) {
+    console.log(event.value)
+    const plans =this.filtrPlans.filter((x:any)=>
+      x.planType === event.value
+    )
+    this.plans = plans
   }
 }
