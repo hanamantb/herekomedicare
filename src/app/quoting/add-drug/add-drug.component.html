@@ -71,7 +71,7 @@
                 Every 3 months
               </mat-option>
               <mat-option value="Every 6 month">
-                Every 4 months
+                Every 6 months
               </mat-option>
               <mat-option value="Every 12 month">
                 Every 12 months
@@ -81,7 +81,7 @@
         </div>
       </form>
       <div class="d-flex col-8 p-2  justify-content-end">
-        <button mat-raised-button color="danger">Cancel</button>
+        <button mat-raised-button color="danger" (click)="cancelDrug()">Cancel</button>
         <button mat-raised-button style="background-color: #4b8bb2;color: white" class="ms-2" (click)="addDrug()">Add
           Drug
         </button>
@@ -122,10 +122,10 @@
     <p style="font-size: 15px">A lower generic is available for the drug you selected</p>
     <div class="d-flex p-2">
       <div class="d-flex col-6 p-2" style="font-size: 15px">
-        <input type="radio" checked class="radio" name="radioGroup" (change)="rxcuichange(item.rxcui)" value="{{item.rxcui}}"> Keep {{itemName}}
+        <input type="radio"  class="radio" name="radioGroup" (change)="rxcuichange(item.rxcui)" value="{{item.rxcui}}"> Keep {{itemName}}
       </div>
       <div class="d-flex col-6 p-2" style="font-size: 15px">
-        <input type="radio" class="radio" name="radioGroup" value="{{item.generic.rxcui}}" (change)="rxcuichange(item.generic.rxcui)"> Use lower cost generic: {{item.generic.name}}
+        <input type="radio" checked class="radio" name="radioGroup" value="{{item.generic.rxcui}}" (change)="rxcuichange(item.generic.rxcui)"> Use lower cost generic: {{item.generic.name}}
       </div>
     </div>
     <div class="d-flex p-2 justify-content-end">

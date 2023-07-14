@@ -29,6 +29,7 @@ export class AddDrugComponent implements OnInit {
   dosagesDetails: any = [];
   dosages: any = [];
   packages: any = [];
+  nonEditDrug: any = [];
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -43,10 +44,10 @@ export class AddDrugComponent implements OnInit {
     }
     this.drugForm = this.fb.group({
       ndc: [null],
-      drugName: [null, [Validators.required]],
+      drugName: [null],
       dosage: [null, [Validators.required]],
-      package: [null, [Validators.required]],
-      quantity: [null, [Validators.required]],
+      package: [null],
+      quantity: [null, [Validators.required,Validators.min(1)]],
       frequency: [null, [Validators.required]],
     })
   }
@@ -55,7 +56,8 @@ export class AddDrugComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
+    '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
   };
   colDef6 = function () {
     return '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
@@ -72,17 +74,14 @@ export class AddDrugComponent implements OnInit {
     {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
-      field: 'delete',
-      headerName: 'Delete',
+      field: 'actions',
+      headerName: 'Actions',
       cellRenderer: this.colDef5, width: 100
     },
-    {
-      field: 'edit',
-      headerName: 'Edit',
-      cellRenderer: this.colDef6, width: 100
-    },
   ];
-
+  delete(event:any){
+    console.log('delete',event)
+  }
   addPharmacy() {
     this.dialog.closeAll()
     // localStorage.setItem('drugs',this.rowData)
@@ -124,21 +123,35 @@ export class AddDrugComponent implements OnInit {
   addDrug() {
     console.log('drgggg', this.drugForm.value)
     let pack = this.drugForm.value.package
-    if (pack === null) {
-      pack = 'NA'
+    console.log('pack',pack)
+    if (this.drugForm.valid) {
+      if (pack === null || pack === 'NA') {
+        pack = 'NA'
+      } else {
+        pack = this.drugForm.value.package.package_description
+      }
+      this.drugForm.patchValue({
+        drugName: this.itemName,
+        package: pack
+      })
+      this.rowData.push(this.drugForm.value)
+      this.gridapi?.setRowData(this.rowData)
+      this.itemName = ''
+      this.drugForm.reset()
+      this.drugname.reset()
     }else{
-      pack = this.drugForm.value.package.package_description
+      alert('Quantity or Frequency is not entered.')
     }
-    this.drugForm.patchValue({
-      drugName: this.itemName,
-      package: pack
-    })
-    this.rowData.push(this.drugForm.value)
-    this.gridapi?.setRowData(this.rowData)
+  }
+
+  cancelDrug(){
+    if (this.nonEditDrug !==[]){
+      this.rowData.push(this.nonEditDrug)
+      this.gridapi?.setRowData(this.rowData)
+    }
     this.itemName = ''
     this.drugForm.reset()
     this.drugname.reset()
-
   }
 
   onGridReady(params: any): void {
@@ -229,7 +242,7 @@ export class AddDrugComponent implements OnInit {
 
   onGridCellClicked(event: any): void {
     console.log(event.data)
-    if (event.colDef.field === 'delete') {
+    if (event.colDef.field === 'actions') {
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
         if (event.data.drugName == element.drugName) {
@@ -247,9 +260,11 @@ export class AddDrugComponent implements OnInit {
         quantity: event.data.quantity,
         frequency: event.data.frequency,
       })
+
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
         if (event.data.drugName == element.drugName) {
+          this.nonEditDrug = element
           this.rowData.splice(index,1)
           this.gridapi?.setRowData(this.rowData)
         }

@@ -26,10 +26,11 @@ export class AddPharmacyComponent implements OnInit {
 
   ngOnInit(): void {
     this.zipcode = localStorage.getItem('zipcode')
+    this.findPharmacy()
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="40" style="margin-top: -10px;" />';
   };
   columnDefs = [
     {
