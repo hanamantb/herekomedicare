@@ -34,6 +34,7 @@ import {SharedService} from "./services/shared.service";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import { ActionsCellRendererComponent } from './quoting/add-drug/actions-cell-renderer/actions-cell-renderer.component';
 
 
 
@@ -53,6 +54,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
     CartComponent,
     CartHomeComponent,
     EmailProposalComponent,
+    ActionsCellRendererComponent,
 
   ],
   imports: [

@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AgGridAngular} from "ag-grid-angular";
 import {GridApi} from "ag-grid-community";
 import {CommonService} from "../../services/common.service";
+import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -18,15 +19,18 @@ export class AddPharmacyComponent implements OnInit {
   radius_miles:any='10';
   pharmName:any='';
 
-  constructor(private route: Router,private commonservice: CommonService) {
+  constructor(private route: Router,
+              private commonservice: CommonService,
+              private quoteDetailsService:QuoteDataDetailsService) {
   }
 
   ngOnInit(): void {
     this.zipcode = localStorage.getItem('zipcode')
+    this.findPharmacy()
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="40" style="margin-top: -10px;" />';
   };
   columnDefs = [
     {
@@ -44,6 +48,9 @@ export class AddPharmacyComponent implements OnInit {
   ];
 
   nav() {
+    const npis = this.rowData.map((x:any)=> x.npi)
+    this.quoteDetailsService.setnpis(npis)
+    console.log('npis',npis)
     this.route.navigate(['Plans'])
   }
 

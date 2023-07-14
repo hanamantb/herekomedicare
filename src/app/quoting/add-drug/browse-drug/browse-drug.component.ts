@@ -24,7 +24,7 @@ export class BrowseDrugComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+this.IntialdrugByAlphabet()
   }
 
   toggleItemSelection(item: any) {
@@ -42,6 +42,12 @@ this.dialogRef.close(this.selectedItem)
     this.commonservice.drugByLetter(event.target.value).subscribe((response)=>{
       this.items = response.data.drugs
       console.log('drugs',response)
+    })
+  }
+
+  IntialdrugByAlphabet() {
+    this.commonservice.drugByLetter('A').subscribe((response)=>{
+      this.items = response.data.drugs
     })
   }
 

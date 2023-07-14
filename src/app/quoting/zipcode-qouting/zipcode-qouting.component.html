@@ -6,19 +6,24 @@
           <p>Zip Code</p>
         </div>
         <div class="col-md-3">
-          <form class="example-form">
-              <input type="text" class="mat-in"
+          <form class="example-form" [formGroup]="zipcodeForm">
+
+            <input class="mat-in"
                      matInput
                      (input) ="getCounties($event)"
-                     [formControl]="myControl"
-                     [matAutocomplete]="auto">
+                     formControlName="myControl"
+                     [matAutocomplete]="auto" [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
               <mat-autocomplete  #auto="matAutocomplete"
                                  [displayWith]="_displayplantname">
                 <mat-option *ngFor="let option of couties" [value]="option" >
                   {{selectedCountie}}-{{option.name}},{{option.state}}
                 </mat-option>
               </mat-autocomplete>
+            <div class="invalid-feedback d-flex" *ngIf="myControl.touched && myControl.invalid">
+              The entered ZIP Code is not valid
+            </div>
           </form>
+
 <!--          <input type="text" placeholder="Enter Zip Code" [(ngModel)]="zipcode">-->
         </div>
       </div>
@@ -45,6 +50,19 @@
             </mat-option>
             <mat-option value="100">
               100 %
+            </mat-option>
+          </mat-select>
+        </div>
+        <div class="col-2 ms-4"  >
+          <p>Effective Year </p>
+        </div>
+        <div class=" d-flex col justify-content-start">
+          <mat-select placeholder="Effective Year" value="none" >
+            <mat-option value="2023">
+              2023
+            </mat-option>
+            <mat-option value="2024">
+              2024
             </mat-option>
           </mat-select>
         </div>

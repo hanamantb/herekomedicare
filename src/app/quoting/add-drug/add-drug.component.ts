@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {GridApi} from "ag-grid-community";
 import {BrowseDrugComponent} from "./browse-drug/browse-drug.component";
 import {CommonService} from "../../services/common.service";
+import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 
 @Component({
   selector: 'app-add-drug',
@@ -28,11 +29,13 @@ export class AddDrugComponent implements OnInit {
   dosagesDetails: any = [];
   dosages: any = [];
   packages: any = [];
+  nonEditDrug: any = [];
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
               public fb: FormBuilder,
-              private commonservice: CommonService) {
+              private commonservice: CommonService,
+              private quoteDetailsService:QuoteDataDetailsService) {
     const startChar = 'A'.charCodeAt(0);
     const endChar = 'Z'.charCodeAt(0);
 
@@ -40,10 +43,11 @@ export class AddDrugComponent implements OnInit {
       this.alphabets.push(String.fromCharCode(i));
     }
     this.drugForm = this.fb.group({
-      drugName: [null, [Validators.required]],
+      ndc: [null],
+      drugName: [null],
       dosage: [null, [Validators.required]],
-      package: [null, [Validators.required]],
-      quantity: [null, [Validators.required]],
+      package: [null],
+      quantity: [null, [Validators.required,Validators.min(1)]],
       frequency: [null, [Validators.required]],
     })
   }
@@ -52,7 +56,8 @@ export class AddDrugComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
+    '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
   };
   colDef6 = function () {
     return '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
@@ -69,19 +74,18 @@ export class AddDrugComponent implements OnInit {
     {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
-      field: 'delete',
-      headerName: 'Delete',
+      field: 'actions',
+      headerName: 'Actions',
       cellRenderer: this.colDef5, width: 100
     },
-    {
-      field: 'edit',
-      headerName: 'Edit',
-      cellRenderer: this.colDef6, width: 100
-    },
   ];
-
+  delete(event:any){
+    console.log('delete',event)
+  }
   addPharmacy() {
     this.dialog.closeAll()
+    // localStorage.setItem('drugs',this.rowData)
+    this.quoteDetailsService.setdrug(this.rowData)
     this.route.navigate(['add-pharmacy'])
   }
 
@@ -119,21 +123,35 @@ export class AddDrugComponent implements OnInit {
   addDrug() {
     console.log('drgggg', this.drugForm.value)
     let pack = this.drugForm.value.package
-    if (pack === null) {
-      pack = 'NA'
+    console.log('pack',pack)
+    if (this.drugForm.valid) {
+      if (pack === null || pack === 'NA') {
+        pack = 'NA'
+      } else {
+        pack = this.drugForm.value.package.package_description
+      }
+      this.drugForm.patchValue({
+        drugName: this.itemName,
+        package: pack
+      })
+      this.rowData.push(this.drugForm.value)
+      this.gridapi?.setRowData(this.rowData)
+      this.itemName = ''
+      this.drugForm.reset()
+      this.drugname.reset()
     }else{
-      pack = this.drugForm.value.package.package_description
+      alert('Quantity or Frequency is not entered.')
     }
-    this.drugForm.patchValue({
-      drugName: this.itemName,
-      package: pack
-    })
-    this.rowData.push(this.drugForm.value)
-    this.gridapi?.setRowData(this.rowData)
+  }
+
+  cancelDrug(){
+    if (this.nonEditDrug !==[]){
+      this.rowData.push(this.nonEditDrug)
+      this.gridapi?.setRowData(this.rowData)
+    }
     this.itemName = ''
     this.drugForm.reset()
     this.drugname.reset()
-
   }
 
   onGridReady(params: any): void {
@@ -157,7 +175,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   change(event: any) {
-    console.log(event.option.value)
+    console.log('druggg',event.option.value)
     this.item = event.option.value
     this.rxcui = event.option.value.rxcui
     if (!this.item.is_generic) {
@@ -175,13 +193,14 @@ export class AddDrugComponent implements OnInit {
   }
 
   getDosageDetails() {
-    this.commonservice.drugDosage("2623").subscribe((response) => {
+    this.commonservice.drugDosage(this.rxcui ).subscribe((response) => {
       console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
 
       this.drugForm.patchValue({
+        ndc: this.dosages[0].ndc,
         dosage: this.dosages[0].dosage_form,
         quantity: Number(this.dosages[0].default_quantity
         )
@@ -201,6 +220,7 @@ export class AddDrugComponent implements OnInit {
       }
     })
     this.drugForm.patchValue({
+      ndc: this.packages[0].ndc,
       package: this.packages[0],
       quantity: Number(this.packages[0].default_quantity)
     })
@@ -210,10 +230,9 @@ export class AddDrugComponent implements OnInit {
   packageChange(event: any) {
     console.log('event.value---', event.value)
     this.drugForm.patchValue({
-      quantity: Number(event.value.default_quantity
-      )
+      ndc: event.value.ndc,
+      quantity: Number(event.value.default_quantity)
     })
-
   }
 
   cancel() {
@@ -223,7 +242,7 @@ export class AddDrugComponent implements OnInit {
 
   onGridCellClicked(event: any): void {
     console.log(event.data)
-    if (event.colDef.field === 'delete') {
+    if (event.colDef.field === 'actions') {
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
         if (event.data.drugName == element.drugName) {
@@ -234,15 +253,18 @@ export class AddDrugComponent implements OnInit {
     }else if (event.colDef.field === 'edit'){
       this.itemName = event.data.drugName
       this.drugForm.patchValue({
+        ndc: event.data.ndc,
         drugName: event.data.drugName,
         dosage: event.data.dosage,
         package: event.data.package,
         quantity: event.data.quantity,
         frequency: event.data.frequency,
       })
+
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
         if (event.data.drugName == element.drugName) {
+          this.nonEditDrug = element
           this.rowData.splice(index,1)
           this.gridapi?.setRowData(this.rowData)
         }
