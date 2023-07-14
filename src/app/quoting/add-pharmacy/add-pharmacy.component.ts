@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AgGridAngular} from "ag-grid-angular";
 import {GridApi} from "ag-grid-community";
 import {CommonService} from "../../services/common.service";
+import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -18,7 +19,9 @@ export class AddPharmacyComponent implements OnInit {
   radius_miles:any='10';
   pharmName:any='';
 
-  constructor(private route: Router,private commonservice: CommonService) {
+  constructor(private route: Router,
+              private commonservice: CommonService,
+              private quoteDetailsService:QuoteDataDetailsService) {
   }
 
   ngOnInit(): void {
@@ -44,6 +47,9 @@ export class AddPharmacyComponent implements OnInit {
   ];
 
   nav() {
+    const npis = this.rowData.map((x:any)=> x.npi)
+    this.quoteDetailsService.setnpis(npis)
+    console.log('npis',npis)
     this.route.navigate(['Plans'])
   }
 

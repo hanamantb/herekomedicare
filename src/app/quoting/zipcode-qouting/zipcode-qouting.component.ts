@@ -16,19 +16,27 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class ZipcodeQoutingComponent implements OnInit {
   isChecked = true;
   zipcode: any;
-  myControl = new FormControl();
+  zipcodeForm!: FormGroup;
   couties: any
   selectedCountie:any;
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
-              private commonService: CommonService, private http: HttpClient) {
+              private commonService: CommonService,
+              private http: HttpClient,
+              public fb: FormBuilder) {
+    this.zipcodeForm = this.fb.group({
+      myControl: [null, [Validators.required, Validators.minLength(5)]],
+    })
   }
 
   ngOnInit(): void {
     this.getDrugByAlphbet()
   }
 
+  get myControl() {
+    return this.zipcodeForm.get('myControl')!;
+  }
   drug() {
     this.route.navigate(['add-drugs'])
   }
@@ -40,17 +48,16 @@ export class ZipcodeQoutingComponent implements OnInit {
   navToPlans() {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
-    if (this.isChecked) {
-      this.route.navigate(['add-drugs'])
-      // this.dialog.open(AddDrugComponent, {
-      //   autoFocus: false,
-      //   maxHeight: '90vh',
-      //   width: '140vh'
-      // })
-    } else {
-      this.route.navigate(['Plans'])
+    if (!this.zipcodeForm.valid){
+      alert('Enter a valid ZIP code and select the relevant county to view the list of\n' +
+        'plans')
+    }else {
+      if (this.isChecked) {
+        this.route.navigate(['add-drugs'])
+      } else {
+        this.route.navigate(['Plans'])
+      }
     }
-
   }
 
   getCounties(event: any) {
@@ -60,6 +67,7 @@ export class ZipcodeQoutingComponent implements OnInit {
       localStorage.setItem('zipcode',event.target.value)
       this.commonService.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
+        console.log('Counties',response.data)
          })
     } else {
       console.log('Not valid')
@@ -73,6 +81,7 @@ export class ZipcodeQoutingComponent implements OnInit {
     if (countie) {
       const dispname= zip +'-'+countie.name +','+countie.state
       localStorage.setItem('displayzipcode',dispname)
+      localStorage.setItem('fips',countie.fips)
       return   dispname
     }
     return '';

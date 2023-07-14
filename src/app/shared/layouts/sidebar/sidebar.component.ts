@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDrawer, MatSidenav} from "@angular/material/sidenav";
 import {Router} from "@angular/router";
 
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class SidebarComponent implements OnInit {
   @ViewChild('drawer', {static: true}) drawer!: MatSidenav;
+  @Input() planCount!: string
   opened: boolean = false;
   panelOpenState = false;
   constructor(private route:Router) { }

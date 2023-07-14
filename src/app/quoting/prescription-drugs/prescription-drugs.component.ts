@@ -5,6 +5,7 @@ import {SharedService} from "../../services/shared.service";
 import {CommonService} from "../../services/common.service";
 import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
+import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 
 @Component({
   selector: 'app-prescription-drugs',
@@ -26,6 +27,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   zipcode:any
   myControl = new FormControl();
   couties: any
+  fips: any
   selectedCountie:any;
   fontStyle:any ="MAPD"
   // @Output() menuClicked = new EventEmitter();
@@ -33,13 +35,15 @@ export class PrescriptionDrugsComponent implements OnInit {
   constructor(private route: Router,
               private sharedService: SharedService,
               private commonservice:CommonService,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private quoteDetailsService:QuoteDataDetailsService) {
   }
 
   ngOnInit(): void {
     this.myControl.patchValue({
       myControl: localStorage.getItem('zipcode')
     })
+    this.fips = localStorage.getItem('fips')
     this.getPlans()
   }
   showbenfit(plan:any) {
@@ -79,20 +83,12 @@ export class PrescriptionDrugsComponent implements OnInit {
 
   getPlans(){
     const zip = this.myControl.value.myControl
-    console.log('zipcode',zip)
+    const drugs = this.quoteDetailsService.getdrug()
+    const npis = this.quoteDetailsService.getnpis()
+    console.log('npis----',npis)
     const searchPlanReqBody ={
-      npis: [
-        1073617049,
-        1124045505,
-        1669593042
-      ],
-      prescriptions: [
-        {
-          ndc: "31722056224",
-          frequency: "FREQUENCY_30_DAYS",
-          quantity: 4
-        }
-      ],
+      npis: npis,
+      prescriptions: drugs,
       lis: "LIS_NO_HELP"
     };
     const plan_type = [
@@ -106,7 +102,7 @@ export class PrescriptionDrugsComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip).subscribe((response)=>{
+    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip,this.fips).subscribe((response)=>{
       this.plans = response.data.plans
       this.plans = this.plans.map((element:any, index:any) => {
         return { ...element, checked: false,

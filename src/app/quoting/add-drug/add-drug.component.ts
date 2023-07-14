@@ -6,6 +6,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {GridApi} from "ag-grid-community";
 import {BrowseDrugComponent} from "./browse-drug/browse-drug.component";
 import {CommonService} from "../../services/common.service";
+import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 
 @Component({
   selector: 'app-add-drug',
@@ -32,7 +33,8 @@ export class AddDrugComponent implements OnInit {
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
               public fb: FormBuilder,
-              private commonservice: CommonService) {
+              private commonservice: CommonService,
+              private quoteDetailsService:QuoteDataDetailsService) {
     const startChar = 'A'.charCodeAt(0);
     const endChar = 'Z'.charCodeAt(0);
 
@@ -40,6 +42,7 @@ export class AddDrugComponent implements OnInit {
       this.alphabets.push(String.fromCharCode(i));
     }
     this.drugForm = this.fb.group({
+      ndc: [null],
       drugName: [null, [Validators.required]],
       dosage: [null, [Validators.required]],
       package: [null, [Validators.required]],
@@ -82,6 +85,8 @@ export class AddDrugComponent implements OnInit {
 
   addPharmacy() {
     this.dialog.closeAll()
+    // localStorage.setItem('drugs',this.rowData)
+    this.quoteDetailsService.setdrug(this.rowData)
     this.route.navigate(['add-pharmacy'])
   }
 
@@ -157,7 +162,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   change(event: any) {
-    console.log(event.option.value)
+    console.log('druggg',event.option.value)
     this.item = event.option.value
     this.rxcui = event.option.value.rxcui
     if (!this.item.is_generic) {
@@ -175,13 +180,14 @@ export class AddDrugComponent implements OnInit {
   }
 
   getDosageDetails() {
-    this.commonservice.drugDosage("2623").subscribe((response) => {
+    this.commonservice.drugDosage(this.rxcui ).subscribe((response) => {
       console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
 
       this.drugForm.patchValue({
+        ndc: this.dosages[0].ndc,
         dosage: this.dosages[0].dosage_form,
         quantity: Number(this.dosages[0].default_quantity
         )
@@ -201,6 +207,7 @@ export class AddDrugComponent implements OnInit {
       }
     })
     this.drugForm.patchValue({
+      ndc: this.packages[0].ndc,
       package: this.packages[0],
       quantity: Number(this.packages[0].default_quantity)
     })
@@ -210,10 +217,9 @@ export class AddDrugComponent implements OnInit {
   packageChange(event: any) {
     console.log('event.value---', event.value)
     this.drugForm.patchValue({
-      quantity: Number(event.value.default_quantity
-      )
+      ndc: event.value.ndc,
+      quantity: Number(event.value.default_quantity)
     })
-
   }
 
   cancel() {
@@ -234,6 +240,7 @@ export class AddDrugComponent implements OnInit {
     }else if (event.colDef.field === 'edit'){
       this.itemName = event.data.drugName
       this.drugForm.patchValue({
+        ndc: event.data.ndc,
         drugName: event.data.drugName,
         dosage: event.data.dosage,
         package: event.data.package,

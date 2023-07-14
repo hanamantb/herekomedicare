@@ -1,7 +1,7 @@
 <div class="container">
   <div class="d-flex">
     <div class="col-3 side-img">
-      <app-sidebar></app-sidebar>
+      <app-sidebar [planCount]="plans.length"></app-sidebar>
     </div>
     <div class="col-9 mt-2">
       <div class="p-2">
@@ -34,7 +34,7 @@
           <div class="col-3 d-flex">
             <p class="lis">LIS</p>
             <mat-select placeholder="LIS" value="none">
-              <mat-option value="none">
+              <mat-option value="LIS_NO_HELP">
                 None
               </mat-option>
               <mat-option value="25">
