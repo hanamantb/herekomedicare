@@ -55,3 +55,51 @@ h3{
   border-radius: 3px;
   border: #B8C0D4 solid 1px;
 }
+
+.add-drugs-info h2{
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.add-drugs-info h3{
+  font-size: 15px;
+  padding-top: 0 !important;
+}
+button{
+  border-radius: 2px;
+  font-weight: 300;
+}
+.drug-dosage-info {
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.drug-dosage-info p{
+    text-align: left;
+    font-size: 15px;
+}
+.drug-dosage-head {
+  border-bottom: solid 1px #ddd;
+  padding: 10px 9px 8px 9px;
+  background: #f7f7f7;
+  font-weight: 400;
+}
+.drug-dosage-head h3{
+    margin: 0
+}
+.add-dosage-btn {
+  background: #3f51b5;
+  color: #fff;
+}
+.cancel-dosage-btn {
+  background-color: #4b8bb2;
+  color: #fff;
+}
+.drug-dosage-info input, .drug-dosage-info select{
+    padding: 0 10px;
+}
+.selected-drug-label{
+    font-size: 15px;
+}
+.drug-dosage-info input[type="number"]{
+    height: 38px;
+}
+
