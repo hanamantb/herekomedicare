@@ -125,45 +125,53 @@ mat-select{
 
 /**/
 
-
-.plan-head button{
+.plan-head{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+.plan-head button {
   background-color: #777777;
   color: white;
   border: none;
-  padding: 2px;
+  padding: 2px 8px;
   height: 24px;
-  width: 100px;
-  font-size: initial;
+  width: auto;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .plan-head p {
-  font-size: initial;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 400;
 }
-
+.base-dtl{
+    border-top: 1px solid #ddd;
+}
 .base-dtl p {
-  font-size: 22px;
-  font-weight: lighter;
+  font-size: 17px;
+  font-weight: 300;
   line-height: 23px;
   pointer-events: none;
+  color: #7e7e7e;
 }
 .base-dtl h2{
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: normal;
   margin-bottom: 1px;
 }
 h6{
-  font-size: 18px;
+  font-size: 14px;
   margin-bottom: 10px;
   float: left;
   border-bottom: dashed 1px #ccc;
-  font-weight: 500;
+  font-weight: 400;
 }
 .sub-prop {
   display: block;
   margin-bottom: 8px;
-  color: #252525 !important;
-  font-size: 16px;
+  color: #7e7e7e !important;
+  font-size: 13px;
   font-weight: 100;
   line-height: normal;
 }
@@ -174,7 +182,7 @@ bdo{
   display: block;
   margin-bottom: 4px;
   color: #252525 !important;
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 400;
 }
 mat-button-toggle-group{
@@ -186,4 +194,123 @@ mat-button-toggle{
 .selected {
   background-color: blue;
   color: white;
+}
+.plan-presentation-top > div{
+  border: solid 1px #e8e8e8;
+}
+.plan-presentation-top .plan-edit-btn mat-icon{
+  color: #fff;
+}
+.plan-presentation-top input[type="text"]{
+  height: 32px;
+}
+mat-select{
+  border-radius: 0;
+  height: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 25px;
+  margin-top: 0;
+}
+.plan-edit-btn{
+  background-color: #3c6f8e;
+  color: #fff;
+  border-radius: 0;
+  min-height: 100%;
+  max-height: 47px;
+  width: 41px;
+}
+.lis{
+  color: #252525;
+  font-weight: 300;
+}
+.plan-main-tabs{
+    border-radius: 0
+}
+.plan-main-tabs .mat-button-toggle {
+  background: #eaeaea;
+}
+.plan-main-tabs .mat-button-toggle-checked {
+  background-color: #fff;
+  color: #4b8bb2;
+  font-weight: 500;
+}
+.plan-listing-wrapper{
+    background: #fff;
+}
+.premium {
+  border-left: solid 1px #ebebeb;
+}
+.base-dtl {
+  border-bottom: 1px solid #ebebeb;
+}
+.monthly-premium, .estimated-annual-cost {
+  font-size: 38px;
+  color: #ed2069;
+  font-weight: 300;
+}
+.monthly-premium{
+    font-size: 38px;
+}
+.estimated-annual-cost {
+  font-size: 25px;
+}
+.original-rate{
+    font-size: 16px;
+    font-weight: 300;
+}
+.premium a{
+    color: blue;
+    font-weight: 400;
+    font-size: 13px;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
+.premium .premium-title, .estimated-annual-cost-label {
+  font-size: 16px;
+  font-weight: 300;
+}
+.material-icons{
+    font-size: 21px;
+}
+.card-footer {
+  background: #fff;
+}
+.plan-details-btn{
+    border-radius: 0;
+    box-shadow: none;
+    font-weight: 400;
+}
+.card-footer p{
+    margin-bottom: 0;
+}
+.item-optional-packages{
+    border-radius: 2px;
+}
+.item-optional-packages label, .item-optional-packages p {
+  font-weight: 300;
+}
+.item-optional-packages p{
+    margin-top: 5px;
+}
+  .item-optional-packages span.rate {
+    font-weight: 500;
+  }
+.additional-benefits-btn{
+    cursor: pointer;
+    color: blue;
+}
+.form-check-input{
+    margin-top: 1px;
+}
+.card-footer > .card{
+    margin: 0
+}
+.item-add-to-cart{
+    font-weight: 300;
+    border-radius: 2px;
+    width: 100%;
+}
+h1{
+    margin-bottom: 0;
 }

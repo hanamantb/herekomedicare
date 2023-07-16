@@ -50,5 +50,88 @@ mat-slider {
 }
 .form-check-label{
   padding-left: 10px;
+  font-size: 13px;
+}
+.sidebar-content-wrapper{
+  padding: 0 15px;
+}
+.sidebar-content-wrapper .panel-headers{
+  font-weight: normal;
   font-size: 15px;
+  margin-bottom: 0;
+}
+p.exp-sub{
+  font-size: 13px;
+  color: #fff;
+  font-weight: 300;
+}
+.mat-raised-button{
+  font-weight: 300;
+}
+.mat-expansion-panel-spacing{
+  margin: 0;
+}
+.add-drugs-docs button{
+  border-radius: 0;
+  font-size: 13px;
+  height: 45px;
+  border-bottom: solid 1px rgba(255,255,255,.4);
+  box-shadow: none;
+}
+.mat-tab-label-active{
+  color: #fff;
+  background-color: #3c6f8e !important;
+  opacity: 1;
+}
+.mat-focus-indicator > span:after{
+  color: #fff !important;
+}
+input[type="text"]{
+  height: 36px;
+}
+label{
+  font-size: 13px;
+  font-weight: 300;
+  color: #fff;
+}
+.form-check-input{
+  margin-top: 2px;
+}
+.sidebar-top h3{
+  font-size: 18px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 22px;
+  margin-bottom: 0;
+}
+.refresh-btn{
+  max-width: 64px;
+}
+.sidebar-top h3 strong{
+  font-size: 30px;
+  font-weight: 500;
+}
+.sidebar-top mat-icon{
+  font-size: 30px;
+}
+.sidebar-top{
+  background-color: #3c6f8e;
+}
+.sidebar-top > div{
+  justify-content: space-between;
+}
+.sort > div{
+  font-size: 13px;
+  font-weight: 300 !important;
+}
+.sort input[type="radio"]{
+  max-width: 20px;
+  margin-right: 10px;
+}
+.filter-go-btn button{
+  border-radius: 3px;
+  box-shadow: none;
+  font-weight: 500;
+  color: white;
+  background-color:#ffd543
 }

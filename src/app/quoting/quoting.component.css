@@ -41,3 +41,9 @@ button{
   padding: 0;
   margin: 0;
 }
+.zip-code-btn{
+    border-radius: 2px 0 0 2px;
+}
+.customer-lookup-btn{
+    border-radius: 0 2px 2px 0;
+}

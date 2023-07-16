@@ -1,20 +1,20 @@
 <!--<mat-drawer-container class="example-container" autosize>-->
 <!--  <mat-drawer #drawer class="example-sidenav" mode="side">-->
-<div class="card" style="background-color: #3c6f8e">
-  <div class="d-flex p-2">
-    <div class="col-8">
-      <h3 style="color: white;font-weight: 500;font-size: 15px">{{planCount}} out of {{planCount}} Medicare Advantage/Medicare Part D
+<div class="card rounded-0 sidebar-top">
+  <div class="d-flex p-2  align-items-center justify-space-between">
+    <div class="col-8 p-2">
+      <h3><strong>31</strong> out of 71 Medicare Advantage/Medicare Part D
         Plans</h3>
     </div>
-    <div class="col-4 justify-content-center">
+    <div class="col-4 justify-content-center d-flex align-items-center refresh-btn">
       <!--      <img src="../../../../assets/refresh.png" style="height: 50px" alt="">-->
-      <mat-icon style="font-size: 60px;margin-top: 13%;">refresh</mat-icon>
+      <mat-icon>refresh</mat-icon>
     </div>
 
   </div>
 
 </div>
-<div class="p-2 d-flex">
+<div class="p-2 d-flex add-drugs-docs">
   <button mat-raised-button style="color: white;background-color:#3c6f8e " (click)="navToPages('add-drugs')">
     <mat-icon>library_add</mat-icon>
     Add Drugs
@@ -24,7 +24,7 @@
     Add Doctors/Hospitals
   </button>
 </div>
-<mat-tab-group>
+<mat-tab-group class="sidebar-content-wrapper">
   <mat-tab label="Filter By">
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
@@ -55,8 +55,8 @@
             <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"
                    type="text">
           </div>
-          <div class="col s2 input-field ">
-            <button mat-raised-button style="color: white;background-color:#ffe600 ">Go</button>
+          <div class="col s2 input-field filter-go-btn ">
+            <button mat-raised-button>Go</button>
           </div>
         </div>
       </mat-expansion-panel>
@@ -80,8 +80,8 @@
             <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"
                    type="text">
           </div>
-          <div class="col s2 input-field ">
-            <button mat-raised-button style="color: white;background-color:#ffe600 ">Go</button>
+          <div class="col s2 input-field filter-go-btn">
+            <button mat-raised-button >Go</button>
           </div>
         </div>
       </mat-expansion-panel>
@@ -204,36 +204,36 @@
     <!--    </div>-->
   </mat-tab>
   <mat-tab label="Sort By">
-    <div class="sort">
+    <div class="sort mt-3">
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Premium low to high
+        <input type="radio" style="height: 20px"> Premium low to high
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Premium high to low
+        <input type="radio" style="height: 20px"> Premium high to low
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Lowest deductibles
+        <input type="radio" style="height: 20px"> Lowest deductibles
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Lowest max out of pocket
+        <input type="radio" style="height: 20px"> Lowest max out of pocket
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> In-network doctors
+        <input type="radio" style="height: 20px"> In-network doctors
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> In-network facility
+        <input type="radio" style="height: 20px"> In-network facility
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> In-network drugs
+        <input type="radio" style="height: 20px"> In-network drugs
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> CSR applicable
+        <input type="radio" style="height: 20px"> CSR applicable
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Company A-Z
+        <input type="radio" style="height: 20px"> Company A-Z
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="width: 30%;height: 20px"> Company Z-A
+        <input type="radio" style="height: 20px"> Company Z-A
       </div>
     </div>
   </mat-tab>

@@ -1,17 +1,17 @@
 <div class="container">
-  <div class="offcanvas-header">
+  <div class="offcanvas-header browse-drugs-sidebar">
     <h3 class="offcanvas-title" id="offcanvas-basic-title">Browse drugs A-Z</h3>
-    <button type="button"  aria-label="Close" (click)="cancel()" >X</button>
+    <button type="button"  aria-label="Close" (click)="cancel()" class="close-btn" >X</button>
   </div>
-  <div class="d-flex p-2">
-    <div class="col-6">SELECT A LETTER</div>
-    <div class="col-4">
+  <div class="d-flex py-2">
+    <div class="col-6 d-flex align-items-center">Select a letter</div>
+    <div class="col-6">
       <select name="alphabet" (change)="drugByAlphabet($event)">
         <option  *ngFor="let alphabet of alphabets" [value]="alphabet">{{ alphabet }}</option>
       </select>
     </div>
   </div>
-  <div class="scrollable-section">
+  <div class="scrollable-section drugs-list">
     <ul>
       <li *ngFor="let item of items">
         <div class="card li-card" [class.selected]="item == selectedItem" (click)="toggleItemSelection(item)">
@@ -22,8 +22,8 @@
 
   </div>
 
-  <div class="card" style="background-color: #0e0e87;position: fixed;bottom: 0">
-    <div class="d-flex">
+  <div class="card browse-drug-footer" style="background-color: #0e0e87;position: fixed;bottom: 0">
+    <div class="d-flex justify-content-center">
       <div class="p-2">
         <button mat-raised-button style="background-color: #4b8bb2;color: white" (click)="drugNameAdd()">Select
           Drug

@@ -30,5 +30,24 @@
   margin: 0;
 }
 p{
-  font-size: 18px;
+  font-size: 15px;
 }
+h3 {
+  font-weight: 500;
+  border-bottom: solid 1px #ddd;
+  font-size: 15px
+}
+.add-pharmacy-content-wrapper {
+  border: solid 1px #ddd;
+  border-radius: 2px;
+  background-color: #fff;
+}
+button{
+    border-radius: 2px;
+    font-weight: 300;
+    font-size: 14px;
+}
+  button:hover {
+    color: #fff;
+    background-color: #3f51b5;
+  }

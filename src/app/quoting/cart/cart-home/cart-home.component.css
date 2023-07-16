@@ -12,3 +12,100 @@
 mat-select{
   border: none;
 }
+.cart-item-head {
+  border-bottom: 1px solid #ebebeb;
+}
+.cart-item-head h3{
+    font-size: 21px;
+    font-weight: 300;
+}
+.cart-item-right {
+  border-left: 1px solid #ebebeb;
+}
+.cart-more-info > h3.more-info-head {
+  font-size: 14px;
+  border-bottom: dashed 1px #ccc;
+  margin-bottom: 10px;
+}
+.cart-more-info h3{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+.cart-more-info p {
+  font-weight: 300;
+  font-size: 13px;
+  color: #7e7e7e
+}
+.card-footer{
+    background: #fff;
+}
+.card-footer button{
+    border-radius: 2px;
+    font-weight: 300;
+    box-shadow: none
+}
+.cart-total{
+    border-radius: 2px;
+}
+.cart-total .card-title{
+    font-weight: 300;
+}
+.monthly-premium-rate {
+  color: #4b8bb2;
+  font-size: 38px;
+  font-weight: 300;
+}
+.cart-item-right a{
+    color: blue;
+    text-decoration: underline dashed;
+}
+.cart-item-right p {
+  color: #6b6b6b;
+  font-weight: 300;
+}
+.cart-total-head {
+  background-color: #64bdf4;
+  color: white;
+  min-height: 70px;
+}
+.cart-total .body {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 34px;
+  text-align: center;
+}
+.cart-total .body strong {
+  font-weight: 500;
+  color: #5a5a5a;
+}
+.cart-total .card-footer .col-6{
+    min-height: 70px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.total-amnt{
+    font-size: 13px;
+}
+  .total-amnt strong {
+    font-size: 27px;
+    font-weight: 500;
+    color: #4b8bb2
+  }
+.begin-enrollment {
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #4b8bb2;
+  color: white;
+}
+.copy-proposal-drodown {
+  border-radius: 0;
+  margin-top: 10px;
+  border: 0;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.14), 0 2px 1px -3px rgba(0,0,0,0.12), 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.copy-proposal-drodown button{
+    border-radius: 2px;
+}
