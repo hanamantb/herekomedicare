@@ -6,6 +6,7 @@ import {CommonService} from "../../services/common.service";
 import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-prescription-drugs',
@@ -36,7 +37,8 @@ export class PrescriptionDrugsComponent implements OnInit {
               private sharedService: SharedService,
               private commonservice:CommonService,
               public dialog: MatDialog,
-              private quoteDetailsService:QuoteDataDetailsService) {
+              private quoteDetailsService:QuoteDataDetailsService,
+  private spinner:SpinnerService) {
   }
 
   ngOnInit(): void {
@@ -45,6 +47,7 @@ export class PrescriptionDrugsComponent implements OnInit {
     })
     this.fips = localStorage.getItem('fips')
     this.getPlans()
+
   }
   showbenfit(plan:any) {
     plan.optnpkShow = true
@@ -82,6 +85,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   }
 
   getPlans(){
+    const spine=this.spinner.start()
     const zip = this.myControl.value.myControl
     const drugs = this.quoteDetailsService.getdrug()
     const npis = this.quoteDetailsService.getnpis()
@@ -112,6 +116,7 @@ export class PrescriptionDrugsComponent implements OnInit {
           benefits:false};
       });
       this.filtrPlans = this.plans
+      this.spinner.stop(spine)
       console.log('response',this.plans)
     })
   }

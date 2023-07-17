@@ -11,13 +11,27 @@ export class ActionsCellRendererComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  editItem() {
-    // Handle edit action here
-    console.log('Edit button clicked');
+  public params: any;
+
+  agInit(params: any): void {
+    this.params = params;
   }
 
-  deleteItem() {
-    // Handle delete action here
-    console.log('Delete button clicked');
+  edit(): void {
+    if (this.params && this.params.onClick instanceof Function) {
+      console.log(this.params.data)
+      const { row, column } = this.params;
+      this.params.onClick('edit',this.params.data);
+    }
+  }
+
+  delete(): void {
+    if (this.params && this.params.onClick instanceof Function) {
+      const { row, column } = this.params;
+      this.params.onClick('delete',this.params.data);
+    }
+  }
+  refresh(): boolean {
+    return false;
   }
 }

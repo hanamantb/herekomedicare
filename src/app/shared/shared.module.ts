@@ -13,6 +13,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {SharedService} from "../services/shared.service";
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import {MatBadgeModule} from '@angular/material/badge';
     BottomBarComponent,
     TimeLineComponent,
     SidebarComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,8 @@ import {MatBadgeModule} from '@angular/material/badge';
     MatButtonModule,
     MatSidenavModule,
     MatSliderModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatProgressSpinnerModule
   ],
     exports: [
         ToolbarComponent,

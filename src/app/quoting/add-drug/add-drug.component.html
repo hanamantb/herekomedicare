@@ -72,7 +72,7 @@
                   Every 3 months
                 </mat-option>
                 <mat-option value="Every 6 month">
-                  Every 4 months
+                  Every 6 months
                 </mat-option>
                 <mat-option value="Every 12 month">
                   Every 12 months
@@ -82,7 +82,8 @@
           </div>
         </form>
         <div class="d-flex col-8 px-3 pb-4 mt-2 add-dosage-action">
-          <button mat-raised-button color="danger" class="cancel-dosage-btn" (click)="cancelDrug()>Cancel</button>
+          <button mat-raised-button color="danger" class="cancel-dosage-btn" (click)="cancelDrug()">Cancel</button>
+
           <button mat-raised-button class="ms-2 add-dosage-btn" (click)="addDrug()">
             Add
             Drug
@@ -94,17 +95,16 @@
           <h3>Your Prescriptions</h3>
         </div>
         <div class="d-flex col-12 p-2 justify-content-center">
-          <ag-grid-angular style="width: 100%;margin-top: 1%;height: 100px" class="ag-theme-alpine"
+          <ag-grid-angular style="width: 100%;margin-top: 1%;height: 30vh" class="ag-theme-alpine"
                            [scrollbarWidth]="8" [headerHeight]="35"
                            rowSelection="multiple" (cellClicked)="onGridCellClicked($event)"
                            (gridReady)="onGridReady($event)"
                            [rowHeight]="35" [rowData]="rowData"
-                           [columnDefs]="columnDefs" domLayout='autoHeight'>
+                           [columnDefs]="columnDefs" >
           </ag-grid-angular>
         </div>
       </div>
-
-      <div class="d-flex col-12 p-2 justify-content-end">
+      <div class="d-flex col-12  p-2 justify-content-end">
         <button mat-raised-button color="primary" (click)="navPlans()">See Plans without drugs</button>
         <button mat-raised-button style="background-color: #4b8bb2;color: white;" class="ms-2" (click)="addPharmacy()">
           Continue

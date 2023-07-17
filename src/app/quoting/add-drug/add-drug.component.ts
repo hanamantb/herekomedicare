@@ -7,6 +7,8 @@ import {GridApi} from "ag-grid-community";
 import {BrowseDrugComponent} from "./browse-drug/browse-drug.component";
 import {CommonService} from "../../services/common.service";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
+import {ActionsCellRendererComponent} from "./actions-cell-renderer/actions-cell-renderer.component";
+import {AgGridAngular} from "ag-grid-angular";
 
 @Component({
   selector: 'app-add-drug',
@@ -15,6 +17,7 @@ import {QuoteDataDetailsService} from "../../services/quote-data-details.service
 })
 export class AddDrugComponent implements OnInit {
   @ViewChild('generic', {static: true}) generic!: TemplateRef<any>;
+  @ViewChild('agGrid', {static: true}) ahGrid!: AgGridAngular;
   rowData: any = [];
   alphabets: string[] = [];
   items = [];
@@ -25,17 +28,53 @@ export class AddDrugComponent implements OnInit {
   itemName = ''
   item: any;
   rxcui: any;
-  drugs: any = [  ];
+  drugs: any = [];
   dosagesDetails: any = [];
   dosages: any = [];
   packages: any = [];
   nonEditDrug: any = [];
+  // columnDefs = [
+  //   {
+  //     field: 'index', headerName: '#', width: 80,
+  //     valueGetter: (node: any) => String(node.node.rowIndex + 1)
+  //   },
+  //   {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
+  //   {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
+  //   {field: 'package', headerName: 'Package', filter: true, width: 200},
+  //   {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
+  //   {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
+  //   {
+  //     field: 'actions',
+  //     headerName: 'Actions',
+  //     cellRendererFramework: ActionsCellRendererComponent,
+  //   },
+  // ];
+
+  columnDefs = [
+      {
+        field: 'index', headerName: '#', width: 80,
+        valueGetter: (node: any) => String(node.node.rowIndex + 1)
+      },
+      {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
+      {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
+      {field: 'package', headerName: 'Package', filter: true, width: 200},
+      {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
+      {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
+      {
+        headerName: 'Actions',
+        field: 'actions',
+        cellRendererFramework: ActionsCellRendererComponent,
+        cellRendererParams: {
+          onClick: this.onActionButtonClick.bind(this),
+        },
+      },
+  ];
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
               public fb: FormBuilder,
               private commonservice: CommonService,
-              private quoteDetailsService:QuoteDataDetailsService) {
+              private quoteDetailsService: QuoteDataDetailsService) {
     const startChar = 'A'.charCodeAt(0);
     const endChar = 'Z'.charCodeAt(0);
 
@@ -47,7 +86,7 @@ export class AddDrugComponent implements OnInit {
       drugName: [null],
       dosage: [null, [Validators.required]],
       package: [null],
-      quantity: [null, [Validators.required,Validators.min(1)]],
+      quantity: [null, [Validators.required, Validators.min(1)]],
       frequency: [null, [Validators.required]],
     })
   }
@@ -57,31 +96,17 @@ export class AddDrugComponent implements OnInit {
 
   colDef5 = function () {
     return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
-    '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
+      '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
   };
+
   colDef6 = function () {
     return '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
   };
 
-  columnDefs = [
-    {
-      field: 'index', headerName: '#', width: 80,
-      valueGetter: (node: any) => String(node.node.rowIndex + 1)
-    },
-    {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
-    {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
-    {field: 'package', headerName: 'Package', filter: true, width: 200},
-    {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
-    {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
-    {
-      field: 'actions',
-      headerName: 'Actions',
-      cellRenderer: this.colDef5, width: 100
-    },
-  ];
-  delete(event:any){
-    console.log('delete',event)
+  delete(event: any) {
+    console.log('delete', event)
   }
+
   addPharmacy() {
     this.dialog.closeAll()
     // localStorage.setItem('drugs',this.rowData)
@@ -98,12 +123,12 @@ export class AddDrugComponent implements OnInit {
       this.selectedItem = [];
       this.packages = [];
       console.log('retData', ret)
-      this.item=ret
+      this.item = ret
       this.itemName = ret.name
       this.rxcui = ret.rxcui
-        if (!ret.is_generic) {
-          this.dialog.open(this.generic, {width: '600px'})
-        }
+      if (!ret.is_generic) {
+        this.dialog.open(this.generic, {width: 'auto'})
+      }
       this.getDosageDetails()
     })
   }
@@ -123,7 +148,7 @@ export class AddDrugComponent implements OnInit {
   addDrug() {
     console.log('drgggg', this.drugForm.value)
     let pack = this.drugForm.value.package
-    console.log('pack',pack)
+    console.log('pack', pack)
     if (this.drugForm.valid) {
       if (pack === null || pack === 'NA') {
         pack = 'NA'
@@ -135,17 +160,18 @@ export class AddDrugComponent implements OnInit {
         package: pack
       })
       this.rowData.push(this.drugForm.value)
+      console.log('rowdata', this.rowData)
       this.gridapi?.setRowData(this.rowData)
       this.itemName = ''
       this.drugForm.reset()
       this.drugname.reset()
-    }else{
+    } else {
       alert('Quantity or Frequency is not entered.')
     }
   }
 
-  cancelDrug(){
-    if (this.nonEditDrug !==[]){
+  cancelDrug() {
+    if (this.nonEditDrug !== []) {
       this.rowData.push(this.nonEditDrug)
       this.gridapi?.setRowData(this.rowData)
     }
@@ -175,7 +201,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   change(event: any) {
-    console.log('druggg',event.option.value)
+    console.log('druggg', event.option.value)
     this.item = event.option.value
     this.rxcui = event.option.value.rxcui
     if (!this.item.is_generic) {
@@ -193,7 +219,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   getDosageDetails() {
-    this.commonservice.drugDosage(this.rxcui ).subscribe((response) => {
+    this.commonservice.drugDosage(this.rxcui).subscribe((response) => {
       console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
@@ -240,34 +266,72 @@ export class AddDrugComponent implements OnInit {
     this.getDosageDetails()
   }
 
-  onGridCellClicked(event: any): void {
-    console.log(event.data)
-    if (event.colDef.field === 'actions') {
+  onActionButtonClick(action:any,data:any): void {
+    // Handle button click event here
+    console.log('Button clicked:', action);
+    if (action === 'delete') {
+      console.log('deleeeting11');
       this.rowData.forEach((element: any, index: any) => {
-        console.log(element)
-        if (event.data.drugName == element.drugName) {
-          this.rowData.splice(index,1)
+        console.log('forEach',element.drugName)
+        console.log('data',data.drugName)
+        if (data.drugName === element.drugName) {
+          this.rowData.splice(index, 1)
           this.gridapi?.setRowData(this.rowData)
         }
       })
-    }else if (event.colDef.field === 'edit'){
-      this.itemName = event.data.drugName
+    } else if (action === 'edit') {
+      this.itemName = data.drugName
       this.drugForm.patchValue({
-        ndc: event.data.ndc,
-        drugName: event.data.drugName,
-        dosage: event.data.dosage,
-        package: event.data.package,
-        quantity: event.data.quantity,
-        frequency: event.data.frequency,
+        ndc: data.ndc,
+        drugName: data.drugName,
+        dosage: data.dosage,
+        package: data.package,
+        quantity: data.quantity,
+        frequency: data.frequency,
       })
 
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
-        if (event.data.drugName == element.drugName) {
+        if (data.drugName == element.drugName) {
           this.nonEditDrug = element
-          this.rowData.splice(index,1)
+          this.rowData.splice(index, 1)
           this.gridapi?.setRowData(this.rowData)
         }
-    })}
+      })
+    }
   }
+
+
+  onGridCellClicked(event: any): void {
+    console.log(event.data)
+    // if (event.colDef.field === 'actions') {
+    //   // this.rowData.forEach((element: any, index: any) => {
+    //   //   console.log(element)
+    //   //   if (event.data.drugName == element.drugName) {
+    //   //     this.rowData.splice(index, 1)
+    //   //     this.gridapi?.setRowData(this.rowData)
+    //   //   }
+    //   // })
+    // } else if (event.colDef.field === 'edit') {
+    //   this.itemName = event.data.drugName
+    //   this.drugForm.patchValue({
+    //     ndc: event.data.ndc,
+    //     drugName: event.data.drugName,
+    //     dosage: event.data.dosage,
+    //     package: event.data.package,
+    //     quantity: event.data.quantity,
+    //     frequency: event.data.frequency,
+    //   })
+    //
+    //   this.rowData.forEach((element: any, index: any) => {
+    //     console.log(element)
+    //     if (event.data.drugName == element.drugName) {
+    //       this.nonEditDrug = element
+    //       this.rowData.splice(index, 1)
+    //       this.gridapi?.setRowData(this.rowData)
+    //     }
+    //   })
+    // }
+  }
+
 }

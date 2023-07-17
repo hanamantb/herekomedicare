@@ -35,6 +35,8 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { ActionsCellRendererComponent } from './quoting/add-drug/actions-cell-renderer/actions-cell-renderer.component';
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 
@@ -78,7 +80,9 @@ import { ActionsCellRendererComponent } from './quoting/add-drug/actions-cell-re
     HttpClientModule,
     MatAutocompleteModule,
     MatTooltipModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   exports:[MatTabsModule],
   providers: [HttpClientModule,SharedService],

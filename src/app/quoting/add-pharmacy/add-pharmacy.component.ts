@@ -18,6 +18,8 @@ export class AddPharmacyComponent implements OnInit {
   zipcode:any;
   radius_miles:any='10';
   pharmName:any='';
+  page:any='0';
+
 
   constructor(private route: Router,
               private commonservice: CommonService,
@@ -26,7 +28,7 @@ export class AddPharmacyComponent implements OnInit {
 
   ngOnInit(): void {
     this.zipcode = localStorage.getItem('zipcode')
-    this.findPharmacy()
+    this.findPharmacy(this.page)
   }
 
   colDef5 = function () {
@@ -87,11 +89,40 @@ export class AddPharmacyComponent implements OnInit {
       }
     }
 
-  findPharmacy() {
-    this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName).subscribe((response)=>{
-      this.pharmacies = response.data.listOfPharmacy
+  findPharmacy(page:any) {
+    this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName,page).subscribe((response)=>{
+      if (response.status === true){
+        this.pharmacies = response.data.listOfPharmacy
+        this.page = response.data.total_results
+
+      }
+
       console.log('pharmacy',response)
     })
     console.log(this.zipcode,this.radius_miles)
+  }
+
+  onPageChange(event: any) {
+    const startIndex = event.pageIndex +1;
+    const endIndex = startIndex + event.pageSize;
+    this.findPharmacy(startIndex)
+    console.log('startIndex',event.pageIndex)
+    console.log('endIndex',endIndex)
+  }
+
+  mailOrder($event: any) {
+    const index = this.rowData.findIndex((item:any) => item.name === 'Mail Order Pharmacy');
+    if (index > -1) {
+      // Item exists in the array, remove it
+      this.rowData.splice(index, 1);
+    } else {
+const data ={
+  name:'Mail Order Pharmacy',
+  street:'NA',
+  distance_miles:'NA'
+}
+      this.rowData.push(data);
+    }
+    this.gridapi?.setRowData(this.rowData)
   }
 }
