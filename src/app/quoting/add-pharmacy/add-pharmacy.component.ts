@@ -32,7 +32,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="40" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
   };
   columnDefs = [
     {
@@ -57,15 +57,24 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   check(event:any,data: any) {
-    console.log("laassssss", data)
-    const index = this.rowData.findIndex((item:any) => item.name === data.name);
-    if (index > -1) {
-      // Item exists in the array, remove it
-      this.rowData.splice(index, 1);
-    } else {
-      // Item doesn't exist in the array, add it
+    console.log("laassssss", event)
+    if (data.checked == true){
       this.rowData.push(data);
+    }else {
+      const index = this.rowData.findIndex((item:any) => item.name === data.name);
+      if (index > -1) {
+        // Item exists in the array, remove it
+        this.rowData.splice(index, 1);
+      }
     }
+    // const index = this.rowData.findIndex((item:any) => item.name === data.name);
+    // if (index > -1) {
+    //   // Item exists in the array, remove it
+    //   this.rowData.splice(index, 1);
+    // } else {
+    //   // Item doesn't exist in the array, add it
+    //   this.rowData.push(data);
+    // }
     this.gridapi?.setRowData(this.rowData)
   }
 
@@ -80,6 +89,7 @@ export class AddPharmacyComponent implements OnInit {
         console.log(element)
         if (event.data.id == element.id) {
           console.log('delete')
+          event.data.checked = false
           this.rowData.splice(index,1)
           console.log('after--delete',this.rowData)
           this.gridapi?.setRowData(this.rowData)
@@ -93,9 +103,14 @@ export class AddPharmacyComponent implements OnInit {
     this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName,page).subscribe((response)=>{
       if (response.status === true){
         this.pharmacies = response.data.listOfPharmacy
+        this.pharmacies = this.pharmacies.map((element:any, index:any) => {
+          return { ...element,
+            checked: false,
+        }})
         this.page = response.data.total_results
 
-      }
+
+    }
 
       console.log('pharmacy',response)
     })

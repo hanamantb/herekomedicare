@@ -42,7 +42,7 @@
             <div class="col-2 p-2">
               <p>Dosage</p>
               <mat-select placeholder="Select" formControlName="dosage" (selectionChange)="dosageChange($event)">
-                <mat-option *ngFor="let option of dosages" [value]="option.dosage_form">
+                <mat-option *ngFor="let option of dosages" [value]="option">
                   {{option.strength}} {{option.dosage_form}}
                 </mat-option>
               </mat-select>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-2 p-2">
               <p>Quantity</p>
-              <input type="number" formControlName="quantity">
+              <input type="tel" formControlName="quantity" style="height: 38px">
             </div>
             <div class="col-2 p-2">
               <p>Frequency</p>
@@ -119,24 +119,19 @@
 
 <ng-template #generic >
   <div class="container-fluid">
-<h3>You have selected {{itemName}}</h3>
-    <p class="lower-gen-drug-caption">A lower generic is available for the drug you selected.</p>
-    <div class="row">
-      <div class="d-flex py-2 px-0">
-        <div class="d-flex p-2">
-          <input type="radio" class="radio me-2" name="radioGroup" (change)="rxcuichange(item.rxcui)" value="{{item.rxcui}}"> Keep {{itemName}}
-        </div>
-        <div class="d-flex p-2">
-          <input type="radio" checked class="radio me-2" name="radioGroup" value="{{item.generic.rxcui}}" (change)="rxcuichange(item.generic.rxcui)"> Use lower cost generic: {{item.generic.name}}
-        </div>
+<h3 style="font-weight: 500">You have selected {{itemName}}</h3>
+    <p>A lower generic is available for the drug you selected</p>
+    <div class="d-flex p-2">
+      <div class="d-flex col-6 p-2" >
+        <input type="radio" class="radio me-2" name="radioGroup" (change)="rxcuichange(item.rxcui)" value="{{item.rxcui}}"> Keep {{itemName}}
+      </div>
+      <div class="d-flex col-6 p-2" >
+        <input type="radio" checked class="radio me-2" name="radioGroup" value="{{item.generic.rxcui}}" (change)="rxcuichange(item.generic.rxcui)"> Use lower cost generic: {{item.generic.name}}
       </div>
     </div>
-    <div class="row">
-      <div class="d-flex p-2 justify-content-end drug-popup-action">
-        <button mat-raised-button class="px-2 me-2" (click)="cancel()">Cancel</button>
-        <button mat-raised-button class="px-2" color="primary" (click)="cancel()">Save</button>
-      </div>
+    <div class="d-flex p-2 justify-content-end drug-popup-action">
+      <button mat-raised-button class="px-2 me-2"  (click)="cancel()">Cancel</button>
+      <button mat-raised-button class="px-2" color="primary"  (click)="cancel()">Save</button>
     </div>
-    
   </div>
 </ng-template>

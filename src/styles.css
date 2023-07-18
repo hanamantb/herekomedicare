@@ -17,7 +17,7 @@ mat-select {
   height: 38px;
   border: #B8C0D4 1px ridge;
   border-radius: 2px;
-  padding: 4px 10px;
+  padding: 4px;
   line-height: 29px;
 }
 
@@ -84,8 +84,7 @@ input[type="password"]:focus-visible,
 input[type="email"]:focus-visible,
 input[type="number"]:focus-visible,
 input[type="date"]:focus-visible,
-select:focus-visible,
-input.mat-input-element:focus-visible{
+select:focus-visible {
   outline: 0 !important;
   box-shadow: 0 0 4px rgba(75, 139, 178, .9);
 }
@@ -94,11 +93,10 @@ input[type="password"],
 input[type="email"],
 input[type="number"]
 input[type="date"]
-select,
-input.mat-input-element {
+select {
   padding: 0 10px;
   height: 38px;
-  border-radius: 2px !important;
+  border-radius: 2px;
 }
 .sidebar-content-wrapper .mat-tab-label-active {
   background: #3c6f8e;

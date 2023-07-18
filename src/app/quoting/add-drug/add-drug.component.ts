@@ -86,7 +86,7 @@ export class AddDrugComponent implements OnInit {
       drugName: [null],
       dosage: [null, [Validators.required]],
       package: [null],
-      quantity: [null, [Validators.required, Validators.min(1)]],
+      quantity: [null, [Validators.required, Validators.min(0)]],
       frequency: [null, [Validators.required]],
     })
   }
@@ -157,7 +157,8 @@ export class AddDrugComponent implements OnInit {
       }
       this.drugForm.patchValue({
         drugName: this.itemName,
-        package: pack
+        package: pack,
+        dosage:this.drugForm.value.dosage.dosage_form
       })
       this.rowData.push(this.drugForm.value)
       console.log('rowdata', this.rowData)
@@ -227,7 +228,7 @@ export class AddDrugComponent implements OnInit {
 
       this.drugForm.patchValue({
         ndc: this.dosages[0].ndc,
-        dosage: this.dosages[0].dosage_form,
+        dosage: this.dosages[0],
         quantity: Number(this.dosages[0].default_quantity
         )
       })
@@ -238,17 +239,20 @@ export class AddDrugComponent implements OnInit {
 
   dosageChange(event: any) {
     this.packages = []
-    const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value);
+    console.log('event',event)
+    const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value.dosage_form);
     const pack = Array.from(new Set(filteredData.map((item: any) => item)));
     pack.forEach((element: any) => {
       if (element.package_description != "") {
         this.packages.push(element)
       }
     })
+    console.log('dos pack',pack)
+    console.log('dos cnge',this.packages)
     this.drugForm.patchValue({
-      ndc: this.packages[0].ndc,
-      package: this.packages[0],
-      quantity: Number(this.packages[0].default_quantity)
+      ndc: event.value.ndc,
+      package: event.value,
+      quantity: Number(event.value.default_quantity)
     })
 
   }

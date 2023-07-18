@@ -49,12 +49,11 @@ h3{
   font-size: 18px;
   font-weight: 400;
 }
-.radio {
-  width: 24px;
+.radio{
+  width: 12%;
   height: 16px;
   border-radius: 3px;
   border: #B8C0D4 solid 1px;
-  margin-right: 5px !important;
 }
 
 .add-drugs-info h2{
@@ -104,32 +103,3 @@ button{
     height: 38px;
 }
 
-/deep/.cdk-overlay-pane {
-  max-width: 500px !important;
-}
-/deep/.cdk-overlay-pane p {
-    text-align: left;
-}
-/deep/.mat-dialog-container {
-  background-color: #FAFAFA
-}
-/deep/.mat-dialog-container h3{
-    font-weight: 500;
-}
-/deep/.mat-dialog-container .lower-gen-drug-caption {
-  display: flex;
-}
-/deep/ .mat-dialog-container .lower-gen-drug-caption:before {
-  content: "!";
-  width: 18px;
-  height: 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid #5CB65F;
-  border-radius: 15px;
-  color: #5CB65F;
-  margin-right: 10px;
-  font-size: 13px;
-  font-weight: 500
-}
