@@ -53,3 +53,8 @@ img{
   border-radius: 2px;
   border: #B8C0D4 solid 1px;
 }
+.benfit-btn{
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+}

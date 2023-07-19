@@ -41,7 +41,7 @@
           <div class="d-flex px-2 pb-3 drug-dosage-info">
             <div class="col-2 p-2">
               <p>Dosage</p>
-              <mat-select placeholder="Select" formControlName="dosage" (selectionChange)="dosageChange($event)">
+              <mat-select placeholder="Select" formControlName="dosage_form" (selectionChange)="dosageChange($event)">
                 <mat-option *ngFor="let option of dosages" [value]="option">
                   {{option.strength}} {{option.dosage_form}}
                 </mat-option>
@@ -123,10 +123,10 @@
     <p>A lower generic is available for the drug you selected</p>
     <div class="d-flex p-2">
       <div class="d-flex col-6 p-2" >
-        <input type="radio" class="radio me-2" name="radioGroup" (change)="rxcuichange(item.rxcui)" value="{{item.rxcui}}"> Keep {{itemName}}
+        <input type="radio" class="radio me-2" checked name="radioGroup" (change)="rxcuichange(item)" value="{{item}}"> Keep {{itemName}}
       </div>
       <div class="d-flex col-6 p-2" >
-        <input type="radio" checked class="radio me-2" name="radioGroup" value="{{item.generic.rxcui}}" (change)="rxcuichange(item.generic.rxcui)"> Use lower cost generic: {{item.generic.name}}
+        <input type="radio"  class="radio me-2" name="radioGroup"  (change)="rxcuichange(item.generic)" value="{{item.generic}}" > Use lower cost generic: {{item.generic.name}}
       </div>
     </div>
     <div class="d-flex p-2 justify-content-end drug-popup-action">

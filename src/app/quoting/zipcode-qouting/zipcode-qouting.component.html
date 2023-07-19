@@ -8,34 +8,52 @@
         <div class="col-md-3">
           <form class="example-form" [formGroup]="zipcodeForm">
 
-            <input class="mat-in"
+              <input type="text" class="mat-in" placeholder="Enter your ZIP code"
                      matInput
                      (input) ="getCounties($event)"
                      formControlName="myControl"
-                     [matAutocomplete]="auto" [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
-              <mat-autocomplete  #auto="matAutocomplete"
-                                 [displayWith]="_displayplantname">
-                <mat-option *ngFor="let option of couties" [value]="option" >
-                  {{selectedCountie}}-{{option.name}},{{option.state}}
-                </mat-option>
-              </mat-autocomplete>
+                     [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
+
             <div class="invalid-feedback d-flex" *ngIf="myControl.touched && myControl.invalid">
               The entered ZIP Code is not valid
             </div>
+            <br>
+            <mat-select class="mt-2" placeholder="Select your county"   *ngIf="couties.length > 1"  (selectionChange)="county($event)">
+              <mat-option *ngFor="let option of couties" [value]="option">
+                {{option.name}},{{option.state}}
+              </mat-option>
+            </mat-select>
+
+
+            <!--            <input class="mat-in"-->
+            <!--                     matInput-->
+            <!--                     (input) ="getCounties($event)"-->
+            <!--                     formControlName="myControl"-->
+            <!--                     [matAutocomplete]="auto" [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">-->
+            <!--              <mat-autocomplete  #auto="matAutocomplete"-->
+            <!--                                 [displayWith]="_displayplantname">-->
+            <!--                <mat-option *ngFor="let option of couties" [value]="option" >-->
+            <!--                  {{selectedCountie}}-{{option.name}},{{option.state}}-->
+            <!--                </mat-option>-->
+            <!--              </mat-autocomplete>-->
+
           </form>
 
-<!--          <input type="text" placeholder="Enter Zip Code" [(ngModel)]="zipcode">-->
+          <!--          <input type="text" placeholder="Enter Zip Code" [(ngModel)]="zipcode">-->
         </div>
+
       </div>
       <br>
       <mat-divider></mat-divider>
       <br>
       <div class="d-flex p-2 mb-1">
-        <div class="col-3"  matTooltip="Low Income Subsidy (LIS) helps people with limited income and resources pay Medicare prescription drug program costs, like premiums, deductibles, and coinsurance." matTooltipPosition="left">
+        <div class="col-3"
+             matTooltip="Low Income Subsidy (LIS) helps people with limited income and resources pay Medicare prescription drug program costs, like premiums, deductibles, and coinsurance."
+             matTooltipPosition="left">
           <p>Low Income Subsidy (LIS) </p>
         </div>
         <div class="col-3">
-          <mat-select placeholder="LIS" value="none" >
+          <mat-select placeholder="LIS" value="none" opened>
             <mat-option value="none">
               None
             </mat-option>
@@ -53,50 +71,51 @@
             </mat-option>
           </mat-select>
         </div>
-        <div class="col-2 ms-4 s"  >
+        <div class="col-2 ms-4 s">
           <p style="text-align: end;">See Plans for </p>
         </div>
         <div class=" d-flex col justify-content-start">
-            <input type="radio" name="optradio" checked class="seeplan">2013
-            <input type="radio" name="optradio" class="seeplan">2014
-<!--          <mat-select placeholder="Effective Year" value="2023" >-->
-<!--            <mat-option value="2023">-->
-<!--              2023-->
-<!--            </mat-option>-->
-<!--            <mat-option value="2024">-->
-<!--              2024-->
-<!--            </mat-option>-->
-<!--          </mat-select>-->
+          <input type="radio" name="optradio" checked class="seeplan">2013
+          <input type="radio" name="optradio" class="seeplan">2014
+          <!--          <mat-select placeholder="Effective Year" value="2023" >-->
+          <!--            <mat-option value="2023">-->
+          <!--              2023-->
+          <!--            </mat-option>-->
+          <!--            <mat-option value="2024">-->
+          <!--              2024-->
+          <!--            </mat-option>-->
+          <!--          </mat-select>-->
         </div>
 
       </div>
 
       <div class="col-12">
 
-          <div class="card mt-2 add-change-prescription">
-<!--            <div class="  tittle p-2">-->
-<!--              <p>Drugs in your Medicine Cabinet will be used while generating quotes.-->
-<!--                Review and make changes to the Medicine Cabinet by selecting the checkbox. <br>-->
-<!--                <input class="form-check-input ms-2"  [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckChecked" checked style="height: 20px;width: 20px" >-->
-<!--              </p>-->
+        <div class="card mt-2 add-change-prescription">
+          <!--            <div class="  tittle p-2">-->
+          <!--              <p>Drugs in your Medicine Cabinet will be used while generating quotes.-->
+          <!--                Review and make changes to the Medicine Cabinet by selecting the checkbox. <br>-->
+          <!--                <input class="form-check-input ms-2"  [(ngModel)]="isChecked" type="checkbox" value="" id="flexCheckChecked" checked style="height: 20px;width: 20px" >-->
+          <!--              </p>-->
 
-<!--            </div>-->
+          <!--            </div>-->
 
-            <div class=" d-flex body p-2">
-              <div class="col-8">
-                <p>Drugs in your medicine cabinet will be considered while generating quotes. <br>
+          <div class=" d-flex body p-2">
+            <div class="col-8">
+              <p>Drugs in your medicine cabinet will be considered while generating quotes. <br>
                 <br>
                 Would you like to add/change prescription drugs in your medicine cabinet?</p>
-              </div>
-             <div class="col-4 ms-2">
-               <br>
-               <br>
-               NO &nbsp; <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
-             </div>
-
             </div>
+            <div class="col-4 ms-2">
+              <br>
+              <br>
+              NO &nbsp;
+              <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
+            </div>
+
           </div>
-<!--          <button mat-raised-button color="primary" class="btn" (click)="drug()">Prescription Drugs</button>-->
+        </div>
+        <!--          <button mat-raised-button color="primary" class="btn" (click)="drug()">Prescription Drugs</button>-->
 
         <!--    <div class="d-flex p-2 justify-content-end"><button mat-raised-button color="warn" class="btn" (click)="doctrs()">Doctors</button></div>-->
       </div>

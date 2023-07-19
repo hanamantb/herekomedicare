@@ -4,6 +4,7 @@ import {AgGridAngular} from "ag-grid-angular";
 import {GridApi} from "ag-grid-community";
 import {CommonService} from "../../services/common.service";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -23,7 +24,8 @@ export class AddPharmacyComponent implements OnInit {
 
   constructor(private route: Router,
               private commonservice: CommonService,
-              private quoteDetailsService:QuoteDataDetailsService) {
+              private quoteDetailsService:QuoteDataDetailsService,
+              private spinner:SpinnerService) {
   }
 
   ngOnInit(): void {
@@ -52,6 +54,7 @@ export class AddPharmacyComponent implements OnInit {
   nav() {
     const npis = this.rowData.map((x:any)=> x.npi)
     this.quoteDetailsService.setnpis(npis)
+    localStorage.setItem('pharmacies',JSON.stringify(npis))
     console.log('npis',npis)
     this.route.navigate(['Plans'])
   }
@@ -100,6 +103,7 @@ export class AddPharmacyComponent implements OnInit {
     }
 
   findPharmacy(page:any) {
+    const spine=this.spinner.start()
     this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName,page).subscribe((response)=>{
       if (response.status === true){
         this.pharmacies = response.data.listOfPharmacy
@@ -108,10 +112,8 @@ export class AddPharmacyComponent implements OnInit {
             checked: false,
         }})
         this.page = response.data.total_results
-
-
     }
-
+this.spinner.stop(spine)
       console.log('pharmacy',response)
     })
     console.log(this.zipcode,this.radius_miles)
@@ -133,11 +135,15 @@ export class AddPharmacyComponent implements OnInit {
     } else {
 const data ={
   name:'Mail Order Pharmacy',
-  street:'NA',
-  distance_miles:'NA'
+  street:'',
+  distance_miles:''
 }
       this.rowData.push(data);
     }
     this.gridapi?.setRowData(this.rowData)
+  }
+
+  distanceChange() {
+    this.findPharmacy('0')
   }
 }

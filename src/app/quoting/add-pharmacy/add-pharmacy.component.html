@@ -42,7 +42,7 @@
           <p class="mb-0">Filter by</p>
         </div>
         <div class="col-3 p-2">
-          <mat-select placeholder="Select" [(ngModel)]="radius_miles">
+          <mat-select placeholder="Select" [(ngModel)]="radius_miles" (selectionChange)="distanceChange()">
             <mat-option value="5">
               Closest 5
             </mat-option>
@@ -89,7 +89,7 @@
                 {{pharm.state}},{{pharm.zipcode}}  <br>
                 {{pharm.phone}}
               </h3>
-
+<p>Distance: {{pharm.distance_miles}} miles</p>
             </div>
           </div>
           <mat-paginator [length]="page"

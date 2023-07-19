@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators, FormsModule, ReactiveFormsModule, Fo
 import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {CommonService} from "../../services/common.service";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
 
 
 @Component({
@@ -18,7 +19,8 @@ export class ZipcodeQoutingComponent implements OnInit {
   zipcode: any;
   zipcodeForm!: FormGroup;
   couties: any
-  selectedCountie:any;
+  selectedCountie: any;
+  enteredValue: string = '';
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -30,13 +32,15 @@ export class ZipcodeQoutingComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-    this.getDrugByAlphbet()
-  }
-
   get myControl() {
     return this.zipcodeForm.get('myControl')!;
   }
+
+  ngOnInit(): void {
+    localStorage.clear()
+    this.getDrugByAlphbet()
+  }
+
   drug() {
     this.route.navigate(['add-drugs'])
   }
@@ -48,10 +52,11 @@ export class ZipcodeQoutingComponent implements OnInit {
   navToPlans() {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
-    if (!this.zipcodeForm.valid){
-      alert('Enter a valid ZIP code and select the relevant county to view the list of\n' +
-        'plans')
-    }else {
+    if (!this.zipcodeForm.valid) {
+      this.dialog.open(ErrorPopupComponent, {width: '600px'})
+
+
+    } else {
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
       } else {
@@ -63,28 +68,42 @@ export class ZipcodeQoutingComponent implements OnInit {
   getCounties(event: any) {
     if (event.target.value.length === 5) {
       console.log('event', event.target.value)
-      this.selectedCountie =event.target.value
-      localStorage.setItem('zipcode',event.target.value)
+      this.selectedCountie = event.target.value
+      localStorage.setItem('zipcode', event.target.value)
       this.commonService.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
-        console.log('Counties',response.data)
-         })
+        if (this.couties.length === 1) {
+          this.selectedCountie = this.couties[0]
+          console.log('selectedCountie', this.selectedCountie)
+          localStorage.setItem('fip', this.selectedCountie.fips)
+        }
+        console.log('Counties', response.data)
+      })
     } else {
       console.log('Not valid')
     }
   }
 
 
-  _displayplantname(countie: any) {
-    console.log('countie', this.selectedCountie)
+  // _displayplantname(countie: any) {
+  //   console.log('countie', countie)
+  //   const zip = localStorage.getItem('zipcode')
+  //   if (countie) {
+  //     const dispname= zip +'-'+countie.name +','+countie.state
+  //     localStorage.setItem('displayzipcode',dispname)
+  //     localStorage.setItem('fip',countie.fips)
+  //     return   dispname
+  //   }
+  //   return '';
+  // }
+  _displayplantname(option: any) {
     const zip = localStorage.getItem('zipcode')
-    if (countie) {
-      const dispname= zip +'-'+countie.name +','+countie.state
-      localStorage.setItem('displayzipcode',dispname)
-      localStorage.setItem('fips',countie.fips)
-      return   dispname
+    let zipString: any
+    if (zip) {
+      zipString = JSON.parse(zip);
     }
-    return '';
+    this.enteredValue = zipString
+    return this.enteredValue;
   }
 
   getDrugByAlphbet() {
@@ -104,5 +123,10 @@ export class ZipcodeQoutingComponent implements OnInit {
           // Handle errors here
         }
       );
+  }
+
+  county(event: any) {
+    console.error('event:', event);
+    localStorage.setItem('fip', event.value.fips)
   }
 }
