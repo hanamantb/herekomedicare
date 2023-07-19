@@ -100,8 +100,12 @@ button{
 .selected-drug-label{
     font-size: 15px;
 }
-.drug-dosage-info input[type="number"]{
-    height: 38px;
+selected-drug-label strong {
+  font-weight: 500;
+  color: #3f51b5;
+}
+.drug-dosage-info input[type="number"] {
+  height: 38px;
 }
 
 /deep/.cdk-overlay-pane {
@@ -132,4 +136,9 @@ button{
   margin-right: 10px;
   font-size: 13px;
   font-weight: 500
+}
+.ag-header-cell-text {
+  overflow: unset;
+  text-overflow: unset;
+  width: auto;
 }
