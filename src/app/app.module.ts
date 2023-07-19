@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SharedModule} from "./shared/shared.module";
 import { MedicareQuotingComponent } from './medicare-quoting/medicare-quoting.component';
 import { QuotingComponent } from './quoting/quoting.component';
-import { ZipcodeQoutingComponent } from './quoting/zipcode-qouting/zipcode-qouting.component';
+import { ZipcodeQoutingComponent} from './quoting/zipcode-qouting/zipcode-qouting.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from "@angular/material/button";
 import { CustomerQoutingComponent } from './quoting/customer-qouting/customer-qouting.component';
@@ -37,6 +37,7 @@ import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { ActionsCellRendererComponent } from './quoting/add-drug/actions-cell-renderer/actions-cell-renderer.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.component";
 
 
 
@@ -88,7 +89,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
   providers: [HttpClientModule,SharedService],
   bootstrap: [AppComponent],
   entryComponents:[
-    AddDrugComponent
+    AddDrugComponent,
+    ErrorPopupComponent
   ]
 })
 export class AppModule { }

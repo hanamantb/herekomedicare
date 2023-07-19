@@ -42,7 +42,7 @@
           <p class="mb-0">Filter by</p>
         </div>
         <div class="col-3 p-2">
-          <mat-select placeholder="Select" [(ngModel)]="radius_miles">
+          <mat-select placeholder="Select" [(ngModel)]="radius_miles" (selectionChange)="distanceChange()">
             <mat-option value="5">
               Closest 5
             </mat-option>
@@ -76,20 +76,20 @@
                    style="height: 15px;width: 15px" value="" id="flexCheckChecked" (change)="mailOrder($event)" >
           </div>
           <p class="p-2">Add both mail-order and retail pharmacies to save cost.</p>
-          <div class="card p-2" *ngFor="let pharm of pharmacies">
+          <div class="card p-2" *ngFor="let pharm of pharmacies; index as i">
             <div class="tittle p-2">
               <div class="d-flex justify-content-end ">
                 Add Pharmacy
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (change)="check($event,pharm)" >
+                <input class="form-check-input" type="checkbox" value="" [(ngModel)]="pharm.checked" id="flexCheckChecked" (change)="check($event,pharm)" >
               </div>
-              <p style="color: #4b8bb2">{{pharm.name}}</p>
+              <p style="color: #4b8bb2;font-size: 20px">{{i+1}}. {{pharm.name}}</p>
             </div>
             <div class="card-body">
               <h3>{{pharm.street}},{{pharm.city}}
                 {{pharm.state}},{{pharm.zipcode}}  <br>
                 {{pharm.phone}}
               </h3>
-
+<p>Distance: {{pharm.distance_miles}} miles</p>
             </div>
           </div>
           <mat-paginator [length]="page"

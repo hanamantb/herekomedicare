@@ -4,6 +4,7 @@ import {AgGridAngular} from "ag-grid-angular";
 import {GridApi} from "ag-grid-community";
 import {CommonService} from "../../services/common.service";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -23,7 +24,8 @@ export class AddPharmacyComponent implements OnInit {
 
   constructor(private route: Router,
               private commonservice: CommonService,
-              private quoteDetailsService:QuoteDataDetailsService) {
+              private quoteDetailsService:QuoteDataDetailsService,
+              private spinner:SpinnerService) {
   }
 
   ngOnInit(): void {
@@ -32,7 +34,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="40" style="margin-top: -10px;" />';
+    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
   };
   columnDefs = [
     {
@@ -52,20 +54,30 @@ export class AddPharmacyComponent implements OnInit {
   nav() {
     const npis = this.rowData.map((x:any)=> x.npi)
     this.quoteDetailsService.setnpis(npis)
+    localStorage.setItem('pharmacies',JSON.stringify(npis))
     console.log('npis',npis)
     this.route.navigate(['Plans'])
   }
 
   check(event:any,data: any) {
-    console.log("laassssss", data)
-    const index = this.rowData.findIndex((item:any) => item.name === data.name);
-    if (index > -1) {
-      // Item exists in the array, remove it
-      this.rowData.splice(index, 1);
-    } else {
-      // Item doesn't exist in the array, add it
+    console.log("laassssss", event)
+    if (data.checked == true){
       this.rowData.push(data);
+    }else {
+      const index = this.rowData.findIndex((item:any) => item.name === data.name);
+      if (index > -1) {
+        // Item exists in the array, remove it
+        this.rowData.splice(index, 1);
+      }
     }
+    // const index = this.rowData.findIndex((item:any) => item.name === data.name);
+    // if (index > -1) {
+    //   // Item exists in the array, remove it
+    //   this.rowData.splice(index, 1);
+    // } else {
+    //   // Item doesn't exist in the array, add it
+    //   this.rowData.push(data);
+    // }
     this.gridapi?.setRowData(this.rowData)
   }
 
@@ -80,6 +92,7 @@ export class AddPharmacyComponent implements OnInit {
         console.log(element)
         if (event.data.id == element.id) {
           console.log('delete')
+          event.data.checked = false
           this.rowData.splice(index,1)
           console.log('after--delete',this.rowData)
           this.gridapi?.setRowData(this.rowData)
@@ -90,13 +103,17 @@ export class AddPharmacyComponent implements OnInit {
     }
 
   findPharmacy(page:any) {
+    const spine=this.spinner.start()
     this.commonservice.searchPharmacy(this.zipcode,this.radius_miles,this.pharmName,page).subscribe((response)=>{
       if (response.status === true){
         this.pharmacies = response.data.listOfPharmacy
+        this.pharmacies = this.pharmacies.map((element:any, index:any) => {
+          return { ...element,
+            checked: false,
+        }})
         this.page = response.data.total_results
-
-      }
-
+    }
+this.spinner.stop(spine)
       console.log('pharmacy',response)
     })
     console.log(this.zipcode,this.radius_miles)
@@ -118,11 +135,15 @@ export class AddPharmacyComponent implements OnInit {
     } else {
 const data ={
   name:'Mail Order Pharmacy',
-  street:'NA',
-  distance_miles:'NA'
+  street:'',
+  distance_miles:''
 }
       this.rowData.push(data);
     }
     this.gridapi?.setRowData(this.rowData)
+  }
+
+  distanceChange() {
+    this.findPharmacy('0')
   }
 }

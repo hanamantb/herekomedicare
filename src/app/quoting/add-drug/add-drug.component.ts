@@ -25,6 +25,7 @@ export class AddDrugComponent implements OnInit {
   gridapi?: GridApi;
   drugname = new FormControl()
   selectedItem: any;
+  selectedgen: any;
   itemName = ''
   item: any;
   rxcui: any;
@@ -33,6 +34,7 @@ export class AddDrugComponent implements OnInit {
   dosages: any = [];
   packages: any = [];
   nonEditDrug: any = [];
+
   // columnDefs = [
   //   {
   //     field: 'index', headerName: '#', width: 80,
@@ -58,7 +60,7 @@ export class AddDrugComponent implements OnInit {
       {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
       {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
       {field: 'package', headerName: 'Package', filter: true, width: 200},
-      {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
+      {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
       {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
       {
         headerName: 'Actions',
@@ -86,8 +88,8 @@ export class AddDrugComponent implements OnInit {
       drugName: [null],
       dosage: [null, [Validators.required]],
       package: [null],
-      quantity: [null, [Validators.required, Validators.min(1)]],
-      frequency: [null, [Validators.required]],
+      quantity: [null, [Validators.required, Validators.min(0)]],
+      frequency: ['Every month', [Validators.required]],
     })
   }
 
@@ -109,7 +111,7 @@ export class AddDrugComponent implements OnInit {
 
   addPharmacy() {
     this.dialog.closeAll()
-    // localStorage.setItem('drugs',this.rowData)
+    localStorage.setItem('drugs', JSON.stringify(this.rowData))
     this.quoteDetailsService.setdrug(this.rowData)
     this.route.navigate(['add-pharmacy'])
   }
@@ -150,14 +152,19 @@ export class AddDrugComponent implements OnInit {
     let pack = this.drugForm.value.package
     console.log('pack', pack)
     if (this.drugForm.valid) {
-      if (pack === null || pack === 'NA') {
-        pack = 'NA'
+      if (pack === null || pack === '') {
+        pack = ''
       } else {
         pack = this.drugForm.value.package.package_description
       }
+      let gen = ''
+      if (this.item.is_generic){
+        gen='generic'
+      }
       this.drugForm.patchValue({
-        drugName: this.itemName,
-        package: pack
+        drugName: this.itemName +' '+gen,
+        package: pack,
+        dosage:this.drugForm.value.dosage.dosage_form
       })
       this.rowData.push(this.drugForm.value)
       console.log('rowdata', this.rowData)
@@ -171,7 +178,8 @@ export class AddDrugComponent implements OnInit {
   }
 
   cancelDrug() {
-    if (this.nonEditDrug !== []) {
+    console.log('nonEditDrug',this.nonEditDrug)
+    if (this.nonEditDrug.length !==0) {
       this.rowData.push(this.nonEditDrug)
       this.gridapi?.setRowData(this.rowData)
     }
@@ -204,21 +212,28 @@ export class AddDrugComponent implements OnInit {
     console.log('druggg', event.option.value)
     this.item = event.option.value
     this.rxcui = event.option.value.rxcui
-    if (!this.item.is_generic) {
-      this.dialog.open(this.generic, {width: '600px'})
+    if (!this.item.is_generic && this.item.generic != null) {
+      const dataDialog =this.dialog.open(this.generic, {width: '600px'})
+      dataDialog.afterClosed().subscribe(ret => {
+        this.getDosageDetails()
+      })
+    }else {
+      this.getDosageDetails()
     }
     this.selectedItem = [];
     this.packages = '';
     this.itemName = event.option.value.name
-    this.getDosageDetails()
+
   }
 
   rxcuichange(event: any) {
-    console.log('rxcui', event)
-    this.rxcui = event
+    console.log('rxcuichange', event)
+    this.itemName = event.name
+    this.rxcui = event.rxcui
   }
 
   getDosageDetails() {
+    console.log('getDosageDetails', this.rxcui)
     this.commonservice.drugDosage(this.rxcui).subscribe((response) => {
       console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
@@ -227,7 +242,7 @@ export class AddDrugComponent implements OnInit {
 
       this.drugForm.patchValue({
         ndc: this.dosages[0].ndc,
-        dosage: this.dosages[0].dosage_form,
+        dosage: this.dosages[0],
         quantity: Number(this.dosages[0].default_quantity
         )
       })
@@ -238,17 +253,20 @@ export class AddDrugComponent implements OnInit {
 
   dosageChange(event: any) {
     this.packages = []
-    const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value);
+    console.log('event',event)
+    const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value.dosage_form);
     const pack = Array.from(new Set(filteredData.map((item: any) => item)));
     pack.forEach((element: any) => {
       if (element.package_description != "") {
         this.packages.push(element)
       }
     })
+    console.log('dos pack',pack)
+    console.log('dos cnge',this.packages)
     this.drugForm.patchValue({
-      ndc: this.packages[0].ndc,
-      package: this.packages[0],
-      quantity: Number(this.packages[0].default_quantity)
+      ndc: event.value.ndc,
+      package: event.value,
+      quantity: Number(event.value.default_quantity)
     })
 
   }

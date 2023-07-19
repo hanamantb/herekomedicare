@@ -15,6 +15,7 @@ import {SharedService} from "../services/shared.service";
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinner.component';
+import { ErrorPopupComponent } from './layouts/error-popup/error-popup.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinn
     TimeLineComponent,
     SidebarComponent,
     LoadingSpinnerComponent,
+    ErrorPopupComponent,
   ],
   imports: [
     CommonModule,

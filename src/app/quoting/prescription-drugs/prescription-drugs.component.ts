@@ -86,13 +86,23 @@ export class PrescriptionDrugsComponent implements OnInit {
 
   getPlans(){
     const spine=this.spinner.start()
-    const zip = this.myControl.value.myControl
-    const drugs = this.quoteDetailsService.getdrug()
-    const npis = this.quoteDetailsService.getnpis()
-    console.log('npis----',npis)
+    const zip = localStorage.getItem('zipcode')
+    const fips = localStorage.getItem('fip')
+    const drugs = localStorage.getItem('drugs')
+    const npis = localStorage.getItem('pharmacies')
+    let npiArray: any[] = [];
+    let drugsArray: any[] = [];
+    if (npis) {
+      npiArray = JSON.parse(npis);
+    }
+    if (drugs) {
+      drugsArray = JSON.parse(drugs);
+    }
+
+    console.log('npis----',npiArray)
     const searchPlanReqBody ={
-      npis: npis,
-      prescriptions: drugs,
+      npis: npiArray,
+      prescriptions: drugsArray,
       lis: "LIS_NO_HELP"
     };
     const plan_type = [
@@ -106,7 +116,7 @@ export class PrescriptionDrugsComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip,this.fips).subscribe((response)=>{
+    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip,fips).subscribe((response)=>{
       this.plans = response.data.plans
       this.plans = this.plans.map((element:any, index:any) => {
         return { ...element, checked: false,
@@ -116,8 +126,12 @@ export class PrescriptionDrugsComponent implements OnInit {
           benefits:false};
       });
       this.filtrPlans = this.plans
+      const plans =this.filtrPlans.filter((x:any)=>
+        x.planType ==='MAPD'
+      )
+      this.plans = plans
       this.spinner.stop(spine)
-      console.log('response',this.plans)
+      console.log('response',response)
     })
   }
 

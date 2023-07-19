@@ -19,12 +19,12 @@ export class QuotingComponent implements OnInit {
   button2Active: boolean = false;
 
   toggleButton1() {
-    this.button1Active = !this.button1Active;
+    this.button1Active = true;
     this.button2Active = false; // Set the other button to inactive
   }
 
   toggleButton2() {
-    this.button2Active = !this.button2Active;
+    this.button2Active = true;
     this.button1Active = false; // Set the other button to inactive
   }
 }

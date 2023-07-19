@@ -49,12 +49,11 @@ h3{
   font-size: 18px;
   font-weight: 400;
 }
-.radio {
-  width: 24px;
+.radio{
+  width: 12%;
   height: 16px;
   border-radius: 3px;
   border: #B8C0D4 solid 1px;
-  margin-right: 5px !important;
 }
 
 .add-drugs-info h2{
