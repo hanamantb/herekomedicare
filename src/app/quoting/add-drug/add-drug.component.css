@@ -99,7 +99,7 @@ button{
 .selected-drug-label{
     font-size: 15px;
 }
-selected-drug-label strong {
+.selected-drug-label strong {
   font-weight: 500;
   color: #3f51b5;
 }

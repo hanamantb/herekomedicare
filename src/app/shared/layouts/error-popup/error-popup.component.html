@@ -10,22 +10,18 @@
 
 <!--</div>-->
 
-<div class="container-fluid">
+<div class="container-fluid position-relative">
   <div class="row">
-    <div class="col-md-10">
-
-    </div>
-    <div class="col-md-2 p-2" align="right">
-      <button mat-dialog-close style="background-color: #131110; color: white;" (click)="close()">X</button>
+    <div class="col-md-2 popup-close-btn" align="right">
+      <button mat-dialog-close (click)="close()">X</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <div class="container-fluid  border border-warning">
-        <br>
+    <div class="col-md-12 zipcode-val-popup-body">
+      <div class="container-fluid p-3 border border-warning">
         <div class="row">
           <div class="col-md-12">
-            <p style="font-weight:bold">Enter a valid ZIP code and select the relevant county to view the list of plans</p>
+            <p>Enter a valid ZIP code and select the relevant county to view the list of plans</p>
           </div>
         </div>
       </div>

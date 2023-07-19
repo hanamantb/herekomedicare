@@ -6,4 +6,43 @@
   height: 20vh;
   width: 100%
 }
+.popup-close-btn button {
+  position: absolute;
+  top: -36px;
+  right: -16px;
+  border: 0;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border-radius: 2px;
+  color: #fff;
+  background-color: #4b8bb2;
+  font-size: 18px;
+}
+/deep/.mat-dialog-container{
+    padding: 40px 20px;
+}
+.zipcode-val-popup-body p{
+    margin: 0;
+    text-align: center;
+}
+.zipcode-val-popup-body .border{
+    border-radius: 2px;
+
+}
+.zipcode-val-popup-body p:before {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  content: "!";
+  display: block;
+  border: 1px solid #ffc107;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+  color: #ffc107;
+  margin: 0 auto 10px;
+}
+
 

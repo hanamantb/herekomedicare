@@ -37,6 +37,8 @@ img{
 }
 .add-change-prescription p{
     font-weight: 300;
+    margin-bottom: 0;
+    line-height: 22px;
 }
 .btn{
     height: 38px;
@@ -57,4 +59,7 @@ img{
   font-size: 12px;
   width: 100%;
   text-align: left;
+}
+.mat-select{
+    line-height: 22px;
 }
