@@ -141,3 +141,6 @@ button{
   text-overflow: unset;
   width: auto;
 }
+.keep-the-drug{
+    min-width: 150px;
+}
