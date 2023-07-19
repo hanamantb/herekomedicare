@@ -15,7 +15,7 @@
                      [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
 
             <div class="invalid-feedback d-flex" *ngIf="myControl.touched && myControl.invalid">
-              The entered ZIP Code is not valid
+              The entered ZIP Code is not valid.
             </div>
             <br>
             <mat-select class="mt-2" placeholder="Select your county"   *ngIf="couties.length > 1"  (selectionChange)="county($event)">
@@ -102,7 +102,7 @@
 
           <div class=" d-flex body p-2">
             <div class="col-8">
-              <p>Drugs in your medicine cabinet will be considered while generating quotes. <br>
+              <p>Drugs in your medicine cabinet will be considered while generating quotes.
                 <br>
                 Would you like to add/change prescription drugs in your medicine cabinet?</p>
             </div>

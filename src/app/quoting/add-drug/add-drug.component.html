@@ -34,8 +34,8 @@
         <div class="d-flex col-12 p-2 px-3 drug-dosage-head">
           <h3>Edit the information to match your prescription.</h3>
         </div>
-        <div class="px-3 pt-3 selected-drug-label">
-          Selected Drug : {{itemName}}
+        <div class="px-3 py-3 selected-drug-label">
+          Selected Drug : <strong>{{itemName}}</strong>
         </div>
         <form [formGroup]="drugForm" *ngIf="itemName.length != 0">
           <div class="d-flex px-2 pb-3 drug-dosage-info">
