@@ -128,7 +128,12 @@ export class AddDrugComponent implements OnInit {
     this.dialog.closeAll()
     localStorage.setItem('drugs', JSON.stringify(this.rowData))
     this.quoteDetailsService.setdrug(this.rowData)
-    this.route.navigate(['add-pharmacy'])
+    if(this.rowData.length === 0){
+     this.route.navigate(['Plans'])
+    }else{
+     this.route.navigate(['add-pharmacy'])
+    }
+
   }
 
   open() {
