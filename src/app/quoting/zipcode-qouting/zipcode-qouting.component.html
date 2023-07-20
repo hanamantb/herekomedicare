@@ -9,7 +9,7 @@
           <form class="example-form" [formGroup]="zipcodeForm">
 
               <input type="text" class="mat-in" placeholder="Enter your ZIP code"
-                     matInput maxlength="5" type="number"
+                     matInput maxlength="5" type="tel"
                      (input) ="getCounties($event)"
                      formControlName="myControl"
                      [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
