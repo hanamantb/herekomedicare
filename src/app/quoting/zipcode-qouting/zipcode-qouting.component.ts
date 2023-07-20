@@ -115,4 +115,10 @@ export class ZipcodeQoutingComponent implements OnInit {
     console.error('event:', event);
     localStorage.setItem('fip', event.value.fips)
   }
+  lisChange(event:any){
+  console.log(event.value)
+  localStorage.setItem('lis',event.value)
+  }
+
+
 }

@@ -89,6 +89,7 @@ export class PrescriptionDrugsComponent implements OnInit {
     const fips = localStorage.getItem('fip')
     const drugs = localStorage.getItem('drugs')
     const npis = localStorage.getItem('pharmacies')
+    const lis = localStorage.getItem('lis')
     let npiArray: any[] = [];
     let drugsArray: any[] = [];
     if (npis) {
@@ -102,7 +103,7 @@ export class PrescriptionDrugsComponent implements OnInit {
     const searchPlanReqBody ={
       npis: npiArray,
       prescriptions: drugsArray,
-      lis: "LIS_NO_HELP"
+      lis: lis
     };
     const plan_type = [
         "PLAN_TYPE_MA",

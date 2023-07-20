@@ -62,7 +62,7 @@ export class AddDrugComponent implements OnInit {
       {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
       {field: 'package', headerName: 'Package', filter: true, width: 200},
       {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
-      {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
+      {field: 'frequency', headerName: 'Frequency', filter: true, width: 250},
       {
         headerName: 'Actions',
         field: 'actions',
@@ -90,7 +90,7 @@ export class AddDrugComponent implements OnInit {
       dosage: [null, [Validators.required]],
       package: [null],
       quantity: [null, [Validators.required, Validators.min(0)]],
-      frequency: ['Every month', [Validators.required]],
+      frequency: ['FREQUENCY_30_DAYS', [Validators.required]],
     })
   }
 
@@ -100,7 +100,12 @@ export class AddDrugComponent implements OnInit {
     if (drugs) {
       drugsArray = JSON.parse(drugs);
     }
-    this.rowData =drugsArray
+    if(drugsArray.length !==0){
+     this.rowData =drugsArray
+    }
+    console.log('drugsArray-length',drugsArray.length)
+    console.log('drugsArray',this.rowData)
+
   }
 
   get quantity() {

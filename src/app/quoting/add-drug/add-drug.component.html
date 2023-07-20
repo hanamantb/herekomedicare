@@ -65,20 +65,20 @@
             </div>
             <div class="col-2 p-2">
               <p>Frequency</p>
-              <mat-select placeholder="Select" value="Every month" formControlName="frequency">
-                <mat-option value="Every month">
+              <mat-select placeholder="Select" value="FREQUENCY_30_DAYS" formControlName="frequency">
+                <mat-option value="FREQUENCY_30_DAYS">
                   Every month
                 </mat-option>
-                <mat-option value="Every 2 month">
+                <mat-option value="FREQUENCY_60_DAYS">
                   Every 2 months
                 </mat-option>
-                <mat-option value="Every 3 month">
+                <mat-option value="FREQUENCY_90_DAYS">
                   Every 3 months
                 </mat-option>
-                <mat-option value="Every 6 month">
+                <mat-option value="FREQUENCY_180_DAYS">
                   Every 6 months
                 </mat-option>
-                <mat-option value="Every 12 month">
+                <mat-option value="FREQUENCY_360_DAYS">
                   Every 12 months
                 </mat-option>
               </mat-select>
@@ -104,7 +104,7 @@
                            rowSelection="multiple" (cellClicked)="onGridCellClicked($event)"
                            (gridReady)="onGridReady($event)"
                            [rowHeight]="35" [rowData]="rowData"
-                           [columnDefs]="columnDefs" >
+                           [columnDefs]="columnDefs"  domLayout='autoHeight'>
           </ag-grid-angular>
         </div>
       </div>
