@@ -9,6 +9,7 @@ import {CommonService} from "../../services/common.service";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 import {ActionsCellRendererComponent} from "./actions-cell-renderer/actions-cell-renderer.component";
 import {AgGridAngular} from "ag-grid-angular";
+import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
 
 @Component({
   selector: 'app-add-drug',
@@ -94,8 +95,17 @@ export class AddDrugComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const drugs = localStorage.getItem('drugs')
+    let drugsArray: any[] = [];
+    if (drugs) {
+      drugsArray = JSON.parse(drugs);
+    }
+    this.rowData =drugsArray
   }
 
+  get quantity() {
+    return this.drugForm.get('quantity')!;
+  }
   colDef5 = function () {
     return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
       '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
@@ -143,8 +153,18 @@ export class AddDrugComponent implements OnInit {
   }
 
   navPlans() {
-    this.route.navigate(['Plans'])
-    this.dialog.closeAll()
+    if (this.rowData.length !==0){
+     const matref= this.dialog.open(ErrorPopupComponent,{data:{buttons:true,customMsg:'The plans displayed in the Plan Presentation page would not consider the drugs or the associated savings.'}})
+      matref.afterClosed().subscribe((resp:any)=>{
+        if (resp !== undefined) {
+          this.rowData=[]
+          this.route.navigate(['Plans'])
+        }
+      })
+    }else {
+      this.dialog.closeAll()
+    }
+
   }
 
   addDrug() {
@@ -173,7 +193,7 @@ export class AddDrugComponent implements OnInit {
       this.drugForm.reset()
       this.drugname.reset()
     } else {
-      alert('Quantity or Frequency is not entered.')
+      this.dialog.open(ErrorPopupComponent,{data:{customMsg:'Quantity or Frequency is not valid.'},width: '600px'})
     }
   }
 

@@ -18,7 +18,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   isChecked = true;
   zipcode: any;
   zipcodeForm!: FormGroup;
-  couties: any
+  couties: any=[]
   selectedCountie: any;
   enteredValue: string = '';
 
@@ -28,7 +28,7 @@ export class ZipcodeQoutingComponent implements OnInit {
               private http: HttpClient,
               public fb: FormBuilder) {
     this.zipcodeForm = this.fb.group({
-      myControl: [null, [Validators.required, Validators.minLength(5)]],
+      myControl: [null, [Validators.required, Validators.minLength(5),Validators.pattern("^[0-9]*$")]],
     })
   }
 
@@ -53,9 +53,7 @@ export class ZipcodeQoutingComponent implements OnInit {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
     if (!this.zipcodeForm.valid) {
-      this.dialog.open(ErrorPopupComponent, {width: '600px'})
-
-
+      this.dialog.open(ErrorPopupComponent, {data:{customMsg:'Enter a valid ZIP code and select the relevant county to view the list of plans.'},width: '600px'})
     } else {
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
@@ -72,7 +70,7 @@ export class ZipcodeQoutingComponent implements OnInit {
       localStorage.setItem('zipcode', event.target.value)
       this.commonService.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
-        if (this.couties.length === 1) {
+        if (this.couties && this.couties.length === 1) {
           this.selectedCountie = this.couties[0]
           console.log('selectedCountie', this.selectedCountie)
           localStorage.setItem('fip', this.selectedCountie.fips)
@@ -84,18 +82,6 @@ export class ZipcodeQoutingComponent implements OnInit {
     }
   }
 
-
-  // _displayplantname(countie: any) {
-  //   console.log('countie', countie)
-  //   const zip = localStorage.getItem('zipcode')
-  //   if (countie) {
-  //     const dispname= zip +'-'+countie.name +','+countie.state
-  //     localStorage.setItem('displayzipcode',dispname)
-  //     localStorage.setItem('fip',countie.fips)
-  //     return   dispname
-  //   }
-  //   return '';
-  // }
   _displayplantname(option: any) {
     const zip = localStorage.getItem('zipcode')
     let zipString: any

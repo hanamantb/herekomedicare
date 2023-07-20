@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatDialog} from "@angular/material/dialog";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-error-popup',
@@ -7,13 +7,20 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./error-popup.component.css']
 })
 export class ErrorPopupComponent implements OnInit {
-
-  constructor(private dialoge : MatDialog) { }
+buttons=false
+  constructor(private dialog : MatDialog,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private dialogRef: MatDialogRef<ErrorPopupComponent>) { }
 
   ngOnInit(): void {
+    this.buttons = this.data.buttons
   }
 
   close() {
-    this.dialoge.closeAll()
+    this.dialog.closeAll()
+  }
+
+  continue() {
+this.dialogRef.close(true)
   }
 }

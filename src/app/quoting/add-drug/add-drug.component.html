@@ -41,7 +41,7 @@
           <div class="d-flex px-2 pb-3 drug-dosage-info">
             <div class="col-2 p-2">
               <p>Dosage</p>
-              <mat-select placeholder="Select" formControlName="dosage_form" (selectionChange)="dosageChange($event)">
+              <mat-select placeholder="Select" formControlName="dosage" (selectionChange)="dosageChange($event)">
                 <mat-option *ngFor="let option of dosages" [value]="option">
                   {{option.strength}} {{option.dosage_form}}
                 </mat-option>
@@ -57,11 +57,15 @@
             </div>
             <div class="col-2 p-2">
               <p>Quantity</p>
-              <input type="tel" formControlName="quantity" style="height: 38px">
+              <input type="tel" formControlName="quantity" style="height: 38px"
+                     [ngClass]="{'ng-invalid-input': quantity.touched && quantity.invalid}">
+              <div class="invalid-feedback d-flex" *ngIf="quantity.touched && quantity.invalid">
+                The entered quantity is not valid.
+              </div>
             </div>
             <div class="col-2 p-2">
               <p>Frequency</p>
-              <mat-select placeholder="Select" formControlName="frequency">
+              <mat-select placeholder="Select" value="Every month" formControlName="frequency">
                 <mat-option value="Every month">
                   Every month
                 </mat-option>

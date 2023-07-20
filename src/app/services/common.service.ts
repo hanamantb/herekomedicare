@@ -32,7 +32,7 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.drugDosage, {year,rxcui},'');
   }
   public searchPlans(searchPlanReqBody:any,plan_type:any,snp_type:any,zip:any,fips:any,
-                     page=0,year="2023",
+                     page:any,year="2023",
                      sort_order="ANNUAL_TOTAL"): Observable<any> {
     return this.apiProvider.post(UrlConstants.searchPlans, {searchPlanReqBody,plan_type,snp_type,
       page,year,fips,sort_order,zip},'');

@@ -21,10 +21,14 @@
       <div class="container-fluid p-3 border border-warning">
         <div class="row">
           <div class="col-md-12">
-            <p>Enter a valid ZIP code and select the relevant county to view the list of plans</p>
+            <p>{{data.customMsg}}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="d-flex justify-content-end p-2" *ngIf="buttons">
+    <button mat-dialog-close mat-raised-button style="background-color: #4b8bb2;color: white;"  (click)="close()">Close</button>
+    <button  mat-raised-button color="primary" class="ms-2" (click)="continue()">Continue</button>
   </div>
 </div>

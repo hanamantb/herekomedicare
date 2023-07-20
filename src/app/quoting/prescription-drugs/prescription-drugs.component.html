@@ -20,14 +20,14 @@
                      matInput
                      (input)="getCounties($event)"
                      (change)="zipChange()"
-                     [formControl]="myControl"
-                     [matAutocomplete]="auto">
-              <mat-autocomplete #auto="matAutocomplete"
-                                [displayWith]="_displayplantname">
-                <mat-option *ngFor="let option of couties" [value]="option">
-                  {{selectedCountie}}-{{option.name}},{{option.state}}
-                </mat-option>
-              </mat-autocomplete>
+                     [(ngModel)]= 'zipcode'
+                     >
+<!--              <mat-autocomplete #auto="matAutocomplete"-->
+<!--                                [displayWith]="_displayplantname">-->
+<!--                <mat-option *ngFor="let option of couties" [value]="option">-->
+<!--                  {{selectedCountie}}-{{option.name}},{{option.state}}-->
+<!--                </mat-option>-->
+<!--              </mat-autocomplete>-->
             </form>
 
           </div>
@@ -580,6 +580,13 @@
         <!--                </div>-->
 
       </div>
+        <mat-paginator [length]="response.total_results"
+                       [pageSize]="10"
+                       [pageSizeOptions]="[10, 25, 100]"
+                       (page)="onPageChange($event)"
+                       showFirstLastButtons
+                       aria-label="Select page">
+        </mat-paginator>
     </div>
 
 

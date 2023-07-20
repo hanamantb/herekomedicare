@@ -32,6 +32,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   selectedCountie:any;
   fontStyle:any ="MAPD"
   // @Output() menuClicked = new EventEmitter();
+   response: any=[];
 
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -42,11 +43,9 @@ export class PrescriptionDrugsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.myControl.patchValue({
-      myControl: localStorage.getItem('zipcode')
-    })
+    this.zipcode = localStorage.getItem('zipcode')
     this.fips = localStorage.getItem('fips')
-    this.getPlans()
+    this.getPlans(0)
 
   }
   showbenfit(plan:any) {
@@ -84,7 +83,7 @@ export class PrescriptionDrugsComponent implements OnInit {
     this.selected = true;
   }
 
-  getPlans(){
+  getPlans(page:any){
     const spine=this.spinner.start()
     const zip = localStorage.getItem('zipcode')
     const fips = localStorage.getItem('fip')
@@ -116,8 +115,9 @@ export class PrescriptionDrugsComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip,fips).subscribe((response)=>{
+    this.commonservice.searchPlans(searchPlanReqBody,plan_type,snp_type,zip,fips,page).subscribe((response)=>{
       this.plans = response.data.plans
+      this.response = response.data
       this.plans = this.plans.map((element:any, index:any) => {
         return { ...element, checked: false,
           showmore:false,
@@ -197,5 +197,12 @@ export class PrescriptionDrugsComponent implements OnInit {
       x.planType === event.value
     )
     this.plans = plans
+  }
+  onPageChange(event: any) {
+    const startIndex = event.pageIndex + 1;
+    const endIndex = startIndex + event.pageSize;
+    this.getPlans(startIndex)
+    console.log('startIndex', event.pageIndex)
+    console.log('endIndex', endIndex)
   }
 }
