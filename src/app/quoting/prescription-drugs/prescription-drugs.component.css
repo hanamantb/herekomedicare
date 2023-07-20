@@ -130,16 +130,19 @@ mat-select{
     display: flex;
     flex-wrap: wrap;
 }
-.plan-head button {
-  background-color: #777777;
-  color: white;
-  border: none;
-  padding: 2px 8px;
-  height: 24px;
-  width: auto;
-  font-size: 12px;
-  font-weight: 400;
-}
+  .plan-head h1{
+      width: 100%;
+  }
+  .plan-head button {
+    background-color: #777777;
+    color: white;
+    border: none;
+    padding: 2px 8px;
+    height: 24px;
+    width: auto;
+    font-size: 12px;
+    font-weight: 400;
+  }
 
 .plan-head p {
   font-size: 14px;
@@ -178,12 +181,12 @@ h6{
 .clear{
   clear: both;
 }
-bdo{
+bdo {
   display: block;
   margin-bottom: 4px;
-  color: #252525 !important;
+  color: #7e7e7e !important;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 300;
 }
 mat-button-toggle-group{
   width: 100%;

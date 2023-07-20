@@ -125,13 +125,13 @@
   <div class="container-fluid">
 <h3 style="font-weight: 500">You have selected {{itemName}}</h3>
     <p>A lower generic is available for the drug you selected</p>
-    <div class="d-inline-block py-2 w-100">
+    <div class="d-inline-flex py-2 w-100 selected-drug-radio">
       <div class="d-inline-flex py-2 keep-the-drug" >
         <input type="radio" class="radio me-2" checked name="radioGroup" (change)="rxcuichange(item)" value="{{item}}"> Keep {{itemName}}
       </div>
-      <div class="d-inline-flex py-2 ps-2" >
-        <input type="radio"  class="radio me-2" name="radioGroup"  (change)="rxcuichange(item.generic)" value="{{item.generic}}" > Use lower cost generic: {{item.generic.name}}
-      </div>
+      <div class="d-inline-flex py-2 ps-2 flex-wrap" >
+        <input type="radio"  class="radio me-2" name="radioGroup"  (change)="rxcuichange(item.generic)" value="{{item.generic}}" > Use lower cost generic:<span class="d-block">{{item.generic.name}}</span>
+</div>
     </div>
     <div class="d-flex py-2 justify-content-end drug-popup-action">
       <button mat-raised-button class="px-2 me-2"  (click)="cancel()">Cancel</button>

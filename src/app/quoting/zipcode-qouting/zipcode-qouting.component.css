@@ -1,5 +1,6 @@
 p{
   font-size: 15px;
+  margin-bottom: 0;
 }
 .btn{
   width: 160px;
@@ -38,7 +39,7 @@ img{
 .add-change-prescription p{
     font-weight: 300;
     margin-bottom: 0;
-    line-height: 22px;
+    line-height: 26px;
 }
 .btn{
     height: 38px;
@@ -61,7 +62,7 @@ img{
   text-align: left;
 }
 .mat-select{
-    line-height: 22px;
+    line-height: 30px;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

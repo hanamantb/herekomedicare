@@ -27,15 +27,17 @@ mat-select{
   border-bottom: dashed 1px #ccc;
   margin-bottom: 10px;
 }
-.cart-more-info h3{
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 0;
+.cart-more-info h3 {
+  font-size: 14px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  border-bottom: dashed 1px #ccc;
 }
 .cart-more-info p {
   font-weight: 300;
   font-size: 13px;
-  color: #7e7e7e
+  color: #7e7e7e;
+  margin-bottom: 5px;
 }
 .card-footer{
     background: #fff;
@@ -108,4 +110,32 @@ mat-select{
 }
 .copy-proposal-drodown button{
     border-radius: 2px;
+}
+.plan-main-features-cart h2{
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+.plan-main-features-cart p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 23px;
+  pointer-events: none;
+  color: #7e7e7e;
+}
+.plan-info-strip {
+  border: solid 1px #ebebeb;
+}
+.top-btn button{
+    background-color: #eee;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 11px;
+    color: #555;
+} 
+button{
+    border-radius: 2px;
+}
+.plan-info-strip > .col-4{
+    font-weight: 500;
 }
