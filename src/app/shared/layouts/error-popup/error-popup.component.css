@@ -8,8 +8,8 @@
 }
 .popup-close-btn button {
   position: absolute;
-  top: -36px;
-  right: -16px;
+  top: -30px;
+  right: -9px;
   border: 0;
   width: 30px;
   height: 30px;
@@ -26,9 +26,8 @@
     margin: 0;
     text-align: center;
 }
-.zipcode-val-popup-body .border{
-    border-radius: 2px;
-
+.popup-body-wrapper button {
+  border-radius: 2px !important;
 }
 .zipcode-val-popup-body p:before {
   width: 30px;
@@ -42,7 +41,8 @@
   font-size: 22px;
   line-height: 30px;
   color: #ffc107;
-  margin: 0 auto 10px;
+  margin: 0 auto 15px;
 }
+
 
 

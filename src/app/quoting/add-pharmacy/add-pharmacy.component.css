@@ -51,3 +51,21 @@ button{
     color: #fff;
     background-color: #3f51b5;
   }
+.add-pharmacy-checkbox {
+  border-radius: 2px;
+  border: 1px solid #4b8bb2;
+  padding: 5px 10px;
+  max-width: 140px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background: #daf1ff;
+  font-size: 14px;
+}
+.add-pharmacy-checkbox input{
+    height: 16px;
+    margin-top: 0;
+}
+.pharmacy-list-item.card{
+    height: auto;
+}
