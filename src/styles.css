@@ -156,8 +156,8 @@ button{
   white-space: nowrap;
   overflow: hidden;
 }
-.ag-cell-value, .ag-group-value{
-    word-break: break-word;
-    overflow: inherit;
-    white-space: normal;
-}
+/*.ag-cell-value, .ag-group-value{*/
+/*    word-break: break-word;*/
+/*    overflow: inherit;*/
+/*    white-space: normal;*/
+/*}*/

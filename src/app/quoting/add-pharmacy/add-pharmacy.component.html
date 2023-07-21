@@ -34,7 +34,7 @@
           <input type="text" [(ngModel)]= 'pharmName'>
         </div>
         <div class="col-2 px-3 d-flex align-items-end">
-          <button mat-raised-button color="primary" (click)="findPharmacy('0')">Find Pharmacy</button>
+          <button mat-raised-button color="primary" (click)="findPharmacy('0',5)">Find Pharmacy</button>
         </div>
       </div>
       <div class="d-flex px-3 mt-2">
@@ -116,7 +116,7 @@
         <ag-grid-angular style="width: 80%;margin-top: 1%;min-height: 100px" class="ag-theme-alpine"
                          [scrollbarWidth]="8" [headerHeight]="35"
                          rowSelection="multiple"
-                         [rowHeight]="35" [rowData]="rowData"
+                         [rowHeight]="35" [rowData]="rowData" [getRowHeight]="getRowHeight"
                          [columnDefs]="columnDefs" (cellClicked)="onGridCellClicked($event)"
                          (gridReady)="onGridReady($event)" domLayout='autoHeight'
         >

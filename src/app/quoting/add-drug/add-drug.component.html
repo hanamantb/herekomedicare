@@ -65,21 +65,9 @@
             </div>
             <div class="col-2 p-2">
               <p>Frequency</p>
-              <mat-select placeholder="Select" value="FREQUENCY_30_DAYS" formControlName="frequency">
-                <mat-option value="FREQUENCY_30_DAYS">
-                  Every month
-                </mat-option>
-                <mat-option value="FREQUENCY_60_DAYS">
-                  Every 2 months
-                </mat-option>
-                <mat-option value="FREQUENCY_90_DAYS">
-                  Every 3 months
-                </mat-option>
-                <mat-option value="FREQUENCY_180_DAYS">
-                  Every 6 months
-                </mat-option>
-                <mat-option value="FREQUENCY_360_DAYS">
-                  Every 12 months
+              <mat-select placeholder="Select" formControlName="frequency" value="Every month">
+                <mat-option value="{{freq.name}}" *ngFor="let freq of frequency">
+                  {{freq.name}}
                 </mat-option>
               </mat-select>
             </div>
@@ -103,8 +91,8 @@
                            [scrollbarWidth]="8" [headerHeight]="35"
                            rowSelection="multiple" (cellClicked)="onGridCellClicked($event)"
                            (gridReady)="onGridReady($event)"
-                           [rowHeight]="35" [rowData]="rowData"
-                           [columnDefs]="columnDefs"  domLayout='autoHeight'>
+                           [rowHeight]="35" [rowData]="rowData" domLayout='autoHeight'
+                           [columnDefs]="columnDefs"  [getRowHeight]="getRowHeight">
           </ag-grid-angular>
         </div>
       </div>

@@ -5,6 +5,8 @@ import {GridApi} from "ag-grid-community";
 import {CommonService} from "../../services/common.service";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 import {SpinnerService} from "../../services/spinner.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -26,12 +28,22 @@ export class AddPharmacyComponent implements OnInit {
   constructor(private route: Router,
               private commonservice: CommonService,
               private quoteDetailsService: QuoteDataDetailsService,
-              private spinner: SpinnerService) {
+              private spinner: SpinnerService,
+              private dialog:MatDialog) {
   }
 
   ngOnInit(): void {
     this.zipcode = localStorage.getItem('zipcode')
-    this.findPharmacy(this.page)
+    const pharmdata = localStorage.getItem('pharmdata')
+    let pharmdataArray: any[] = [];
+    if (pharmdata) {
+      pharmdataArray = JSON.parse(pharmdata);
+    }
+    if(pharmdataArray.length !==0){
+      this.rowData =pharmdataArray
+    }
+    this.findPharmacy(this.page,5)
+
   }
 
   colDef5 = function () {
@@ -56,16 +68,27 @@ export class AddPharmacyComponent implements OnInit {
     const npis = this.rowData.map((x: any) => x.npi)
     this.quoteDetailsService.setnpis(npis)
     localStorage.setItem('pharmacies', JSON.stringify(npis))
+    localStorage.setItem('pharmdata', JSON.stringify(this.rowData))
     console.log('npis', npis)
     this.route.navigate(['Plans'])
   }
 
   check(event: any, data: any) {
-    console.log("laassssss", event)
+    console.log("laassssss", data)
+    console.log("laassssss", event.target.checked)
     if (data.checked == true) {
-      this.rowData.push(data);
+      if (this.rowData.length >= 5){
+
+        this.dialog.open(ErrorPopupComponent,{
+          data:{
+            customMsg:'Pharmacy limit reached'},width: '600px'})
+        event.target.checked =false
+      }else {
+        this.rowData.push(data);
+      }
+
     } else {
-      const index = this.rowData.findIndex((item: any) => item.name === data.name);
+      const index = this.rowData.findIndex((item: any) => item.npi === data.npi);
       if (index > -1) {
         // Item exists in the array, remove it
         this.rowData.splice(index, 1);
@@ -91,7 +114,7 @@ export class AddPharmacyComponent implements OnInit {
     if (event.colDef.field === 'delete') {
       this.rowData.forEach((element: any, index: any) => {
         console.log(element)
-        if (event.data.id == element.id) {
+        if (event.data.npi == element.npi) {
           console.log('delete')
           event.data.checked = false
           this.rowData.splice(index, 1)
@@ -106,9 +129,9 @@ export class AddPharmacyComponent implements OnInit {
     }
   }
 
-  findPharmacy(page: any) {
+  findPharmacy(page: any,count:any) {
     const spine = this.spinner.start()
-    this.commonservice.searchPharmacy(this.zipcode, this.radius_miles, this.pharmName, page).subscribe((response) => {
+    this.commonservice.searchPharmacy(this.zipcode, this.radius_miles, this.pharmName, page,count).subscribe((response) => {
       if (response.status === true) {
         this.pharmacies = response.data.listOfPharmacy
         this.pharmacies = this.pharmacies.map((element: any, index: any) => {
@@ -128,12 +151,14 @@ export class AddPharmacyComponent implements OnInit {
   onPageChange(event: any) {
     const startIndex = event.pageIndex + 1;
     const endIndex = startIndex + event.pageSize;
-    this.findPharmacy(startIndex)
-    console.log('startIndex', event.pageIndex)
+    const pageSize =  event.pageSize;
+    this.findPharmacy(startIndex,pageSize)
+    console.log('startIndex', event)
     console.log('endIndex', endIndex)
   }
 
-  mailOrder($event: any) {
+  mailOrder(event: any) {
+    console.log('event---', event.target.checked)
     const index = this.rowData.findIndex((item: any) => item.name === 'Mail Order Pharmacy');
     if (index > -1) {
       // Item exists in the array, remove it
@@ -144,12 +169,38 @@ export class AddPharmacyComponent implements OnInit {
         street: '',
         distance_miles: ''
       }
-      this.rowData.push(data);
+      if (this.rowData.length >= 5){
+        this.dialog.open(ErrorPopupComponent,{
+          data:{
+            customMsg:'Pharmacy limit reached'},width: '600px'})
+        event.target.checked =false
+
+      }else{
+        this.rowData.push(data);
+      }
+
     }
     this.gridapi?.setRowData(this.rowData)
   }
+  getRowHeight(params: any) {
+    const lineHeight = 20; // Adjust this value to set the row height per line of text.
+    const numLines = (params.data.name || '').split('\n').length;
+    return (numLines + 1) * lineHeight; // Adding 1 to accommodate header height.
+  }
+
 
   distanceChange() {
-    this.findPharmacy('0')
+    this.findPharmacy('0',5)
+  }
+
+  updateExistPharm(){
+    this.rowData.forEach((drugsObj:any) => {
+      this.pharmacies.forEach((freobj:any)=>{
+        if (freobj.npi === drugsObj.npi){
+           freobj.checked = true
+        }
+      })
+
+    });
   }
 }

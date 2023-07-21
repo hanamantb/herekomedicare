@@ -20,6 +20,7 @@ export class AddDrugComponent implements OnInit {
   @ViewChild('generic', {static: true}) generic!: TemplateRef<any>;
   @ViewChild('agGrid', {static: true}) ahGrid!: AgGridAngular;
   rowData: any = [];
+  apidata: any = [];
   alphabets: string[] = [];
   items = [];
   drugForm!: FormGroup;
@@ -36,36 +37,19 @@ export class AddDrugComponent implements OnInit {
   packages: any = [];
   nonEditDrug: any = [];
 
-  // columnDefs = [
-  //   {
-  //     field: 'index', headerName: '#', width: 80,
-  //     valueGetter: (node: any) => String(node.node.rowIndex + 1)
-  //   },
-  //   {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
-  //   {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
-  //   {field: 'package', headerName: 'Package', filter: true, width: 200},
-  //   {field: 'quantity', headerName: 'Quantity', filter: true, width: 100},
-  //   {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
-  //   {
-  //     field: 'actions',
-  //     headerName: 'Actions',
-  //     cellRendererFramework: ActionsCellRendererComponent,
-  //   },
-  // ];
-
   columnDefs = [
       {
         field: 'index', headerName: '#', width: 80,
         valueGetter: (node: any) => String(node.node.rowIndex + 1)
       },
-      {field: 'drugName', headerName: 'Drug Name', filter: true, width: 150, flex: 1},
+      {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
       {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
       {field: 'package', headerName: 'Package', filter: true, width: 200},
       {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
-      {field: 'frequency', headerName: 'Frequency', filter: true, width: 250},
+      {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
       {
         headerName: 'Actions',
-        field: 'actions',
+        field: 'actions', width: 100,
         cellRendererFramework: ActionsCellRendererComponent,
         cellRendererParams: {
           onClick: this.onActionButtonClick.bind(this),
@@ -85,15 +69,35 @@ export class AddDrugComponent implements OnInit {
       this.alphabets.push(String.fromCharCode(i));
     }
     this.drugForm = this.fb.group({
+      rxcui:[null],
       ndc: [null],
       drugName: [null],
       dosage: [null, [Validators.required]],
       package: [null],
       quantity: [null, [Validators.required, Validators.min(0)]],
-      frequency: ['FREQUENCY_30_DAYS', [Validators.required]],
+      frequency: ['Every month', [Validators.required]],
     })
   }
-
+frequency=[{
+    name:'Every month',
+  values:'FREQUENCY_30_DAYS'
+},
+  {
+    name:'Every 2 months',
+    values:'FREQUENCY_60_DAYS'
+  },
+  {
+    name:'Every 3 months',
+    values:'FREQUENCY_90_DAYS'
+  },
+  {
+    name:'Every 6 months',
+    values:'FREQUENCY_180_DAYS'
+  },
+  {
+    name:'Every 12 months',
+    values:'FREQUENCY_360_DAYS'
+  }]
   ngOnInit(): void {
     const drugs = localStorage.getItem('drugs')
     let drugsArray: any[] = [];
@@ -126,7 +130,10 @@ export class AddDrugComponent implements OnInit {
 
   addPharmacy() {
     this.dialog.closeAll()
-    localStorage.setItem('drugs', JSON.stringify(this.rowData))
+    console.log('delete-rowData', this.rowData)
+    localStorage.setItem('drugs',JSON.stringify(this.rowData))
+    // this.updateApidrugs(this.rowData)
+    // localStorage.setItem('drugs',this.rowData)
     this.quoteDetailsService.setdrug(this.rowData)
     if(this.rowData.length === 0){
      this.route.navigate(['Plans'])
@@ -156,10 +163,8 @@ export class AddDrugComponent implements OnInit {
   }
 
   toggleItemSelection(item: any) {
-
     this.selectedItem = item
     this.itemName = item.name
-    console.log(item.name)
   }
 
   navPlans() {
@@ -174,11 +179,14 @@ export class AddDrugComponent implements OnInit {
     }else {
       this.dialog.closeAll()
     }
-
   }
 
+
+
+
+
   addDrug() {
-    console.log('drgggg', this.drugForm.value)
+    console.log('drgggg---', this.rowData)
     let pack = this.drugForm.value.package
     console.log('pack', pack)
     if (this.drugForm.valid) {
@@ -189,16 +197,19 @@ export class AddDrugComponent implements OnInit {
       }
       let gen = ''
       if (this.item.is_generic){
-        gen='generic'
+        gen='- Generic'
+      }else {
+        gen ='- Brand'
       }
       this.drugForm.patchValue({
+        rxcui:this.rxcui,
         drugName: this.itemName +' '+gen,
         package: pack,
         dosage:this.drugForm.value.dosage.dosage_form
       })
       this.rowData.push(this.drugForm.value)
-      console.log('rowdata', this.rowData)
       this.gridapi?.setRowData(this.rowData)
+      this.nonEditDrug =[]
       this.itemName = ''
       this.drugForm.reset()
       this.drugname.reset()
@@ -212,6 +223,7 @@ export class AddDrugComponent implements OnInit {
     if (this.nonEditDrug.length !==0) {
       this.rowData.push(this.nonEditDrug)
       this.gridapi?.setRowData(this.rowData)
+      this.nonEditDrug =[]
     }
     this.itemName = ''
     this.drugForm.reset()
@@ -269,13 +281,22 @@ export class AddDrugComponent implements OnInit {
       this.dosagesDetails = response.data
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
-
+if (this.nonEditDrug.length === 0){
       this.drugForm.patchValue({
         ndc: this.dosages[0].ndc,
         dosage: this.dosages[0],
         quantity: Number(this.dosages[0].default_quantity
         )
-      })
+      })}else{
+  const editndc =this.dosagesDetails.filter((item: any) => item.ndc === this.nonEditDrug.ndc)
+  console.log('editndc', editndc)
+  this.drugForm.patchValue({
+    dosage: editndc[0],
+      package: editndc[0],
+  }
+    )
+  this.packages.push(editndc[0])
+  }
       console.log('distinctValues', distinctValues)
     })
 
@@ -316,12 +337,9 @@ export class AddDrugComponent implements OnInit {
 
   onActionButtonClick(action:any,data:any): void {
     // Handle button click event here
-    console.log('Button clicked:', action);
+    console.log('Button clicked:', data);
     if (action === 'delete') {
-      console.log('deleeeting11');
       this.rowData.forEach((element: any, index: any) => {
-        console.log('forEach',element.drugName)
-        console.log('data',data.drugName)
         if (data.drugName === element.drugName) {
           this.rowData.splice(index, 1)
           this.gridapi?.setRowData(this.rowData)
@@ -329,6 +347,8 @@ export class AddDrugComponent implements OnInit {
       })
     } else if (action === 'edit') {
       this.itemName = data.drugName
+      this.rxcui = data.rxcui
+      this.getDosageDetails()
       this.drugForm.patchValue({
         ndc: data.ndc,
         drugName: data.drugName,
@@ -352,34 +372,11 @@ export class AddDrugComponent implements OnInit {
 
   onGridCellClicked(event: any): void {
     console.log(event.data)
-    // if (event.colDef.field === 'actions') {
-    //   // this.rowData.forEach((element: any, index: any) => {
-    //   //   console.log(element)
-    //   //   if (event.data.drugName == element.drugName) {
-    //   //     this.rowData.splice(index, 1)
-    //   //     this.gridapi?.setRowData(this.rowData)
-    //   //   }
-    //   // })
-    // } else if (event.colDef.field === 'edit') {
-    //   this.itemName = event.data.drugName
-    //   this.drugForm.patchValue({
-    //     ndc: event.data.ndc,
-    //     drugName: event.data.drugName,
-    //     dosage: event.data.dosage,
-    //     package: event.data.package,
-    //     quantity: event.data.quantity,
-    //     frequency: event.data.frequency,
-    //   })
-    //
-    //   this.rowData.forEach((element: any, index: any) => {
-    //     console.log(element)
-    //     if (event.data.drugName == element.drugName) {
-    //       this.nonEditDrug = element
-    //       this.rowData.splice(index, 1)
-    //       this.gridapi?.setRowData(this.rowData)
-    //     }
-    //   })
-    // }
   }
 
+  getRowHeight(params: any) {
+    const lineHeight = 20; // Adjust this value to set the row height per line of text.
+    const numLines = (params.data.drugName || '').split('\n').length;
+    return (numLines + 1) * lineHeight; // Adding 1 to accommodate header height.
+  }
 }

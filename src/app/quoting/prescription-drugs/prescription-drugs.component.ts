@@ -33,6 +33,26 @@ export class PrescriptionDrugsComponent implements OnInit {
   fontStyle:any ="MAPD"
   // @Output() menuClicked = new EventEmitter();
    response: any=[];
+  frequency=[{
+    name:'Every month',
+    values:'FREQUENCY_30_DAYS'
+  },
+    {
+      name:'Every 2 months',
+      values:'FREQUENCY_60_DAYS'
+    },
+    {
+      name:'Every 3 months',
+      values:'FREQUENCY_90_DAYS'
+    },
+    {
+      name:'Every 6 months',
+      values:'FREQUENCY_180_DAYS'
+    },
+    {
+      name:'Every 12 months',
+      values:'FREQUENCY_360_DAYS'
+    }]
 
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -98,8 +118,8 @@ export class PrescriptionDrugsComponent implements OnInit {
     if (drugs) {
       drugsArray = JSON.parse(drugs);
     }
-
-    console.log('npis----',npiArray)
+this.updateApidrugs(drugsArray)
+    console.log('npis----',drugsArray)
     const searchPlanReqBody ={
       npis: npiArray,
       prescriptions: drugsArray,
@@ -205,5 +225,17 @@ export class PrescriptionDrugsComponent implements OnInit {
     this.getPlans(startIndex)
     console.log('startIndex', event.pageIndex)
     console.log('endIndex', endIndex)
+  }
+
+  updateApidrugs(data:any){
+
+    data.forEach((drugsObj:any) => {
+      this.frequency.forEach((freobj:any)=>{
+        if (freobj.name === drugsObj.frequency){
+          drugsObj.frequency = freobj.values
+        }
+      })
+
+    });
   }
 }
