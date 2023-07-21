@@ -26,12 +26,12 @@
 }
 .mat-expansion-panel{
   background:  white;
-  margin-bottom: 5vh;
+  margin-bottom: 15px;
 }
 
 .panel-headers{
-  font-size: 18px;
-  color: #4b8bb2;
+  font-size: 16px;
+  color: #252525;
   font-weight: 500;
 }
 .main-panel-headers{
@@ -39,3 +39,97 @@
   color: black;
   font-weight: 500;
 }
+.mat-expansion-panel {
+  border-radius: 0;
+  box-shadow: 0px 0px 3px 2px #E8E8E8 !important
+}
+.mat-expansion-panel-header {
+  border-bottom: 1px solid #ddd;
+}
+.mat-expansion-panel-header p{
+    margin-bottom: 0;
+}
+.mat-accordion .mat-expansion-panel:first-of-type{
+    border-radius: 0 !important;
+}
+.mat-accordion table th {
+  font-weight: 500;
+  color: #252525
+}
+.d-cost-label{
+    font-size: 26px;  
+}
+.mat-accordion table {
+  margin-bottom: 0;
+}
+.mat-accordion table td {
+  font-size: 14px;
+  padding: 10px !important;
+}
+.mat-accordion table tr:nth-child(even) {
+  background-color: rgba(242,242,242,0.5);
+}
+/deep/.mat-expansion-panel-body{
+    padding: 0 !important;
+}
+.drug-cost-buttons{
+    align-items: flex-start;
+}
+.drug-cost-buttons .btn-icon {
+  border: solid 1px #ddd;
+}
+.drug-cost-buttons .btn-icon button {
+  background: #fff;
+  border: 0;
+  border-right: 1px solid #ddd;
+  min-width: 39px;
+}
+.drug-cost-buttons .btn-icon button .mat-icon{
+    font-size: 20px;
+    line-height: 24px;
+}
+.drug-cost-buttons .btn-icon button:last-child{
+    border-right: 0;
+}
+.drug-cost-buttons .back-to-all button {
+  border-radius: 2px;
+  background-color: #4b8bb2;
+}
+th small mat-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-right: 5px;
+  color: white;
+  text-align: center;
+}
+.in-network mat-icon{
+  background-color: #12890e;
+}
+.out-of-network mat-icon {
+  background-color: #898989;
+}
+.out-of-network {
+  color: #898989;
+}
+th small span{
+    font-size: 14px;
+    
+}
+th small {
+  clear: left;
+  display: flex;
+  width: 100%;
+  margin-top: 5px;
+  font-weight: normal;
+}
+th h4{
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+

@@ -1,29 +1,31 @@
 <div class="container">
   <div class="d-flex" style="height: 86vh">
-    <div class="col-3 side-img">
-      <img src="../../../assets/sidepic.png" alt="">
-    </div>
-    <div class="col-9">
+    <!--<div class="col-3 side-img">
+    <img src="../../../assets/sidepic.png" alt="">
+  </div>-->
+    <div class="col-12 px-3 pt-4">
       <div class="d-flex p-2">
         <div class="col-6">
           <span class="d-cost-label">Estimated Cost and Savings</span>
           <p>Plan - Cigna No Premium (HMO)(H1215-002-0)</p>
         </div>
-        <div class="col-6 d-flex justify-content-end ">
+        <div class="col-6 d-flex justify-content-end drug-cost-buttons">
           <div class="btn-icon">
-          <button mat-button>
-            <mat-icon>email</mat-icon>
-          </button>
-          <button mat-button>
-            <mat-icon>cloud_download</mat-icon>
-          </button>
-          <button mat-button>
-            <mat-icon>local_printshop</mat-icon>
-          </button>
+            <button mat-button>
+              <mat-icon>email</mat-icon>
+            </button>
+            <button mat-button>
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+            <button mat-button>
+              <mat-icon>local_printshop</mat-icon>
+            </button>
           </div>
-          <div class="me-2">
-            <button mat-raised-button color="primary" style="width:100%;" class="ms-2"> <mat-icon>arrow_back</mat-icon>
-              Back to all plans</button>
+          <div class="me-2 back-to-all">
+            <button mat-raised-button color="primary" style="width:100%;" class="ms-2">
+              <mat-icon>arrow_back</mat-icon>
+              Back to all plans
+            </button>
           </div>
         </div>
       </div>
@@ -35,166 +37,215 @@
             </mat-expansion-panel-header>
             <table class="table">
               <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Drug Name</th>
-                <th scope="col">Package</th>
-                <th scope="col">Drug Type</th>
-                <th scope="col">tier</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Frequency</th>
-                <th scope="col">Prior Authorization</th>
-                <th scope="col">Quantity Limit</th>
-                <th scope="col">Step Therapy</th>
-                <th scope="col">Covered</th>
-              </tr>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Drug Name</th>
+                  <th scope="col">Package</th>
+                  <th scope="col">Drug Type</th>
+                  <th scope="col">tier</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Frequency</th>
+                  <th scope="col">Prior Authorization</th>
+                  <th scope="col">Quantity Limit</th>
+                  <th scope="col">Step Therapy</th>
+                  <th scope="col">Covered</th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Abacavir 300mg Tablet</td>
-                <td></td>
-                <td>Generic</td>
-                <td>2</td>
-                <td>60</td>
-                <td>Every month</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
-                <th scope="row">1</th>
-                <td>Lisiniporil 10mg Tablet</td>
-                <td></td>
-                <td>Generic</td>
-                <td>6</td>
-                <td>30</td>
-                <td>Every month</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Abacavir 300mg Tablet</td>
+                  <td></td>
+                  <td>Generic</td>
+                  <td>2</td>
+                  <td>60</td>
+                  <td>Every month</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Lisiniporil 10mg Tablet</td>
+                  <td></td>
+                  <td>Generic</td>
+                  <td>6</td>
+                  <td>30</td>
+                  <td>Every month</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
 
               </tbody>
             </table>
           </mat-expansion-panel>
 
+
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
-              <p class="panel-headers">NEBRASKA CVS PHARMACY LLC</p>
+              <p class="panel-headers">Yearly Drug costs</p>
             </mat-expansion-panel-header>
             <table class="table">
               <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Drug Name</th>
-                <th scope="col">Package</th>
-                <th scope="col">Drug Type</th>
-                <th scope="col">tier</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Frequency</th>
-                <th scope="col">Prior Authorization</th>
-                <th scope="col">Quantity Limit</th>
-                <th scope="col">Step Therapy</th>
-                <th scope="col">Covered</th>
-              </tr>
+                <tr>
+                  <th scope="col" valign="middle">Drugs</th>
+                  <th scope="col">
+                    <h4>Maximum Physical Healthcare, Inc</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Winn Dixie</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Walgreens #6385</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Mail Order Pharmacy</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Abacavir 300mg Tablet</td>
-                <td></td>
-                <td>Generic</td>
-                <td>2</td>
-                <td>60</td>
-                <td>Every month</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                <tr>
+                  <td scope="row">Abacavir 300mg tablet</td>
+                  <td>$2,953.30</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$2,953.30</td>
+                  <td>$0.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>
+                  <td>$3,118.75</td>
+                  <td>$175.00</td>
+                  <td>$175.00</td>
+                  <td>$3,118.75</td>
+                  <td>$210.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">Total yearly drug cost</td>
+                  <td>$6,072.05</td>
+                  <td>$175.00</td>
+                  <td>$175.00</td>
+                  <td>$6,072.05</td>
+                  <td>$210.00</td>
+                </tr>
 
               </tbody>
             </table>
           </mat-expansion-panel>
-
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
-              <p class="panel-headers">WALMART INC.</p>
+              <p class="panel-headers">Estimated monthly total drug cost</p>
             </mat-expansion-panel-header>
             <table class="table">
               <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Drug Name</th>
-                <th scope="col">Package</th>
-                <th scope="col">Drug Type</th>
-                <th scope="col">tier</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Frequency</th>
-                <th scope="col">Prior Authorization</th>
-                <th scope="col">Quantity Limit</th>
-                <th scope="col">Step Therapy</th>
-                <th scope="col">Covered</th>
-              </tr>
+                <tr>
+                  <th scope="col" valign="middle">Drugs</th>
+                  <th scope="col">
+                    <h4>Maximum Physical Healthcare, Inc</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Winn Dixie</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Walgreens #6385</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Mail Order Pharmacy</h4>
+                    <small class="in-network">
+                      <mat-icon>check</mat-icon>
+                      <span>In-network</span>
+                    </small>
+                  </th>
+                </tr>
               </thead>
               <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Abacavir 300mg Tablet</td>
-                <td></td>
-                <td>Generic</td>
-                <td>2</td>
-                <td>60</td>
-                <td>Every month</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-
-              </tbody>
-            </table>
-          </mat-expansion-panel>
-          <mat-expansion-panel (opened)="panelOpenState = true"
-                               (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <p class="panel-headers">WALGREEN CO</p>
-            </mat-expansion-panel-header>
-            <table class="table">
-              <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Drug Name</th>
-                <th scope="col">Package</th>
-                <th scope="col">Drug Type</th>
-                <th scope="col">tier</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Frequency</th>
-                <th scope="col">Prior Authorization</th>
-                <th scope="col">Quantity Limit</th>
-                <th scope="col">Step Therapy</th>
-                <th scope="col">Covered</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Abacavir 300mg Tablet</td>
-                <td></td>
-                <td>Generic</td>
-                <td>2</td>
-                <td>60</td>
-                <td>Every month</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+                <tr>
+                  <td scope="row">August</td>
+                  <td>$1,214.41</td>
+                  <td>$35.00</td>
+                  <td>$35.00</td>
+                  <td>$1,214.41</td>
+                  <td>$105.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">September</td>
+                  <td>$1,214.41</td>
+                  <td>$35.00</td>
+                  <td>$35.00</td>
+                  <td>$1,214.41</td>
+                  <td>$105.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">October</td>
+                  <td>$1,214.41</td>
+                  <td>$35.00</td>
+                  <td>$35.00</td>
+                  <td>$1,214.41</td>
+                  <td>$105.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">November</td>
+                  <td>$1,214.41</td>
+                  <td>$35.00</td>
+                  <td>$35.00</td>
+                  <td>$1,214.41</td>
+                  <td>$105.00</td>
+                </tr>
+                <tr>
+                  <td scope="row">December</td>
+                  <td>$1,214.41</td>
+                  <td>$35.00</td>
+                  <td>$35.00</td>
+                  <td>$1,214.41</td>
+                  <td>$105.00</td>
+                </tr>
 
               </tbody>
             </table>
