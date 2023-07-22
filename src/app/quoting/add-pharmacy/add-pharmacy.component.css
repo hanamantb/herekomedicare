@@ -53,19 +53,41 @@ button{
   }
 .add-pharmacy-checkbox {
   border-radius: 2px;
-  border: 1px solid #4b8bb2;
+  border: #B8C0D4 solid 1px;
   padding: 5px 10px;
   max-width: 140px;
   display: flex;
   gap: 5px;
   align-items: center;
-  background: #daf1ff;
-  font-size: 14px;
+  background: #fff;
+  font-size: 13px;
 }
 .add-pharmacy-checkbox input{
     height: 16px;
     margin-top: 0;
 }
-.pharmacy-list-item.card{
-    height: auto;
+.pharmacy-list-item.card {
+  height: auto;
+  border-radius: 2px;
+  background-color: #fcfcfc;
+}
+.pharmacy-list-item p{
+    font-size: 13px;
+}
+.sub-head strong{
+    font-weight: 500;
+}
+.sub-head + p{
+    font-weight: 300;
+}
+.pharmacy-list-item-left{
+    width: calc(100% - 135px);
+}
+.map-img{
+    height: auto !important;
+    margin-top: 0 !important;
+    max-width: 100%;
+}
+.include-mail-pharmacy {
+    border-top: 1px dashed #ddd;
 }
