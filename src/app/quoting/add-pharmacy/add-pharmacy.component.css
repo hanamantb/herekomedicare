@@ -63,7 +63,6 @@ button{
   font-size: 13px;
 }
 .add-pharmacy-checkbox input{
-    height: 16px;
     margin-top: 0;
 }
 .pharmacy-list-item.card {
@@ -87,7 +86,11 @@ button{
     height: auto !important;
     margin-top: 0 !important;
     max-width: 100%;
+    z-index: 10;
 }
 .include-mail-pharmacy {
     border-top: 1px dashed #ddd;
+}
+/deep/.ag-theme-alpine .ag-ltr .ag-cell{
+    line-height: 24px !important;
 }
