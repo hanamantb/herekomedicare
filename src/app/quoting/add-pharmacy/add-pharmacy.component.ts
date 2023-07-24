@@ -77,11 +77,10 @@ export class AddPharmacyComponent implements OnInit {
     console.log("laassssss", data)
     console.log("laassssss", event.target.checked)
     if (data.checked == true) {
-      if (this.rowData.length >= 5){
-
+      if (this.rowData.length >= 6){
         this.dialog.open(ErrorPopupComponent,{
           data:{
-            customMsg:'Pharmacy limit reached'},width: '600px'})
+            customMsg:'You have already selected 6 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
         event.target.checked =false
       }else {
         this.rowData.push(data);
@@ -149,7 +148,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   onPageChange(event: any) {
-    const startIndex = event.pageIndex + 1;
+    const startIndex = event.pageIndex;
     const endIndex = startIndex + event.pageSize;
     const pageSize =  event.pageSize;
     this.findPharmacy(startIndex,pageSize)
@@ -169,10 +168,10 @@ export class AddPharmacyComponent implements OnInit {
         street: '',
         distance_miles: ''
       }
-      if (this.rowData.length >= 5){
+      if (this.rowData.length >= 6){
         this.dialog.open(ErrorPopupComponent,{
           data:{
-            customMsg:'Pharmacy limit reached'},width: '600px'})
+            customMsg:'You have already selected 6 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
         event.target.checked =false
 
       }else{
@@ -181,11 +180,6 @@ export class AddPharmacyComponent implements OnInit {
 
     }
     this.gridapi?.setRowData(this.rowData)
-  }
-  getRowHeight(params: any) {
-    const lineHeight = 20; // Adjust this value to set the row height per line of text.
-    const numLines = (params.data.name || '').split('\n').length;
-    return (numLines + 1) * lineHeight; // Adding 1 to accommodate header height.
   }
 
 
@@ -202,5 +196,11 @@ export class AddPharmacyComponent implements OnInit {
       })
 
     });
+  }
+  getRowHeight(params: any) {
+    // Calculate the row height based on the content size
+    const lineHeight = 20; // Average line height in pixels
+    const lines = (params.data.name || '').split('\n').length; // Count lines in description
+    return 50 + lines * lineHeight; // Base height + additional height for lines
   }
 }

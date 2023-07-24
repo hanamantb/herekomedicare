@@ -38,24 +38,44 @@ export class AddDrugComponent implements OnInit {
   nonEditDrug: any = [];
 
   columnDefs = [
-      {
-        field: 'index', headerName: '#', width: 80,
-        valueGetter: (node: any) => String(node.node.rowIndex + 1)
+    {
+      field: 'index', headerName: '#', width: 80,
+      valueGetter: (node: any) => String(node.node.rowIndex + 1)
+    },
+    {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
+    {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
+    {field: 'package', headerName: 'Package', filter: true, width: 200},
+    {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
+    {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
+    {
+      headerName: 'Actions',
+      field: 'actions', width: 100,
+      cellRendererFramework: ActionsCellRendererComponent,
+      cellRendererParams: {
+        onClick: this.onActionButtonClick.bind(this),
       },
-      {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
-      {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
-      {field: 'package', headerName: 'Package', filter: true, width: 200},
-      {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
-      {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
-      {
-        headerName: 'Actions',
-        field: 'actions', width: 100,
-        cellRendererFramework: ActionsCellRendererComponent,
-        cellRendererParams: {
-          onClick: this.onActionButtonClick.bind(this),
-        },
-      },
+    },
   ];
+  frequency = [{
+    name: 'Every month',
+    values: 'FREQUENCY_30_DAYS'
+  },
+    {
+      name: 'Every 2 months',
+      values: 'FREQUENCY_60_DAYS'
+    },
+    {
+      name: 'Every 3 months',
+      values: 'FREQUENCY_90_DAYS'
+    },
+    {
+      name: 'Every 6 months',
+      values: 'FREQUENCY_180_DAYS'
+    },
+    {
+      name: 'Every 12 months',
+      values: 'FREQUENCY_360_DAYS'
+    }]
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -69,7 +89,7 @@ export class AddDrugComponent implements OnInit {
       this.alphabets.push(String.fromCharCode(i));
     }
     this.drugForm = this.fb.group({
-      rxcui:[null],
+      rxcui: [null],
       ndc: [null],
       drugName: [null],
       dosage: [null, [Validators.required]],
@@ -78,43 +98,25 @@ export class AddDrugComponent implements OnInit {
       frequency: ['Every month', [Validators.required]],
     })
   }
-frequency=[{
-    name:'Every month',
-  values:'FREQUENCY_30_DAYS'
-},
-  {
-    name:'Every 2 months',
-    values:'FREQUENCY_60_DAYS'
-  },
-  {
-    name:'Every 3 months',
-    values:'FREQUENCY_90_DAYS'
-  },
-  {
-    name:'Every 6 months',
-    values:'FREQUENCY_180_DAYS'
-  },
-  {
-    name:'Every 12 months',
-    values:'FREQUENCY_360_DAYS'
-  }]
+
+  get quantity() {
+    return this.drugForm.get('quantity')!;
+  }
+
   ngOnInit(): void {
     const drugs = localStorage.getItem('drugs')
     let drugsArray: any[] = [];
     if (drugs) {
       drugsArray = JSON.parse(drugs);
     }
-    if(drugsArray.length !==0){
-     this.rowData =drugsArray
+    if (drugsArray.length !== 0) {
+      this.rowData = drugsArray
     }
-    console.log('drugsArray-length',drugsArray.length)
-    console.log('drugsArray',this.rowData)
+    console.log('drugsArray-length', drugsArray.length)
+    console.log('drugsArray', this.rowData)
 
   }
 
-  get quantity() {
-    return this.drugForm.get('quantity')!;
-  }
   colDef5 = function () {
     return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
       '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
@@ -131,14 +133,14 @@ frequency=[{
   addPharmacy() {
     this.dialog.closeAll()
     console.log('delete-rowData', this.rowData)
-    localStorage.setItem('drugs',JSON.stringify(this.rowData))
+    localStorage.setItem('drugs', JSON.stringify(this.rowData))
     // this.updateApidrugs(this.rowData)
     // localStorage.setItem('drugs',this.rowData)
     this.quoteDetailsService.setdrug(this.rowData)
-    if(this.rowData.length === 0){
-     this.route.navigate(['Plans'])
-    }else{
-     this.route.navigate(['add-pharmacy'])
+    if (this.rowData.length === 0) {
+      this.route.navigate(['Plans'])
+    } else {
+      this.route.navigate(['add-pharmacy'])
     }
 
   }
@@ -168,62 +170,81 @@ frequency=[{
   }
 
   navPlans() {
-    if (this.rowData.length !==0){
-     const matref= this.dialog.open(ErrorPopupComponent,{data:{buttons:true,customMsg:'The plans displayed in the Plan Presentation page would not consider the drugs or the associated savings.'}})
-      matref.afterClosed().subscribe((resp:any)=>{
+    if (this.rowData.length !== 0) {
+      const matref = this.dialog.open(ErrorPopupComponent, {
+        data: {
+          buttons: true,
+          customMsg: 'The plans displayed in the Plan Presentation page would not consider the drugs or the associated savings.'
+        }
+      })
+      matref.afterClosed().subscribe((resp: any) => {
         if (resp !== undefined) {
-          this.rowData=[]
+          this.rowData = []
           this.route.navigate(['Plans'])
         }
       })
-    }else {
+    } else {
       this.dialog.closeAll()
     }
   }
 
 
-
-
-
   addDrug() {
-    console.log('drgggg---', this.rowData)
+    console.log('rowData11---', this.rowData)
     let pack = this.drugForm.value.package
     console.log('pack', pack)
-    if (this.drugForm.valid) {
+    const datachck= this.rowData.map((x:any)=> x.rxcui === this.rxcui )
+    if (datachck){
+      this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'This drug has already been added.'}, width: '600px'})
+      this.nonEditDrug = []
+      this.drugs = []
+      this.itemName = ''
+      this.drugForm.reset()
+      this.drugForm.patchValue({
+        frequency: "Every month"
+      })
+      this.drugname.reset()
+    }else if (this.drugForm.valid) {
       if (pack === null || pack === '') {
         pack = ''
       } else {
         pack = this.drugForm.value.package.package_description
       }
       let gen = ''
-      if (this.item.is_generic){
-        gen='- Generic'
-      }else {
-        gen ='- Brand'
+      if (this.item.is_generic) {
+        gen = '- Generic'
+      } else {
+        gen = '- Brand'
       }
       this.drugForm.patchValue({
-        rxcui:this.rxcui,
-        drugName: this.itemName +' '+gen,
+        rxcui: this.rxcui,
+        drugName: this.itemName + ' ' + gen,
         package: pack,
-        dosage:this.drugForm.value.dosage.dosage_form
+        dosage: this.drugForm.value.dosage.dosage_form,
+        ndc: this.drugForm.value.dosage.ndc
       })
       this.rowData.push(this.drugForm.value)
       this.gridapi?.setRowData(this.rowData)
-      this.nonEditDrug =[]
+      this.nonEditDrug = []
+      this.drugs = []
       this.itemName = ''
       this.drugForm.reset()
+      this.drugForm.patchValue({
+        frequency: "Every month"
+      })
       this.drugname.reset()
     } else {
-      this.dialog.open(ErrorPopupComponent,{data:{customMsg:'Quantity or Frequency is not valid.'},width: '600px'})
+      this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'Quantity or Frequency is not valid.'}, width: '600px'})
     }
+    console.log('rowData222---', this.rowData)
   }
 
   cancelDrug() {
-    console.log('nonEditDrug',this.nonEditDrug)
-    if (this.nonEditDrug.length !==0) {
+    console.log('nonEditDrug', this.nonEditDrug)
+    if (this.nonEditDrug.length !== 0) {
       this.rowData.push(this.nonEditDrug)
       this.gridapi?.setRowData(this.rowData)
-      this.nonEditDrug =[]
+      this.nonEditDrug = []
     }
     this.itemName = ''
     this.drugForm.reset()
@@ -255,11 +276,11 @@ frequency=[{
     this.item = event.option.value
     this.rxcui = event.option.value.rxcui
     if (!this.item.is_generic && this.item.generic != null) {
-      const dataDialog =this.dialog.open(this.generic, {width: '600px'})
+      const dataDialog = this.dialog.open(this.generic, {width: '600px'})
       dataDialog.afterClosed().subscribe(ret => {
         this.getDosageDetails()
       })
-    }else {
+    } else {
       this.getDosageDetails()
     }
     this.selectedItem = [];
@@ -275,28 +296,29 @@ frequency=[{
   }
 
   getDosageDetails() {
-    console.log('getDosageDetails', this.rxcui)
     this.commonservice.drugDosage(this.rxcui).subscribe((response) => {
-      console.log('getDosageDetails', response)
       this.dosagesDetails = response.data
+      console.log('getDosageDetails', response)
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
-if (this.nonEditDrug.length === 0){
-      this.drugForm.patchValue({
-        ndc: this.dosages[0].ndc,
-        dosage: this.dosages[0],
-        quantity: Number(this.dosages[0].default_quantity
+      if (this.nonEditDrug.length === 0) {
+        console.log('dosages---1', this.dosages[0])
+        this.drugForm.patchValue({
+          ndc: this.dosages[0].ndc,
+          dosage: this.dosages[0],
+          quantity: Number(this.dosages[0].default_quantity
+          )
+        })
+      } else {
+        const editndc = this.dosagesDetails.filter((item: any) => item.ndc === this.nonEditDrug.ndc)
+        console.log('editndc', editndc)
+        this.drugForm.patchValue({
+            dosage: editndc[0],
+            package: editndc[0],
+          }
         )
-      })}else{
-  const editndc =this.dosagesDetails.filter((item: any) => item.ndc === this.nonEditDrug.ndc)
-  console.log('editndc', editndc)
-  this.drugForm.patchValue({
-    dosage: editndc[0],
-      package: editndc[0],
-  }
-    )
-  this.packages.push(editndc[0])
-  }
+        this.packages.push(editndc[0])
+      }
       console.log('distinctValues', distinctValues)
     })
 
@@ -304,7 +326,7 @@ if (this.nonEditDrug.length === 0){
 
   dosageChange(event: any) {
     this.packages = []
-    console.log('event',event)
+    console.log('event', event)
     const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value.dosage_form);
     const pack = Array.from(new Set(filteredData.map((item: any) => item)));
     pack.forEach((element: any) => {
@@ -312,8 +334,9 @@ if (this.nonEditDrug.length === 0){
         this.packages.push(element)
       }
     })
-    console.log('dos pack',pack)
-    console.log('dos cnge',this.packages)
+    console.log('dos pack', pack)
+    console.log('dos packages', this.packages)
+    console.log('dos event', event.value)
     this.drugForm.patchValue({
       ndc: event.value.ndc,
       package: event.value,
@@ -335,7 +358,7 @@ if (this.nonEditDrug.length === 0){
     this.getDosageDetails()
   }
 
-  onActionButtonClick(action:any,data:any): void {
+  onActionButtonClick(action: any, data: any): void {
     // Handle button click event here
     console.log('Button clicked:', data);
     if (action === 'delete') {
@@ -375,8 +398,9 @@ if (this.nonEditDrug.length === 0){
   }
 
   getRowHeight(params: any) {
-    const lineHeight = 20; // Adjust this value to set the row height per line of text.
-    const numLines = (params.data.drugName || '').split('\n').length;
-    return (numLines + 1) * lineHeight; // Adding 1 to accommodate header height.
+    // Calculate the row height based on the content size
+    const lineHeight = 20; // Average line height in pixels
+    const lines = (params.data.drugName || '').split('\n').length; // Count lines in description
+    return 50 + lines * lineHeight; // Base height + additional height for lines
   }
 }

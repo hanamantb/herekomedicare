@@ -220,7 +220,7 @@ this.updateApidrugs(drugsArray)
     this.plans = plans
   }
   onPageChange(event: any) {
-    const startIndex = event.pageIndex + 1;
+    const startIndex = event.pageIndex;
     const endIndex = startIndex + event.pageSize;
     this.getPlans(startIndex)
     console.log('startIndex', event.pageIndex)
