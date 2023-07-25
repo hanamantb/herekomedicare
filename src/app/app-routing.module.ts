@@ -11,7 +11,8 @@ import {DoctorsComponent} from "./quoting/doctors/doctors.component";
 import {DrugCostComponent} from "./quoting/drug-cost/drug-cost.component";
 import {CartComponent} from "./quoting/cart/cart.component";
 import {CartHomeComponent} from "./quoting/cart/cart-home/cart-home.component";
-import {EmailProposalComponent} from "./quoting/cart/email-proposal/email-proposal.component";
+import { EmailProposalComponent } from "./quoting/cart/email-proposal/email-proposal.component";
+import { PlanDetailComponent } from './quoting/plan-detail.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,9 @@ const routes: Routes = [
   },
   {
     path:'email-proposal',component:EmailProposalComponent
+  },
+  {
+    path: 'plan-detail', component: PlanDetailComponent
   },
   // {
   //   path:'Plans',loadChildren: ()=> import('./plan-present/plan-present.module').then(m=> PlanPresentModule),
