@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class SidebarComponent implements OnInit {
   @ViewChild('drawer', {static: true}) drawer!: MatSidenav;
   @Input() planCount!: string
+  @Input() totalCount!: string
   opened: boolean = false;
   panelOpenState = false;
   constructor(private route:Router) { }
