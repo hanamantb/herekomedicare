@@ -194,7 +194,7 @@ export class AddDrugComponent implements OnInit {
     let pack = this.drugForm.value.package
     console.log('pack', pack)
     const datachck= this.rowData.map((x:any)=> x.rxcui === this.rxcui )
-    if (datachck){
+    if (datachck.length !==0){
       this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'This drug has already been added.'}, width: '600px'})
       this.nonEditDrug = []
       this.drugs = []
