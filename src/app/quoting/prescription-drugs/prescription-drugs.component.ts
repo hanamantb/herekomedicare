@@ -69,7 +69,10 @@ export class PrescriptionDrugsComponent implements OnInit {
     this.fips = localStorage.getItem('fips')
     this.lis = localStorage.getItem('lis')
     this.zipcode += ' '+localStorage.getItem('countie')
-    console.log('zipcode',this.zipcode)
+    console.log('lis',this.lis)
+    this.sharedService.benefitcheck$.subscribe((value:any) => {
+      this.benefitChange(value)
+    });
     this.getPlans(0)
 
   }
@@ -150,13 +153,13 @@ this.updateApidrugs(drugsArray)
           showmore:false,
           optnpkShow:false,
           cartAdded:false,
-          benefits:false};
+          benefits:true};
       });
       this.filtrPlans = this.plans
-      const plans =this.filtrPlans.filter((x:any)=>
-        x.planType ==='MAPD'
-      )
-      this.plans = plans
+      // const plans =this.filtrPlans.filter((x:any)=>
+      //   x.planType ==='MAPD'
+      // )
+      // this.plans = plans
       this.spinner.stop(spine)
       console.log('response',response)
     })
@@ -253,5 +256,12 @@ this.updateApidrugs(drugsArray)
 
   sidebar() {
     this.sideopen = !this.sideopen
+  }
+
+  benefitChange(value:any){
+    console.log('benefitChange',value)
+    this.plans.forEach((x:any)=>{
+      x.benefits = value
+    })
   }
 }

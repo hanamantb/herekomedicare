@@ -1,6 +1,7 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatDrawer, MatSidenav} from "@angular/material/sidenav";
 import {Router} from "@angular/router";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,9 @@ export class SidebarComponent implements OnInit {
   @Input() totalCount!: string
   opened: boolean = false;
   panelOpenState = false;
-  constructor(private route:Router) { }
+  benefitchck=true
+  constructor(private route:Router,
+              private shared : SharedService) { }
 
   ngOnInit(): void {
   }
@@ -30,5 +33,11 @@ export class SidebarComponent implements OnInit {
     }
 
     return `${value}`;
+  }
+
+  benefit(event: any) {
+    console.log('event---', event.target.checked)
+    this.benefitchck = !this.benefitchck
+    this.shared.benefitcheckchange(event.target.checked)
   }
 }

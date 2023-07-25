@@ -21,6 +21,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   couties: any = []
   selectedCountie: any;
   enteredValue: string = '';
+  lis  ="LIS_NO_HELP"
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -62,9 +63,11 @@ export class ZipcodeQoutingComponent implements OnInit {
         width: '600px'
       })
     } else {
-      console.log('counnnnnnnnnnn',this.selectedCountie)
-      const countie = this.selectedCountie.name +','+this.selectedCountie.state
+
+      const countie = this.selectedCountie.name +', '+this.selectedCountie.state
       localStorage.setItem('countie',countie)
+      localStorage.setItem('lis',this.lis)
+      console.log('lis----',this.lis)
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
       } else {
@@ -114,10 +117,11 @@ export class ZipcodeQoutingComponent implements OnInit {
     localStorage.setItem('fip', event.value.fips)
   }
 
-  lisChange(event: any) {
-    console.log(event.value)
-    localStorage.setItem('lis', event.value)
-  }
+  // lisChange(event: any) {
+  //   console.log(event.value)
+  //   this.lis = event.value
+  //   localStorage.setItem('lis',this.lis )
+  // }
 
 
 }

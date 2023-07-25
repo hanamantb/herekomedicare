@@ -43,7 +43,7 @@ export class AddDrugComponent implements OnInit {
       valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
-    {field: 'dosage', headerName: 'Dosage', filter: true, width: 100},
+    {field: 'dosage', headerName: 'Dosage', filter: true, width: 150},
     {field: 'package', headerName: 'Package', filter: true, width: 200},
     {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
@@ -193,9 +193,9 @@ export class AddDrugComponent implements OnInit {
     console.log('rowData11---', this.rowData)
     let pack = this.drugForm.value.package
 
-    const datachck= this.rowData.filter((x:any)=> x.rxcui === this.rxcui )
+    const datachck = this.rowData.filter((x: any) => x.rxcui === this.rxcui)
     console.log('pack', datachck)
-    if (datachck.length !==0){
+    if (datachck.length !== 0) {
       this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'This drug has already been added.'}, width: '600px'})
       this.nonEditDrug = []
       this.drugs = []
@@ -205,17 +205,21 @@ export class AddDrugComponent implements OnInit {
         frequency: "Every month"
       })
       this.drugname.reset()
-    }else if (this.drugForm.valid) {
+    } else if (this.drugForm.valid) {
+
       if (pack === null || pack === '') {
         pack = ''
       } else {
         pack = this.drugForm.value.package.package_description
       }
+
       let gen = ''
-      if (this.item.is_generic) {
-        gen = '- Generic'
-      } else {
-        gen = '- Brand'
+      if (this.nonEditDrug.length === 0) {
+        if (this.item.is_generic) {
+          gen = '- Generic'
+        } else {
+          gen = '- Brand'
+        }
       }
       this.drugForm.patchValue({
         rxcui: this.rxcui,
@@ -402,6 +406,6 @@ export class AddDrugComponent implements OnInit {
     // Calculate the row height based on the content size
     const lineHeight = 20; // Average line height in pixels
     const lines = (params.data.drugName || '').split('\n').length; // Count lines in description
-    return 50 + lines * lineHeight; // Base height + additional height for lines
+    return 70 + lines * lineHeight; // Base height + additional height for lines
   }
 }
