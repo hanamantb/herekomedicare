@@ -94,3 +94,6 @@ button{
 /deep/.ag-theme-alpine .ag-ltr .ag-cell{
     line-height: 24px !important;
 }
+/deep/html.cdk-global-scrollblock{
+    top: 0 !important
+}
