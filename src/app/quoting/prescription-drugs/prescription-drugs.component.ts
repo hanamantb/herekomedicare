@@ -19,6 +19,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   benefits: boolean = false
   optnpkShow: boolean = false
   isChecked:boolean =false
+  sideopen:boolean =true
   checkedData:any=[];
   value = 4.5;
   stars: number[] = [1, 2, 3, 4, 5];
@@ -29,8 +30,9 @@ export class PrescriptionDrugsComponent implements OnInit {
   myControl = new FormControl();
   couties: any
   fips: any
+  lis: any
   selectedCountie:any;
-  fontStyle:any ="MAPD"
+  planTypes:any ="PLAN_TYPE_MAPD"
   // @Output() menuClicked = new EventEmitter();
    response: any=[];
   frequency=[{
@@ -65,6 +67,9 @@ export class PrescriptionDrugsComponent implements OnInit {
   ngOnInit(): void {
     this.zipcode = localStorage.getItem('zipcode')
     this.fips = localStorage.getItem('fips')
+    this.lis = localStorage.getItem('lis')
+    this.zipcode += ' '+localStorage.getItem('countie')
+    console.log('zipcode',this.zipcode)
     this.getPlans(0)
 
   }
@@ -93,8 +98,11 @@ export class PrescriptionDrugsComponent implements OnInit {
   }
 
   cart(plan:any) {
+    if (!plan.cartAdded){
+      this.sharedService.incrementNumber();
+    }
     plan.cartAdded =true
-    this.sharedService.incrementNumber();
+
   }
 
   selected: boolean = false;
@@ -126,9 +134,7 @@ this.updateApidrugs(drugsArray)
       lis: lis
     };
     const plan_type = [
-        "PLAN_TYPE_MA",
-        "PLAN_TYPE_MAPD",
-        "PLAN_TYPE_PDP"
+  this.planTypes
       ];
     const snp_type=[
       "SNP_TYPE_NOT_SNP",
@@ -214,13 +220,15 @@ this.updateApidrugs(drugsArray)
 
   planType(event: any) {
     console.log(event.value)
-    const plans =this.filtrPlans.filter((x:any)=>
-      x.planType === event.value
-    )
-    this.plans = plans
+    this.planTypes = event.value
+    this.getPlans(0)
+    // const plans =this.filtrPlans.filter((x:any)=>
+    //   x.planType === event.value
+    // )
+    // this.plans = plans
   }
   onPageChange(event: any) {
-    const startIndex = event.pageIndex + 1;
+    const startIndex = event.pageIndex;
     const endIndex = startIndex + event.pageSize;
     this.getPlans(startIndex)
     console.log('startIndex', event.pageIndex)
@@ -237,5 +245,13 @@ this.updateApidrugs(drugsArray)
       })
 
     });
+  }
+
+  navHome() {
+    this.route.navigate([''])
+  }
+
+  sidebar() {
+    this.sideopen = !this.sideopen
   }
 }

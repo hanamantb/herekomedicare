@@ -1,27 +1,28 @@
 <div class="container " >
   <div class="d-flex position-relative">
-    <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px;">
+    <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px;"  *ngIf="sideopen">
       <app-sidebar [planCount]="plans.length"></app-sidebar>
     </div>
-    <div class="col-9 mt-2">
+    <div class="col mt-2 p-2">
       <div class="p-2 plan-presentation-top">
         <div class="d-flex justify-content-center" style="background-color: white">
           <div class="col-1 d-flex align-items-center">
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" (click)="sidebar()">
               <mat-icon (click)="onMenuClicked()">menu</mat-icon>
             </button>
           </div>
           <div class="d-flex col-5 align-items-center ">
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" >
               <mat-icon> location_on</mat-icon>
             </button>
             <form class="example-form py-2">
-              <input type="text" class="mat-in"
-                     matInput
-                     (input)="getCounties($event)"
-                     (change)="zipChange()"
-                     [(ngModel)]= 'zipcode'
-                     >
+              {{this.zipcode}}
+<!--              <input type="text" class="mat-in"-->
+<!--                     matInput-->
+<!--                     (input)="getCounties($event)"-->
+<!--                     (change)="zipChange()"-->
+<!--                     [(ngModel)]= 'zipcode'-->
+<!--                     >-->
 <!--              <mat-autocomplete #auto="matAutocomplete"-->
 <!--                                [displayWith]="_displayplantname">-->
 <!--                <mat-option *ngFor="let option of couties" [value]="option">-->
@@ -33,26 +34,26 @@
           </div>
           <div class="col-3 d-flex">
             <p class="lis d-flex align-items-center">LIS</p>
-            <mat-select placeholder="LIS" value="none" class="mt-2">
+            <mat-select placeholder="LIS" value="LIS_NO_HELP"  [(ngModel)]="lis"  class="mt-2">
               <mat-option value="LIS_NO_HELP">
                 None
               </mat-option>
-              <mat-option value="25">
+              <mat-option value="LIS_LEVEL_4_25">
                 25%
               </mat-option>
-              <mat-option value="50">
+              <mat-option value="LIS_LEVEL_4_50">
                 50%
               </mat-option>
-              <mat-option value="75">
+              <mat-option value="LIS_LEVEL_4_75">
                 75%
               </mat-option>
-              <mat-option value="100">
+              <mat-option value="LIS_LEVEL_4_100">
                 100%
               </mat-option>
             </mat-select>
           </div>
           <div class="col d-flex justify-content-end">
-            <button class="plan-edit-btn" mat-icon-button color="primary">
+            <button class="plan-edit-btn" mat-icon-button color="primary" (click)="navHome()">
               <mat-icon> edit</mat-icon>
             </button>
           </div>
@@ -61,10 +62,10 @@
       <div class="plan-listing-wrapper">
       <div class="p-2">
         <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style" (change)="planType($event)"
-                                 [(ngModel)]="fontStyle">
-          <mat-button-toggle value="MAPD">Medicare Advantage & Prescription plans</mat-button-toggle>
-          <mat-button-toggle value="MA" ta>Medicare Advantage plans (Part C)</mat-button-toggle>
-          <mat-button-toggle value="PDP">Prescriptions (Plan D)</mat-button-toggle>
+                                 [(ngModel)]="planTypes">
+          <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription plans</mat-button-toggle>
+          <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage plans (Part C)</mat-button-toggle>
+          <mat-button-toggle value="PLAN_TYPE_PDP">Prescriptions (Plan D)</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
       <!--          <div class="d-flex p-2">-->
@@ -576,7 +577,7 @@
       </div>
         <mat-paginator [length]="response.total_results"
                        [pageSize]="10"
-                       [pageSizeOptions]="[10, 25, 100]"
+                       [pageSizeOptions]="[10]"
                        (page)="onPageChange($event)"
                        showFirstLastButtons
                        aria-label="Select page">

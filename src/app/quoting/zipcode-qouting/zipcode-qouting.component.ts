@@ -62,6 +62,9 @@ export class ZipcodeQoutingComponent implements OnInit {
         width: '600px'
       })
     } else {
+      console.log('counnnnnnnnnnn',this.selectedCountie)
+      const countie = this.selectedCountie.name +','+this.selectedCountie.state
+      localStorage.setItem('countie',countie)
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
       } else {
