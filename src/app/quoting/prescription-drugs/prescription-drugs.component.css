@@ -249,7 +249,7 @@ mat-select{
 }
 .monthly-premium, .estimated-annual-cost {
   font-size: 38px;
-  color: #ed2069;
+  color: #30b1ff;
   font-weight: 300;
 }
 .monthly-premium{
@@ -299,9 +299,10 @@ mat-select{
   .item-optional-packages span.rate {
     font-weight: 500;
   }
-.additional-benefits-btn{
-    cursor: pointer;
-    color: blue;
+.additional-benefits-btn {
+  cursor: pointer;
+  color: #3c6f8e;
+  text-decoration: underline
 }
 .form-check-input{
     margin-top: 1px;
@@ -313,7 +314,16 @@ mat-select{
     font-weight: 300;
     border-radius: 2px;
     width: 100%;
+    padding: 0 30px
 }
 h1{
     margin-bottom: 0;
+}
+.documents-dropdown button{
+    font-weight: 400 !important;
+    font-size: 14px
+}
+.optional-packages-btn p{
+    font-size: 14px;
+    font-weight: normal;
 }
