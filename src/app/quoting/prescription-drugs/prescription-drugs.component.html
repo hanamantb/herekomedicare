@@ -272,38 +272,38 @@
             </div>
           </div>
           <div class="card-footer">
-            <div class="d-flex align-items-center">
-              <div class="col-1 form-check">
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
                        [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
                 <label class="form-check-label" for="flexCheckChecked">
                   Compare
                 </label>
               </div>
-              <div class=" col-3 ms-2">
+              <div class="ms-2 optional-packages-btn">
                 <span class="d-flex justify-content-center" (click)="showOp(plan)">
                   <p>Optional Packages</p>
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </span>
               </div>
-              <div class="col-1">
-                <div class="dropdown">
+              <div>
+                <div class="dropdown documents-dropdown">
                   <button class="btn  dropdown-toggle" style="padding: 0" type="button"
                           id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                    SBC
+                    Documents
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">SBC</a></li>
+                    <li><a class="dropdown-item" href="#">Documents</a></li>
                   </ul>
                 </div>
               </div>
-              <div class="d-flex col-2 additional-benefits-btn">
+              <div class="d-flex additional-benefits-btn">
                 <a (click)="benefitShow(plan)">
                   Additional
                   Benefits
                 </a>
               </div>
-              <div class=" d-flex col-2">
+              <div class=" d-flex">
                 <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
                 <!--                <label  class="ms-2"> Additional Details</label>-->
                 <button mat-raised-button class="plan-details-btn">
@@ -311,8 +311,8 @@
                   Plan Details
                 </button>
               </div>
-              <div class=" d-flex col-3 justify-content-end">
-                <button mat-raised-button color="primary" class="item-add-to-cart"
+              <div class=" d-flex justify-content-end">
+                <button mat-raised-button color="primary" class="item-add-to-cart px-5"
                         [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">
                   Add to cart
                 </button>
