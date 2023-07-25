@@ -77,7 +77,7 @@ export class AddPharmacyComponent implements OnInit {
     console.log("laassssss", data)
     console.log("laassssss", event.target.checked)
     if (data.checked == true) {
-      if (this.rowData.length >= 6){
+      if (this.rowData.length >= 5){
         this.dialog.open(ErrorPopupComponent,{
           data:{
             customMsg:'You have already selected 6 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
@@ -168,7 +168,7 @@ export class AddPharmacyComponent implements OnInit {
         street: '',
         distance_miles: ''
       }
-      if (this.rowData.length >= 6){
+      if (this.rowData.length >= 5){
         this.dialog.open(ErrorPopupComponent,{
           data:{
             customMsg:'You have already selected 6 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})

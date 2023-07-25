@@ -1,7 +1,7 @@
 <div class="container " >
   <div class="d-flex position-relative">
     <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px;"  *ngIf="sideopen">
-      <app-sidebar [planCount]="plans.length"></app-sidebar>
+      <app-sidebar [planCount]="plans.length" [totalCount]="response.total_results"></app-sidebar>
     </div>
     <div class="col mt-2 p-2">
       <div class="p-2 plan-presentation-top">
@@ -82,7 +82,7 @@
       <!--            </div>-->
       <div class="section p-2">
         <p class="p-2">
-          Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{plans.length}}</span> Medicare Advantage &
+          Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{response.total_results}}</span> Medicare Advantage &
           Prescription Plans
         </p>
 
