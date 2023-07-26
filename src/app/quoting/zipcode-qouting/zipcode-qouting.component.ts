@@ -19,7 +19,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   zipcode: any;
   zipcodeForm!: FormGroup;
   couties: any = []
-  selectedCountie: any;
+  selectedCountie: any=[];
   enteredValue: string = '';
   lis  ="LIS_NO_HELP"
 
@@ -57,7 +57,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   navToPlans() {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
-    if (!this.zipcodeForm.valid) {
+    if (!this.zipcodeForm.valid || this.couties.length === 0) {
       this.dialog.open(ErrorPopupComponent, {
         data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
         width: '600px'

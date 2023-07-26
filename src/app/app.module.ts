@@ -38,6 +38,7 @@ import { ActionsCellRendererComponent } from './quoting/add-drug/actions-cell-re
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.component";
+import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.component";
 
 
 
@@ -58,6 +59,7 @@ import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.comp
     CartHomeComponent,
     EmailProposalComponent,
     ActionsCellRendererComponent,
+    PlanDetailsComponent
 
   ],
   imports: [
@@ -85,7 +87,7 @@ import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.comp
     MatPaginatorModule,
     MatProgressSpinnerModule
   ],
-  exports:[MatTabsModule],
+  exports:[MatTabsModule,MatIconModule],
   providers: [HttpClientModule,SharedService],
   bootstrap: [AppComponent],
   entryComponents:[
