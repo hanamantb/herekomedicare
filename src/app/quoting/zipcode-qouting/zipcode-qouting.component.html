@@ -53,7 +53,7 @@
           <p>Low Income Subsidy (LIS) </p>
         </div>
         <div class="col-3">
-          <mat-select placeholder="LIS" value="LIS_NO_HELP" (selectionChange)="lisChange($event)" opened >
+          <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis"  opened >
             <mat-option value="LIS_NO_HELP">
               None
             </mat-option>
