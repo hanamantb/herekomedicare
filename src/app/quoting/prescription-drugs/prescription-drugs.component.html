@@ -119,7 +119,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row p-2" *ngIf="plan.showmore">
+              <div class="row py-2 px-4" *ngIf="plan.showmore">
                 <div class="col s6 m4 l4">
                   <h6>Office Visits</h6>
                   <div class="clear"></div>
@@ -271,7 +271,7 @@
 
             </div>
           </div>
-          <div class="card-footer">
+          <div class="card-footer pe-2">
             <div class="d-flex align-items-center justify-content-between">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
@@ -311,7 +311,7 @@
                   Plan Details
                 </button>
               </div>
-              <div class=" d-flex justify-content-end">
+              <div class=" d-flex justify-content-end listing-to-cart-btn w-100">
                 <button mat-raised-button color="primary" class="item-add-to-cart px-5"
                         [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">
                   Add to cart
