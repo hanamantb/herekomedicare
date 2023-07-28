@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan-details.component.css']
 })
 export class PlanDetailsComponent implements OnInit {
+  panelOpenState = false;
 
   constructor() { }
 
