@@ -32,7 +32,7 @@
       <mat-divider class="mb-3"></mat-divider>
       <div *ngIf="itemName.length != 0" class="drug-dosage-info">
         <div class="d-flex col-12 p-2 px-3 drug-dosage-head">
-          <h3>Edit the information to match your prescription.</h3>
+          <h3>You can edit the information below.</h3>
         </div>
         <div class="px-3 py-3 selected-drug-label">
           Selected Drug : <strong>{{itemName}}</strong>
@@ -84,7 +84,7 @@
       </div>
       <div *ngIf="rowData.length !=0" class="py-2">
         <div class="d-flex col-12 pb-2">
-          <h3 class="mb-0 prescription-drugs-title">Your Prescriptions</h3>
+          <h3 class="mb-0 prescription-drugs-title">Your Prescription Drugs</h3>
         </div>
         <div class="d-flex col-12 pb-2 justify-content-center">
           <ag-grid-angular style="width: 100%;height: auto" class="ag-theme-alpine"
@@ -112,7 +112,7 @@
 <ng-template #generic >
   <div class="container-fluid">
 <h3 style="font-weight: 500">You have selected {{itemName}}</h3>
-    <p>A lower generic is available for the drug you selected</p>
+    <p>A lower generic is available for the drug you selected.</p>
     <div class="d-inline-flex py-2 w-100 selected-drug-radio">
       <div class="d-inline-flex py-2 keep-the-drug" >
         <input type="radio" class="radio me-2" checked name="radioGroup" (change)="rxcuichange(item)" value="{{item}}"> Keep {{itemName}}
@@ -123,7 +123,7 @@
     </div>
     <div class="d-flex py-2 justify-content-end drug-popup-action">
       <button mat-raised-button class="px-2 me-2"  (click)="cancel()">Cancel</button>
-      <button mat-raised-button class="px-2" color="primary"  (click)="cancel()">Save</button>
+      <button mat-raised-button class="px-2 ms-3" color="primary"  (click)="cancel()">Continue</button>
     </div>
   </div>
 </ng-template>
