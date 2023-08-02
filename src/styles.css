@@ -49,7 +49,7 @@ p{
   min-height:100vh
 
 }
-.container:not(.email-proposal-container) {
+.container{
   max-width: 100% !important;
 }
 /*.mat-expansion-panel-body{*/
