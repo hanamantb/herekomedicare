@@ -118,12 +118,12 @@ export class AddDrugComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" (click)="delete($event)" />' +
-      '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
+    return '<i class="material-icons action-btns" (click)="delete($event)">delete</i>' +
+      '<i class="material-icons action-btns">edit</i>';
   };
 
   colDef6 = function () {
-    return '<img src="assets/edits.png" height="30" style="margin-top: -10px;" />';
+    return '<i class="material-icons action-btns">edit</i>';
   };
 
   delete(event: any) {

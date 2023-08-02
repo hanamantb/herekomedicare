@@ -168,3 +168,9 @@ button{
     overflow: inherit;
     white-space: normal;
 }
+.action-btns {
+  font-size: 21px;
+  color: #3f51b5;
+  cursor: pointer;
+  margin-right: 10px;
+}

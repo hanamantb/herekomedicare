@@ -47,7 +47,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<img src="assets/delete.png" height="30" style="margin-top: -10px;" />';
+    return '<i class="material-icons action-btns">delete</i>';
   };
   columnDefs = [
     {
