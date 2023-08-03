@@ -95,7 +95,7 @@
             <div class="row">
               <div class="col-9">
                 <div class="row">
-                  <div class="col-2"  style="display: flex; align-items: center;justify-content: center">
+                  <div class="col-2" style="display: flex; align-items: center;justify-content: center">
                     <img src="data:image/png;base64,{{plan.logo}}" alt="" style="width: 90%">
                   </div>
                   <div class="col-10 p-2 plan-head">
@@ -112,143 +112,148 @@
                       <h2>{{ benefits.attributeName }}</h2>
                       <p *ngIf="benefits.apiParameter != 'rating'">{{benefits.displayValue}}</p>
                       <div class="star-rating" *ngIf="benefits.apiParameter === 'rating'">
-                                        <span *ngFor="let star of stars"
-                                              [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
+                        <span *ngFor="let star of stars"
+                              [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
                       </div>
                     </div>
 
                   </div>
                 </div>
                 <div class="row p-2" *ngIf="plan.showmore">
-                  <div class="col s6 m4 l4" >
+                  <div class="col s6 m4 l4">
                     <h6>Office Visits</h6>
                     <div class="clear"></div>
                     <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Office_Visits']">
-                    <bdo>{{benefits.attributeName}}</bdo>
+                      <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
-                  </span>
-<!--                    <span class="sub-prop">-->
-<!--                    <bdo>Specialist Visit</bdo>-->
-<!--                      {{plan.plancompare.preventiveCare}}-->
-<!--                  </span>-->
-<!--                    <span class="sub-prop">-->
-<!--                    <bdo>Preventive Care/Screening Immunization</bdo>-->
-<!--                      {{plan.plancompare.preventiveCare}}-->
-<!--                  </span>-->
+                    </span>
+                    <!--                    <span class="sub-prop">-->
+                    <!--                    <bdo>Specialist Visit</bdo>-->
+                    <!--                      {{plan.plancompare.preventiveCare}}-->
+                    <!--                  </span>-->
+                    <!--                    <span class="sub-prop">-->
+                    <!--                    <bdo>Preventive Care/Screening Immunization</bdo>-->
+                    <!--                      {{plan.plancompare.preventiveCare}}-->
+                    <!--                  </span>-->
                   </div>
                   <div class="col s6 m4 l4">
                     <h6>Emergency Services</h6>
                     <div class="clear"></div>
                     <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Emergency_Services']">
-                    <bdo>{{benefits.attributeName}}</bdo>
+                      <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
-                  </span>
+                    </span>
                   </div>
-<!--                    <span class="sub-prop">-->
-<!--                    <bdo>Emergency Room</bdo>-->
-<!--                      {{plan.plancompare.preventiveCare}}-->
-<!--                  </span>-->
-<!--                    <span class="sub-prop">-->
-<!--                    <bdo>Urgent Care</bdo>-->
-<!--                      {{plan.plancompare.urgentCare}}-->
-<!--                  </span>-->
-<!--                    <span class="sub-prop">-->
-<!--                    <bdo>Ambulance</bdo>-->
-<!--                      {{plan.plancompare.ambulance}}-->
-<!--                  </span>-->
-<!--                  </div>-->
+                  <!--                    <span class="sub-prop">-->
+                  <!--                    <bdo>Emergency Room</bdo>-->
+                  <!--                      {{plan.plancompare.preventiveCare}}-->
+                  <!--                  </span>-->
+                  <!--                    <span class="sub-prop">-->
+                  <!--                    <bdo>Urgent Care</bdo>-->
+                  <!--                      {{plan.plancompare.urgentCare}}-->
+                  <!--                  </span>-->
+                  <!--                    <span class="sub-prop">-->
+                  <!--                    <bdo>Ambulance</bdo>-->
+                  <!--                      {{plan.plancompare.ambulance}}-->
+                  <!--                  </span>-->
+                  <!--                  </div>-->
                   <div class="col s6 m4 l4">
                     <h6>Outpatient Services</h6>
                     <div class="clear"></div>
                     <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Outpatient_Services']">
-                    <bdo>{{benefits.attributeName}}</bdo>
+                      <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
-                  </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex col-12 justify-content-center p-2">
+                  <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore" class="item-show-btn">
+                    Show more
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </button>
+                </div>
+                <div class="d-flex col-12 justify-content-center p-2">
+                  <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)" class="item-show-btn">
+                    Show Less
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                  </button>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <h6 class="add-benefit-head ms-4">Additional Benefits</h6>
+                  </div>
+                </div>
+                <div class="row px-3">
+                  <div class="col" *ngIf="plan.vision =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Vision
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.dental =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Dental
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.hearing =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Hearing
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.transportation =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Transportation
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.fitnessbenefits =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Fitness benefits
+                    </button>
+                  </div>
+                </div>
+                <div class="row px-3 " *ngIf="plan.benefits">
+                  <div class="col" *ngIf="plan.worldwideEmergency =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Worldwide emergency
+                    </button>
+                  </div>
+                  <div class="col add-benefit" *ngIf="plan.telehealth =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Telehealth
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.overthecounterdrugs =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Over-the-counter drugs
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.inhomesupport =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      In-home support
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.homesafetydevicesmodifications =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Home safety devices & modifications
+                    </button>
+                  </div>
+                  <div class="col" *ngIf="plan.emergencyresponseDevice =='true'">
+                    <button mat-icon-button class="benfit-btn">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      Emergency response device
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div class="d-flex col-12 justify-content-center p-2">
-                <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore" class="item-show-btn">
-                  Show more
-                  <mat-icon>keyboard_arrow_down</mat-icon>
-                </button>
-              </div>
-              <div class="d-flex col-12 justify-content-center p-2">
-                <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)" class="item-show-btn">
-                  Show Less
-                  <mat-icon>keyboard_arrow_up</mat-icon>
-                </button>
-              </div>
-              <div class="row px-3">
-                <div class="col" *ngIf="plan.vision =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Vision
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.dental =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Dental
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.hearing =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Hearing
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.transportation =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Transportation
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.fitnessbenefits =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Fitness benefits
-                  </button>
-                </div>
-              </div>
-              <div class="row px-3 " *ngIf="plan.benefits">
-                <div class="col" *ngIf="plan.worldwideEmergency =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Worldwide emergency
-                  </button>
-                </div>
-                <div class="col add-benefit" *ngIf="plan.telehealth =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Telehealth
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.overthecounterdrugs =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Over-the-counter drugs
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.inhomesupport =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    In-home support
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.homesafetydevicesmodifications =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Home safety devices & modifications
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.emergencyresponseDevice =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Emergency response device
-                  </button>
-                </div>
-              </div>
-            </div>
             <div class="col-3 premium">
               <div class="card p-2">
                 <div class="card-title">
@@ -294,10 +299,9 @@
                   </ul>
                 </div>
               </div>
-              <div class="d-flex additional-benefits-btn">
+              <div class="d-flex drug-cost-details-btn">
                 <a (click)="benefitShow(plan)">
-                  Additional
-                  Benefits
+                  Drugs Covered
                 </a>
               </div>
               <div class=" d-flex">
