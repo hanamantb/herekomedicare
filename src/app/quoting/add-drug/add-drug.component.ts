@@ -104,7 +104,7 @@ export class AddDrugComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const drugs = localStorage.getItem('drugs')
+    const drugs = sessionStorage.getItem('drugs')
     let drugsArray: any[] = [];
     if (drugs) {
       drugsArray = JSON.parse(drugs);
@@ -133,7 +133,7 @@ export class AddDrugComponent implements OnInit {
   addPharmacy() {
     this.dialog.closeAll()
     console.log('delete-rowData', this.rowData)
-    localStorage.setItem('drugs', JSON.stringify(this.rowData))
+    sessionStorage.setItem('drugs', JSON.stringify(this.rowData))
     // this.updateApidrugs(this.rowData)
     // localStorage.setItem('drugs',this.rowData)
     this.quoteDetailsService.setdrug(this.rowData)

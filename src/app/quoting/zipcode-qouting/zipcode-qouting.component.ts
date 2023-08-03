@@ -7,6 +7,7 @@ import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {CommonService} from "../../services/common.service";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
+import {min} from "rxjs";
 
 
 @Component({
@@ -29,7 +30,7 @@ export class ZipcodeQoutingComponent implements OnInit {
               private http: HttpClient,
               public fb: FormBuilder) {
     this.zipcodeForm = this.fb.group({
-      myControl: [null, [Validators.required, Validators.minLength(5), Validators.pattern("^[0-9]*$")]],
+      myControl: [null, [Validators.required, Validators.minLength(5), Validators.min(1), Validators.pattern("^[0-9]*$")]],
     })
   }
 
@@ -39,7 +40,7 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   ngOnInit(): void {
     // localStorage.clear()
-    const zip = localStorage.getItem('zipcode')
+    const zip = sessionStorage.getItem('zipcode')
     this.zipcodeForm.patchValue({
       myControl: zip
     })
@@ -56,8 +57,8 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   navToPlans() {
     // this.route.navigate(['Plans'])
-    console.log('checked---', this.isChecked)
-    if (!this.zipcodeForm.valid || this.couties.length === 0) {
+    console.log('selectedCountie---', this.selectedCountie)
+    if (!this.zipcodeForm.valid || this.selectedCountie.length === 0) {
       this.dialog.open(ErrorPopupComponent, {
         data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
         width: '600px'
@@ -65,8 +66,8 @@ export class ZipcodeQoutingComponent implements OnInit {
     } else {
 
       const countie = this.selectedCountie.name +', '+this.selectedCountie.state
-      localStorage.setItem('countie',countie)
-      localStorage.setItem('lis',this.lis)
+      sessionStorage.setItem('countie',countie)
+      sessionStorage.setItem('lis',this.lis)
       console.log('lis----',this.lis)
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
@@ -82,7 +83,7 @@ export class ZipcodeQoutingComponent implements OnInit {
       if (this.couties && this.couties.length === 1) {
         this.selectedCountie = this.couties[0]
         console.log('selectedCountie', this.selectedCountie)
-        localStorage.setItem('fip', this.selectedCountie.fips)
+        sessionStorage.setItem('fip', this.selectedCountie.fips)
       }
       console.log('Counties', response.data)
     })
@@ -92,7 +93,7 @@ export class ZipcodeQoutingComponent implements OnInit {
     if (event.target.value.length === 5) {
       console.log('event', event.target.value)
       this.selectedCountie = event.target.value
-      localStorage.setItem('zipcode', event.target.value)
+      sessionStorage.setItem('zipcode', event.target.value)
       this.getCounties(event.target.value)
     } else {
       this.couties = []
@@ -102,7 +103,7 @@ export class ZipcodeQoutingComponent implements OnInit {
   }
 
   _displayplantname(option: any) {
-    const zip = localStorage.getItem('zipcode')
+    const zip = sessionStorage.getItem('zipcode')
     let zipString: any
     if (zip) {
       zipString = JSON.parse(zip);
@@ -114,7 +115,7 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   county(event: any) {
     console.error('event:', event);
-    localStorage.setItem('fip', event.value.fips)
+    sessionStorage.setItem('fip', event.value.fips)
   }
 
   // lisChange(event: any) {

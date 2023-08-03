@@ -18,7 +18,9 @@
               The entered ZIP Code is not valid.
             </div>
             <br>
-            <mat-select class="mt-2" placeholder="Select your county"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
+            <br>
+            <label  *ngIf="couties.length > 0">County,State</label>
+            <mat-select class="mt-2" placeholder="Select your countie"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
               <mat-option *ngFor="let option of couties" [value]="option">
                 {{option.name}},{{option.state}}
               </mat-option>
@@ -48,9 +50,9 @@
       <br>
       <div class="d-flex p-2 mb-1">
         <div class="col-3 d-flex align-items-center"
-             matTooltip="Low Income Subsidy (LIS) helps people with limited income and resources pay Medicare prescription drug program costs, like premiums, deductibles, and coinsurance."
+
              matTooltipPosition="left">
-          <p>Low Income Subsidy (LIS) </p>
+          <p>Low Income Subsidy (LIS)  </p> &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="Low Income Subsidy (LIS) helps people with limited income and resources pay Medicare prescription drug program costs, like premiums, deductibles, and coinsurance." >info</mat-icon>
         </div>
         <div class="col-3">
           <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis"  opened >
@@ -71,12 +73,8 @@
             </mat-option>
           </mat-select>
         </div>
-<!--        <div class="col-2 ms-4 s">-->
-<!--          <p style="text-align: end;">See Plans for </p>-->
-<!--        </div>-->
-<!--        <div class=" d-flex col justify-content-start">-->
-<!--          <input type="radio" name="optradio" checked class="seeplan">2013-->
-<!--          <input type="radio" name="optradio" class="seeplan">2014-->
+
+
           <!--          <mat-select placeholder="Effective Year" value="2023" >-->
           <!--            <mat-option value="2023">-->
           <!--              2023-->
@@ -85,8 +83,16 @@
           <!--              2024-->
           <!--            </mat-option>-->
           <!--          </mat-select>-->
-<!--        </div>-->
 
+      </div>
+      <div class="d-flex mt-1">
+        <div class="col-3 p-2 align-items-center">
+          <p >Effective Year </p>
+        </div>
+        <div class=" col-4 mt-2 d-flex  justify-content-start">
+          <input type="radio" name="optradio"  class="seeplan">2023
+          <input type="radio" name="optradio" checked class="seeplan">2024
+        </div>
       </div>
 
       <div class="col-12">
@@ -101,14 +107,11 @@
           <!--            </div>-->
 
           <div class=" d-flex body p-2">
-            <div class="col-8 d-flex align-items-center">
-              <p>Drugs in your medicine cabinet will be considered while generating quotes.
-                <br>
+            <div class="col-6 d-flex align-items-center">
+              <p>
                 Would you like to add/change prescription drugs in your medicine cabinet?</p>
             </div>
             <div class="col-4 ms-2">
-              <br>
-              <br>
               NO &nbsp;
               <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
             </div>

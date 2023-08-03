@@ -24,7 +24,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   value = 4.5;
   stars: number[] = [1, 2, 3, 4, 5];
   selectedCardIndex:any;
-  plans:any=[];
+  plans:any=[  ];
   filtrPlans:any=[];
   zipcode:any
   myControl = new FormControl();
@@ -65,10 +65,10 @@ export class PrescriptionDrugsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.zipcode = localStorage.getItem('zipcode')
-    this.fips = localStorage.getItem('fips')
-    this.lis = localStorage.getItem('lis')
-    this.zipcode += ' '+localStorage.getItem('countie')
+    this.zipcode = sessionStorage.getItem('zipcode')
+    this.fips = sessionStorage.getItem('fips')
+    this.lis = sessionStorage.getItem('lis')
+    this.zipcode += ' '+sessionStorage.getItem('countie')
     console.log('lis',this.lis)
     this.sharedService.benefitcheck$.subscribe((value:any) => {
       this.benefitChange(value)
@@ -116,11 +116,11 @@ export class PrescriptionDrugsComponent implements OnInit {
 
   getPlans(page:any){
     const spine=this.spinner.start()
-    const zip = localStorage.getItem('zipcode')
-    const fips = localStorage.getItem('fip')
-    const drugs = localStorage.getItem('drugs')
-    const npis = localStorage.getItem('pharmacies')
-    const lis = localStorage.getItem('lis')
+    const zip = sessionStorage.getItem('zipcode')
+    const fips = sessionStorage.getItem('fip')
+    const drugs = sessionStorage.getItem('drugs')
+    const npis = sessionStorage.getItem('pharmacies')
+    const lis = sessionStorage.getItem('lis')
     let npiArray: any[] = [];
     let drugsArray: any[] = [];
     if (npis) {
@@ -187,7 +187,7 @@ this.updateApidrugs(drugsArray)
   }
 
   _displayplantname(countie: any) {
-    const zip = localStorage.getItem('displayzipcode')
+    const zip = sessionStorage.getItem('displayzipcode')
     if (countie) {
       return   zip +''
     }
@@ -197,7 +197,7 @@ this.updateApidrugs(drugsArray)
   getCounties(event: any) {
     if (event.target.value.length === 5) {
       this.selectedCountie =event.target.value
-      localStorage.setItem('zipcode',event.target.value)
+      sessionStorage.setItem('zipcode',event.target.value)
       this.commonservice.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
       })
@@ -263,5 +263,15 @@ this.updateApidrugs(drugsArray)
     this.plans.forEach((x:any)=>{
       x.benefits = value
     })
+  }
+
+  deducable(attributes:any){
+    console.log('attributes',attributes)
+  }
+
+
+  lisChange() {
+    sessionStorage.setItem('lis',this.lis)
+    this.getPlans(0)
   }
 }

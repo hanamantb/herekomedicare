@@ -1,6 +1,10 @@
-<div class="container " >
+<div class="container ">
   <div class="d-flex position-relative">
-    <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px;"  *ngIf="sideopen">
+
+
+
+
+    <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px; overflow-y: auto;overflow-x: hidden" *ngIf="sideopen">
       <app-sidebar [planCount]="plans.length" [totalCount]="response.total_results"></app-sidebar>
     </div>
     <div class="col mt-2 p-2">
@@ -12,29 +16,29 @@
             </button>
           </div>
           <div class="d-flex col-5 align-items-center ">
-            <button mat-icon-button color="primary" >
+            <button mat-icon-button color="primary">
               <mat-icon> location_on</mat-icon>
             </button>
             <form class="example-form py-2">
               {{this.zipcode}}
-<!--              <input type="text" class="mat-in"-->
-<!--                     matInput-->
-<!--                     (input)="getCounties($event)"-->
-<!--                     (change)="zipChange()"-->
-<!--                     [(ngModel)]= 'zipcode'-->
-<!--                     >-->
-<!--              <mat-autocomplete #auto="matAutocomplete"-->
-<!--                                [displayWith]="_displayplantname">-->
-<!--                <mat-option *ngFor="let option of couties" [value]="option">-->
-<!--                  {{selectedCountie}}-{{option.name}},{{option.state}}-->
-<!--                </mat-option>-->
-<!--              </mat-autocomplete>-->
+              <!--              <input type="text" class="mat-in"-->
+              <!--                     matInput-->
+              <!--                     (input)="getCounties($event)"-->
+              <!--                     (change)="zipChange()"-->
+              <!--                     [(ngModel)]= 'zipcode'-->
+              <!--                     >-->
+              <!--              <mat-autocomplete #auto="matAutocomplete"-->
+              <!--                                [displayWith]="_displayplantname">-->
+              <!--                <mat-option *ngFor="let option of couties" [value]="option">-->
+              <!--                  {{selectedCountie}}-{{option.name}},{{option.state}}-->
+              <!--                </mat-option>-->
+              <!--              </mat-autocomplete>-->
             </form>
 
           </div>
           <div class="col-3 d-flex">
             <p class="lis d-flex align-items-center">LIS</p>
-            <mat-select placeholder="LIS" value="LIS_NO_HELP"  [(ngModel)]="lis"  class="mt-2">
+            <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis" (selectionChange)="lisChange()" class="mt-2">
               <mat-option value="LIS_NO_HELP">
                 None
               </mat-option>
@@ -60,526 +64,547 @@
         </div>
       </div>
       <div class="plan-listing-wrapper">
-      <div class="p-2">
-        <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style" (change)="planType($event)"
-                                 [(ngModel)]="planTypes">
-          <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription plans</mat-button-toggle>
-          <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage plans (Part C)</mat-button-toggle>
-          <mat-button-toggle value="PLAN_TYPE_PDP">Prescriptions (Plan D)</mat-button-toggle>
-        </mat-button-toggle-group>
-      </div>
-      <!--          <div class="d-flex p-2">-->
-      <!--                <div class="col-md-4">-->
-      <!--                    <button class="top-btns" style="background-color: white">Medicare Advantage & Prescription plans-->
-      <!--                    </button>-->
-      <!--                </div>-->
-      <!--                <div class="col-md-4">-->
-      <!--                    <button class="top-btns">Medicare Advantage plans (Part C)</button>-->
-      <!--                </div>-->
-      <!--                <div class="col-md-4">-->
-      <!--                    <button class="top-btns">Prescriptions (Plan D)</button>-->
-      <!--                </div>-->
-      <!--            </div>-->
-      <div class="section p-2">
-        <p class="p-2">
-          Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{response.total_results}}</span> Medicare Advantage &
-          Prescription Plans
-        </p>
+        <div class="p-2">
+          <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style"
+                                   (change)="planType($event)"
+                                   [(ngModel)]="planTypes">
+            <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription plans</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage plans (Part C)</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_PDP">Prescriptions (Plan D)</mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+        <!--          <div class="d-flex p-2">-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <button class="top-btns" style="background-color: white">Medicare Advantage & Prescription plans-->
+        <!--                    </button>-->
+        <!--                </div>-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <button class="top-btns">Medicare Advantage plans (Part C)</button>-->
+        <!--                </div>-->
+        <!--                <div class="col-md-4">-->
+        <!--                    <button class="top-btns">Prescriptions (Plan D)</button>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <div class="section p-2">
+          <p class="p-2">
+            Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span
+            style="font-weight: bold;font-size: large">{{response.total_results}}</span> Medicare Advantage &
+            Prescription Plans
+          </p>
 
 
-        <div class="card mb-3 plan-item-card" *ngFor="let plan of plans ; let i = index">
-          <div class="row">
-            <div class="col-9">
-              <div class="row">
-                <div class="col-2">
-                  <img src="../../../assets/cigna.png" alt="" style="height: 100px;">
-                </div>
-                <div class="col-10 p-2 plan-head">
-                  <h1 style="font-weight: 300;">{{plan.planName}}</h1>
-                  <div class="d-flex">
-                    <p class="mb-0">Plan ID:{{plan.planID}}</p>
-                    <button class="ms-2">{{plan.planCategory}}</button>
+          <div class="card mb-3 plan-item-card" *ngFor="let plan of plans ; let i = index">
+            <div class="row">
+              <div class="col-9">
+                <div class="row">
+                  <div class="col-2"  style="display: flex; align-items: center;justify-content: center">
+                    <img src="data:image/png;base64,{{plan.logo}}" alt="" style="width: 90%">
+                  </div>
+                  <div class="col-10 p-2 plan-head">
+                    <h1 style="font-weight: 300;">{{plan.planName}}</h1>
+                    <div class="d-flex">
+                      <p class="mb-0">Plan ID:{{plan.planID}}</p>
+                      <button class="ms-2">{{plan.planCategory}}</button>
+                    </div>
                   </div>
                 </div>
+                <div class="row p-2 base-dtl mx-0">
+                  <div class="col" *ngFor="let benefits of  plan.attributes['Key_benefits']">
+                    <div class="attribute-name">
+                      <h2>{{ benefits.attributeName }}</h2>
+                      <p *ngIf="benefits.apiParameter != 'rating'">{{benefits.displayValue}}</p>
+                      <div class="star-rating" *ngIf="benefits.apiParameter === 'rating'">
+                                        <span *ngFor="let star of stars"
+                                              [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+                  <!--                <div class="col">-->
+                  <!--                  <h2>Deductible</h2>-->
+                  <!--                  <p>deducable(plan.attributes)</p>-->
+                  <!--                </div>-->
+                  <!--                <div class="col">-->
+                  <!--                  <h2>Max OOP</h2>-->
+                  <!--                  <p>{{plan.maxOop}}</p>-->
+                  <!--                </div>-->
+                  <!--                <div class="col">-->
+                  <!--                  <h2>Overall Star Rating</h2>-->
+                  <!--                  <div class="star-rating">-->
+                  <!--                    <span *ngFor="let star of stars"-->
+                  <!--                          [ngClass]="{'filled': star <= plan.overallstarRating, 'half-filled': star === plan.overallstarRating - 0.5}"></span>-->
+                  <!--                  </div>-->
+                  <!--                </div>-->
+                </div>
+                <div class="row p-2" *ngIf="plan.showmore">
+                  <div class="col s6 m4 l4" >
+                    <h6>Office Visits</h6>
+                    <div class="clear"></div>
+                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Office_Visits']">
+                    <bdo>{{benefits.attributeName}}</bdo>
+                      {{benefits.displayValue}}
+                  </span>
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Specialist Visit</bdo>-->
+<!--                      {{plan.plancompare.preventiveCare}}-->
+<!--                  </span>-->
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Preventive Care/Screening Immunization</bdo>-->
+<!--                      {{plan.plancompare.preventiveCare}}-->
+<!--                  </span>-->
+                  </div>
+                  <div class="col s6 m4 l4">
+                    <h6>Emergency Services</h6>
+                    <div class="clear"></div>
+                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Emergency_Services']">
+                    <bdo>{{benefits.attributeName}}</bdo>
+                      {{benefits.displayValue}}
+                  </span>
+                  </div>
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Emergency Room</bdo>-->
+<!--                      {{plan.plancompare.preventiveCare}}-->
+<!--                  </span>-->
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Urgent Care</bdo>-->
+<!--                      {{plan.plancompare.urgentCare}}-->
+<!--                  </span>-->
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Ambulance</bdo>-->
+<!--                      {{plan.plancompare.ambulance}}-->
+<!--                  </span>-->
+<!--                  </div>-->
+                  <div class="col s6 m4 l4">
+                    <h6>Outpatient Services</h6>
+                    <div class="clear"></div>
+                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Outpatient_Services']">
+                    <bdo>{{benefits.attributeName}}</bdo>
+                      {{benefits.displayValue}}
+                  </span>
+                  </div>
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Facility Fees</bdo>-->
+<!--                      {{plan.plancompare.facilityFees}}-->
+<!--                  </span>-->
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Diagnostic Tests (x-ray, blood work)</bdo>-->
+<!--                      {{plan.plancompare.diagnosticTests}}-->
+<!--                  </span>-->
+<!--                    <span class="sub-prop">-->
+<!--                    <bdo>Skilled Nursing Care Cost Share</bdo>-->
+<!--                      {{plan.plancompare.skillednursingcareCost}}-->
+<!--                  </span>-->
+<!--                  </div>-->
+                </div>
+                <div class="d-flex col-12 justify-content-center p-2">
+                  <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore" class="item-show-btn">
+                    Show more
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </button>
+                </div>
+                <div class="d-flex col-12 justify-content-center p-2">
+                  <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)" class="item-show-btn">
+                    Show Less
+                    <mat-icon>keyboard_arrow_up</mat-icon>
+                  </button>
+                </div>
+                <div class="row px-3" >
+                  <div class="col"  *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']" >
+                    <button mat-icon-button class="benfit-btn" *ngIf="plan.benefits">
+                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+                      {{additionalbenefits.attributeName}}
+                    </button>
+                  </div>
+<!--                  <div class="col" *ngIf="plan.dental =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Dental-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.hearing =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Hearing-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.transportation =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Transportation-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.fitnessbenefits =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Fitness benefits-->
+<!--                    </button>-->
+<!--                  </div>-->
+                </div>
+<!--                <div class="row px-3 " *ngIf="plan.benefits">-->
+<!--                  <div class="col" *ngIf="plan.worldwideEmergency =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Worldwide emergency-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col add-benefit" *ngIf="plan.telehealth =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Telehealth-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.overthecounterdrugs =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Over-the-counter drugs-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.inhomesupport =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      In-home support-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.homesafetydevicesmodifications =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Home safety devices & modifications-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <div class="col" *ngIf="plan.emergencyresponseDevice =='true'">-->
+<!--                    <button mat-icon-button class="benfit-btn">-->
+<!--                      <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+<!--                      Emergency response device-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                </div>-->
               </div>
-              <div class="row p-2 base-dtl mx-0">
-                <div class="col">
-                  <h2>Deductible</h2>
-                  <p>{{plan.deductible}}</p>
-                </div>
-                <div class="col">
-                  <h2>Max OOP</h2>
-                  <p>{{plan.maxOop}}</p>
-                </div>
-                <div class="col">
-                  <h2>Overall Star Rating</h2>
-                  <div class="star-rating">
-                    <span *ngFor="let star of stars"
-                          [ngClass]="{'filled': star <= plan.overallstarRating, 'half-filled': star === plan.overallstarRating - 0.5}"></span>
+              <div class="col-3 premium">
+                <div class="card p-2">
+                  <div class="card-title">
+                    <h2 class="premium-title" style="text-align: right">Monthly Premium</h2>
+
+                  </div>
+                  <div class="p-2 justify-content-end" style="text-align: end">
+                    <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
+                    <p>Orginal Rate:</p>
+                    <h2 class="original-rate">${{plan.orginalRate}}</h2>
+                    <a href="">About this rate</a><br>
+                    <p class="estimated-cost-label">Estimated Annual Cost<small>(Drug Cost + Premium)</small></p>
+                    <h2 class="estimated-annual-cost">${{plan.orginalplanPremium}}</h2>
+                    <a href="/drug-cost">Drug Cost Details</a><br>
                   </div>
                 </div>
-              </div>
-              <div class="row py-2 px-4" *ngIf="plan.showmore">
-                <div class="col s6 m4 l4">
-                  <h6>Office Visits</h6>
-                  <div class="clear"></div>
-                  <span class="sub-prop">
-                    <bdo>Primary Care Visit </bdo>
-                    {{plan.plancompare.preventiveCare}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Specialist Visit</bdo>
-                    {{plan.plancompare.preventiveCare}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Preventive Care/Screening Immunization</bdo>
-                    {{plan.plancompare.preventiveCare}}
-                  </span>
-                </div>
-                <div class="col s6 m4 l4">
-                  <h6>Emergency Services</h6>
-                  <div class="clear"></div>
-                  <span class="sub-prop">
-                    <bdo>Emergency Room</bdo>
-                    {{plan.plancompare.preventiveCare}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Urgent Care</bdo>
-                    {{plan.plancompare.urgentCare}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Ambulance</bdo>
-                    {{plan.plancompare.ambulance}}
-                  </span>
-                </div>
-                <div class="col s6 m4 l4">
-                  <h6>Outpatient Services</h6>
-                  <div class="clear"></div>
-                  <span class="sub-prop">
-                    <bdo>Facility Fees</bdo>
-                    {{plan.plancompare.facilityFees}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Diagnostic Tests (x-ray, blood work)</bdo>
-                    {{plan.plancompare.diagnosticTests}}
-                  </span>
-                  <span class="sub-prop">
-                    <bdo>Skilled Nursing Care Cost Share</bdo>
-                    {{plan.plancompare.skillednursingcareCost}}
-                  </span>
-                </div>
-              </div>
-              <div class="d-flex col-12 justify-content-center p-2">
-                <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore" class="item-show-btn">
-                  Show more
-                  <mat-icon>keyboard_arrow_down</mat-icon>
-                </button>
-              </div>
-              <div class="d-flex col-12 justify-content-center p-2">
-                <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)" class="item-show-btn">
-                  Show Less
-                  <mat-icon>keyboard_arrow_up</mat-icon>
-                </button>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <h6 class="add-benefit-head ms-4">Additional Benefits</h6>
-                </div>
-              </div>
-              
-              <div class="row px-3">
-                <div class="col" *ngIf="plan.vision =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Vision
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.dental =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Dental
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.hearing =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Hearing
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.transportation =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Transportation
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.fitnessbenefits =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Fitness benefits
-                  </button>
-                </div>
-              </div>
-              <div class="row px-3 " *ngIf="plan.benefits">
-                <div class="col" *ngIf="plan.worldwideEmergency =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Worldwide emergency
-                  </button>
-                </div>
-                <div class="col add-benefit" *ngIf="plan.telehealth =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Telehealth
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.overthecounterdrugs =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Over-the-counter drugs
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.inhomesupport =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    In-home support
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.homesafetydevicesmodifications =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Home safety devices & modifications
-                  </button>
-                </div>
-                <div class="col" *ngIf="plan.emergencyresponseDevice =='true'">
-                  <button mat-icon-button class="benfit-btn">
-                    <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
-                    Emergency response device
-                  </button>
-                </div>
+
               </div>
             </div>
-            <div class="col-3 premium">
-              <div class="card p-2">
-                <div class="card-title">
-                  <h2 class="premium-title" style="text-align: right">Monthly Premium</h2>
-
+            <div class="card-footer">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                         [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    Compare
+                  </label>
                 </div>
-                <div class="p-2 justify-content-end" style="text-align: end">
-                  <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
-                  <p>Orginal Rate:</p>
-                  <h2 class="original-rate">${{plan.orginalRate}}</h2>
-                  <a href="">About this rate</a><br>
-                  <p class="estimated-cost-label">Estimated Annual Cost<small>(Drug Cost + Premium)</small></p>
-                  <h2 class="estimated-annual-cost">${{plan.orginalplanPremium}}</h2>
-                  <a href="/drug-cost">Drug Cost Details</a><br>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          <div class="card-footer pe-2">
-            <div class="d-flex align-items-center justify-content-between">
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
-                       [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
-                <label class="form-check-label" for="flexCheckChecked">
-                  Compare
-                </label>
-              </div>
-              <div class="ms-2 optional-packages-btn">
+                <div class="ms-2 optional-packages-btn">
                 <span class="d-flex justify-content-center" (click)="showOp(plan)">
                   <p>Optional Packages</p>
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </span>
-              </div>
-              <div>
-                <div class="dropdown documents-dropdown">
-                  <button class="btn  dropdown-toggle" style="padding: 0" type="button"
-                          id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                    Documents
+                </div>
+                <div>
+                  <div class="dropdown documents-dropdown">
+                    <button class="btn  dropdown-toggle" style="padding: 0" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                      Documents
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Documents</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="d-flex additional-benefits-btn">
+                  <a (click)="benefitShow(plan)">
+                    Additional
+                    Benefits
+                  </a>
+                </div>
+                <div class=" d-flex">
+                  <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
+                  <!--                <label  class="ms-2"> Additional Details</label>-->
+                  <button mat-raised-button class="plan-details-btn">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    Plan Details
                   </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Documents</a></li>
-                  </ul>
+                </div>
+                <div class=" d-flex justify-content-end">
+                  <button mat-raised-button color="primary" class="item-add-to-cart px-5"
+                          [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">
+                    Add to cart
+                  </button>
                 </div>
               </div>
-              <div class="d-flex drug-cost-details-btn">
-                <a (click)="benefitShow(plan)">
-                  Drug cost details
-                </a>
+              <div class="card p-2 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
+                <div  *ngFor="let optionalbenefits of  plan.optional_benefits">
+                  <div class="d-flex mb-2">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+                    <label class="form-check-label" for="flexCheckChecked">
+                      {{optionalbenefits.package_number}}
+                    </label>
+                  </div>
+                  <p>{{optionalbenefits.benefits}}</p>
+                  <p>Monthly premium - <span class="rate">{{optionalbenefits.monthly_premium}}</span></p>
+                  <p>deductible - <span class="rate">{{optionalbenefits.deductible}}</span></p>
+                  <br>
+                </div>
+
               </div>
-              <div class=" d-flex">
-                <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
-                <!--                <label  class="ms-2"> Additional Details</label>-->
-                <button mat-raised-button class="plan-details-btn">
-                  <mat-icon>remove_red_eye</mat-icon>
-                  Plan Details
-                </button>
-              </div>
-              <div class=" d-flex justify-content-end listing-to-cart-btn w-100">
-                <button mat-raised-button color="primary" class="item-add-to-cart px-5"
-                        [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">
-                  Add to cart
-                </button>
-              </div>
-            </div>
-            <div class="card p-2 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
-              <div class="d-flex mb-2">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
-                <label class="form-check-label" for="flexCheckChecked">
-                  Package #1
-                </label>
-              </div>
-              <p>Include preventive dental and comprehensive dental</p>
-              <p>Monthly premium - <span class="rate">$28.50</span></p>
-              <p>deductible - <span class="rate">$50</span></p>
             </div>
           </div>
+
+
+          <!--plan-tile-->
+
+          <!--                <div class="card" *ngFor="let plan of plans ; let i = index">-->
+          <!--                    <div class="d-flex">-->
+          <!--                        <div class="col-9">-->
+          <!--                            <div class="d-flex">-->
+          <!--                                <div class="col-2">-->
+          <!--                                    <img src="../../../assets/cigna.png" alt="" style="height: 70px;">-->
+          <!--                                </div>-->
+          <!--                                <div class="col-10 p-2">-->
+          <!--                                    <h3 style="font-size: large">{{plan.name}} </h3>-->
+          <!--                                    <p>(HMO) &nbsp; {{plan.category}} Medicare &nbsp; Plan ID:{{plan.contract_id}}-->
+          <!--                                        -{{plan.plan_id}}-{{plan.segment_id}}</p>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                            <mat-divider></mat-divider>-->
+          <!--                            <div class="d-flex baseBenifit mt-1">-->
+          <!--                                <div class="d-flex col-4 justify-content-center">-->
+          <!--                                    <p><span>Deductible</span> <Br> {{plan.annual_deductible}}</p>-->
+          <!--                                </div>-->
+          <!--                                <div class="d-flex col-4 justify-content-center">-->
+          <!--                                    <p><span>Max OOP</span> <Br> {{plan.maximum_oopc}}</p>-->
+          <!--                                </div>-->
+          <!--                                <div class="col-4">-->
+          <!--                                    <span>Overal Star Rating</span> <br>-->
+          <!--                                    <div class="star-rating">-->
+          <!--                                        <span *ngFor="let star of stars"-->
+          <!--                                              [ngClass]="{'filled': star <= plan.overall_star_rating.rating, 'half-filled': star === plan.overall_star_rating.rating - 0.5}"></span>-->
+          <!--                                    </div>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                            <div class="section p-2" *ngIf="plan.showmore">-->
+          <!--                                <div class="row">-->
+          <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Office Visits</h3></div>-->
+          <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Emergency Services</h3></div>-->
+          <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Outpatient Services</h3></div>-->
+          <!--                                </div>-->
+          <!--                                <div class="d-flex">-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Primary care visit</h3>-->
+          <!--                                        <p class="sub-line">In-network:{{plan.primary_doctor_visit_cost}} co-pay per-->
+          <!--                                            visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Emergency Room</h3>-->
+          <!--                                        <p class="sub-line">{{plan.emergency_care_cost}} co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Facility Fees</h3>-->
+          <!--                                    </div>-->
+          <!--                                </div>-->
+          <!--                                <div class="d-flex">-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Specialist Visit</h3>-->
+          <!--                                        <p class="sub-line">{{plan.specialist_doctor_visit_cost}} co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Urgent Care</h3>-->
+          <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Diagnostic Tests (x-ray, blood work)</h3>-->
+          <!--                                    </div>-->
+          <!--                                </div>-->
+          <!--                                <div class="d-flex">-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Preventive Care/Screening Immunization</h3>-->
+          <!--                                        <p class="sub-line">{{plan.BENEFIT_PREVENTIVE_CARE}} co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Ambulance</h3>-->
+          <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                    <div class="col-4">-->
+          <!--                                        <h3>Skilled Nursing Care Cost Share</h3>-->
+          <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
+          <!--                                    </div>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                            <div class="d-flex col-12 justify-content-center p-2">-->
+          <!--                                <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore">Show more-->
+          <!--                                    <mat-icon>keyboard_arrow_down</mat-icon>-->
+          <!--                                </button>-->
+          <!--                            </div>-->
+          <!--                            <div class="d-flex col-12 justify-content-center p-2">-->
+          <!--                                <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)">Show Less-->
+          <!--                                    <mat-icon>keyboard_arrow_up</mat-icon>-->
+          <!--                                </button>-->
+          <!--                            </div>-->
+          <!--                            <div class="row p-2">-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Vision-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Dental-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Hearing-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Transportation-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Fitness benefits-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+
+          <!--                            <div class="row p-2" *ngIf="plan.benefits">-->
+          <!--                                <div class="col ms-2">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Worldwide emergency-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Telehealth-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Over-the-counter drugs-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        In-home support-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                                <div class="col">-->
+          <!--                                    <button mat-icon-button class="benfit-btn">-->
+          <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
+          <!--                                        Emergency response-->
+          <!--                                    </button>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+          <!--                        <div class="col-3">-->
+          <!--                            <div class="card p-2">-->
+          <!--                                <div class="card-title">-->
+          <!--                                    <p align="right"><span-->
+          <!--                                            style="font-size: large;font-weight: bolder;text-align: right">Monthly Premium</span>-->
+          <!--                                    </p>-->
+          <!--                                </div>-->
+          <!--                                <div class="p-2 justify-content-end" style="text-align: end">-->
+          <!--                                    <p><span-->
+          <!--                                            style="font-size: large;font-weight: bolder;text-align: right">${{plan.calculated_monthly_premium}}</span>-->
+          <!--                                    </p>-->
+          <!--                                    <p>Orginal Rate:</p>-->
+          <!--                                    <p>${{plan.calculated_monthly_premium}}</p>-->
+          <!--                                    <a href="">About this rate</a><br>-->
+          <!--                                    <p>Estimated Annual Cost</p>-->
+          <!--                                    <p>(Drug Cost + Premium)</p>-->
+          <!--                                    <p><span-->
+          <!--                                            style="font-size: large;font-weight: bolder;text-align: right">${{plan.annual_drugs_total}}</span>-->
+          <!--                                    </p>-->
+          <!--                                    <a href="/drug-cost">Drug Cost Details</a><br>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+
+          <!--                    </div>-->
+          <!--                    <div class="card-footer">-->
+          <!--                        <div class="d-flex">-->
+          <!--                            <div class="col-1 form-check">-->
+          <!--                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"-->
+          <!--                                       [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">-->
+          <!--                                <label class="form-check-label" for="flexCheckChecked">-->
+          <!--                                    Compare-->
+          <!--                                </label>-->
+          <!--                            </div>-->
+          <!--                            <div class=" col-3 ms-2">-->
+          <!--                <span class="d-flex justify-content-center" (click)="showOp(plan)">-->
+          <!--                  <p>Optional Packages</p>-->
+          <!--                  <mat-icon>keyboard_arrow_down</mat-icon>-->
+          <!--                  </span>-->
+          <!--                            </div>-->
+          <!--                            <div class="col-1">-->
+          <!--                                <div class="dropdown">-->
+          <!--                                    <button class="btn  dropdown-toggle" style="padding: 0" type="button"-->
+          <!--                                            id="dropdownMenuButton1" data-bs-toggle="dropdown">-->
+          <!--                                        SBC-->
+          <!--                                    </button>-->
+          <!--                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+          <!--                                        <li><a class="dropdown-item" href="#">SBC</a></li>-->
+          <!--                                    </ul>-->
+          <!--                                </div>-->
+          <!--                            </div>-->
+          <!--                            <div class="d-flex col-2">-->
+          <!--                                <a (click)="benefitShow(plan)" style="color: blue;cursor: pointer">Additional-->
+          <!--                                    Benefits</a>-->
+          <!--                            </div>-->
+          <!--                            <div class=" d-flex col-2">-->
+          <!--                                &lt;!&ndash;                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>&ndash;&gt;-->
+          <!--                                &lt;!&ndash;                <label  class="ms-2"> Additional Details</label>&ndash;&gt;-->
+          <!--                                <button mat-raised-button>-->
+          <!--                                    <mat-icon>remove_red_eye</mat-icon>-->
+          <!--                                    Plan Details-->
+          <!--                                </button>-->
+          <!--                            </div>-->
+          <!--                            <div class=" d-flex col-3 justify-content-end">-->
+          <!--                                <button mat-raised-button color="primary" style="width:100%;"-->
+          <!--                                        [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">Add to cart-->
+          <!--                                </button>-->
+          <!--                            </div>-->
+          <!--                        </div>-->
+          <!--                        <div class="card p-2" *ngIf="plan.optnpkShow">-->
+          <!--                            <div class="d-flex">-->
+          <!--                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;-->
+          <!--                                <label class="form-check-label" for="flexCheckChecked" style="font-weight: bold">-->
+          <!--                                    Package #1-->
+          <!--                                </label>-->
+          <!--                            </div>-->
+          <!--                            <p>Include preventive dental and comprehensive dental</p>-->
+          <!--                            <p>Monthly premium - <span class="rate">$28.50</span></p>-->
+          <!--                            <p>deductible - <span class="rate">$50</span></p>-->
+          <!--                        </div>-->
+          <!--                    </div>-->
+          <!--                </div>-->
+
         </div>
-
-
-
-
-
-        <!--plan-tile-->
-
-        <!--                <div class="card" *ngFor="let plan of plans ; let i = index">-->
-        <!--                    <div class="d-flex">-->
-        <!--                        <div class="col-9">-->
-        <!--                            <div class="d-flex">-->
-        <!--                                <div class="col-2">-->
-        <!--                                    <img src="../../../assets/cigna.png" alt="" style="height: 70px;">-->
-        <!--                                </div>-->
-        <!--                                <div class="col-10 p-2">-->
-        <!--                                    <h3 style="font-size: large">{{plan.name}} </h3>-->
-        <!--                                    <p>(HMO) &nbsp; {{plan.category}} Medicare &nbsp; Plan ID:{{plan.contract_id}}-->
-        <!--                                        -{{plan.plan_id}}-{{plan.segment_id}}</p>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                            <mat-divider></mat-divider>-->
-        <!--                            <div class="d-flex baseBenifit mt-1">-->
-        <!--                                <div class="d-flex col-4 justify-content-center">-->
-        <!--                                    <p><span>Deductible</span> <Br> {{plan.annual_deductible}}</p>-->
-        <!--                                </div>-->
-        <!--                                <div class="d-flex col-4 justify-content-center">-->
-        <!--                                    <p><span>Max OOP</span> <Br> {{plan.maximum_oopc}}</p>-->
-        <!--                                </div>-->
-        <!--                                <div class="col-4">-->
-        <!--                                    <span>Overal Star Rating</span> <br>-->
-        <!--                                    <div class="star-rating">-->
-        <!--                                        <span *ngFor="let star of stars"-->
-        <!--                                              [ngClass]="{'filled': star <= plan.overall_star_rating.rating, 'half-filled': star === plan.overall_star_rating.rating - 0.5}"></span>-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                            <div class="section p-2" *ngIf="plan.showmore">-->
-        <!--                                <div class="row">-->
-        <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Office Visits</h3></div>-->
-        <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Emergency Services</h3></div>-->
-        <!--                                    <div class="col-4"><h3 style="font-weight: 500;">Outpatient Services</h3></div>-->
-        <!--                                </div>-->
-        <!--                                <div class="d-flex">-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Primary care visit</h3>-->
-        <!--                                        <p class="sub-line">In-network:{{plan.primary_doctor_visit_cost}} co-pay per-->
-        <!--                                            visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Emergency Room</h3>-->
-        <!--                                        <p class="sub-line">{{plan.emergency_care_cost}} co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Facility Fees</h3>-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                                <div class="d-flex">-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Specialist Visit</h3>-->
-        <!--                                        <p class="sub-line">{{plan.specialist_doctor_visit_cost}} co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Urgent Care</h3>-->
-        <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Diagnostic Tests (x-ray, blood work)</h3>-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                                <div class="d-flex">-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Preventive Care/Screening Immunization</h3>-->
-        <!--                                        <p class="sub-line">{{plan.BENEFIT_PREVENTIVE_CARE}} co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Ambulance</h3>-->
-        <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                    <div class="col-4">-->
-        <!--                                        <h3>Skilled Nursing Care Cost Share</h3>-->
-        <!--                                        <p class="sub-line">$0 co-pay per visit</p>-->
-        <!--                                    </div>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                            <div class="d-flex col-12 justify-content-center p-2">-->
-        <!--                                <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore">Show more-->
-        <!--                                    <mat-icon>keyboard_arrow_down</mat-icon>-->
-        <!--                                </button>-->
-        <!--                            </div>-->
-        <!--                            <div class="d-flex col-12 justify-content-center p-2">-->
-        <!--                                <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)">Show Less-->
-        <!--                                    <mat-icon>keyboard_arrow_up</mat-icon>-->
-        <!--                                </button>-->
-        <!--                            </div>-->
-        <!--                            <div class="row p-2">-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Vision-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Dental-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Hearing-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Transportation-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Fitness benefits-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-
-        <!--                            <div class="row p-2" *ngIf="plan.benefits">-->
-        <!--                                <div class="col ms-2">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Worldwide emergency-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Telehealth-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Over-the-counter drugs-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        In-home support-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                                <div class="col">-->
-        <!--                                    <button mat-icon-button class="benfit-btn">-->
-        <!--                                        <mat-icon class="benefit-icon">check_circle_outline</mat-icon>-->
-        <!--                                        Emergency response-->
-        <!--                                    </button>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                        <div class="col-3">-->
-        <!--                            <div class="card p-2">-->
-        <!--                                <div class="card-title">-->
-        <!--                                    <p align="right"><span-->
-        <!--                                            style="font-size: large;font-weight: bolder;text-align: right">Monthly Premium</span>-->
-        <!--                                    </p>-->
-        <!--                                </div>-->
-        <!--                                <div class="p-2 justify-content-end" style="text-align: end">-->
-        <!--                                    <p><span-->
-        <!--                                            style="font-size: large;font-weight: bolder;text-align: right">${{plan.calculated_monthly_premium}}</span>-->
-        <!--                                    </p>-->
-        <!--                                    <p>Orginal Rate:</p>-->
-        <!--                                    <p>${{plan.calculated_monthly_premium}}</p>-->
-        <!--                                    <a href="">About this rate</a><br>-->
-        <!--                                    <p>Estimated Annual Cost</p>-->
-        <!--                                    <p>(Drug Cost + Premium)</p>-->
-        <!--                                    <p><span-->
-        <!--                                            style="font-size: large;font-weight: bolder;text-align: right">${{plan.annual_drugs_total}}</span>-->
-        <!--                                    </p>-->
-        <!--                                    <a href="/drug-cost">Drug Cost Details</a><br>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-
-        <!--                    </div>-->
-        <!--                    <div class="card-footer">-->
-        <!--                        <div class="d-flex">-->
-        <!--                            <div class="col-1 form-check">-->
-        <!--                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"-->
-        <!--                                       [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">-->
-        <!--                                <label class="form-check-label" for="flexCheckChecked">-->
-        <!--                                    Compare-->
-        <!--                                </label>-->
-        <!--                            </div>-->
-        <!--                            <div class=" col-3 ms-2">-->
-        <!--                <span class="d-flex justify-content-center" (click)="showOp(plan)">-->
-        <!--                  <p>Optional Packages</p>-->
-        <!--                  <mat-icon>keyboard_arrow_down</mat-icon>-->
-        <!--                  </span>-->
-        <!--                            </div>-->
-        <!--                            <div class="col-1">-->
-        <!--                                <div class="dropdown">-->
-        <!--                                    <button class="btn  dropdown-toggle" style="padding: 0" type="button"-->
-        <!--                                            id="dropdownMenuButton1" data-bs-toggle="dropdown">-->
-        <!--                                        SBC-->
-        <!--                                    </button>-->
-        <!--                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
-        <!--                                        <li><a class="dropdown-item" href="#">SBC</a></li>-->
-        <!--                                    </ul>-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                            <div class="d-flex col-2">-->
-        <!--                                <a (click)="benefitShow(plan)" style="color: blue;cursor: pointer">Additional-->
-        <!--                                    Benefits</a>-->
-        <!--                            </div>-->
-        <!--                            <div class=" d-flex col-2">-->
-        <!--                                &lt;!&ndash;                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>&ndash;&gt;-->
-        <!--                                &lt;!&ndash;                <label  class="ms-2"> Additional Details</label>&ndash;&gt;-->
-        <!--                                <button mat-raised-button>-->
-        <!--                                    <mat-icon>remove_red_eye</mat-icon>-->
-        <!--                                    Plan Details-->
-        <!--                                </button>-->
-        <!--                            </div>-->
-        <!--                            <div class=" d-flex col-3 justify-content-end">-->
-        <!--                                <button mat-raised-button color="primary" style="width:100%;"-->
-        <!--                                        [ngClass]="{'clicked': plan.cartAdded}" (click)="cart(plan)">Add to cart-->
-        <!--                                </button>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                        <div class="card p-2" *ngIf="plan.optnpkShow">-->
-        <!--                            <div class="d-flex">-->
-        <!--                                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;-->
-        <!--                                <label class="form-check-label" for="flexCheckChecked" style="font-weight: bold">-->
-        <!--                                    Package #1-->
-        <!--                                </label>-->
-        <!--                            </div>-->
-        <!--                            <p>Include preventive dental and comprehensive dental</p>-->
-        <!--                            <p>Monthly premium - <span class="rate">$28.50</span></p>-->
-        <!--                            <p>deductible - <span class="rate">$50</span></p>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-
-      </div>
         <mat-paginator [length]="response.total_results"
                        [pageSize]="10"
                        [pageSizeOptions]="[10]"
@@ -587,7 +612,7 @@
                        showFirstLastButtons
                        aria-label="Select page">
         </mat-paginator>
-    </div>
+      </div>
 
 
       <div class="sectionbtm" *ngIf="isChecked">
