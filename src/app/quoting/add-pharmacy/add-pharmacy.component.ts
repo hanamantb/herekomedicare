@@ -33,8 +33,8 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.zipcode = localStorage.getItem('zipcode')
-    const pharmdata = localStorage.getItem('pharmdata')
+    this.zipcode = sessionStorage.getItem('zipcode')
+    const pharmdata = sessionStorage.getItem('pharmdata')
     let pharmdataArray: any[] = [];
     if (pharmdata) {
       pharmdataArray = JSON.parse(pharmdata);
@@ -67,8 +67,8 @@ export class AddPharmacyComponent implements OnInit {
   nav() {
     const npis = this.rowData.map((x: any) => x.npi)
     this.quoteDetailsService.setnpis(npis)
-    localStorage.setItem('pharmacies', JSON.stringify(npis))
-    localStorage.setItem('pharmdata', JSON.stringify(this.rowData))
+    sessionStorage.setItem('pharmacies', JSON.stringify(npis))
+    sessionStorage.setItem('pharmdata', JSON.stringify(this.rowData))
     console.log('npis', npis)
     this.route.navigate(['Plans'])
   }
