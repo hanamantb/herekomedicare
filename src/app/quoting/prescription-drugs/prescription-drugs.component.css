@@ -71,13 +71,16 @@ mat-select{
 
 .sectionbtm {
   position: fixed;
-  bottom: 0;
+  bottom: 10px;
   right: 0;
-  width: 50%; /* Half of the component width */
+  max-width: 550px; /* Half of the component width */
   height: 70px;
-  background-color: #4b8bb2;
+  background-color: #00267a;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, .2);
+  padding: 0 10px;
   /* Your section styles here */
 }
 .comparebtn{
