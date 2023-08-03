@@ -139,9 +139,6 @@ export class AddPharmacyComponent implements OnInit {
             checked: false,
           }
         })
-        this.pharmacies.forEach((x:any)=>{
-          x.distance_miles = x.distance_miles +' miles'
-        })
         this.page = response.data.total_results
       }
       this.spinner.stop(spine)

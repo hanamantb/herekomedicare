@@ -7,7 +7,6 @@ import {NgbOffcanvas} from "@ng-bootstrap/ng-bootstrap";
 import {CommonService} from "../../services/common.service";
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
-import {min} from "rxjs";
 
 
 @Component({
@@ -30,7 +29,7 @@ export class ZipcodeQoutingComponent implements OnInit {
               private http: HttpClient,
               public fb: FormBuilder) {
     this.zipcodeForm = this.fb.group({
-      myControl: [null, [Validators.required, Validators.minLength(5), Validators.min(1), Validators.pattern("^[0-9]*$")]],
+      myControl: [null, [Validators.required, Validators.minLength(5), Validators.pattern("^[0-9]*$")]],
     })
   }
 
@@ -57,8 +56,8 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   navToPlans() {
     // this.route.navigate(['Plans'])
-    console.log('selectedCountie---', this.selectedCountie)
-    if (!this.zipcodeForm.valid || this.selectedCountie.length === 0) {
+    console.log('checked---', this.isChecked)
+    if (!this.zipcodeForm.valid || this.couties.length === 0) {
       this.dialog.open(ErrorPopupComponent, {
         data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
         width: '600px'
