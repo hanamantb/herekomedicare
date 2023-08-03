@@ -181,6 +181,12 @@
                   <mat-icon>keyboard_arrow_up</mat-icon>
                 </button>
               </div>
+              <div class="row">
+                <div class="col-12">
+                  <h6 class="add-benefit-head ms-4">Additional Benefits</h6>
+                </div>
+              </div>
+              
               <div class="row px-3">
                 <div class="col" *ngIf="plan.vision =='true'">
                   <button mat-icon-button class="benfit-btn">
@@ -297,10 +303,9 @@
                   </ul>
                 </div>
               </div>
-              <div class="d-flex additional-benefits-btn">
+              <div class="d-flex drug-cost-details-btn">
                 <a (click)="benefitShow(plan)">
-                  Additional
-                  Benefits
+                  Drug cost details
                 </a>
               </div>
               <div class=" d-flex">
