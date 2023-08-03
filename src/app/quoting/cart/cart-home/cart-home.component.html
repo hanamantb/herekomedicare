@@ -94,13 +94,13 @@
                   <p class="sub-line">Specialist Visit</p>
                   <p class="sub-line">Preventive Care/Screening Immunization</p>
                 </div>
-                <div class="col-4 px-3">
+                <div class="col-4 px-2">
                   <h3>Emergency Services</h3>
                   <p class="sub-line">Emergency Room</p>
                   <p class="sub-line">Urgent Care</p>
                   <p class="sub-line">Ambulance</p>
                 </div>
-                <div class="col-4 px-3">
+                <div class="col-4 px-2">
                   <h3>OutPatient Services</h3>
                   <p class="sub-line">Facility Fees</p>
                   <p class="sub-line">Diagnostic Tests (x-ray, blood work)</p>
@@ -120,14 +120,14 @@
                 <mat-icon>keyboard_arrow_up</mat-icon>
               </button>
             </div>
-            <div class="d-flex">
+            <!--<div class="d-flex">
               <div class="d-flex p-2">
                 Drugs Covered: <span class="d-flex ms-2 align-items-center" style="color: #4b8bb2;"><mat-icon>library_add</mat-icon>Add Drug</span>
               </div>
               <div class="d-flex p-2">
                 Doctor Services: <span class="d-flex ms-2 align-items-center" style="color: #4b8bb2;"><mat-icon>add_box</mat-icon>In-Network Providers</span>
               </div>
-            </div>
+            </div>-->
             
             <div class="d-flex p-2" *ngIf="benefits">
               <div class="col-3">
@@ -186,20 +186,26 @@
         </div>
         <div class="card-footer p-2 pe-0">
           <div class="d-flex">
-            <div class="col-6">
+            <div class="col-3">
               <button mat-button style="color: red; background-color: #ff595959">
                 <mat-icon>delete_forever</mat-icon>
                 Remove from cart
               </button>
             </div>
-            <div class="col-1 d-flex align-items-center">
-              <div class="dropdown">
+              <div class="ms-2 optional-packages-btn d-flex align-items-center">
+                <span class="d-flex justify-content-center">
+                  <p class="mb-0">Optional Packages</p>
+                  <mat-icon>keyboard_arrow_down</mat-icon>
+                </span>
+              </div>
+            <div class="col-2 d-flex align-items-center justify-content-center">
+              <div class="dropdown documents-dropdown">
                 <button class="btn  dropdown-toggle" style="padding: 0" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown">
-                  SBC
+                  Documents
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">SBC</a></li>
+                  <li><a class="dropdown-item" href="#">Documents</a></li>
                 </ul>
               </div>
             </div>
@@ -211,7 +217,7 @@
               <!--                <label  class="ms-2"> Additional Details</label>-->
               <button mat-raised-button>
                 <mat-icon>remove_red_eye</mat-icon>
-                More Details
+                Plan Details
               </button>
             </div>
             <div class=" d-flex col-3 justify-content-end">

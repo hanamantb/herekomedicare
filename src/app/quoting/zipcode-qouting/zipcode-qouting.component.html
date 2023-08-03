@@ -20,7 +20,7 @@
             <br>
             <br>
             <label  *ngIf="couties.length > 0">County,State</label>
-            <mat-select class="mt-2" placeholder="Select your countie"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
+            <mat-select class="mt-2" placeholder="Select your county"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
               <mat-option *ngFor="let option of couties" [value]="option">
                 {{option.name}},{{option.state}}
               </mat-option>
@@ -73,8 +73,12 @@
             </mat-option>
           </mat-select>
         </div>
-
-
+<!--        <div class="col-2 ms-4 s">-->
+<!--          <p style="text-align: end;">See Plans for </p>-->
+<!--        </div>-->
+<!--        <div class=" d-flex col justify-content-start">-->
+<!--          <input type="radio" name="optradio" checked class="seeplan">2013-->
+<!--          <input type="radio" name="optradio" class="seeplan">2014-->
           <!--          <mat-select placeholder="Effective Year" value="2023" >-->
           <!--            <mat-option value="2023">-->
           <!--              2023-->
@@ -83,6 +87,7 @@
           <!--              2024-->
           <!--            </mat-option>-->
           <!--          </mat-select>-->
+<!--        </div>-->
 
       </div>
       <div class="d-flex mt-1">
@@ -107,11 +112,14 @@
           <!--            </div>-->
 
           <div class=" d-flex body p-2">
-            <div class="col-6 d-flex align-items-center">
-              <p>
+            <div class="col-8 d-flex align-items-center">
+              <p>Drugs in your medicine cabinet will be considered while generating quotes.
+                <br>
                 Would you like to add/change prescription drugs in your medicine cabinet?</p>
             </div>
             <div class="col-4 ms-2">
+              <br>
+              <br>
               NO &nbsp;
               <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
             </div>

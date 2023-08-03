@@ -24,7 +24,7 @@ export class PrescriptionDrugsComponent implements OnInit {
   value = 4.5;
   stars: number[] = [1, 2, 3, 4, 5];
   selectedCardIndex:any;
-  plans:any=[  ];
+  plans:any=[];
   filtrPlans:any=[];
   zipcode:any
   myControl = new FormControl();
