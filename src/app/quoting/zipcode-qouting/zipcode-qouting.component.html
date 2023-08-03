@@ -20,7 +20,7 @@
             <br>
             <br>
             <label  *ngIf="couties.length > 0">County,State</label>
-            <mat-select class="mt-2" placeholder="Select your countie"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
+            <mat-select class="mt-2" placeholder="Select your county"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
               <mat-option *ngFor="let option of couties" [value]="option">
                 {{option.name}},{{option.state}}
               </mat-option>
