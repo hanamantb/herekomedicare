@@ -299,7 +299,7 @@ mat-select{
   .item-optional-packages span.rate {
     font-weight: 500;
   }
-.additional-benefits-btn {
+.drug-cost-details-btn {
   cursor: pointer;
   color: #3c6f8e;
   text-decoration: underline
