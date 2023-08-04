@@ -82,7 +82,7 @@ p{
   color: #252525;
 }
 .btn{
-  font-weight: 300 !important;
+  
 }
 input[type="text"]:focus-visible,
 input[type="password"]:focus-visible,
@@ -140,8 +140,8 @@ select {
     box-shadow: none;
 }
 button{
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight: 400;
 }
 .plan-item-card {
   border: 0;
@@ -173,4 +173,14 @@ button{
   color: #3f51b5;
   cursor: pointer;
   margin-right: 10px;
+}
+::ng-deep .mat-tooltip {
+  /* your own custom styles here */
+  /* e.g. */
+  color: #FFF;
+  background-color: #181818;
+}
+.mat-tooltip {
+  background: #181818;
+  font-size: 12px;
 }
