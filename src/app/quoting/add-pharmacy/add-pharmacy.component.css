@@ -97,3 +97,52 @@ button{
 /deep/html.cdk-global-scrollblock{
     top: 0 !important
 }
+.sticky-content-wrapper {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 99;
+  background: #105681;
+  width: 100%;
+  padding: 15px;
+  box-shadow: 0 -3px 11px rgba(0, 0, 0, .2);
+}
+.sticky-content-wrapper ul{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    list-style: none;
+    grid-gap: 15px;
+    padding: 0;
+    margin: 0;
+    align-items: stretch;
+    width: calc(100% - 100px);
+}
+.sticky-c-item {
+  border: 2px solid rgba(255, 255, 255, .3);
+  border-radius: 3px;
+  padding: 15px;
+  position: relative;
+  min-height: 100%;
+}
+.sticky-c-item.empty {
+  border: 2px solid rgba(255, 255, 255, .1);
+}
+  .sticky-c-item h4{
+    color: #fff;
+    font-size: 18px;
+}
+.s-c-close i{
+    color: rgba(255, 255, 255, .9);
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    font-size: 19px;
+    cursor: pointer;
+
+}
+.btn-done{
+    margin-left: 15px;
+    font-weight: 500;
+    min-width: 80px;
+
+}

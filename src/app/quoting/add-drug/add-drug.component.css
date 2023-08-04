@@ -165,3 +165,7 @@ button {
   outline: 0 !important;
   box-shadow: 0 0 4px rgba(75, 139, 178, .9);
 }
+.add-drugs-actions .secondary {
+   background-color:#4b8bb2;
+   color: #fff;
+}
