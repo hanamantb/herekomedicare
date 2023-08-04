@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {AgGridAngular} from "ag-grid-angular";
 import {GridApi} from "ag-grid-community";
@@ -14,6 +14,7 @@ import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.
   styleUrls: ['./add-pharmacy.component.css']
 })
 export class AddPharmacyComponent implements OnInit {
+
   rowData: any = [];
   pharmacies: any = []
   @ViewChild('agGrid', {static: true}) ahGrid!: AgGridAngular;
@@ -203,4 +204,5 @@ export class AddPharmacyComponent implements OnInit {
     const lines = (params.data.name || '').split('\n').length; // Count lines in description
     return 50 + lines * lineHeight; // Base height + additional height for lines
   }
+
 }
