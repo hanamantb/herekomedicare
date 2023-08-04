@@ -22,6 +22,9 @@ export class ZipcodeQoutingComponent implements OnInit {
   selectedCountie: any=[];
   enteredValue: string = '';
   lis  ="LIS_NO_HELP"
+   showDiv: boolean = false;
+   currentYear!: number;
+   nextYear!: number;
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -39,6 +42,7 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   ngOnInit(): void {
     // localStorage.clear()
+this.yeargetter()
     const zip = sessionStorage.getItem('zipcode')
     this.zipcodeForm.patchValue({
       myControl: zip
@@ -123,5 +127,20 @@ export class ZipcodeQoutingComponent implements OnInit {
   //   localStorage.setItem('lis',this.lis )
   // }
 
+  yeargetter(){
+    const currentDate = new Date();
+
+    // Extract the current year and month
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
+    if (currentMonth > 10) {
+      // If the current month is greater than October, show the div
+      this.showDiv = true;
+
+      // Calculate the next year
+      this.currentYear = currentYear;
+      this.nextYear = currentYear + 1;
+    }
+  }
 
 }

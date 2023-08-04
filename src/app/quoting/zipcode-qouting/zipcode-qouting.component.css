@@ -44,6 +44,7 @@ img{
 .btn{
     height: 38px;
     border-radius: 2px;
+    font-size: 14px;
 }
   .btn:hover {
     background-color: #3f51b5;
@@ -71,4 +72,8 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+matTooltip{
+  color: black !important;
+  background-color: white;
 }
