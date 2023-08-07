@@ -59,9 +59,9 @@ button{
   display: flex;
   gap: 5px;
   align-items: center;
-  background: #fff;
+  background: #e0f3ff;
   font-size: 13px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .add-pharmacy-checkbox input{
     margin-top: 0;
