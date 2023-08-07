@@ -44,8 +44,8 @@ h3 {
 }
 button{
     border-radius: 2px;
-    font-weight: 300;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 15px;
 }
   button:hover {
     color: #fff;
@@ -61,6 +61,7 @@ button{
   align-items: center;
   background: #fff;
   font-size: 13px;
+  font-weight: 400;
 }
 .add-pharmacy-checkbox input{
     margin-top: 0;

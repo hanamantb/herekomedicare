@@ -82,7 +82,7 @@ p{
   color: #252525;
 }
 .btn{
-  font-weight: 300 !important;
+  font-weight: 400 !important;
 }
 input[type="text"]:focus-visible,
 input[type="password"]:focus-visible,
@@ -140,8 +140,8 @@ select {
     box-shadow: none;
 }
 button{
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 15px;
+    font-weight: 400;
 }
 .plan-item-card {
   border: 0;
@@ -174,3 +174,22 @@ button{
   cursor: pointer;
   margin-right: 10px;
 }
+.mat-tooltip {
+  color: #111108 !important;
+  background-color: #fcfceb;
+  border: 1px solid #d0d0b3;
+  font-size: 12px;
+  transform-origin: unset !important;
+  padding: 10px 15px;
+  font-weight: 400;
+}
+  .mat-tooltip:after {
+    content: "";
+    border: 20px solid transparent;
+    position: absolute;
+    border-top-color: #a53d38;
+    border-bottom: 0;
+    bottom: -20px;
+    left: 50%;
+    margin-left: -20px;
+  }
