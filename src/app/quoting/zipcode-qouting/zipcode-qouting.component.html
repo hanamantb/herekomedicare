@@ -2,10 +2,9 @@
   <div class="d-flex mb-0">
     <div class="col-12 mt-1">
       <div class="d-flex p-2  mt-3">
-        <div class="col-md-3 d-flex">
-          <p class="mt-1">Zip Code</p>
-          &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="We use your ZIP Code to determine the carriers
-           who can provide plans in your area." >info_outlined</mat-icon>
+        <div class="col-md-3 d-flex align-items-center">
+          <p>Zip Code</p>
+          &nbsp; <mat-icon style="color: #4b8bb2" [matTooltipPosition]="'above'" matTooltip="We use your ZIP Code to determine the carriers who can provide plans in your area." >info_outlined</mat-icon>
         </div>
         <div class="col-md-3">
           <form class="example-form" [formGroup]="zipcodeForm">
@@ -25,11 +24,11 @@
       </div>
       <br>
       <div class="d-flex p-2 "  *ngIf="couties.length > 0" >
-        <div class="col-md-3 d-flex">
-          <p class="mt-1">County</p>
+        <div class="col-md-3 d-flex align-items-center">
+          <p>County</p>
         </div>
         <div class="col-md-3">
-          <mat-select class="mt-2" placeholder="Select your county"    [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
+          <mat-select placeholder="Select your county"    [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
             <mat-option *ngFor="let option of couties" [value]="option">
               {{option.name}}, {{option.state}}
             </mat-option>
@@ -41,10 +40,8 @@
       <mat-divider></mat-divider>
       <br>
       <div class="d-flex p-2 mb-1">
-        <div class="col-3 d-flex align-items-center"
-
-             matTooltipPosition="left">
-          <p>Low Income Subsidy (LIS)  </p> &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="Low Income Subsidy (LIS) helps people with limited income
+        <div class="col-3 d-flex align-items-center">
+          <p>Low Income Subsidy (LIS)  </p> &nbsp; <mat-icon style="color: #4b8bb2" [matTooltipPosition]="'above'" class="mat-tooltip-panel-above" matTooltip="Low Income Subsidy (LIS) helps people with limited income
            and resources pay Medicare prescription drug program costs,
             like premiums, deductibles, and coinsurance." >info_outlined</mat-icon>
         </div>

@@ -37,14 +37,14 @@ img{
     border-radius: 2px;
 }
 .add-change-prescription p{
-    font-weight: 300;
+    font-weight: 400;
     margin-bottom: 0;
     line-height: 26px;
 }
 .btn{
     height: 38px;
     border-radius: 2px;
-    font-size: 14px;
+    font-size: 15px;
 }
   .btn:hover {
     background-color: #3f51b5;
@@ -73,10 +73,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
-::ng-deep .mat-tooltip {
-   font-size: 13px;
-  background: white;
-  color:black !important;
+.mat-tooltip {
+  color: black;
+  background-color: #fcfceb;
+  border: 1px solid #d0d0b3;
 }
-

@@ -1,0 +1,17 @@
+table{
+    background: #FFF;
+    border: 1px solid rgba(0,0,0,.05);
+}
+th{
+    padding: 10px 15px;
+    border-right: 1px solid rgba(0,0,0,.05);
+}
+.table-striped tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.05);
+}
+.table-striped .td {
+  border-right: 1px solid rgba(0,0,0,.05);
+}
+.rating-stars mat-icon {
+  color: #f9c800;
+}
