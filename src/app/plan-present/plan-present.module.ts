@@ -4,6 +4,7 @@ import {PlanPresentComponent} from "./plan-present.component";
 import {PlanPresentRoutingModule} from "./plan-present-routing.module";
 import { PlanDetailsComponent } from './plan-details/plan-details.component';
 import { PlanCompareComponent } from './plan-compare/plan-compare.component';
+import { PlansListPageComponent } from './plans-list-page/plans-list-page.component';
 
 
 
@@ -12,7 +13,8 @@ import { PlanCompareComponent } from './plan-compare/plan-compare.component';
   declarations: [
     PlanPresentComponent,
     PlanDetailsComponent,
-    PlanCompareComponent
+    PlanCompareComponent,
+    PlansListPageComponent
   ],
   imports: [
     CommonModule,

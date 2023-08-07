@@ -136,47 +136,23 @@
     </div>
   </div>
 </div>
-<!--<div class="sticky-content-wrapper">-->
-<!--  <div class="sticky-content-info d-flex align-items-center justify-content-center">-->
-<!--    <ul>-->
-<!--      <li>-->
-<!--        <div class="sticky-c-item">-->
-<!--          <h4>Maximum Physical Healthcare, Inc</h4>-->
-<!--          <div class="s-c-close">-->
+/** bottom cards*/
+
+<div class="sticky-content-wrapper"  *ngIf="rowData.length !==0 && !ribbonShow" >
+  <div class="sticky-content-info d-flex align-items-center justify-content-center">
+    <ul>
+      <li  *ngFor="let pharm of rowData" >
+        <div class="sticky-c-item">
+          <h4>{{pharm.name}}</h4>
+          Distance: {{pharm.distance_miles}} Miles
+          <div class="s-c-close" >
+            <mat-icon (click)="delete(pharm)">close</mat-icon>
 <!--            <i class="material-icons">delete</i>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <div class="sticky-c-item">-->
-<!--          <h4>Clay Eye Physicians And Surgeons</h4>-->
-<!--          <div class="s-c-close">-->
-<!--            <i class="material-icons">delete</i>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <div class="sticky-c-item">-->
-<!--          <h4>Walgreens #6385</h4>-->
-<!--          <div class="s-c-close">-->
-<!--            <i class="material-icons">delete</i>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <div class="sticky-c-item">-->
-<!--          <h4>Walmart Pharmacy 10-2920</h4>-->
-<!--          <div class="s-c-close">-->
-<!--            <i class="material-icons">delete</i>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <div class="sticky-c-item empty">-->
-<!--          -->
-<!--        </div>-->
-<!--      </li>-->
-<!--    </ul>-->
-<!--    <button mat-raised-button class="btn-done" color="secondary">Done</button>-->
-<!--  </div>-->
-<!--</div>-->
+          </div>
+        </div>
+      </li>
+
+    </ul>
+    <button mat-raised-button class="btn-done" color="secondary" (click)="nav()">See Plans</button>
+  </div>
+</div>

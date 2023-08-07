@@ -39,7 +39,7 @@ export class AddDrugComponent implements OnInit {
 
   columnDefs = [
     {
-      field: 'index', headerName: '#', width: 80,
+      field: 'index', headerName: 'Sl. No.', width: 80,
       valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
@@ -225,7 +225,7 @@ export class AddDrugComponent implements OnInit {
         rxcui: this.rxcui,
         drugName: this.itemName + ' ' + gen,
         package: pack,
-        dosage: this.drugForm.value.dosage.strength +''+ this.drugForm.value.dosage.dosage_form ,
+        dosage: this.drugForm.value.dosage.strength +' '+ this.drugForm.value.dosage.dosage_form ,
         ndc: this.drugForm.value.dosage.ndc
       })
       this.rowData.push(this.drugForm.value)

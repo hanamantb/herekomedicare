@@ -11,7 +11,7 @@ import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material/dialog
 export class BrowseDrugComponent implements OnInit {
   alphabets: string[] = [];
   items:any = [];
-  selectedItem:any;
+  selectedItem:any = [];
   itemName=''
   constructor(private commonservice:CommonService,private dialog:MatDialog,
               private dialogRef: MatDialogRef<BrowseDrugComponent>,
@@ -42,6 +42,7 @@ this.dialogRef.close(this.selectedItem)
     this.commonservice.drugByLetter(event.target.value).subscribe((response)=>{
       this.items = response.data.drugs
       console.log('drugs',response)
+      this.selectedItem =[]
     })
   }
 

@@ -24,6 +24,7 @@ export class AddPharmacyComponent implements OnInit {
   pharmName: any = '';
   page: any = '0';
   mailchecked = false
+  ribbonShow = false
 
 
   constructor(private route: Router,
@@ -52,7 +53,7 @@ export class AddPharmacyComponent implements OnInit {
   };
   columnDefs = [
     {
-      field: 'index', headerName: '#', width: 80,
+      field: 'index', headerName: 'Sl. No.', width: 80,
       valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'name', headerName: 'Pharmacy Name', filter: true, width: 250,flex: 1},
@@ -169,7 +170,7 @@ export class AddPharmacyComponent implements OnInit {
         street: '',
         distance_miles: ''
       }
-      if (this.rowData.length >= 5){
+      if (this.rowData.length >= 6){
         this.dialog.open(ErrorPopupComponent,{
           data:{
             customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
@@ -204,5 +205,36 @@ export class AddPharmacyComponent implements OnInit {
     const lines = (params.data.name || '').split('\n').length; // Count lines in description
     return 50 + lines * lineHeight; // Base height + additional height for lines
   }
+
+  delete(data:any){
+  this.rowData.forEach((element: any, index: any) => {
+          console.log(element)
+          if (data.npi == element.npi) {
+            console.log('delete')
+            data.checked = false
+            this.rowData.splice(index, 1)
+            if (element.name === 'Mail Order Pharmacy'){
+              this.mailchecked=false
+            }
+            console.log('after--delete', this.rowData)
+            this.gridapi?.setRowData(this.rowData)
+          }
+        })
+  }
+
+  @HostListener('window:scroll', ['$event'])
+    scroll(event: Event) {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      // Check if the user is near the bottom of the page
+      if (scrollY + windowHeight >= documentHeight - 130 ) {
+        console.log('scrolled down',this.page)
+        this.ribbonShow = true
+      }else{
+      this.ribbonShow = false
+      }
+
+    }
 
 }

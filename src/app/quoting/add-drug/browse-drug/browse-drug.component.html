@@ -22,10 +22,10 @@
 
   </div>
 
-  <div class="card browse-drug-footer" style="background-color: #0e0e87;position: fixed;bottom: 0">
+  <div class="card browse-drug-footer" style="background-color: #0e0e87;position: fixed;bottom: 0"  *ngIf="selectedItem.length !==0">
     <div class="d-flex justify-content-center">
       <div class="p-2">
-        <button mat-raised-button style="background-color: #4b8bb2;color: white" (click)="drugNameAdd()">Select
+        <button mat-raised-button style="background-color: #4b8bb2;color: white" (click)="drugNameAdd()">Add
           Drug
         </button>
       </div>
