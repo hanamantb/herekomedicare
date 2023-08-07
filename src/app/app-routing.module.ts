@@ -13,6 +13,7 @@ import {CartComponent} from "./quoting/cart/cart.component";
 import {CartHomeComponent} from "./quoting/cart/cart-home/cart-home.component";
 import {EmailProposalComponent} from "./quoting/cart/email-proposal/email-proposal.component";
 import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.component";
+import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.component";
 
 
 const routes: Routes = [
@@ -54,6 +55,9 @@ const routes: Routes = [
   },
   {
     path:'plan-detail',component:PlanDetailsComponent
+  },
+  {
+    path:'plan-compare',component:PlanCompareComponent
   },
   // {
   //   path:'Plans',loadChildren: ()=> import('./plan-present/plan-present.module').then(m=> PlanPresentModule),

@@ -39,6 +39,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.component";
 import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.component";
+import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.component";
 
 
 
@@ -59,7 +60,8 @@ import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.com
     CartHomeComponent,
     EmailProposalComponent,
     ActionsCellRendererComponent,
-    PlanDetailsComponent
+    PlanDetailsComponent,
+    PlanCompareComponent
 
   ],
   imports: [

@@ -4,44 +4,36 @@
       <div class="d-flex p-2  mt-3">
         <div class="col-md-3 d-flex">
           <p class="mt-1">Zip Code</p>
+          &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="We use your ZIP Code to determine the carriers
+           who can provide plans in your area." >info_outlined</mat-icon>
         </div>
         <div class="col-md-3">
           <form class="example-form" [formGroup]="zipcodeForm">
 
-              <input type="text" class="mat-in" placeholder="Enter your ZIP code"
-                     matInput maxlength="5" type="tel"
-                     (input) ="inputCounties($event)"
-                     formControlName="myControl"
-                     [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
+            <input type="text" class="mat-in" placeholder="Enter your ZIP code"
+                   matInput maxlength="5" type="tel"
+                   (input) ="inputCounties($event)"
+                   formControlName="myControl"
+                   [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
 
             <div class="invalid-feedback d-flex" *ngIf="myControl.touched && myControl.invalid">
-              The entered ZIP Code is not valid.
+              The entered Zip Code is not valid.
             </div>
-            <br>
-            <br>
-            <label  *ngIf="couties.length > 0">County,State</label>
-            <mat-select class="mt-2" placeholder="Select your county"    *ngIf="couties.length > 0"  [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
-              <mat-option *ngFor="let option of couties" [value]="option">
-                {{option.name}},{{option.state}}
-              </mat-option>
-            </mat-select>
-
-
-            <!--            <input class="mat-in"-->
-            <!--                     matInput-->
-            <!--                     (input) ="getCounties($event)"-->
-            <!--                     formControlName="myControl"-->
-            <!--                     [matAutocomplete]="auto" [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">-->
-            <!--              <mat-autocomplete  #auto="matAutocomplete"-->
-            <!--                                 [displayWith]="_displayplantname">-->
-            <!--                <mat-option *ngFor="let option of couties" [value]="option" >-->
-            <!--                  {{selectedCountie}}-{{option.name}},{{option.state}}-->
-            <!--                </mat-option>-->
-            <!--              </mat-autocomplete>-->
-
           </form>
+        </div>
 
-          <!--          <input type="text" placeholder="Enter Zip Code" [(ngModel)]="zipcode">-->
+      </div>
+      <br>
+      <div class="d-flex p-2 "  *ngIf="couties.length > 0" >
+        <div class="col-md-3 d-flex">
+          <p class="mt-1">County</p>
+        </div>
+        <div class="col-md-3">
+          <mat-select class="mt-2" placeholder="Select your county"    [(ngModel)]="selectedCountie"   (selectionChange)="county($event)" [ngModelOptions]="{ standalone: true }">
+            <mat-option *ngFor="let option of couties" [value]="option">
+              {{option.name}}, {{option.state}}
+            </mat-option>
+          </mat-select>
         </div>
 
       </div>
@@ -52,7 +44,9 @@
         <div class="col-3 d-flex align-items-center"
 
              matTooltipPosition="left">
-          <p>Low Income Subsidy (LIS)  </p> &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="Low Income Subsidy (LIS) helps people with limited income and resources pay Medicare prescription drug program costs, like premiums, deductibles, and coinsurance." >info</mat-icon>
+          <p>Low Income Subsidy (LIS)  </p> &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="Low Income Subsidy (LIS) helps people with limited income
+           and resources pay Medicare prescription drug program costs,
+            like premiums, deductibles, and coinsurance." >info_outlined</mat-icon>
         </div>
         <div class="col-3">
           <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis"  opened >
@@ -73,30 +67,26 @@
             </mat-option>
           </mat-select>
         </div>
-<!--        <div class="col-2 ms-4 s">-->
-<!--          <p style="text-align: end;">See Plans for </p>-->
-<!--        </div>-->
-<!--        <div class=" d-flex col justify-content-start">-->
-<!--          <input type="radio" name="optradio" checked class="seeplan">2013-->
-<!--          <input type="radio" name="optradio" class="seeplan">2014-->
-          <!--          <mat-select placeholder="Effective Year" value="2023" >-->
-          <!--            <mat-option value="2023">-->
-          <!--              2023-->
-          <!--            </mat-option>-->
-          <!--            <mat-option value="2024">-->
-          <!--              2024-->
-          <!--            </mat-option>-->
-          <!--          </mat-select>-->
-<!--        </div>-->
+
+
+        <!--          <mat-select placeholder="Effective Year" value="2023" >-->
+        <!--            <mat-option value="2023">-->
+        <!--              2023-->
+        <!--            </mat-option>-->
+        <!--            <mat-option value="2024">-->
+        <!--              2024-->
+        <!--            </mat-option>-->
+        <!--          </mat-select>-->
 
       </div>
-      <div class="d-flex mt-1">
-        <div class="col-3 p-2 align-items-center">
+      <div class="d-flex mt-1" *ngIf="showDiv">
+        <div class="col-3 d-flex p-2 align-items-center">
           <p >Effective Year </p>
+          &nbsp; <mat-icon style="color: #4b8bb2" matTooltip="" >info_outlined</mat-icon>
         </div>
         <div class=" col-4 mt-2 d-flex  justify-content-start">
-          <input type="radio" name="optradio"  class="seeplan">2023
-          <input type="radio" name="optradio" checked class="seeplan">2024
+          <input type="radio" name="optradio" checked class="seeplan">{{nextYear}}
+          <input type="radio" name="optradio"  class="seeplan">{{currentYear}}
         </div>
       </div>
 
@@ -112,14 +102,11 @@
           <!--            </div>-->
 
           <div class=" d-flex body p-2">
-            <div class="col-8 d-flex align-items-center">
-              <p>Drugs in your medicine cabinet will be considered while generating quotes.
-                <br>
+            <div class="col-6 d-flex align-items-center">
+              <p>
                 Would you like to add/change prescription drugs in your medicine cabinet?</p>
             </div>
             <div class="col-4 ms-2">
-              <br>
-              <br>
               NO &nbsp;
               <mat-slide-toggle checked="true" [(ngModel)]="isChecked">YES</mat-slide-toggle>
             </div>
