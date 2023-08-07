@@ -57,7 +57,7 @@ export class AddPharmacyComponent implements OnInit {
     },
     {field: 'name', headerName: 'Pharmacy Name', filter: true, width: 250,flex: 1},
     {field: 'street', headerName: 'Address', filter: true, width: 250, flex: 1},
-    {field: 'distance_miles', headerName: 'Distance', filter: true, width: 150},
+    {field: 'distance_miles', headerName: 'Distance (Miles)', filter: true, width: 150},
     {
       field: 'delete',
       headerName: 'Action',
