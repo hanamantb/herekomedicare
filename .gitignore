@@ -41,5 +41,3 @@ testem.log
 .DS_Store
 Thumbs.db
 /.vs
-/src/app/quoting/add-pharmacy/add-pharmacy.component.html
-/src/app/quoting/add-pharmacy/add-pharmacy.component.ts
