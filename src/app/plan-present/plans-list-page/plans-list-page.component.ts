@@ -7,6 +7,7 @@ import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 import {SpinnerService} from "../../services/spinner.service";
+import { DrugsCoveredDialogboxComponent } from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 
 
 @Component({
@@ -299,6 +300,14 @@ export class PlansListPageComponent implements OnInit {
 
   planDetail() {
     this.route.navigate(['plan-detail'])
+  }
+
+  openDrugsCovered() {
+    const dialogRef = this.dialog.open(DrugsCoveredDialogboxComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   onScroll(event: Event) {

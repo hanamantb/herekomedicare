@@ -125,7 +125,10 @@ button{
   position: relative;
   min-height: 100%;
   color:white;
-  font-size:16px
+  font-size:16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);

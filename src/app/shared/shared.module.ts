@@ -16,6 +16,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinner.component';
 import { ErrorPopupComponent } from './layouts/error-popup/error-popup.component';
+import { DrugsCoveredDialogboxComponent } from './layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { ErrorPopupComponent } from './layouts/error-popup/error-popup.component
     SidebarComponent,
     LoadingSpinnerComponent,
     ErrorPopupComponent,
+    DrugsCoveredDialogboxComponent,
   ],
   imports: [
     CommonModule,
