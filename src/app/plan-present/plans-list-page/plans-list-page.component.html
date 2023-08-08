@@ -178,14 +178,14 @@
                     <mat-icon>keyboard_arrow_up</mat-icon>
                   </button>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="plan.benefits">
                   <div class="col-12">
                     <h6 class="add-benefit-head ms-4">Additional Benefits</h6>
                   </div>
                 </div>
                 <div class="row px-3" >
                   <div class="col"  *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']" >
-                    <button mat-icon-button class="benfit-btn" *ngIf="plan.benefits">
+                    <button mat-icon-button class="benfit-btn" >
                       <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                       {{additionalbenefits.attributeName}}
                     </button>
