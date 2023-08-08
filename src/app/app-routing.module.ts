@@ -14,6 +14,7 @@ import {CartHomeComponent} from "./quoting/cart/cart-home/cart-home.component";
 import {EmailProposalComponent} from "./quoting/cart/email-proposal/email-proposal.component";
 import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.component";
 import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.component";
+import { PlansListPageComponent } from './plan-present/plans-list-page/plans-list-page.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,9 @@ const routes: Routes = [
   },
   {
     path:'Plans',component:PrescriptionDrugsComponent
+  },
+  {
+    path: 'PlansList', component: PlansListPageComponent
   },
   {
     path:'add-drugs',component:AddDrugComponent

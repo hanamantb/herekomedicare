@@ -43,7 +43,6 @@ import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.com
 import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-page.component";
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +62,7 @@ import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-
     ActionsCellRendererComponent,
     PlanDetailsComponent,
     PlanCompareComponent,
-    PlansListPageComponent,
+    PlansListPageComponent
 
   ],
   imports: [
