@@ -31,7 +31,7 @@ const routes: Routes = [
     path:'zip-code',component:ZipcodeQoutingComponent
   },
   {
-    path:'Plans',component:PrescriptionDrugsComponent
+    path:'Plans',component:PlansListPageComponent
   },
   {
     path: 'PlansList', component: PlansListPageComponent

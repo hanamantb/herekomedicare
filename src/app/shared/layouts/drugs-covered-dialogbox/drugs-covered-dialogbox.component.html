@@ -1,38 +1,24 @@
 <h3>Covered drug details</h3>
 <table class="table">
   <thead>
-    <tr>
+    <tr >
       <th scope="col">#</th>
       <th scope="col">Drug Name</th>
       <th scope="col">Dosage<br />Form Name</th>
-      <th scope="col">Dosage</th>
       <th scope="col">Package<br />Type</th>
-      <th scope="col">Tier</th>
       <th scope="col">Quantity</th>
       <th scope="col">Frequency</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Abacavir - Generic</td>
-      <td>Tablet</td>
-      <td>300 mg</td>
-      <td></td>
-      <td>3</td>
-      <td>60</td>
-      <td>Every<br />Month</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td>Humalog</td>
-      <td>Tablet</td>
-      <td>300 mg</td>
-      <td></td>
-      <td>3</td>
-      <td>60</td>
-      <td>Every<br />Month</td>
+    <tr *ngFor="let drug of drugsArray; let i = index">
+      <th scope="row">{{i}}</th>
+      <td>{{drug.drugName}}</td>
+      <td>{{drug.dosage}}</td>
+      <td>{{drug.dosage}}</td>
+      <td>{{drug.quantity}}</td>
+      <td>{{drug.frequency}}</td>
     </tr>
   </tbody>
 </table>
-<button class="btn btn-primary">Close</button>
+<button class="btn btn-primary" (click)="close()">Close</button>

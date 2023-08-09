@@ -19,12 +19,12 @@ export class ZipcodeQoutingComponent implements OnInit {
   zipcode: any;
   zipcodeForm!: FormGroup;
   couties: any = []
-  selectedCountie: any=[];
+  selectedCountie: any = [];
   enteredValue: string = '';
-  lis  ="LIS_NO_HELP"
-   showDiv: boolean = false;
-   currentYear!: number;
-   nextYear!: number;
+  lis = "LIS_NO_HELP"
+  showDiv: boolean = false;
+  currentYear!: number;
+  nextYear!: number;
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -42,7 +42,7 @@ export class ZipcodeQoutingComponent implements OnInit {
 
   ngOnInit(): void {
     // localStorage.clear()
-this.yeargetter()
+    this.yeargetter()
     const zip = sessionStorage.getItem('zipcode')
     this.zipcodeForm.patchValue({
       myControl: zip
@@ -61,17 +61,17 @@ this.yeargetter()
   navToPlans() {
     // this.route.navigate(['Plans'])
     console.log('checked---', this.isChecked)
-    if (!this.zipcodeForm.valid || this.couties.length === 0) {
+    if (!this.zipcodeForm.valid || this.selectedCountie.length === 0) {
       this.dialog.open(ErrorPopupComponent, {
         data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
         width: '600px'
       })
     } else {
 
-      const countie = this.selectedCountie.name +', '+this.selectedCountie.state
-      sessionStorage.setItem('countie',countie)
-      sessionStorage.setItem('lis',this.lis)
-      console.log('lis----',this.lis)
+      const countie = this.selectedCountie.name + ', ' + this.selectedCountie.state
+      sessionStorage.setItem('countie', countie)
+      sessionStorage.setItem('lis', this.lis)
+      console.log('lis----', this.lis)
       if (this.isChecked) {
         this.route.navigate(['add-drugs'])
       } else {
@@ -81,8 +81,11 @@ this.yeargetter()
   }
 
   getCounties(zip: any) {
+    this.selectedCountie=[]
+    this.couties=[]
     this.commonService.getCounties(zip).subscribe(response => {
       this.couties = response.data.counties
+
       if (this.couties && this.couties.length === 1) {
         this.selectedCountie = this.couties[0]
         console.log('selectedCountie', this.selectedCountie)
@@ -97,6 +100,8 @@ this.yeargetter()
       console.log('event', event.target.value)
       this.selectedCountie = event.target.value
       sessionStorage.setItem('zipcode', event.target.value)
+      this.selectedCountie = []
+      this.couties = []
       this.getCounties(event.target.value)
     } else {
       this.couties = []
@@ -127,7 +132,7 @@ this.yeargetter()
   //   localStorage.setItem('lis',this.lis )
   // }
 
-  yeargetter(){
+  yeargetter() {
     const currentDate = new Date();
 
     // Extract the current year and month

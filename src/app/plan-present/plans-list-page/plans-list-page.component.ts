@@ -92,18 +92,22 @@ export class PlansListPageComponent implements OnInit {
     this.sharedService.benefitcheck$.subscribe((value: any) => {
       this.benefitChange(value)
     });
+    this.sharedService.optncheck$.subscribe((value: any) => {
+      this.optinPackChange(value)
+      console.log('checkee',value)
+    });
 
-    // const plans = sessionStorage.getItem('plans')
-    // let plansarray: any[] = [];
-    // if (plans) {
-    //   plansarray = JSON.parse(plans);
-    // }
-    // if (plansarray.length !== 0) {
-    //   this.plans = plansarray
-    // } else {
-    //
-    // }
-    this.getPlans(0)
+    const plans = sessionStorage.getItem('plans')
+    let plansarray: any[] = [];
+    if (plans) {
+      plansarray = JSON.parse(plans);
+    }
+    if (plansarray.length !== 0) {
+      this.plans = plansarray
+    } else {
+      this.getPlans(0)
+    }
+
   }
 
   showbenfit(plan: any) {
@@ -186,7 +190,8 @@ export class PlansListPageComponent implements OnInit {
           showmore: false,
           optnpkShow: false,
           cartAdded: false,
-          benefits: true
+          benefits: true,
+          alloptnpkShow: false,
         };
       });
       addedplans.forEach((element: any) => {
@@ -288,6 +293,12 @@ export class PlansListPageComponent implements OnInit {
     })
   }
 
+  optinPackChange(value: any) {
+    this.plans.forEach((x: any) => {
+      x.alloptnpkShow = value
+    })
+  }
+
   deducable(attributes: any) {
     console.log('attributes', attributes)
   }
@@ -303,11 +314,7 @@ export class PlansListPageComponent implements OnInit {
   }
 
   openDrugsCovered() {
-    const dialogRef = this.dialog.open(DrugsCoveredDialogboxComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+    this.dialog.open(DrugsCoveredDialogboxComponent);
   }
 
   onScroll(event: Event) {
@@ -324,19 +331,19 @@ export class PlansListPageComponent implements OnInit {
     }
 
   }
-  @HostListener('window:scroll', ['$event'])
-  scroll(event: Event) {
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    // Check if the user is near the bottom of the page
-    if (scrollY + windowHeight >= documentHeight ) {
-      console.log('scrolled down',this.page)
-      if (this.page!==0){
-        this.getPlans(this.page)
-      }
-
-    }
-
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // scroll(event: Event) {
+  //   const scrollY = window.scrollY;
+  //   const windowHeight = window.innerHeight;
+  //   const documentHeight = document.documentElement.scrollHeight;
+  //   // Check if the user is near the bottom of the page
+  //   if (scrollY + windowHeight >= documentHeight ) {
+  //     console.log('scrolled down',this.page)
+  //     if (this.page!==0){
+  //       this.getPlans(this.page)
+  //     }
+  //
+  //   }
+  //
+  // }
 }

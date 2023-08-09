@@ -41,6 +41,7 @@ import {ErrorPopupComponent} from "./shared/layouts/error-popup/error-popup.comp
 import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.component";
 import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.component";
 import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-page.component";
+import {DrugsCoveredDialogboxComponent} from "./shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component";
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-
   bootstrap: [AppComponent],
   entryComponents:[
     AddDrugComponent,
-    ErrorPopupComponent
+    ErrorPopupComponent,
+    DrugsCoveredDialogboxComponent
   ]
 })
 export class AppModule { }

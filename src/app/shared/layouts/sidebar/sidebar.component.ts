@@ -36,8 +36,11 @@ export class SidebarComponent implements OnInit {
   }
 
   benefit(event: any) {
-    console.log('event---', event.target.checked)
     this.benefitchck = !this.benefitchck
     this.shared.benefitcheckchange(event.target.checked)
+  }
+
+  optnchk(check:any) {
+    this.shared.optncheckchange(check)
   }
 }

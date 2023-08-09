@@ -10,6 +10,8 @@ export class SharedService {
   number$ = this.numberSubject.asObservable();
   public benefitcheck : BehaviorSubject<any> = new BehaviorSubject(true);
   benefitcheck$ = this.benefitcheck.asObservable();
+  public optncheck : BehaviorSubject<any> = new BehaviorSubject(false);
+  optncheck$ = this.optncheck.asObservable();
 
   incrementNumber() {
     this.numberSubject.next(1);
@@ -17,5 +19,9 @@ export class SharedService {
 
   benefitcheckchange(value:any){
     this.benefitcheck.next(value)
+  }
+
+  optncheckchange(value:any){
+    this.optncheck.next(value)
   }
 }
