@@ -157,15 +157,11 @@
           <p class="panel-headers">Optional Packages</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="" name="optradio" (change)="optnchk(true)"  id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" checked
+                  value="" id="flexCheckChecked"> &nbsp;
+          <!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
           <label class="form-check-label" for="flexCheckChecked">
-            Yes
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" checked value="" name="optradio" (change)="optnchk(false)"  id="flexCheckChecked"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            No
+            Yes, show optional packages
           </label>
         </div>
       </mat-expansion-panel>
@@ -194,7 +190,7 @@
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
           <input class="form-check-input" type="checkbox" checked
-                 style="height: 15px;width: 15px" value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;
+                 value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;
 <!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
           <label class="form-check-label" for="flexCheckChecked">
             Yes, show additional benefits
