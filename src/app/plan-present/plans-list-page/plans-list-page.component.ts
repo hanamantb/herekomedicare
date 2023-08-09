@@ -310,7 +310,9 @@ export class PlansListPageComponent implements OnInit {
   }
 
   planDetail() {
-    this.route.navigate(['plan-detail'])
+    const newTab = window.open('', '_blank');
+    if (newTab)
+      newTab.location.href = this.route.createUrlTree(['plan-detail']).toString();
   }
 
   openDrugsCovered() {

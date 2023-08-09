@@ -110,9 +110,9 @@ button{
 }
 .sticky-content-wrapper ul{
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     list-style: none;
-    grid-gap: 15px;
+    grid-gap: 10px;
     padding: 0;
     margin: 0;
     align-items: stretch;
@@ -121,11 +121,11 @@ button{
 .sticky-c-item {
   border: 2px solid rgba(255, 255, 255, .3);
   border-radius: 17px;
-  padding: 15px;
+  padding: 15px 20px 15px 10px;
   position: relative;
   min-height: 100%;
   color:white;
-  font-size:16px;
+  font-size:14px;
   display: flex;
   flex-wrap: wrap;
   align-content: space-between;
@@ -135,14 +135,17 @@ button{
 }
   .sticky-c-item h4{
     color: #fff;
-    font-size: 20px;
+    font-size: 17px;
 }
 .s-c-close mat-icon{
     color: rgba(255, 255, 255, .9);
     position: absolute;
     right: 5px;
-    top:5px;
+    top:7px;
     cursor: pointer;
+    font-size: 19px;
+    width: 18px;
+    height: 18px;
 }
 .btn-done{
     margin-left: 15px;
