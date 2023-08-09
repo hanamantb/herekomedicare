@@ -119,23 +119,23 @@ button{
     width: calc(100% - 100px);
 }
 .sticky-c-item {
-  border: 2px solid rgba(255, 255, 255, .3);
-  border-radius: 17px;
-  padding: 15px 20px 15px 10px;
-  position: relative;
-  min-height: 100%;
-  color:white;
-  font-size:14px;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: space-between;
+    border: 2px solid rgba(255, 255, 255, .3);
+    border-radius: 17px;
+    padding: 15px 20px 15px 10px;
+    position: relative;
+    min-height: 100%;
+    color:white;
+    font-size:14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);
 }
-  .sticky-c-item h4{
-    color: #fff;
-    font-size: 17px;
+.sticky-c-item h4{
+  color: #fff;
+  font-size: 16px;
 }
 .s-c-close mat-icon{
     color: rgba(255, 255, 255, .9);

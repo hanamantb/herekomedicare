@@ -69,7 +69,7 @@
             </mat-select>
           </div>
           <div class="col d-flex justify-content-end list-top-edit-btn">
-            <button class="plan-edit-btn" mat-icon-button color="primary" (click)="navHome()">
+            <button class="plan-edit-btn" mat-icon-button color="primary" (click)="openEditPlansPopup()">
               <mat-icon> edit</mat-icon>
             </button>
           </div>
@@ -225,8 +225,8 @@
             </div>
             <div class="card-footer pe-2">
               <div class="d-flex align-items-center justify-content-between">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                <div class="form-check d-flex align-items-center compare-checkbox">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckChecked"
                          [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
                   <label class="form-check-label" for="flexCheckChecked">
                     Compare

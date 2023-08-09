@@ -344,3 +344,16 @@ h1{
     max-width: 42px;
     margin-left: 15px;
 }
+mat-select mat-option{
+    max-width: 180px;
+}
+.compare-checkbox input{
+   position: relative;
+   top: -2px;
+}
+.drug-cost-details-btn button{
+    font-weight: 400;
+}
+.item-show-btn mat-icon{
+    color: #4b8bb2;
+}
