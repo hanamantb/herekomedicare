@@ -8,7 +8,6 @@ import {MatDialog} from "@angular/material/dialog";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 import {SpinnerService} from "../../services/spinner.service";
 import { DrugsCoveredDialogboxComponent } from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
-import { EditPlansPopupComponent } from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
 
 
 @Component({
@@ -311,16 +310,11 @@ export class PlansListPageComponent implements OnInit {
   }
 
   planDetail() {
-    const newTab = window.open('', '_blank');
-    if (newTab)
-      newTab.location.href = this.route.createUrlTree(['plan-detail']).toString();
+    this.route.navigate(['plan-detail'])
   }
 
   openDrugsCovered() {
     this.dialog.open(DrugsCoveredDialogboxComponent);
-  }
-  openEditPlansPopup() {
-    this.dialog.open(EditPlansPopupComponent);
   }
 
   onScroll(event: Event) {

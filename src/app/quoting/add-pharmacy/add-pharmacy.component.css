@@ -110,42 +110,39 @@ button{
 }
 .sticky-content-wrapper ul{
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     list-style: none;
-    grid-gap: 10px;
+    grid-gap: 15px;
     padding: 0;
     margin: 0;
     align-items: stretch;
     width: calc(100% - 100px);
 }
 .sticky-c-item {
-    border: 2px solid rgba(255, 255, 255, .3);
-    border-radius: 17px;
-    padding: 15px 20px 15px 10px;
-    position: relative;
-    min-height: 100%;
-    color:white;
-    font-size:14px;
-    display: flex;
-    flex-wrap: wrap;
-    align-content: space-between;
+  border: 2px solid rgba(255, 255, 255, .3);
+  border-radius: 17px;
+  padding: 15px;
+  position: relative;
+  min-height: 100%;
+  color:white;
+  font-size:16px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);
 }
-.sticky-c-item h4{
-  color: #fff;
-  font-size: 16px;
+  .sticky-c-item h4{
+    color: #fff;
+    font-size: 20px;
 }
 .s-c-close mat-icon{
     color: rgba(255, 255, 255, .9);
     position: absolute;
     right: 5px;
-    top:7px;
+    top:5px;
     cursor: pointer;
-    font-size: 19px;
-    width: 18px;
-    height: 18px;
 }
 .btn-done{
     margin-left: 15px;

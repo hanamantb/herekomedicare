@@ -47,7 +47,3 @@ button{
 .customer-lookup-btn{
     border-radius: 0 2px 2px 0;
 }
-.customer-lookup-btn,
-.zip-code-btn {
-  font-weight: 400;
-}

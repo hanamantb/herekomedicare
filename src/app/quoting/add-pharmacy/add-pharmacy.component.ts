@@ -22,7 +22,7 @@ export class AddPharmacyComponent implements OnInit {
   zipcode: any;
   radius_miles: any = '10';
   pharmName: any = '';
-  page: any = '0';
+  page: any = 0;
   mailchecked = false
   ribbonShow = false
 
@@ -77,16 +77,29 @@ export class AddPharmacyComponent implements OnInit {
 
   check(event: any, data: any) {
     console.log("laassssss", data)
-    console.log("laassssss", event.target.checked)
-    if (data.checked == true) {
-      if (this.rowData.length >= 5){
-        this.dialog.open(ErrorPopupComponent,{
-          data:{
-            customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
-        event.target.checked =false
-      }else {
-        this.rowData.push(data);
+    const mailorder = this.rowData.filter((x:any) => x.name === 'Mail Order Pharmacy')
+    console.log("mailorder",mailorder)
+    if (data.checked == true ) {
+      if(mailorder.length !==0){
+        if (this.rowData.length >= 6){
+          this.dialog.open(ErrorPopupComponent,{
+            data:{
+              customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
+          event.target.checked =false
+        }else {
+          this.rowData.push(data);
+        }
+      }else{
+        if (this.rowData.length >= 5){
+          this.dialog.open(ErrorPopupComponent,{
+            data:{
+              customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
+          event.target.checked =false
+        }else {
+          this.rowData.push(data);
+        }
       }
+
 
     } else {
       const index = this.rowData.findIndex((item: any) => item.npi === data.npi);

@@ -129,10 +129,8 @@ select {
 .cdk-overlay-pane {
   max-width: 400px !important;
 }
-.mat-dialog-container {
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: 6px;
-  padding: 30px;
+.mat-dialog-container{
+    border-radius: 0 !important
 }
 .mat-dialog-containercontainer {
   padding: 0 !important

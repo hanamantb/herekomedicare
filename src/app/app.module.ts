@@ -42,7 +42,6 @@ import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.com
 import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.component";
 import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-page.component";
 import {DrugsCoveredDialogboxComponent} from "./shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component";
-import {EditPlansPopupComponent} from './shared/layouts/edit-plans-popup/edit-plans-popup.component';
 
 
 @NgModule({
@@ -64,8 +63,7 @@ import {EditPlansPopupComponent} from './shared/layouts/edit-plans-popup/edit-pl
     ActionsCellRendererComponent,
     PlanDetailsComponent,
     PlanCompareComponent,
-    PlansListPageComponent,
-    EditPlansPopupComponent
+    PlansListPageComponent
 
   ],
   imports: [
