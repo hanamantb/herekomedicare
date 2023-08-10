@@ -1,3 +1,8 @@
+h2{
+    font-size: 30px;
+    margin-bottom: 0;
+
+}
 table{
     background: #FFF;
     border: 1px solid rgba(0,0,0,.05);
@@ -7,11 +12,118 @@ th{
     border-right: 1px solid rgba(0,0,0,.05);
 }
 .table-striped tr:nth-of-type(odd) {
-  background-color: rgba(0,0,0,.05);
+  background-color: rgba(136, 155, 183, .05);
 }
-.table-striped .td {
+.table-striped td {
   border-right: 1px solid rgba(0,0,0,.05);
+  font-size: 16px;
+  padding: 10px 15px;
+}
+.table-striped td p,
+.table-striped td li{
+    font-size: 16px;
+    color: #555;
+}
+.table-striped td p{
+    margin-bottom: 0;
+    line-height: 26px;
+}
+.table-striped th label{
+    font-weight: 500;
+    font-size: 16px;
 }
 .rating-stars mat-icon {
   color: #f9c800;
+}
+.table-striped td {
+  border-right: 1px solid rgba(0,0,0,.05);
+}
+.table-striped ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px;
+}
+.table-striped ul li{
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.table-striped ul mat-icon{
+    color: green;
+    margin-right: 5px;
+}
+.table-striped .cancel-icon mat-icon{
+    color: red;
+}
+.additional-benfits-btn{
+    border: 1px solid #4b8bb2;
+    border-radius: 3px;
+    color: #4b8bb2;
+    padding: 5px 20px;
+    margin-bottom: 10px;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 15px;
+}
+.table-headings{
+    background-color: #dae6f1;
+    border-top: 1px solid #cad4dd;
+    border-bottom: 1px solid #cad4dd;
+}
+.compare-main-th button{
+    line-height: normal;
+    margin-right: 10px;
+    border-radius: 2px;
+    padding: 5px 15px;
+    font-size: 15px;
+    box-shadow: none
+}
+.compare-main-th {
+  position: sticky;
+  top: 0;
+  background-color: #FFF;
+  z-index: 1;
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, .03);
+}
+.compare-main-th button[color="primary"]:hover {
+  background-color: #3f51b5;
+  color: #fff;
+}
+.compare-main-th button[color="secondary"]{
+    background-color: #4b8bb2;
+    color: #fff;
+}
+.compare-main-th p, .compare-main-th h5, .compare-main-th h3{
+    padding: 0;
+}
+.compare-main-th p{
+    font-weight: normal;
+}
+.compare-main-th h3{
+    font-weight: 500;
+    font-size: 20px;
+}
+.compare-main-th h5 {
+  color: #3f51b5;
+  font-size: 18px;
+}
+.compare-main-th th{
+    vertical-align: top;
+    position: relative;
+    background-color: #fff;
+}
+.compare-main-th th .remove-plan-btn{
+    position: absolute;
+    right: 3px;
+    top: 2px;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+.compare-main-th th .remove-plan-btn mat-icon {
+  font-size: 19px;
+  font-weight: 500;
+  height: 17px;
+  width: 17px;
+  color: #8f8f8f;
 }

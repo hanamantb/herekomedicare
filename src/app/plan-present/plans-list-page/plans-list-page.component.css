@@ -41,7 +41,7 @@ mat-select{
   color: white;
 }
 .mat-icon-button{
-  width: 86px;
+  width: 38px;
 }
 .benfit-btn{
   font-size: 12px;
@@ -211,12 +211,13 @@ mat-button-toggle{
   height: 32px;
 }
 mat-select{
-  border-radius: 0;
+  border-radius: 2px;
   height: 32px;
   padding-left: 10px;
   padding-right: 10px;
-  line-height: 25px;
+  line-height: 23px;
   margin-top: 0;
+  max-width: 180px;
 }
 .plan-edit-btn{
   background-color: #3c6f8e;
@@ -228,10 +229,13 @@ mat-select{
 }
 .lis{
   color: #252525;
-  font-weight: 300;
+  font-weight: 400;
 }
-.plan-main-tabs{
-    border-radius: 0
+.plan-presentation-top p{
+    color: #252525;
+}
+.plan-main-tabs {
+  border-radius: 0
 }
 .plan-main-tabs .mat-button-toggle {
   background: #eaeaea;
@@ -332,5 +336,24 @@ h1{
 }
 .listing-to-cart-btn{
     max-width: 222px;
-
+}
+.side-bar-toggle{
+    border-right: 1px solid #e8e8e8;
+}
+.list-top-edit-btn{
+    max-width: 42px;
+    margin-left: 15px;
+}
+mat-select mat-option{
+    max-width: 180px;
+}
+.compare-checkbox input{
+   position: relative;
+   top: -2px;
+}
+.drug-cost-details-btn button{
+    font-weight: 400;
+}
+.item-show-btn mat-icon{
+    color: #4b8bb2;
 }

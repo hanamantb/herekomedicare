@@ -10,12 +10,12 @@
     <div class="col mt-2 p-2">
       <div class="p-2 plan-presentation-top">
         <div class="d-flex justify-content-center" style="background-color: white">
-          <div class="col-1 d-flex align-items-center">
+          <div class="d-flex align-items-center side-bar-toggle">
             <button mat-icon-button color="primary" (click)="sidebar()">
               <mat-icon (click)="onMenuClicked()">menu</mat-icon>
             </button>
           </div>
-          <div class="d-flex col-5 align-items-center ">
+          <div class="d-flex col-3 align-items-center ">
             <button mat-icon-button color="primary" >
               <mat-icon> location_on</mat-icon>
             </button>
@@ -36,9 +36,9 @@
             </form>
 
           </div>
-          <div class="col-3 d-flex">
+          <div class="col d-flex align-items-center"  >
             <p class="lis d-flex align-items-center">LIS</p>
-            <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis" (selectionChange)="lisChange()" class="mt-2">
+            <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis" (selectionChange)="lisChange()">
               <mat-option value="LIS_NO_HELP">
                 None
               </mat-option>
@@ -56,8 +56,20 @@
               </mat-option>
             </mat-select>
           </div>
-          <div class="col d-flex justify-content-end">
-            <button class="plan-edit-btn" mat-icon-button color="primary" (click)="navHome()">
+          <div class="col d-flex align-items-center ps-3 ms-auto justify-content-end">
+            <p class="text-nowrap d-flex align-items-center me-2 mb-0">Effective year</p>
+            <mat-select placeholder="2024">
+              <mat-option>
+                2023
+              </mat-option>
+              <mat-option>
+                2024
+              </mat-option>
+
+            </mat-select>
+          </div>
+          <div class="col d-flex justify-content-end list-top-edit-btn">
+            <button class="plan-edit-btn" mat-icon-button color="primary" (click)="openEditPlansPopup()">
               <mat-icon> edit</mat-icon>
             </button>
           </div>
@@ -213,14 +225,14 @@
             </div>
             <div class="card-footer pe-2">
               <div class="d-flex align-items-center justify-content-between">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                <div class="form-check d-flex align-items-center compare-checkbox">
+                  <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckChecked"
                          [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
                   <label class="form-check-label" for="flexCheckChecked">
                     Compare
                   </label>
                 </div>
-                <div class="ms-2 optional-packages-btn">
+                <div class="ms-2 optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
                 <span class="d-flex justify-content-center" (click)="showOp(plan)"  *ngIf="plan.alloptnpkShow" >
                   <p>Optional Packages</p>
                   <mat-icon>keyboard_arrow_down</mat-icon>
@@ -243,7 +255,7 @@
                 <div class=" d-flex">
                   <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
                   <!--                <label  class="ms-2"> Additional Details</label>-->
-                  <button mat-raised-button class="plan-details-btn" (click)="planDetail()">
+                  <button mat-raised-button class="plan-details-btn" (click)="planDetail()" target="_blank">
                     <mat-icon>remove_red_eye</mat-icon>
                     Plan Details
                   </button>
