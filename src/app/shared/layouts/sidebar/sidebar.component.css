@@ -135,3 +135,6 @@ label{
   color: white;
   background-color:#ffd543
 }
+/deep/.mat-expansion-indicator::after{
+    color: #fff;
+}

@@ -1,24 +1,11 @@
-/deep/.cdk-global-scrollblock{
-    top: 0 !important;
-}
-/deep/.cdk-overlay-pane {
-  max-width: 660px !important;
-  width: 100%;
-}
-table{
-    border: 1px solid #ddd;
-}
-table th {
-  font-weight: 500;
-  background-color: aliceblue;
-}
-table td, table th{
+mat-select, input{
+    border-radius: 2px;
     font-size: 14px;
+    padding-left: 15px;
+    padding-right: 10px;
 }
-/deep/.mat-dialog-container {
-  display: block;
-  padding: 24px 15px;
-  position: relative;
+label{
+    margin-bottom: 8px;
 }
 .btn-primary {
     padding: 0;
@@ -27,8 +14,8 @@ table td, table th{
     border: 0;
     font-size: 15px;
     position: absolute;
-    right: 5px;
-    top: 5px;
+    right: 8px;
+    top: 8px;
 }
 .btn-primary:hover{
     background-color: none;
@@ -39,6 +26,13 @@ table td, table th{
 .btn-primary:focus-within {
   background-color: transparent;
   color: #3f51b5;
+}
+h3{
+    font-size: 17px;
+    font-weight: 500;
+}
+/deep/.mat-dialog-container {
+  position: relative;
 }
 .btn-primary mat-icon{
     transition: all .3s ease-in-out;
