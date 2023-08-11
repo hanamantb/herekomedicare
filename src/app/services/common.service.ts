@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {ApiProviderService} from "./api-provider.service";
 import {Observable} from "rxjs";
 import {UrlConstants} from "../utilities/UrlConstants";
+import { InjectionToken } from '@angular/core';
+
+export const COMMON_SERVICE_TOKEN = new InjectionToken('COMMON_SERVICE_TOKEN');
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +39,11 @@ export class CommonService {
                      sort_order="ANNUAL_TOTAL"): Observable<any> {
     return this.apiProvider.post(UrlConstants.searchPlans, {searchPlanReqBody,plan_type,snp_type,
       page,year,fips,sort_order,zip},'');
+  }
+  public checkEmail(email: any): Observable<any> {
+    let s = this.apiProvider.get(UrlConstants.checkEmail + email);
+    console.log(s)
+    return s;
+    
   }
 }
