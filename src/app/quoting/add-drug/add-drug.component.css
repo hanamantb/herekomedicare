@@ -160,12 +160,18 @@ button {
 }
 .mat-input-element{
     border: #B8C0D4 solid 1px;
+    background: #fff;
 }
 .mat-input-element:focus-visible {
   outline: 0 !important;
   box-shadow: 0 0 4px rgba(75, 139, 178, .9);
 }
-.add-drugs-actions .secondary {
-   background-color:#4b8bb2;
-   color: #fff;
+button[color="primary"] {
+  background-color: #4b8bb2;
+  color: #fff;
 }
+button[color="secondary"] {
+  background-color: #4b8bb2;
+  color: #fff;
+}
+

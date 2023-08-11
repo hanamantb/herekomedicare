@@ -64,6 +64,9 @@ mat-select{
 .component {
   position: relative;
 }
+.plan-item-card h1{
+    font-size: 21px;
+}
 
 .content {
   /* Your component styles here */
@@ -306,13 +309,21 @@ mat-select{
   .item-optional-packages span.rate {
     font-weight: 500;
   }
-.drug-cost-details-btn {
+.drug-cost-details-btn button {
   cursor: pointer;
   color: #3c6f8e;
-  text-decoration: underline
+  text-decoration: underline;
+  padding: 0;
 }
-.form-check-input{
-    margin-top: 1px;
+.drug-cost-details-btn mat-icon{
+    color: #3c6f8e;
+    font-size: 19px;
+}
+.drug-cost-details-btn button:hover, .drug-cost-details-btn button:focus-within, .drug-cost-details-btn button:active {
+  background-color: #fff !important;
+}
+.form-check-input {
+  margin-top: 1px;
 }
 .card-footer > .card{
     margin: 0

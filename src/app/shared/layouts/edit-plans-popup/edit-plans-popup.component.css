@@ -40,3 +40,16 @@ h3{
 .btn-primary:hover mat-icon {
   transform: rotate(180deg)
 }
+.add-drugs-actions .secondary {
+  background-color: #4b8bb2;
+  color: #fff;
+}
+
+.keep-drug-brand-popup button[color="secondary"] {
+  background-color: #4b8bb2;
+  color: #fff;
+}
+.popup-action button{
+   border-radius: 2px;
+   font-weight: 400;
+}

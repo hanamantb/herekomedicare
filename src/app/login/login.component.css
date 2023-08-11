@@ -9,4 +9,13 @@
   padding-top: 120px;
   padding-bottom: 120px;
 }
+.login h2{
+    font-weight: 500;
+    font-size: 26px;
+    color: #252525
+}
+button{
+    border-radius: 2px;
+    font-size: 16px;
+}
 
