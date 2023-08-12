@@ -109,17 +109,23 @@
 </div>
 
 <ng-template #generic >
-  <div class="container-fluid">
-<h3 style="font-weight: 500">You have selected {{itemName}}</h3>
+  <div class="container-fluid keep-drug-brand-popup">
+    <h3 style="font-weight: 500">You have selected {{itemName}}</h3>
     <p>A lower generic is available for the drug you selected.</p>
     <div class="d-inline-flex py-2 w-100 selected-drug-radio">
-      <div class="d-inline-flex py-2 keep-the-drug" >
+      <div class="d-inline-flex py-2 keep-the-drug">
         <input type="radio" class="radio me-2" checked name="radioGroup" (change)="rxcuichange(item)" value="{{item}}"> Keep {{itemName}}
       </div>
-      <div class="d-inline-flex py-2 ps-2 flex-wrap" >
-        <input type="radio"  class="radio me-2" name="radioGroup"  (change)="rxcuichange(item.generic)" value="{{item.generic}}" > Use lower cost generic:<span class="d-block">{{item.generic.name}}</span>
-</div>
+      <div class="d-inline-flex py-2 ps-2 flex-wrap">
+        <input type="radio" class="radio me-2" name="radioGroup" (change)="rxcuichange(item.generic)" value="{{item.generic}}"> Use lower cost generic:<span class="d-block">{{item.generic.name}}</span>
+      </div>
+    </div>
+    <div class="popup-action justify-content-end d-flex">
+      <button mat-raised-button color="secondary" class="me-2">Close</button>
+      <button mat-raised-button color="primary" class="">Continue</button>
     </div>
     
+
+
   </div>
 </ng-template>

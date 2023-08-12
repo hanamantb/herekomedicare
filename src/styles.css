@@ -195,3 +195,7 @@ button{
     left: 50%;
     margin-left: -20px;
   }
+.popup-action {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}

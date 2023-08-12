@@ -18,9 +18,9 @@ import { PlansListPageComponent } from './plan-present/plans-list-page/plans-lis
 
 
 const routes: Routes = [
-  // {
-  //   path:'',loadChildren: ()=> import('./login/login.module').then(m=> LoginModule),
-  // },
+  {
+    path:'login',loadChildren: ()=> import('./login/login.module').then(m=> LoginModule),
+   },
   {
     path:'med-qoute',component:MedicareQuotingComponent
   },

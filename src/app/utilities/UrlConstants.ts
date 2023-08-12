@@ -7,5 +7,6 @@ export class UrlConstants {
   public static searchPharmacy = UrlConstants.api + "pharmacy"
   public static drugDosage = UrlConstants.api + "drug-Dosage-by-rxcui"
   public static searchPlans = UrlConstants.api + "search-plans"
+  public static checkEmail = UrlConstants.api + "login?username="
 
 }

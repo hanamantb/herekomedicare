@@ -79,9 +79,9 @@
         <div class="p-2">
           <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style" (change)="planType($event)"
                                    [(ngModel)]="planTypes">
-            <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription plans</mat-button-toggle>
-            <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage plans (Part C)</mat-button-toggle>
-            <mat-button-toggle value="PLAN_TYPE_PDP">Prescriptions (Plan D)</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription Plans</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage Plans (Part C)</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_PDP">Prescription Plans (Part D)</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
         <!--          <div class="d-flex p-2">-->
@@ -250,7 +250,7 @@
                   </div>
                 </div>
                 <div class="d-flex drug-cost-details-btn">
-                  <button mat-button (click)="openDrugsCovered()">Drugs Covered</button>
+                  <span class="me-2 d-flex align-items-center">Drugs Covered:</span><button mat-button (click)="openDrugsCovered()">2 of 2<mat-icon class="ms-2">edit</mat-icon></button>
                 </div>
                 <div class=" d-flex">
                   <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
