@@ -1,0 +1,73 @@
+<h3>Edit Information</h3>
+<form class="form" [formGroup]="editForm">
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Zipcode</label>
+      <input type="text" class="mat-in" placeholder="Enter your ZIP code"
+             matInput maxlength="5" type="tel"
+             (input)="inputCounties($event)"
+             formControlName="myControl"
+             [ngClass]="{'ng-invalid-input': myControl.touched && myControl.invalid}">
+
+      <div class="invalid-feedback d-flex" *ngIf="myControl.touched && myControl.invalid">
+        The entered Zip Code is not valid.
+      </div>
+<!--      <input type="text" class="form-control" placeholder="Enter Zip code">-->
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>County</label>
+      <mat-select placeholder="Select your county" [(ngModel)]="selectedCountie" (selectionChange)="county($event)"
+                  [ngModelOptions]="{ standalone: true }">
+        <mat-option *ngFor="let option of couties" [value]="option">
+          {{option.name}}, {{option.state}}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>LIS</label>
+      <mat-select placeholder="LIS" formControlName="lis"  >
+        <mat-option value="LIS_NO_HELP">
+          None
+        </mat-option>
+        <mat-option value="LIS_LEVEL_4_25">
+          25%
+        </mat-option>
+        <mat-option value="LIS_LEVEL_4_50">
+          50%
+        </mat-option>
+        <mat-option value="LIS_LEVEL_4_75">
+          75%
+        </mat-option>
+        <mat-option value="LIS_LEVEL_4_100">
+          100%
+        </mat-option>
+      </mat-select>
+      </div>
+    </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Effective year</label>
+      <mat-select  formControlName="effectYear" >
+        <mat-option value="2023">
+          2023
+        </mat-option>
+        <mat-option value="2024">
+          2024
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+  </div>
+</form>
+<button class="btn btn-primary" (click)="close(false)"><mat-icon>close</mat-icon></button>
+<div class="d-flex justify-content-end popup-action">
+  <button class="me-2" mat-raised-button color="secondary" (click)="close(false)">Cancel</button>
+  <button mat-raised-button color="primary" (click)="close(true)" >Save</button>
+</div>

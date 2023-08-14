@@ -17,6 +17,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinner.component';
 import { ErrorPopupComponent } from './layouts/error-popup/error-popup.component';
 import { DrugsCoveredDialogboxComponent } from './layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
+import { NoPharmaciesPopupComponent } from './layouts/no-pharmacies-popup/no-pharmacies-popup.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DrugsCoveredDialogboxComponent } from './layouts/drugs-covered-dialogbo
     LoadingSpinnerComponent,
     ErrorPopupComponent,
     DrugsCoveredDialogboxComponent,
+    NoPharmaciesPopupComponent,
   ],
   imports: [
     CommonModule,
