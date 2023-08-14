@@ -138,3 +138,7 @@ label{
 /deep/.mat-expansion-indicator::after{
     color: #fff;
 }
+mat-expansion-panel .form-check-input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+}

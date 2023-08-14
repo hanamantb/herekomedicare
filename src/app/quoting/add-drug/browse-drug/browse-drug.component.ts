@@ -28,8 +28,14 @@ this.IntialdrugByAlphabet()
   }
 
   toggleItemSelection(item: any) {
-    this.selectedItem = item
-    this.itemName = item.name
+    if (this.itemName === item.name){
+      this.selectedItem = []
+      this.itemName = ''
+    }else{
+      this.selectedItem = item
+      this.itemName = item.name
+    }
+
     console.log(item.name)
   }
 
@@ -54,6 +60,11 @@ this.dialogRef.close(this.selectedItem)
 
 
   cancel() {
+    this.selectedItem = []
+    this.itemName = ''
+    // this.dialog.closeAll()
+  }
+  close(){
     this.dialog.closeAll()
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouterModule} from "@angular/router";
 import {LoginComponent} from "../login/login.component";
 import {PlanPresentComponent} from "./plan-present.component";
+import {PlanDetailsComponent} from "./plan-details/plan-details.component";
 
 
 
@@ -13,7 +14,7 @@ import {PlanPresentComponent} from "./plan-present.component";
     RouterModule.forChild([
       {
         path:'',component:PlanPresentComponent
-      }
+      },
     ])
   ],
   exports:[

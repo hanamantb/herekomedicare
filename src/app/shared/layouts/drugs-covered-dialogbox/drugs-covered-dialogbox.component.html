@@ -1,8 +1,8 @@
-<h3>Covered drug details</h3>
+<h3>Covered Drugs</h3>
 <table class="table">
   <thead>
     <tr >
-      <th scope="col">#</th>
+      <th scope="col">Sl. No.</th>
       <th scope="col">Drug Name</th>
       <th scope="col">Dosage<br />Form Name</th>
       <th scope="col">Package<br />Type</th>
@@ -12,13 +12,17 @@
   </thead>
   <tbody>
     <tr *ngFor="let drug of drugsArray; let i = index">
-      <th scope="row">{{i}}</th>
+      <td scope="row">{{i+1}}</td>
       <td>{{drug.drugName}}</td>
       <td>{{drug.dosage}}</td>
-      <td>{{drug.dosage}}</td>
+      <td>{{drug.package}}</td>
       <td>{{drug.quantity}}</td>
       <td>{{drug.frequency}}</td>
     </tr>
   </tbody>
 </table>
 <button class="btn btn-primary" (click)="close()"><mat-icon>close</mat-icon></button>
+<div class="d-flex justify-content-end popup-action">
+  <button mat-raised-button color="primary" (click)="drugPage()">Edit</button>
+</div>
+

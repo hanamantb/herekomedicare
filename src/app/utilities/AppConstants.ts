@@ -7,6 +7,7 @@ export class AppConstants {
   public static pharmacies = 'pharmacies';
   public static lis = 'lis';
   public static countie = 'countie';
+  public static effectyear = 'effectyear';
 
 
 }

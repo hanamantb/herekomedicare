@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-drugs-covered-dialogbox',
@@ -8,7 +9,8 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class DrugsCoveredDialogboxComponent implements OnInit {
   drugsArray:any;
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+              private route: Router) { }
 
   ngOnInit(): void {
     const drugs = sessionStorage.getItem('drugs')
@@ -19,6 +21,11 @@ export class DrugsCoveredDialogboxComponent implements OnInit {
   }
 
   close() {
+    this.dialog.closeAll()
+  }
+
+  drugPage() {
+    this.route.navigate(['add-drugs'])
     this.dialog.closeAll()
   }
 }

@@ -143,7 +143,8 @@
       <li *ngFor="let pharm of rowData">
         <div class="sticky-c-item">
           <h4>{{pharm.name}}</h4>
-          Distance: {{pharm.distance_miles}} Miles
+          <span *ngIf="pharm.distance_miles">Distance: {{pharm.distance_miles}} Miles</span>
+
           <div class="s-c-close">
             <mat-icon (click)="delete(pharm)">close</mat-icon>
             <!--            <i class="material-icons">delete</i>-->

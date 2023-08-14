@@ -225,7 +225,7 @@ export class AddDrugComponent implements OnInit {
         rxcui: this.rxcui,
         drugName: this.itemName + ' ' + gen,
         package: pack,
-        dosage: this.drugForm.value.dosage.strength +' '+ this.drugForm.value.dosage.dosage_form ,
+        dosage: this.drugForm.value.dosage.strength + ' ' + this.drugForm.value.dosage.dosage_form,
         ndc: this.drugForm.value.dosage.ndc
       })
       this.rowData.push(this.drugForm.value)
@@ -301,6 +301,9 @@ export class AddDrugComponent implements OnInit {
   }
 
   getDosageDetails() {
+    this.drugForm.patchValue({
+      frequency: "Every month"
+    })
     this.commonservice.drugDosage(this.rxcui).subscribe((response) => {
       this.dosagesDetails = response.data
       console.log('getDosageDetails', response)
@@ -361,6 +364,13 @@ export class AddDrugComponent implements OnInit {
   cancel() {
     this.dialog.closeAll()
     this.getDosageDetails()
+  }
+
+  close() {
+    this.itemName = ''
+    this.drugForm.reset()
+    this.drugname.reset()
+    this.dialog.closeAll()
   }
 
   onActionButtonClick(action: any, data: any): void {

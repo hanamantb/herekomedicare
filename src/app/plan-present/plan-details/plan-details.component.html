@@ -3,10 +3,12 @@
     <div class="plan-main-info card p-4 mt-4 mb-2">
       <div class="row">
         <div class="col-sm-9">
-          <div class="plan-logo mb-2"><img src="./assets/humana-logo.png" alt="Alternate Text" /></div>
-          <h1>Humana Gold Plus H1036-068 (HMO)</h1>
-          <p><strong>Plan type:</strong><span>Medicare Advantage with drug coverage</span></p>
-          <p><strong>Plan id:</strong><span>H1036-068-0</span></p>
+          <div class="plan-logo mb-2">
+            <img src="data:image/png;base64,{{details.logo}}" alt="" style="width: 90%">
+          </div>
+          <h1>{{details.planName}}</h1>
+          <p><strong>Plan type:</strong><span>{{details.planType}}</span></p>
+          <p><strong>Plan id:</strong><span>{{details.planID}}</span></p>
           <div class="row">
             <div class="col-12">
               <p>
@@ -33,11 +35,11 @@
       <div class="row">
         <div class="col-sm-3">
           <p>Total monthly premium</p>
-          <h3>$0.00</h3>
+          <h3>${{details.monthlypremium}}</h3>
         </div>
         <div class="col-sm-3">
           <p>Health deductible</p>
-          <h3>$0.00</h3>
+          <h3>${{details.monthlypremium}}</h3>
         </div>
         <div class="col-sm-3">
           <p>Primary doctor</p>
@@ -434,7 +436,7 @@
                 <mat-icon>grade</mat-icon>
                 <mat-icon>star_half</mat-icon>
               </div>
-              
+
             </div>
           </div>
 

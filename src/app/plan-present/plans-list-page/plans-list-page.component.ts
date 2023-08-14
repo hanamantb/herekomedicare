@@ -7,8 +7,8 @@ import {FormControl} from "@angular/forms";
 import {MatDialog} from "@angular/material/dialog";
 import {QuoteDataDetailsService} from "../../services/quote-data-details.service";
 import {SpinnerService} from "../../services/spinner.service";
-import { DrugsCoveredDialogboxComponent } from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
-import { EditPlansPopupComponent } from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
+import {DrugsCoveredDialogboxComponent} from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
+import {EditPlansPopupComponent} from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { EditPlansPopupComponent } from '../../shared/layouts/edit-plans-popup/e
   styleUrls: ['./plans-list-page.component.css']
 })
 export class PlansListPageComponent implements OnInit {
- @ViewChild('Zipchange', {static: true}) Zipchange!: TemplateRef<any>;
+  @ViewChild('Zipchange', {static: true}) Zipchange!: TemplateRef<any>;
   benefits: boolean = false
   optnpkShow: boolean = false
   isChecked: boolean = false
@@ -33,11 +33,14 @@ export class PlansListPageComponent implements OnInit {
   couties: any
   fips: any
   lis: any
+  effYear: any ='2023'
+  drugsArray: any
   page: any = 0;
   selectedCountie: any;
   planTypes: any = "PLAN_TYPE_MAPD"
   // @Output() menuClicked = new EventEmitter();
   response: any = [];
+  cart: any = [];
   frequency = [{
     name: 'Every month',
     values: 'FREQUENCY_30_DAYS'
@@ -68,21 +71,6 @@ export class PlansListPageComponent implements OnInit {
               private spinner: SpinnerService) {
   }
 
-  get fullStars(): number[] {
-    return Array(Math.floor(this.value)).fill(0);
-  }
-
-  get halfStar(): boolean {
-    return this.value % 1 !== 0;
-  }
-
-  get emptyStars(): number[] {
-    const totalStars = 5;
-    const fullAndHalfStars = Math.floor(this.value) + (this.halfStar ? 1 : 0);
-    return Array(totalStars - fullAndHalfStars).fill(0);
-  }
-
-
 
   ngOnInit(): void {
     this.zipcode = sessionStorage.getItem('zipcode')
@@ -95,19 +83,19 @@ export class PlansListPageComponent implements OnInit {
     });
     this.sharedService.optncheck$.subscribe((value: any) => {
       this.optinPackChange(value)
-      console.log('checkee',value)
+      console.log('checkee', value)
     });
 
     const plans = sessionStorage.getItem('plans')
-    let plansarray: any[] = [];
-    if (plans) {
-      plansarray = JSON.parse(plans);
-    }
-    if (plansarray.length !== 0) {
-      this.plans = plansarray
-    } else {
-      this.getPlans(0)
-    }
+    // let plansarray: any[] = [];
+    // if (plans) {
+    //   plansarray = JSON.parse(plans);
+    // }
+    // if (plansarray.length !== 0) {
+    //   this.plans = plansarray
+    // } else {
+    this.getPlans(0)
+    // }
 
   }
 
@@ -134,15 +122,17 @@ export class PlansListPageComponent implements OnInit {
 
   showOp(plan: any) {
     plan.optnpkShow = !plan.optnpkShow
-    console.log('cli')
+
   }
 
-  cart(plan: any) {
+  addToCart(plan: any) {
     if (!plan.cartAdded) {
       this.sharedService.incrementNumber();
+      this.cart.push(plan)
     }
     plan.cartAdded = true
-
+    console.log('cli',this.cart)
+    sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
   selectButton() {
@@ -150,7 +140,7 @@ export class PlansListPageComponent implements OnInit {
   }
 
   getPlans(page: any) {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({top: 0, behavior: 'smooth'});
     const spine = this.spinner.start()
     const zip = sessionStorage.getItem('zipcode')
     const fips = sessionStorage.getItem('fip')
@@ -163,13 +153,13 @@ export class PlansListPageComponent implements OnInit {
       npiArray = JSON.parse(npis);
     }
     if (drugs) {
-      drugsArray = JSON.parse(drugs);
+      this.drugsArray = JSON.parse(drugs);
     }
-    this.updateApidrugs(drugsArray)
-    console.log('npis----', drugsArray)
+    this.updateApidrugs(this.drugsArray)
+    console.log('zip----', zip)
     const searchPlanReqBody = {
       npis: npiArray,
-      prescriptions: drugsArray,
+      prescriptions: this.drugsArray,
       lis: lis
     };
     const plan_type = [
@@ -181,7 +171,14 @@ export class PlansListPageComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody, plan_type, snp_type, zip, fips, page).subscribe((response) => {
+    let isDrugAdded = true
+    if (this.drugsArray.length === 0){
+      isDrugAdded = false
+    }
+
+    this.commonservice.searchPlans(searchPlanReqBody, plan_type, snp_type, zip, fips, page, isDrugAdded,this.effYear).subscribe((response) => {
+
+      if (response.status){
       this.response = response.data
       sessionStorage.setItem('planResponse', JSON.stringify(this.response))
       const resp = response.data.plans
@@ -203,7 +200,11 @@ export class PlansListPageComponent implements OnInit {
       this.page = this.page + 1
       this.spinner.stop(spine)
       console.log('response', response)
-    })
+    }else{
+        this.spinner.stop(spine)
+        console.log('response false', response)
+      }})
+
   }
 
   onCheckboxChange(plan: any) {
@@ -252,11 +253,8 @@ export class PlansListPageComponent implements OnInit {
   planType(event: any) {
     console.log(event.value)
     this.planTypes = event.value
+    this.plans = []
     this.getPlans(0)
-    // const plans =this.filtrPlans.filter((x:any)=>
-    //   x.planType === event.value
-    // )
-    // this.plans = plans
   }
 
   onPageChange(event: any) {
@@ -310,33 +308,38 @@ export class PlansListPageComponent implements OnInit {
     this.getPlans(0)
   }
 
-  planDetail() {
-    const newTab = window.open('', '_blank');
-    if (newTab)
-      newTab.location.href = this.route.createUrlTree(['plan-detail']).toString();
+  effectYearChange(event:any) {
+    sessionStorage.setItem('effectyear',this.effYear)
+    this.getPlans(0)
+  }
+
+  planDetail(plan:any) {
+    sessionStorage.setItem('plandetail',JSON.stringify(plan) )
+    this.route.navigate(['/plan-detail'], {
+      state: { data: plan },
+    });
   }
 
   openDrugsCovered() {
     this.dialog.open(DrugsCoveredDialogboxComponent);
   }
+
   openEditPlansPopup() {
-    this.dialog.open(EditPlansPopupComponent);
+    const matref = this.dialog.open(EditPlansPopupComponent);
+
+    matref.afterClosed().subscribe((resp: any) => {
+      if (resp === true) {
+        this.getPlans(0)
+        this.planTypes = "PLAN_TYPE_MAPD"
+        this.zipcode = sessionStorage.getItem('zipcode')
+        this.fips = sessionStorage.getItem('fips')
+        this.lis = sessionStorage.getItem('lis')
+        this.effYear = sessionStorage.getItem('effectyear')
+        this.zipcode += ' ' + sessionStorage.getItem('countie')
+      }
+    })
   }
 
-  onScroll(event: Event) {
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-
-    // Check if the user is near the bottom of the page
-    if (scrollY + windowHeight >= documentHeight - 100) {
-      // You can trigger your function here
-      // For example, emit an event or call a function in a component
-      // YourComponent.yourFunction();
-      console.log('scrolled down')
-    }
-
-  }
   // @HostListener('window:scroll', ['$event'])
   // scroll(event: Event) {
   //   const scrollY = window.scrollY;
@@ -352,4 +355,11 @@ export class PlansListPageComponent implements OnInit {
   //   }
   //
   // }
+  clearCompare() {
+    this.checkedData=[]
+    this.isChecked=false
+    this.plans.forEach((element:any)=>{
+      element.checked=false
+    })
+  }
 }

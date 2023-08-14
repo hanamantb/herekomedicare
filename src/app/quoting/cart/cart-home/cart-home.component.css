@@ -132,7 +132,7 @@ mat-select{
     padding-top: 5px;
     font-size: 11px;
     color: #555;
-} 
+}
 button{
     border-radius: 2px;
 }
@@ -145,4 +145,375 @@ button{
 }
 .optional-packages-btn p{
     font-size: 14px;
+}
+.star-rating {
+  font-size: 24px;
+}
+
+.star-rating span {
+  display: inline-block;
+  width: 24px;
+  height: 20px;
+  background-color: transparent;
+  background-image: url('../../../../assets/empty.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.star-rating span.filled {
+  background-image: url('../../../../assets/full.png');
+}
+
+.star-rating span.half-filled {
+  background-image: url('../../../../assets/half.png');
+}
+.top-btns{
+  width: 100%;
+  border: none;
+  height: 40px;
+}
+
+/*p{*/
+/*  text-align: center;*/
+/*}*/
+
+mat-icon{
+  color: black;
+}
+.sub-line{
+  font-size: 11px;
+  color: gray;
+  margin-top: -12px;
+  font-weight: 400;
+}
+.benefit-icon{
+  border-radius: 50%;
+}
+.container{
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+  height: 100vh;
+}
+
+.lis{
+  color: #3f51b5;
+  font-weight: 500;
+  margin-top: 10px;
+  margin-right: 7px;
+}
+mat-select{
+  margin-top: 5px;
+}
+.side-img{
+  background-color:#4b8bb2 ;
+  color: white;
+}
+.mat-icon-button{
+  width: 38px;
+}
+.benfit-btn{
+  font-size: 12px;
+  width: 100%;
+  text-align: left;
+}
+.premium .card{
+  margin: 2px;
+  height: auto;
+  border: none;
+  font-size: 15px;
+}
+.card{
+  margin: 2px;
+  height: auto;
+}
+.rate{
+  font-weight: bold;
+}
+.component {
+  position: relative;
+}
+.plan-item-card h1{
+  font-size: 21px;
+}
+
+.content {
+  /* Your component styles here */
+}
+
+.sectionbtm {
+  position: fixed;
+  bottom: 10px;
+  right: 0;
+  max-width: 550px; /* Half of the component width */
+  height: 70px;
+  background-color: #00267a;
+  color: white;
+  font-size: 18px;
+  border-radius: 5px 0 0 5px;
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, .2);
+  padding: 0 10px;
+  /* Your section styles here */
+}
+.comparebtn{
+  color: black;
+  background-color: white;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.clicked {
+  background-color: #a6a7a6;
+  color: white;
+}
+.benefit-icon{
+  color: green;
+}
+.baseBenifit p{
+  text-align: center;
+}
+.baseBenifit span{
+  font-weight: bold;
+}
+
+
+
+/**/
+
+.plan-head{
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.plan-head h1{
+  width: 100%;
+}
+.plan-head button {
+  background-color: #777777;
+  color: white;
+  border: none;
+  padding: 2px 8px;
+  height: 24px;
+  width: auto;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.plan-head p {
+  font-size: 14px;
+  font-weight: 400;
+}
+.base-dtl{
+  border-top: 1px solid #ddd;
+}
+.base-dtl p {
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 23px;
+  pointer-events: none;
+  color: #7e7e7e;
+}
+.base-dtl h2{
+  font-size: 15px;
+  font-weight: normal;
+  margin-bottom: 1px;
+}
+h6{
+  font-size: 14px;
+  margin-bottom: 10px;
+  float: left;
+  border-bottom: dashed 1px #ccc;
+  font-weight: 400;
+}
+.sub-prop {
+  display: block;
+  margin-bottom: 8px;
+  color: #7e7e7e !important;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: normal;
+}
+.clear{
+  clear: both;
+}
+bdo {
+  display: block;
+  margin-bottom: 4px;
+  color: #7e7e7e !important;
+  font-size: 13px;
+  font-weight: 300;
+}
+mat-button-toggle-group{
+  width: 100%;
+}
+mat-button-toggle{
+  width: 100%;
+}
+.selected {
+  background-color: blue;
+  color: white;
+}
+.plan-presentation-top > div{
+  border: solid 1px #e8e8e8;
+}
+.plan-presentation-top .plan-edit-btn mat-icon{
+  color: #fff;
+}
+.plan-presentation-top input[type="text"]{
+  height: 32px;
+}
+mat-select{
+  border-radius: 2px;
+  height: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 23px;
+  margin-top: 0;
+  max-width: 180px;
+}
+.plan-edit-btn{
+  background-color: #3c6f8e;
+  color: #fff;
+  border-radius: 0;
+  min-height: 100%;
+  max-height: 47px;
+  width: 41px;
+}
+.lis{
+  color: #252525;
+  font-weight: 400;
+}
+.plan-presentation-top p{
+  color: #252525;
+}
+.plan-main-tabs {
+  border-radius: 0
+}
+.plan-main-tabs .mat-button-toggle {
+  background: #eaeaea;
+}
+.plan-main-tabs .mat-button-toggle-checked {
+  background-color: #fff;
+  color: #4b8bb2;
+  font-weight: 500;
+}
+.plan-listing-wrapper{
+  background: #fff;
+}
+.premium {
+  border-left: solid 1px #ebebeb;
+}
+.base-dtl {
+  border-bottom: 1px solid #ebebeb;
+}
+.monthly-premium, .estimated-annual-cost {
+  font-size: 38px;
+  color: #30b1ff;
+  font-weight: 300;
+}
+.monthly-premium{
+  font-size: 38px;
+}
+.estimated-annual-cost {
+  font-size: 25px;
+}
+.original-rate{
+  font-size: 16px;
+  font-weight: 300;
+}
+.premium a{
+  color: blue;
+  font-weight: 400;
+  font-size: 13px;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+}
+.premium .premium-title, .estimated-annual-cost-label {
+  font-size: 16px;
+  font-weight: 300;
+}
+.material-icons{
+  font-size: 21px;
+}
+.card-footer {
+  background: #fff;
+}
+.plan-details-btn{
+  border-radius: 0;
+  box-shadow: none;
+  font-weight: 400;
+}
+.card-footer p{
+  margin-bottom: 0;
+}
+.item-optional-packages{
+  border-radius: 2px;
+}
+.item-optional-packages label, .item-optional-packages p {
+  font-weight: 300;
+}
+.item-optional-packages p{
+  margin-top: 5px;
+}
+.item-optional-packages span.rate {
+  font-weight: 500;
+}
+.drug-cost-details-btn button {
+  cursor: pointer;
+  color: #3c6f8e;
+  text-decoration: underline;
+  padding: 0;
+}
+.drug-cost-details-btn mat-icon{
+  color: #3c6f8e;
+  font-size: 19px;
+}
+.drug-cost-details-btn button:hover, .drug-cost-details-btn button:focus-within, .drug-cost-details-btn button:active {
+  background-color: #fff !important;
+}
+.form-check-input {
+  margin-top: 1px;
+}
+.card-footer > .card{
+  margin: 0
+}
+.item-add-to-cart{
+  font-weight: 300;
+  border-radius: 2px;
+  width: 100%;
+  padding: 0 30px
+}
+h1{
+  margin-bottom: 0;
+}
+.documents-dropdown button{
+  font-weight: 400 !important;
+  font-size: 14px
+}
+.optional-packages-btn p{
+  font-size: 14px;
+  font-weight: normal;
+}
+.listing-to-cart-btn{
+  max-width: 222px;
+}
+.side-bar-toggle{
+  border-right: 1px solid #e8e8e8;
+}
+.list-top-edit-btn{
+  max-width: 42px;
+  margin-left: 15px;
+}
+mat-select mat-option{
+  max-width: 180px;
+}
+.compare-checkbox input{
+  position: relative;
+  top: -2px;
+}
+.drug-cost-details-btn button{
+  font-weight: 400;
+}
+.item-show-btn mat-icon{
+  color: #4b8bb2;
 }
