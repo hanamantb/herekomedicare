@@ -46,4 +46,10 @@ export class CommonService {
     return s;
 
   }
+  public checkEmail(email: any): Observable<any> {
+    let s = this.apiProvider.get(UrlConstants.checkEmail + email);
+    console.log(s)
+    return s;
+    
+  }
 }
