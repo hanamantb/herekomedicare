@@ -310,7 +310,10 @@ export class AddDrugComponent implements OnInit {
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));
       this.dosages = distinctValues;
       if (this.nonEditDrug.length === 0) {
-        console.log('dosages---1', this.dosages[0])
+        if (this.dosages[0].package_description !=''){
+          this.packages = this.dosages
+        }
+        console.log('test',this.dosages[0])
         this.drugForm.patchValue({
           ndc: this.dosages[0].ndc,
           dosage: this.dosages[0],
@@ -338,13 +341,14 @@ export class AddDrugComponent implements OnInit {
     const filteredData = this.dosagesDetails.filter((item: any) => item.dosage_form === event.value.dosage_form);
     const pack = Array.from(new Set(filteredData.map((item: any) => item)));
     pack.forEach((element: any) => {
+      console.log('dosageChange', element)
       if (element.package_description != "") {
         this.packages.push(element)
       }
     })
     console.log('dos pack', pack)
     console.log('dos packages', this.packages)
-    console.log('dos event', event.value)
+    console.log('dos event  package_description\n', event.value)
     this.drugForm.patchValue({
       ndc: event.value.ndc,
       package: event.value,

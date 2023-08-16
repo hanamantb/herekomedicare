@@ -28,14 +28,16 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.submitted=true
-    debugger
     const formValues = this.loginForm.value;
+    this.submitted = true
+    if (this.loginForm.invalid) {
+      return;
+    }
     this.commonService.checkEmail(formValues.Email).subscribe((response: any) => {
       if (response==true) {
         this.route.navigate(['quoting'])
       } else {
-        console.error('User not found.');
+        alert('User not found.');
       }
     });
 

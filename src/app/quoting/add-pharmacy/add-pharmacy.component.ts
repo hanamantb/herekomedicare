@@ -7,6 +7,7 @@ import {QuoteDataDetailsService} from "../../services/quote-data-details.service
 import {SpinnerService} from "../../services/spinner.service";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
+import { NoPharmaciesPopupComponent } from '../../shared/layouts/no-pharmacies-popup/no-pharmacies-popup.component';
 
 @Component({
   selector: 'app-add-pharmacy',
@@ -142,6 +143,13 @@ export class AddPharmacyComponent implements OnInit {
           }
         })
         this.page = response.data.total_results
+      }else{
+        this.dialog.open(ErrorPopupComponent, {
+          data: {
+            buttons: true,
+            customMsg: 'We couldn\'t find any pharmacies matching your search in this area.'
+          }
+        })
       }
       this.spinner.stop(spine)
       console.log('pharmacy', response)
@@ -187,6 +195,10 @@ export class AddPharmacyComponent implements OnInit {
 
   distanceChange() {
     this.findPharmacy('0',5)
+  }
+
+  openNoPharmacies() {
+    this.dialog.open(NoPharmaciesPopupComponent);
   }
 
   updateExistPharm(){

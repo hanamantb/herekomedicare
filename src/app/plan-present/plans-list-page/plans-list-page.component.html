@@ -152,8 +152,8 @@
                   </div>
                 </div>
                 <div class="row px-3" *ngIf="plan.benefits">
-                  <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
-                    <button mat-icon-button class="benfit-btn">
+                  <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
+                    <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                       <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
                       {{additionalbenefits.attributeName}}
                     </button>

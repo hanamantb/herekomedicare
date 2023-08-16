@@ -18,13 +18,18 @@ import {PlanDetailsComponent} from "./plan-present/plan-details/plan-details.com
 
 const routes: Routes = [
   {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'quoting'
+  },
+  {
     path:'login',loadChildren: ()=> import('./login/login.module').then(m=> LoginModule),
    },
   {
     path:'med-qoute',component:MedicareQuotingComponent
   },
   {
-    path:'',component:QuotingComponent
+    path:'quoting',component:QuotingComponent
   },
   {
     path:'zip-code',component:ZipcodeQoutingComponent
