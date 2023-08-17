@@ -375,6 +375,3 @@ mat-select mat-option{
 .item-show-btn mat-icon{
     color: #4b8bb2;
 }
-.estimated-cost-label small {
-  display: block;
-}

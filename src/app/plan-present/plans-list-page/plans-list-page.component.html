@@ -43,7 +43,7 @@
               </mat-option>
             </mat-select>
           </div>
-          <div class="col d-flex align-items-center ps-3 ms-auto justify-content-end">
+          <div class="col d-flex align-items-center ps-3 ms-auto justify-content-end" *ngIf="showDiv">
             <p class="text-nowrap d-flex align-items-center me-2 mb-0">Effective year</p>
             <mat-select placeholder="2024" [(ngModel)]="effYear" (selectionChange)="effectYearChange($event)">
               <mat-option value="2023">
