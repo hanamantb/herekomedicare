@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <p class="heading">Consolidated Errors</p>
+    </div>
+    <div class="col-md-2" align="right">
+      <div class="col-md-2" align="right"><button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ag-grid-angular style="height: 500px" class="ag-theme-balham"
+                       [scrollbarWidth]="8"
+                       [headerHeight]="30"
+                       [rowHeight]="30"
+                       [rowData]="rowData" [columnDefs]="columnDefs"
+                       enableCellTextSelection=true>
+      </ag-grid-angular>
+    </div>
+  </div>
+</div>

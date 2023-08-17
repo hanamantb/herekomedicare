@@ -1,0 +1,25 @@
+.h {
+  background-color: #147c9d;
+  width: 28%;
+  text-align: center;
+  border-top-left-radius: 10px;
+  color: white;
+  /* border: solid #57e6f1; */
+}
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #c5c5c5;
+}
+.header-row {
+  padding: 5px 0px 5px 20px;
+  background-color: #e8e8e8;
+}
+.content-row {
+  padding: 5px 0px 5px 20px;
+}
+.plntin{
+  width: 100%;
+}

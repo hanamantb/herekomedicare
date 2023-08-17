@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <nav aria-label="breadcrumb" style="font-size: 15px ;color: black">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Dashboard</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Requests to push</li>
+    </ol>
+  </nav>
+  <br>
+  <div class="row" style="height: 34px;">
+    <div class="col-md-6" align="left">
+      <!--<h1 class="display-4 page-header"><span class="screen-headings">Confirmed Request</span></h1>-->
+      <p class="h">Requests to push</p>
+
+    </div>
+    <div class="col-md-6" align="right" >
+      <button mat-raised-button class="approve-button" (click)="spadmpush()" >
+        <i class="fa fa-check" aria-hidden="true"></i>&nbsp;PUSH &nbsp; </button>&nbsp;
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ag-grid-angular style="height: 390px" class="ag-theme-balham"
+                       [scrollbarWidth]="8"
+                       [headerHeight]="30"
+                       [rowHeight]="35"
+                       rowSelection="multiple"
+                       (rowSelected)="activitySelected($event)"
+                       (cellClicked)="onGridCellClicked($event,rowData)"
+
+                       [rowData]="rowData" [columnDefs]="columnDefs"
+                       enableCellTextSelection=true>
+      </ag-grid-angular>
+    </div>
+  </div>
+  <br>
+</div>
+
+
+
+

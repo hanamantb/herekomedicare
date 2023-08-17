@@ -1,0 +1,12 @@
+<div class="row" style="margin-top: -70px;margin-left: 5%;">
+    <div class="col-md-12 text-start">
+      <div style="width: 790px;
+      margin-left: 23px;" >
+        <ul class="timeline" >
+          <li *ngFor="let data of list" class="active-green"  [ngClass]="{'active-green': data.workStageId <= curentWorkStageId, 'active-orange': data.workStageId === curentWorkStageId, 'active-ash' : data.workStageId >= curentWorkStageId }">
+            <div [ngClass]="{'green': data.workStageId <= curentWorkStageId, 'orange': data.workStageId === curentWorkStageId, 'ash' : data.workStageId >= curentWorkStageId }">{{data.stage}}</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

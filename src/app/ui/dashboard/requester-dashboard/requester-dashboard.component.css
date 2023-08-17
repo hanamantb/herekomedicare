@@ -1,0 +1,122 @@
+.card-text {
+  font-size: 21px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  padding: 24px;
+  margin-left: 42px;
+}
+
+.card1 {
+  transition: 0.3s;
+  width: 100%;
+  height: 100%;
+  background-color: white;;
+  box-shadow: 2px 4px 8px 2px rgb(0 0 0 / 20%);
+  color: black;
+  border-radius: 18px;
+}
+
+.card1 :hover {
+  transform: scale(1.2);
+}
+
+::ng-deep .mat-card {
+  border-radius: 30px !important;
+}
+
+.go-to-button {
+  background-color: cornflowerblue;
+  border-radius: 10px;;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+
+
+/* .row {
+    width: 100%;
+    background-image: linear-gradient( to right, #2fc09e, #57e6f1);
+    margin-left: 0px;
+    height: 61%;
+} */
+
+.h {
+  margin-bottom: 13px;
+}
+
+
+/* .tab {
+    width: 100%;
+    margin-left: 0px;
+    height: 61%;
+} */
+
+.container-fluid {
+  background-image: linear-gradient(#57e6f1, #147c9d);
+  position: absolute;
+  height: 57%;
+}
+
+
+/* .col-md-3 {
+    flex: 0 0 auto;
+    width: 21.333333%;
+    height: 139px;
+    margin-top: 16px;
+    margin-left: 9%;
+} */
+
+.col-md-3 {
+  margin-top: 16px;
+}
+
+h5 {
+  margin-top: 2%;
+  position: absolute;
+  margin-left: 10%;
+  background-color: #0e5ea3;
+  width: 200px;
+  height: 39px;
+  text-align: center;
+  border-top-left-radius: 10px;
+  color: white;
+}
+
+.btn {
+  position: absolute;
+  /* margin-left: 81%; */
+  /* margin-top: -41.5%; */
+  width: 135px;
+  background-color: #0e5ea3;
+  color: white;
+  float: right;
+  margin-left: 29%;
+  border-radius: 10px;
+}
+
+.btns {
+  position: absolute;
+  /* margin-left: 81%; */
+  /* margin-top: -41.5%; */
+  width: 150px;
+  background-color: #0e5ea3;
+  color: white;
+  float: left;
+}
+
+.card1 img {
+  height: 62px;
+  margin-left: 1%;
+  position: absolute;
+  margin-top: 30px;
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 24%;
+  box-shadow: 11px 13px 8px 2px rgb(0 0 0 / 20%);
+}

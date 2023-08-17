@@ -1,0 +1,105 @@
+<div class="container-fluid">
+
+  <div class="row" style="height: 60px;">
+    <div class="col-md-6" align="left">
+      <h1 class="display-4 page-header"><span class="screen-headings">Uploaded Request Details</span></h1>
+    </div>
+    <div class="col-md-6" align="right">
+      <br>
+      <button mat-raised-button class="download-button" (click)="download()"> <i class="fa fa-download" aria-hidden="true"></i>&nbsp;Download Template</button>&nbsp;
+      <button mat-raised-button class="upload-button" (click)="uploadRequest()"> <i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Upload Request</button>&nbsp;
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <ag-grid-angular style="height: 380px" class="ag-theme-balham"
+                       [scrollbarWidth]="8"
+                       [headerHeight]="30"
+                       rowSelection="multiple"
+                       [rowHeight]="35"
+                       (rowSelected)="activitySelected($event)"
+                       [rowData]="rowData" [columnDefs]="columnDefs"
+                       enableCellTextSelection=true>
+      </ag-grid-angular>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12" align="right">
+      <button mat-raised-button class="clear-button" (click)="clearUploadedData()">Delete Selected</button>&nbsp;
+      <button mat-raised-button class="capex-button" (click)="sendpopup()">Submit Request</button>&nbsp;
+
+    </div>
+  </div>
+</div>
+<ng-template #downloadWarning>
+  <div >
+    <div class="row">
+      <div class="col-md-10">
+        <p class="capex-headings-lite">Confirm Download</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="  border border-warning">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="capex-headings-lite">Do you really wish to download  Template (Excel File) ?</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" align="right">
+              <button mat-raised-button mat-dialog-close>No, Thanks</button>&nbsp;
+              <button mat-raised-button color="accent" style="color: white" mat-dialog-close (click)="downloadTemplate()">
+                <i class="material-icons">cloud_download</i>&nbsp;Download</button>
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #approveWarning>
+  <div class="container-fluids">
+    <div class="row">
+      <div class="col-md-10">
+        <p class="capex-headings-lite">Send Requests</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #131110; color: white;">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluids  ">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="capex-headings-lite">Do you really wish to Send these Requests ?</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p style=" font-weight: bold"> * Once request submitted, you will not be able to change the plant and investment type <br>
+              * Please verify the request before send </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 offset-md-5" >
+              <button mat-raised-button mat-dialog-close>No, Thanks</button>&nbsp;
+              <button mat-raised-button style="color: white; background-color: #4caf50" mat-dialog-close
+                     (click)="sendRequest()" ><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Submit Request
+              </button>
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,27 @@
+/* .container-fluid {
+  background-image: linear-gradient(#ffc107, #0dcaf0);
+  position: absolute;
+  height: 57%;
+} */
+.h {
+  background-color: #147c9d;
+  width: 28%;
+  text-align: center;
+  border-top-left-radius: 10px;
+  color: white;
+  margin-left: 8%;font-weight: bold;
+}
+
+.dwnldbtn{
+  background-color: #0dcaf0;
+  height: 30px;
+  float: right;
+  margin-top: 25px;
+}
+.clrdbtn{
+  background-color: coral;
+  height: 30px;
+  float: right;
+  margin-top: 25px;
+  margin-left:10px;
+}

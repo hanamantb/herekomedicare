@@ -1,0 +1,57 @@
+.card-text {
+  font-size: 21px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  padding: 24px;
+  margin-left: 42px;
+  transition: .2s ease-in;
+}
+.card-text:hover {
+  transform: scale(1.2);
+}
+
+.card {
+  transition: 0.5s ease-in;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  cursor: default;
+  box-shadow: 2px 4px 8px 2px rgb(0 0 0 / 20%);
+  color: black;
+  border-radius: 18px;
+}
+
+.rag-amber {
+  background-color: lightsalmon;
+}
+
+::ng-deep .mat-card {
+  border-radius: 30px !important;
+}
+
+.card img {
+  height: 62px;
+  margin-left: 1%;
+  position: absolute;
+  margin-top: 30px;
+  background-color: aliceblue;
+  padding: 5px;
+  border-radius: 24%;
+  box-shadow: 11px 13px 8px 2px rgb(0 0 0 / 20%);
+}
+.container-fluid{
+  padding: 30px;
+  background-image: linear-gradient( #147c9d, #57e6f1);
+  position: absolute;
+}
+.head{
+  font-size: 25px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+.btn{
+  float: right;
+}
+
