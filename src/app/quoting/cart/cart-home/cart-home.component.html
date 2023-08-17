@@ -100,7 +100,7 @@
                 </div>
               </div>
             </div>
-            <div class="row p-2" *ngIf="plan.showmore">
+            <div class="row p-2" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
               <div class="col s6 m4 l4">
                 <h6>Office Visits</h6>
                 <div class="clear"></div>
@@ -129,26 +129,30 @@
               </div>
             </div>
             <div class="d-flex col-12 justify-content-center p-2">
-              <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore" class="item-show-btn">
+              <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore && plan.planCategory !=='PDP'" class="item-show-btn">
                 Show more
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </button>
             </div>
             <div class="d-flex col-12 justify-content-center p-2">
-              <button mat-icon-button *ngIf="plan.showmore" (click)="showLess(plan)" class="item-show-btn">
+              <button mat-icon-button *ngIf="plan.showmore && plan.planCategory !=='PDP'" (click)="showLess(plan)" class="item-show-btn">
                 Show Less
                 <mat-icon>keyboard_arrow_up</mat-icon>
               </button>
             </div>
-            <div class="row" *ngIf="plan.benefits">
+            <div class="row" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
               <div class="col-12">
                 <h6 class="add-benefit-head ms-4">Additional Benefits</h6>
               </div>
             </div>
-            <div class="row px-3" *ngIf="plan.benefits">
-              <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
-                <button mat-icon-button class="benfit-btn">
-                  <mat-icon class="benefit-icon">check_circle_outline</mat-icon>
+            <div class="row px-3" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
+              <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
+                <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
+                  <mat-icon class="benefit-icon-true">check</mat-icon>
+                  {{additionalbenefits.attributeName}}
+                </button>
+                <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'false'">
+                  <mat-icon class="benefit-icon-false">close</mat-icon>
                   {{additionalbenefits.attributeName}}
                 </button>
               </div>
@@ -165,7 +169,7 @@
                 <h2 class="original-rate">${{plan.orginalRate}}</h2>
                 <a href="">About this rate</a><br>
                 <p class="estimated-cost-label">Estimated Annual Cost<small>(Drug Cost + Premium)</small></p>
-                <h2 class="estimated-annual-cost">${{plan.orginalplanPremium}}</h2>
+                <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
                 <a href="/drug-cost">Drug Cost Details</a><br>
               </div>
             </div>
@@ -177,7 +181,7 @@
         <div class="card-footer p-2 pe-0">
           <div class="d-flex">
             <div class="col">
-              <button mat-button style="color: red; background-color: #ff595959" (click)="remove(plan)">
+              <button mat-button style="color: red; background-color: #ff595959" (click)="remove(plan)" [ngClass]="{'unselected': plan.selected}">
                 <mat-icon>delete_forever</mat-icon>
                 Remove from cart
               </button>
@@ -217,7 +221,7 @@
               </button>
             </div>
             <div class=" d-flex col-3 justify-content-end me-1" >
-              <button mat-raised-button style="width:100%; background-color: #4b8bb2;color: white" (click)="cart()">
+              <button mat-raised-button style="width:100%; background-color: #4b8bb2;color: white" (click)="cart(plan)" [ngClass]="{'selected': plan.selected}">
                 Select
               </button>
             </div>

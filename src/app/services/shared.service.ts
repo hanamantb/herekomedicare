@@ -6,7 +6,7 @@ import {BehaviorSubject, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  private numberSubject = new Subject<number>();
+  public numberSubject = new Subject<number>();
   number$ = this.numberSubject.asObservable();
   public benefitcheck : BehaviorSubject<any> = new BehaviorSubject(true);
   benefitcheck$ = this.benefitcheck.asObservable();
@@ -17,6 +17,9 @@ export class SharedService {
 
   incrementNumber() {
     this.numberSubject.next(1);
+  }
+  cartCount(value:any){
+    this.numberSubject.next(value)
   }
 
   benefitcheckchange(value:any){

@@ -85,7 +85,12 @@ export class PlansListPageComponent implements OnInit {
       this.optinPackChange(value)
       console.log('checkee', value)
     });
-
+    let cartArray: any[] = [];
+    const cart = sessionStorage.getItem('cart')
+    if (cart) {
+      cartArray = JSON.parse(cart);
+    }
+    this.sharedService.cartCount(cartArray.length)
     const plans = sessionStorage.getItem('plans')
     // let plansarray: any[] = [];
     // if (plans) {
@@ -127,8 +132,8 @@ export class PlansListPageComponent implements OnInit {
 
   addToCart(plan: any) {
     if (!plan.cartAdded) {
-      this.sharedService.incrementNumber();
       this.cart.push(plan)
+      this.sharedService.cartCount(this.cart.length);
     }
     plan.cartAdded = true
     console.log('cli',this.cart)
@@ -361,5 +366,16 @@ export class PlansListPageComponent implements OnInit {
     this.plans.forEach((element:any)=>{
       element.checked=false
     })
+  }
+
+  planbenefitcheck(attribute: any) {
+    const filData=attribute.filter((x:any)=> x.displayValue=== 'true')
+    console.log('planbenefitcheck',filData)
+    if (filData.length !== 0){
+      return true
+    }else{
+      return false
+    }
+
   }
 }

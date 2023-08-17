@@ -13,7 +13,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.sharedService.number$.subscribe((value) => {
-      this.number += value;
+      this.number = value;
     });
   }
 

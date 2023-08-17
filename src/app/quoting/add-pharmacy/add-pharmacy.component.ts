@@ -133,6 +133,7 @@ export class AddPharmacyComponent implements OnInit {
 
   findPharmacy(page: any,count:any) {
     const spine = this.spinner.start()
+    this.pharmacies=[]
     this.commonservice.searchPharmacy(this.zipcode, this.radius_miles, this.pharmName, page,count).subscribe((response) => {
       if (response.status === true) {
         this.pharmacies = response.data.listOfPharmacy

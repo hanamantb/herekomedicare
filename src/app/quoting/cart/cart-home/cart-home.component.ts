@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {DatePipe} from "@angular/common";
+import {SharedService} from "../../../services/shared.service";
 
 @Component({
   selector: 'app-cart-home',
@@ -17,7 +18,7 @@ export class CartHomeComponent implements OnInit {
   totalAmt:any=0
   stars: number[] = [1, 2, 3, 4, 5];
   today:Date = new Date();
-  constructor(private route: Router) {
+  constructor(private route: Router,private sharedService: SharedService) {
   }
 
   ngOnInit(): void {
@@ -27,11 +28,20 @@ export class CartHomeComponent implements OnInit {
     const cart = sessionStorage.getItem('cart')
     if (cart) {
       this.cartItems = JSON.parse(cart);
+      const cartItem = this.cartItems.map((element: any, index: any) => {
+        return {
+          ...element,
+          selected: false
+        };
+      });
+      this.cartItems= cartItem
     }
     this.totlAmtCaclc()
     console.log('caaaaaaaaaaaaart',this.cartItems)
   }
-
+  selectItem(item: any): void {
+    item.selected = true;
+  }
   showMore(plan: any) {
     plan.showmore = true
   }
@@ -52,8 +62,9 @@ export class CartHomeComponent implements OnInit {
     plan.optnpkShow = !plan.optnpkShow
   }
 
-  cart() {
-    this.route.navigate(['cart-home'])
+  cart(plan:any) {
+    plan.selected=true
+    // this.route.navigate(['cart-home'])
   }
 
   navbutton(route:string){
@@ -73,16 +84,19 @@ export class CartHomeComponent implements OnInit {
     })
   }
 
-  remove(plan:any){
-    this.cartItems.forEach((element: any, index: any) => {
-      console.log('remove',element.planID)
-      if (plan.planID === element.planID) {
-        console.log('remove',element.monthlypremium)
-        this.cartItems.splice(index, 1)
-        sessionStorage.setItem('cart', JSON.stringify(this.cartItems))
-        this.totlAmtCaclc()
-      }
-    })
+  remove(plan:any) {
+    if (!plan.selected) {
+      this.cartItems.forEach((element: any, index: any) => {
+        console.log('remove', element.planID)
+        if (plan.planID === element.planID) {
+          console.log('remove', element.monthlypremium)
+          this.cartItems.splice(index, 1)
+          sessionStorage.setItem('cart', JSON.stringify(this.cartItems))
+          this.sharedService.cartCount(this.cartItems.length);
+          this.totlAmtCaclc()
+        }
+      })
+    }
   }
 
 

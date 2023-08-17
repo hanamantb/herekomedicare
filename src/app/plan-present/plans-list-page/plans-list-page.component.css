@@ -17,8 +17,15 @@ mat-icon{
   margin-top: -12px;
   font-weight: 400;
 }
-.benefit-icon{
+.benefit-icon-true{
   border-radius: 50%;
+  color: green;
+  font-weight: bold;
+}
+.benefit-icon-false{
+  border-radius: 50%;
+  color: red;
+  font-weight: bold;
 }
 .container{
   padding: 0;

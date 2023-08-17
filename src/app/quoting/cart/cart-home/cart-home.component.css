@@ -517,3 +517,21 @@ mat-select mat-option{
 .item-show-btn mat-icon{
   color: #4b8bb2;
 }
+.benefit-icon-true{
+  border-radius: 50%;
+  color: green;
+  font-weight: bold;
+}
+.benefit-icon-false{
+  border-radius: 50%;
+  color: red;
+  font-weight: bold;
+}
+.selected {
+  background-color: green !important;
+  color: white!important;
+}
+.unselected {
+  background-color: #95a395 !important;
+  color: white!important;
+}
