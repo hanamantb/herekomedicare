@@ -188,13 +188,52 @@
         <mat-expansion-panel-header>
           <p class="panel-headers">Additional Benefits</p>
         </mat-expansion-panel-header>
+        <!--<div class="d-flex p-2">
+    <input class="form-check-input" type="checkbox" checked
+           value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;-->
+        <!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
+        <!--<label class="form-check-label" for="flexCheckChecked">
+      Yes, show additional benefits
+    </label>
+  </div>-->
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" checked
-                 value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;
-<!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
-          <label class="form-check-label" for="flexCheckChecked">
-            Yes, show additional benefits
+          <input class="form-check-input" checked type="checkbox"
+                 value=""> &nbsp;
+          <label class="form-check-label">
+            Vision Coverage
           </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" checked type="checkbox"
+                 value=""> &nbsp;
+          <label class="form-check-label">
+            Dental Coverage
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" checked type="checkbox"
+                 value=""> &nbsp;
+          <label class="form-check-label">
+            Hearing Coverage
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" checked type="checkbox"
+                 value=""> &nbsp;
+          <label class="form-check-label">
+            Transportation
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" checked type="checkbox"
+                 value=""> &nbsp;
+          <label class="form-check-label">
+            Fitness Benefits
+          </label>
+        </div>
+        <div class="d-flex p-2 sidebar-filter-actions">
+          <button mat-raised-button color="secondary" class="px-3 me-2">Clear</button>
+          <button mat-raised-button color="primary" class="px-3">Apply</button>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
@@ -216,34 +255,52 @@
   <mat-tab label="Sort By">
     <div class="sort mt-3">
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Premium low to high
+        <input type="radio" style="height: 20px"> Lowest to Highest Premium
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Premium high to low
+        <input type="radio" style="height: 20px"> Highest to Lowest Premium
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Lowest deductibles
+        <input type="radio" style="height: 20px"> Lowest to Highest Deductible
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Lowest max out of pocket
+        <input type="radio" style="height: 20px"> Highest to Lowest Deductible
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> In-network doctors
+        <input type="radio" style="height: 20px"> Lowest to Highest Max Out of Pocket
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> In-network facility
+        <input type="radio" style="height: 20px"> Highest to Lowest Max Out of Pocket
+      </div>
+      <!--<div class="d-flex  p-2">
+    <input type="radio" style="height: 20px"> In-network doctors
+  </div>
+  <div class="d-flex  p-2">
+    <input type="radio" style="height: 20px"> In-network facility
+  </div>
+  <div class="d-flex  p-2">
+    <input type="radio" style="height: 20px"> In-network drugs
+  </div>
+  <div class="d-flex  p-2">
+    <input type="radio" style="height: 20px"> CSR applicable
+  </div>-->
+      <div class="d-flex  p-2">
+        <input type="radio" style="height: 20px"> Company (A to Z)
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> In-network drugs
+        <input type="radio" style="height: 20px"> Company (Z to A)
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> CSR applicable
+        <input type="radio" style="height: 20px"> Star Rating (Low to High)
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Company A-Z
+        <input type="radio" style="height: 20px"> Star Rating (High to Low)
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Company Z-A
+        <input type="radio" style="height: 20px"> Estimated Annual Drug Cost (Low to High)
+      </div>
+      <div class="d-flex  p-2">
+        <input type="radio" style="height: 20px"> Estimated Annual Drug Cost (High to Low)
       </div>
     </div>
   </mat-tab>

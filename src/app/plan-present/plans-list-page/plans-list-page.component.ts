@@ -35,15 +35,12 @@ export class PlansListPageComponent implements OnInit {
   lis: any
   effYear: any ='2023'
   drugsArray: any
-  showDiv:any=false
   page: any = 0;
   selectedCountie: any;
   planTypes: any = "PLAN_TYPE_MAPD"
   // @Output() menuClicked = new EventEmitter();
   response: any = [];
   cart: any = [];
-  currentYear!: number;
-  nextYear!: number;
   frequency = [{
     name: 'Every month',
     values: 'FREQUENCY_30_DAYS'
@@ -102,7 +99,6 @@ export class PlansListPageComponent implements OnInit {
     // if (plansarray.length !== 0) {
     //   this.plans = plansarray
     // } else {
-    this.yeargetter()
     this.getPlans(0)
     // }
 
@@ -380,20 +376,6 @@ export class PlansListPageComponent implements OnInit {
     }else{
       return false
     }
-  }
-  yeargetter() {
-    const currentDate = new Date();
 
-    // Extract the current year and month
-    const currentYear = currentDate.getFullYear();
-    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
-    if (currentMonth > 10) {
-      // If the current month is greater than October, show the div
-      this.showDiv = true;
-
-      // Calculate the next year
-      this.currentYear = currentYear;
-      this.nextYear = currentYear + 1;
-    }
   }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'quoting'
+    redirectTo: 'login'
   },
   {
     path:'login',loadChildren: ()=> import('./login/login.module').then(m=> LoginModule),
