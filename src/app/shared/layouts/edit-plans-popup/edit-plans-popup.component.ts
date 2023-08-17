@@ -11,9 +11,12 @@ import {CommonService} from "../../../services/common.service";
 export class EditPlansPopupComponent implements OnInit {
   zipcode:any;
   countys:any;
+  showDiv:any=false;
   editForm!: FormGroup;
   couties: any = [];
   selectedCountie: any = [];
+  currentYear!: number;
+  nextYear!: number;
   constructor(public dialog: MatDialog,public fb: FormBuilder,
               private commonService: CommonService,
               private dialogRef: MatDialogRef<EditPlansPopupComponent>) {
@@ -80,5 +83,20 @@ export class EditPlansPopupComponent implements OnInit {
       sessionStorage.setItem('effectyear',this.editForm.value.effectYear)
     }
     this.dialogRef.close(change)
+  }
+  yeargetter() {
+    const currentDate = new Date();
+
+    // Extract the current year and month
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
+    if (currentMonth > 10) {
+      // If the current month is greater than October, show the div
+      this.showDiv = true;
+
+      // Calculate the next year
+      this.currentYear = currentYear;
+      this.nextYear = currentYear + 1;
+    }
   }
 }

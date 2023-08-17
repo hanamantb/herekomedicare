@@ -7,11 +7,11 @@
           COPY PROPOSAL LINK
         </button>
         <!--        <img src="../../../../assets/sample.pdf" alt="">-->
-        <button mat-button (click)="navbutton('email-proposal')">
+        <button mat-button (click)="emailProposalShow()">
           <mat-icon> email</mat-icon>
           EMAIL PROPOSAL
         </button>
-        <button mat-button (click)="navbutton('cart')">
+        <button mat-button (click)="cartTabShow()">
           <mat-icon>save</mat-icon>
           SAVE PROPOSAL
         </button>
@@ -56,6 +56,9 @@
           </button>
         </div>
       </div>
+
+      <app-email-proposal *ngIf="emailProposal"></app-email-proposal>
+      <app-cart *ngIf="cartShow"></app-cart>
       <div class="d-flex mt-2 plan-info-strip">
         <div class="col-4 p-2" style="background-color: #4b8bb2; color: white">
           Medicare Advantage/Medicare Part D Plan

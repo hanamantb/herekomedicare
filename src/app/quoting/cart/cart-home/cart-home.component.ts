@@ -13,6 +13,8 @@ export class CartHomeComponent implements OnInit {
   benefits: boolean = false
   optnpkShow: boolean = false
   cpyShow: boolean = false
+  emailProposal: boolean = false
+  cartShow: boolean = false
   cartItems:any
   zipcode:any
   totalAmt:any=0
@@ -74,6 +76,14 @@ export class CartHomeComponent implements OnInit {
   cpyShowtog() {
     this.cpyShow = !this.cpyShow
   }
+  emailProposalShow() {
+    this.emailProposal = !this.emailProposal
+  }
+  cartTabShow() {
+    this.cartShow = !this.cartShow
+  }
+
+
   f1() {
     window.open('../../../../assets/PlanCompare.pdf', '_blank');
   }
