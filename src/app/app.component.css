@@ -1,0 +1,163 @@
+.example-spacer {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  border: 1px solid #555;
+}
+
+mat-nav-list>a {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  height: 47px;
+  margin: 5px 5px 5px 5px;
+  width: 100%;
+  background-color: #004da7;
+  border-left: solid #18c1b8 7px;
+}
+
+mat-nav-list>mat-icon {
+  color: rgb(104, 119, 255);
+}
+
+.position-fixed {
+  position: fixed;
+  z-index: 5000;
+}
+
+.content {
+  margin-top: 60px
+}
+
+.info-text1 {
+  color: #0e5ea3;
+  margin-top: 5px;
+  text-align: center;
+  font-size: 13px;
+  font-style: italic;
+}
+
+.info-text2 {
+  color: #0e5ea3;
+  margin-top: -13px;
+  text-align: center;
+  font-size: 12px;
+  font-style: italic;
+}
+
+.info-text3 {
+  color: #0e5ea3;
+  margin-top: -13px;
+  text-align: center;
+  font-size: 9px;
+  font-style: italic;
+}
+
+.capex-headings {
+  font-size: 21px;
+  font-family: 'Abel', sans-serif;
+  font-weight: bolder;
+}
+
+.heading {
+  font-size: 18px;
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+}
+
+.capex-headings-lite {
+  font-size: 13px;
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+}
+
+.request-button {
+  background-color: #0e5ea3;
+  border-radius: 10px;
+  ;
+  color: white;
+  padding: 0px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+  /* margin-left: 158%; */
+}
+
+.popup-border {
+  border: 2px #0e5ea3;
+  border-radius: 20px;
+}
+
+.bal-space {
+  height: 30%;
+}
+
+mat-toolbar {
+  background-image: linear-gradient( to right, #2fc09e, #57e6f1);
+  height: 83px;
+  color: white;
+}
+
+.col-md-5 {
+  text-align: right;
+}
+
+.example-icon {
+  margin-top: -13px;
+}
+.mat-form-field + .mat-form-field {
+margin-left: 8px;
+}
+/* .mat-expansion-panel-header{
+  width: 90%;
+  margin: 5px 0px 5px 5px;
+  border-radius: 0px;
+  background-color: #35bce7;
+} */
+.expansionBg{
+  background-color: #004da7;
+  color: white;
+  width: 100%;
+  margin: 5px 0px 5px 5px;
+  border-radius: 0px;
+  border-left: solid #18c1b8 7px;
+  cursor: pointer;
+  /* height: 43px; */
+}
+.mat-panel-title{
+    color: white;
+    cursor: pointer;
+}
+.lead{
+    color: white;
+    font-size: 13px;
+  font-weight: 400;
+}
+.sidenavItemBtn:hover{
+  background-color:  #17a2b8;
+}
+mat-icon{
+    float: left;
+    margin-right: 5px;
+    margin-left: 10px;
+}
+.icoon{
+  float: left;
+  margin-right: 5px;
+  margin-left: 0px;
+}

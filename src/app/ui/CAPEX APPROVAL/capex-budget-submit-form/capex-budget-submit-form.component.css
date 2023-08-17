@@ -1,0 +1,97 @@
+.cont-padding {
+  padding:0px 40px 0px 40px;
+}
+.main-bg {
+  border-radius: 10px;
+  /* padding: 30px; */
+  font-size: 14px;
+  color: #646464;
+}
+.width40 {
+  width: 65%;
+  margin: 20px auto;
+}
+.text-field {
+  width: 100%;
+  color: #646464;
+  padding: 5px 10px;
+  border: solid 1px #dddddd;
+  border-radius: 6px;
+  height: 31px;
+  font-size: 11px;margin-bottom: 15px;
+}
+.card-blank {
+  box-shadow: 2px 4px 8px 2px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  /*background-color: #aec8ff;*/
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  padding: 45px;
+}
+.rowbtween{
+  padding: 13px;
+}
+.spanText{
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+  margin-left: 16px;
+  margin-top: 25px;
+}
+.mat-form-field {
+  width: 100% !important;
+  padding: 0 15px 0 15px;
+}
+.text{
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  font-size: 16px;
+  margin-left: 16px;
+}
+.approve-button{
+  background-color: limegreen;
+  border-radius: 10px;;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+.selected-color{
+  border: ridge green;
+  color: black
+}
+mat-hint{
+  color: brown;
+}
+
+.budgetTable {
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Abel', sans-serif;
+  table-layout: fixed;
+  background-color: white;
+  border:solid;
+  margin-top: -33px;
+}
+
+.b-table-heading {
+  border: 1px solid rgba(168, 168, 168, 0.42);
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.table-data {
+  border: 1px solid rgba(168, 168, 168, 0.42);
+  padding: 8px;
+  color: black;
+}
+
+.type{
+  margin-left: 10px;
+}

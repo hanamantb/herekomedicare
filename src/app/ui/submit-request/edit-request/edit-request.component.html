@@ -1,0 +1,92 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="heading">Edit Request deitails</p>
+    </div>
+    <div class="col-md-6" align="right">
+      <button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button>
+    </div>
+  </div>
+
+      <div class="container-fluid border border-primary"><br>
+        <div class="row">
+          <div class="col-md-2">
+            <mat-form-field appearance="outline"  class="full-width" >
+              <mat-label>Depatment</mat-label>
+              <input matInput  type="text" disabled  [(ngModel)]="department"  >
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Select Category</mat-label>
+              <mat-select [(value)]="catgryId">
+                <mat-option *ngFor="let catgry of categories" [value]="catgry.catgryId" >{{catgry.catgryName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Select Plant</mat-label>
+              <mat-select [(value)]="plantId" disabled>
+                <mat-option *ngFor="let plant of plants" [value]="plant.plantId" >{{plant.plantName}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-4">
+            <mat-form-field class="full-width text-format" appearance="outline">
+              <mat-label>Investment Type</mat-label>
+              <mat-select [(value)]="typeId" disabled>
+                <mat-option *ngFor="let type of investmentTypes" [value]="type.typeId" >{{type.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Purpose of Investment</mat-label>
+              <mat-select [(value)]="purposeId">
+                <mat-option *ngFor="let purpose of purposes" [value]="purpose.purposeId" >{{purpose.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>New Order Qty</mat-label>
+              <input matInput  type="number" class="numberInput" [(ngModel)]="qty">
+            </mat-form-field>
+          </div>
+          <div class="col-md-2">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Approx. Value</mat-label>
+              <input matInput  type="number" class="numberInput" [(ngModel)]="appxVal" >
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Pay Back</mat-label>
+              <input matInput  type="text" class="numberInput"  [(ngModel)]="payBack">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Pay Period</mat-label>
+              <input matInput  type="text" class="numberInput" [(ngModel)]="payBackPeriod" >
+            </mat-form-field>
+          </div>
+          <div class="col-md-4">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Justification</mat-label>
+              <input matInput  type="text" class="numberInput" [(ngModel)]="remarks"  >
+            </mat-form-field>
+          </div>
+          <div class="col-md-4"  style="margin-top: 16px">
+            <button mat-raised-button class="approve-button" (click)="updateRequest()">Update Request</button>
+          </div>
+        </div>
+        <br>
+</div>
+</div>

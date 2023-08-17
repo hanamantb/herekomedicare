@@ -1,0 +1,421 @@
+<div class="container-fluid">
+  <br>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <h1 class="display-4 page-header" style="margin-left: 16px;margin-bottom: 0;"> -->
+          <h1 class="display-4 page-header" style="margin-left: 4px;margin-bottom: 5;">
+            <!-- <span class="screen-headings">&nbsp; Budget Details &nbsp;</span> -->
+            <p class="pstyle">Capex Details</p>
+          </h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div>
+            <br>
+            <table class="budgetTable">
+              <tr>
+                <td class="b-table-heading">Requested By</td>
+                <td class="table-data">{{headerData.requestdBy}}</td>
+                <td class="b-table-heading">Capex Description</td>
+                <td class="table-data">{{headerData.budgetDesc}}</td>
+              </tr>
+              <tr>
+                <td class="b-table-heading">Capex Amount</td>
+                <td class="table-data">{{headerData.budgetAmount}}</td>
+                <td class="b-table-heading">Contingency</td>
+                <td class="table-data" *ngIf="headerData.contigious === true">Yes</td>
+                <td class="table-data" *ngIf="headerData.contigious === false">No</td>
+              </tr>
+              <tr>
+                <td class="b-table-heading">Investment Type</td>
+                <td class="table-data">{{headerData.invstmntType}}</td>
+                <td class="b-table-heading">Plant</td>
+                <td class="table-data">{{headerData.Plant}}</td>
+              </tr>
+            </table>
+            <br>
+            <p style="color: red">Balance Amount : {{balance}}</p>
+            <br>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div *ngIf="contagious === true && role=='CPXFH' && budgetStatus !=='R' && rolevalid ">
+        <div class="row" *ngIf="role=='CPXFH'">
+          <div class="col-md-12">
+            <p class="pstyle">Contingency Budgtes</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <form [formGroup]="budgetForm">
+                <mat-form-field>
+                  <mat-label>Select Budget ID</mat-label>
+                  <mat-select formControlName="budgetSelect" [multiple]="true"                              (selectionChange)="onSelectBudget()">
+                    <input matInput type="text" (keyup)="searchinvest($event)" placeholder="Search" style="height: 60px;position: sticky;top: 0;background-color: white" >
+                    <mat-option [value]="data.requestId" *ngFor="let data of dataList">{{data.Detail}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </form>
+
+              <div class="row" *ngFor="let data of selectedList;let i = index">
+                <div class="col-md-5">
+                  <p class="spanText">Amount From - {{data.budgetId}} </p>
+
+                </div>
+                <div class="col-md-4" style="width:40%" align="center">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Enter amount from Available Budget</mat-label>
+                    <input type="number" matInput [(ngModel)]="data.amount">
+                    <mat-hint>Available Amount : {{data.availAmount}}</mat-hint>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-2" style="margin-left: -25px;margin-top: 7px;">
+                  <button mat-icon-button color="black" (click)="localsavedcross(data.amount,data.requestId)"
+                          *ngIf="!isBudgetSaved(data.requestId)">
+                    <mat-icon><span
+                      class="material-icons-round">task_alt</span></mat-icon>
+                  </button>
+                  <button mat-icon-button color="black"
+                          (click)="localdeletecross(data.requestId,data.amount)">
+                    <mat-icon><span class="material-icons-round">remove_circle_outline</span></mat-icon>
+                  </button>
+
+
+                </div>
+
+
+              </div>
+            </div>
+             <div class="card-footer">
+              <p style="color: green;">*Please click on save button </p>
+              <button class="save" (click)="submit()">Save</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-12">
+          <!-- <h1 class="display-4 page-header"><span class="screen-headings">Requests Details</span></h1> -->
+          <!-- <h1><span class="heading" style="text-decoration: underline; margin-left: 13px">Requests Details</span></h1> -->
+          <p class="pstyle">Requests Details</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                                 *ngFor="let details of requestDetails"
+                                 (click)="getRequestDetailsHistory(details.requestIds)" style="overflow-x: auto">
+
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <span class="exp-hdr">Budget : </span> <span class="exp-val"> {{details.budgetIds}}</span>
+                </mat-panel-title>
+                <mat-panel-title>
+                  <span class="exp-hdr">Amount From Request :</span> <span
+                  class="exp-val">{{details.budgetAmount}}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <table mat-table [dataSource]="dataSource" class="table" width="100%">
+                <ng-container matColumnDef="Department">
+                  <th mat-header-cell *matHeaderCellDef style="border-top-left-radius: 10px"> Dpt.</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.department}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Plant Code">
+                  <th mat-header-cell *matHeaderCellDef>Plant code</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.plantCd}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Plant Name">
+                  <th mat-header-cell *matHeaderCellDef>Plant Name</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.plantName}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Category / Brand">
+                  <th mat-header-cell *matHeaderCellDef> Ctgry/Brand</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.catgry}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Type of investment">
+                  <th mat-header-cell *matHeaderCellDef>Investment Type</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.invstmntType}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Purpose of investment">
+                  <th mat-header-cell *matHeaderCellDef>Investment Purpose</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.invstmntPurpose}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Investment Purpose Details">
+                  <th mat-header-cell *matHeaderCellDef>Purpose Details</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.purposeDetails}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="QTY required ">
+                  <th mat-header-cell *matHeaderCellDef>Qty.Required</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.qty}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Approx Value">
+                  <th mat-header-cell *matHeaderCellDef>Approx Value</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.aproxVal}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Pay back">
+                  <th mat-header-cell *matHeaderCellDef>Payback</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.payback}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Pay back period">
+                  <th mat-header-cell *matHeaderCellDef>Payback Period</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.payBackPeriod}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="Remark">
+                  <th mat-header-cell *matHeaderCellDef style=",border-top-right-radius: 10px">Remarks</th>
+                  <td mat-cell *matCellDef="let budgetHistory"> {{budgetHistory.remarks}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
+        <br>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="pstyle"> Time Line</p>
+            <app-capex-timeline></app-capex-timeline>
+          </div>
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="row" style="height: 58px;">
+          <div class="col-md-4">
+            <!-- <h1 class="display-4 page-header"><span class="screen-headings">Attached Documents</span></h1> -->
+            <p class="pstyle" style="margin-top: 23px;">Attached Documents</p>
+          </div>
+          <div class="col-md-3">
+            <button mat-raised-button (click)="downloadAllDocs()" >
+              <mat-icon>cloud_download</mat-icon>
+            </button>
+          </div>
+          <div class="col-md-5" align="right" style="margin-top: 16px">
+            <button mat-raised-button style="float: initial;background-color: #45657d;color: white;" (click)="upload()">
+              <i
+                class="fa fa-upload" aria-hidden="true"></i>Upload Document
+            </button>
+          </div>
+        </div>
+        <div class="col-md-11">
+          <ag-grid-angular style="height: 200px; width: 109%;margin-bottom: 75px;" class="ag-theme-balham"
+                           [scrollbarWidth]="8" [headerHeight]="35" [rowHeight]="40" (rowSelected)="activitySelected($event)"
+                           (cellClicked)="onGridCellClicked($event)"  rowSelection="multiple"
+                           [rowData]="rowData" [columnDefs]="columnDefs" enableCellTextSelection=true>
+          </ag-grid-angular>
+        </div>
+      </div>
+      <div class="footer" *ngIf="rolevalid==true">
+        <div class="row">
+          <div class="col-md-4 offset-md-4">
+            <div style="float:right;margin-top: 30px;margin-bottom: 10px;" *ngIf="role !='CPXREQ'">
+              <button mat-raised-button class="approve-button" (click)="budgetCheck()"><i class="fa fa-check"
+                                                                                                 aria-hidden="true"></i>&nbsp;Approve
+                &nbsp;
+              </button>&nbsp;
+              <button mat-raised-button class="reject-button" (click)="openRejectWarning()"><i class="fa fa-times"
+                                                                                               aria-hidden="true"></i>&nbsp;Reject
+                &nbsp;
+              </button>&nbsp;
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-2">
+      <p class="pstyle" style="width: 216%;">History</p>
+      <app-budget-history></app-budget-history>
+
+    </div>
+  </div>
+
+</div>
+<ng-template #beforeApprove>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <p style="color: red;">Request amount not reached</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #131110; color: white;">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluid  border border-warning">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p>Capex amount is: {{budgetAmount}} Budget Amount reached :{{RequestedAmount}} </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <p style="color: darkolivegreen;font-weight:bold">Inform requester need to create a new request</p>
+              <!-- <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label> Approve Remarks</mat-label>
+                <input type="email" matInput placeholder="Enter Approve Remarks " >
+              </mat-form-field> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 offset-md-5" align="right">
+              <button mat-raised-button mat-dialog-close>No, Thanks</button>&nbsp;
+              <button mat-raised-button style="color: white; background-color: #4caf50" mat-dialog-close
+                      >&nbsp;Close
+              </button>
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #approveWarning>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <p class="capex-headings-lite">Approve Budget</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #131110; color: white;">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluid  border border-warning">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="capex-headings-lite">Do you really wish to Approve this Budget ?</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label> Approve Remarks</mat-label>
+                <input type="email" matInput placeholder="Enter Approve Remarks " [(ngModel)]="apprvRemarks">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 offset-md-5" align="right">
+              <button mat-raised-button mat-dialog-close>No, Thanks</button>&nbsp;
+              <button mat-raised-button style="color: white; background-color: #4caf50" mat-dialog-close
+                      (click)="approveRequest()"><i class="fa fa-check" aria-hidden="true"></i>&nbsp;Approve
+              </button>
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #conditionFalse>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <p>Budget Amount not Equal</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <p>The amount Requested: &nbsp amount allocated:&nbsp</p>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label> Approve Remarks</mat-label>
+            <input type="email" matInput placeholder="Enter Approve Remarks ">
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </div>
+    <button>Send Mail</button>
+  </div>
+
+</ng-template>
+
+<ng-template #rejectWarning>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <p class="capex-headings-lite">Reject Budget</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluid border border-success">
+          <div class="row">
+            <div class="col-md-12">
+              <br>
+              <p class="capex-headings-lite">You're sure about to reject selected Budget</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label> Reject Reason</mat-label>
+                <input type="email" matInput placeholder="Enter Reject Reason " [(ngModel)]="rejectReson">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" align="right">
+              <button mat-raised-button [mat-dialog-close]="false">No,Thanks</button>&nbsp;
+              <button mat-raised-button color="warn" (click)="rejectRequest()" mat-dialog-close
+                      [disabled]="rejectReson === '' || rejectReson === undefined"><i class="fa fa-times"
+                                                                                      aria-hidden="true"></i>&nbsp;Reject
+              </button>
+            </div>
+            <br><br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

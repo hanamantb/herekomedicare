@@ -1,0 +1,28 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <p ><span class="capex-headings">Upload Document</span></p>
+    </div>
+    <div class="col-md-2" align="right"><button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button></div>
+  </div>
+</div>
+<div class="container-fluid  border border-info">
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+<!--      <div class="alert alert-warning">-->
+<!--        <i class="material-icons">info</i>&nbsp;Upload Excel file in the given format-->
+<!--      </div>-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <br>
+      <angular-file-uploader
+        (ApiResponse)="afterUpload($event)"
+        [config]="afuConfig">
+      </angular-file-uploader>
+      <br>
+    </div>
+  </div>
+</div>

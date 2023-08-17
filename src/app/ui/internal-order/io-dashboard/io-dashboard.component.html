@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="d-flex align-items-center">
+    <div class="col">
+      <h3>Internal Order</h3>
+    </div>
+    <div class="d-flex p-2">
+      <button mat-raised-button color="primary" (click)="create()">Create Internal Order</button>
+    </div>
+  </div>
+  <!--  <mat-tab-group (selectedTabChange)="getAllConfirmedIOs()">-->
+  <!--    <mat-tab label="Pending Orders">-->
+  <div class="d-flex justify-content-end p-2">
+    <div class="px-2">
+      <button mat-raised-button style="background-color: #03c103; color: white" (click)="popOrder()">Confirm order
+      </button>
+    </div>
+    <div class="px-2">
+      <button mat-raised-button color="success" matTooltip="Download Orders" (click)="downloadIOrders()">
+        <mat-icon>cloud_download</mat-icon>
+      </button>
+    </div>
+    <div class="px-2">
+      <button mat-raised-button color="success" matTooltip="Clear Filter" (click)="clearFilter()">
+        <mat-icon> format_clear</mat-icon>
+      </button>
+    </div>
+    <mat-button-toggle-group class="io-dashboard-btn-toggle ms-2" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle (click)="getInternalOrders('P')">Pending</mat-button-toggle>
+      <mat-button-toggle (click)="getInternalOrders('A')">Confirmed</mat-button-toggle>
+      <mat-button-toggle (click)="getAllPendingIOs()">All</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div class="d-flex justify-content-center">
+    <ag-grid-angular style="height: 396px;width: 100%;margin-top: 1%;" class="ag-theme-balham"
+                     [scrollbarWidth]="8" [headerHeight]="35"
+                     rowSelection="multiple"
+                     (rowSelected)="activitySelected($event)"
+                     [rowHeight]="35" [rowData]="rowData" [floatingFilter]="true"
+                     [columnDefs]="columnDefs" enableCellTextSelection=true
+                     [gridOptions]="gridOptions" [tooltipShowDelay]="500">
+    </ag-grid-angular>
+    <br>
+  </div>
+  <!--      <mat-tab label="Confirmed Orders" >-->
+  <br>
+
+</div>
+
+<ng-template #submitwarn>
+  <div class="container">
+    <h3>Pending Orders <span style="font-size: 13px">These Orders are only pending from selected</span></h3>
+    <ag-grid-angular style="height: 396px;width: 100%;margin-top: 1%;" class="ag-theme-balham"
+                     [scrollbarWidth]="8" [headerHeight]="35"
+                     rowSelection="multiple"
+                     (rowSelected)="activitySelected($event)"
+                     [rowHeight]="35" [rowData]="confirmeOrders" [floatingFilter]="true"
+                     [columnDefs]="columnDefs1" enableCellTextSelection=true
+                     [gridOptions]="gridOptions">
+    </ag-grid-angular>
+    <div class="d-flex p-2">
+      <button mat-raised-button style="background-color: #03c103;color: white" (click)="confirmInternlOrder()">Submit
+      </button>
+      <button mat-raised-button color="success" class="ms-2" [mat-dialog-close]="submitwarn">cancel</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,26 @@
+.card-text{
+  font-size: 18px;
+  text-align: center;
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+  padding: 24px;
+}
+
+::ng-deep .mat-card{
+  border-radius: 30px !important;
+}
+.go-to-button{
+  background-color: #0e5ea3;
+  border-radius: 10px;;
+  color: white;
+  padding: 5px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+.ag-grid-angular{
+  height: 200px;
+}

@@ -1,0 +1,133 @@
+<!--<div *ngIf="role === 'CPXREQ'"><app-requester-dashboard></app-requester-dashboard></div>-->
+<!--<div *ngIf="role === 'CPXFH'"><app-vp-head-dashboard></app-vp-head-dashboard></div>-->
+<!--<div *ngIf="role === 'CPXHOAP'|| role === 'CPXCFOAP' || role === 'CPXAP'"><app-cfo-dashboard></app-cfo-dashboard></div>-->
+<!--<div *ngIf="role === 'CPXADM'"><app-admin-dashboard></app-admin-dashboard></div>-->
+<!--<div *ngIf="role === 'CPXSPADM'"><app-superadmin-dashboard></app-superadmin-dashboard></div>-->
+
+<div class="container-fluid">
+  <div class="d-flex">
+    <div class="p-2" style="margin-right: auto">
+      <div class="head p-2">
+    <span>
+        BUDGET
+    </span>
+      </div>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button color="primary" class="btn me-2" (click)="summary()">Summary&nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button style="background-color: #1680a0; color: white" class="me-2 " routerLink="/request" >Goto Requests &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md col-sm-12 p-2">
+      <div class="card" routerLink="/submitted-request">
+        <img src="./assets/pending.png" alt="">
+        <p class="card-text"> Budget Pending <br> {{budgetResponse.pendingCount}} </p>
+      </div>
+    </div>
+    <div class="col-md col-sm-12 p-2">
+      <div class="card" routerLink="/approved-request">
+        <img src="./assets/validation.png" alt="">
+        <p class=" card-text"> Budget Approved <br> {{budgetResponse.apprvdCount}} </p>
+      </div>
+    </div>
+    <div class="col-md col-sm-12 p-2">
+      <div class="card" routerLink="/rejected-request">
+        <img src="./assets/rejected.png" alt="">
+        <p class=" card-text "> Budget Rejected <br> {{budgetResponse.rejectdCount}} </p>
+      </div>
+    </div>
+    <div class="col-md col-sm-12 p-2" *ngIf="role === 'CPXREQ'">
+      <div class="card" routerLink="/resubmit-request">
+        <img src="./assets/resubmit.png" alt="">
+        <p class=" card-text "> Budget Resubmitted <br> {{budgetResponse.resubmitCount}} </p>
+      </div>
+    </div>
+  </div>
+<!--  <div class="card mt-3" style="border-radius: 0px;background-color: #dedada">-->
+<!--    <div class="row p-2 justify-content-end">-->
+<!--      <div class="col-md col-sm-12">-->
+<!--        <button mat-raised-button color="primary" class="btn me-2" (click)="summary()">Summary&nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>-->
+<!--      </div>-->
+<!--      <div class="col-md col-sm-12">-->
+<!--        <button mat-raised-button color="accent" class="me-2 " routerLink="/request" >Goto Requests &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <br>
+<mat-divider></mat-divider>
+  <br>
+  <div class="d-flex">
+    <div class="p-2" style="margin-right: auto">
+      <div class="head p-2">
+    <span>
+        CAPEX
+    </span>
+      </div>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button class="btn me-2" color="primary" routerLink="/capex-approval" >Summary&nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>
+    </div>
+    <div class="p-2">
+      <button mat-raised-button style="background-color: #1680a0;color: white" *ngIf="role !== 'CPXREQ'" class="me-2" routerLink="/capex-budget-pending" >Goto Pending &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>
+      <button mat-raised-button style="background-color: #3bcbb7;" class="me-2" *ngIf="role === 'CPXREQ' || role === 'CPXSPADM' " color="warn" routerLink="/new-budget">New Capex &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>    </div>
+  </div>
+
+<!--For Requesters cards-->
+    <div class="row" *ngIf="role == 'CPXREQ'">
+      <div class="col-md col-sm-12 p-2">
+        <div class="card">
+          <img src="./assets/pending.png" alt="">
+          <p class="card-text"> Budget Amount Remaining <br> {{capexResponse.pendingCount}} </p>
+        </div>
+      </div>
+      <div class="col-md col-sm-12 p-2">
+        <div class="card">
+          <img src="./assets/validation.png" alt="">
+          <p class=" card-text">Budget Amount Approved<br> {{capexResponse.apprvdCount}} </p>
+        </div>
+      </div>
+      <div class="col-md col-sm-12 p-2">
+        <div class="card">
+          <img src="./assets/rejected.png" alt="">
+          <p class=" card-text ">Budget Amount Utilised<br> {{capexResponse.rejectdCount}} </p>
+        </div>
+      </div>
+    </div>
+  <!--For Approvers cards-->
+  <div class="row" *ngIf="role !== 'CPXREQ'">
+    <div class="col-md col-sm-12 p-2">
+      <div class="card" routerLink="/capex-budget-pending">
+        <img src="./assets/pending.png" alt="">
+        <p class="card-text">Capex Pending <br> {{capexResponse.pendingCount}} </p>
+      </div>
+    </div>
+    <div class="col-md col-sm-12 p-2">
+      <div class="card" routerLink="/capex-budget-approved">
+        <img src="./assets/validation.png" alt="">
+        <p class=" card-text">Capex Approved<br> {{capexResponse.apprvdCount}} </p>
+      </div>
+    </div>
+    <div class="col-md col-sm-12 p-2">
+      <div class="card"  routerLink="/capex-budget-submit">
+        <img src="./assets/rejected.png" alt="">
+        <p class=" card-text ">Capex Rejected<br> {{capexResponse.rejectdCount}} </p>
+      </div>
+    </div>
+  </div>
+<!--  <div class="card mt-3" style="border-radius: 0px;background-color:#dedada">-->
+<!--    <div class="row p-2 justify-content-end">-->
+<!--      <div class="col-md col-sm-12" >-->
+<!--        <button mat-raised-button class="btn me-2" color="primary" routerLink="/capex-approval" >Summary&nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>-->
+<!--      </div>-->
+<!--      <div class="col-md col-sm-12 d-flex" >-->
+<!--        <button mat-raised-button color="accent" *ngIf="role !== 'CPXREQ'" class="me-2" routerLink="/capex-budget-pending" >Goto Pending &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>-->
+<!--        <button mat-raised-button class="me-2" *ngIf="role === 'CPXREQ' || role === 'CPXSPADM' " color="warn" routerLink="/new-budge">New Capex &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    </div>-->
+
+</div>

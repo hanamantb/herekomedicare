@@ -1,0 +1,220 @@
+.budgetTable {
+  width: 100%;
+  font-size: 12px;
+  font-family: 'Abel', sans-serif;
+  table-layout: fixed;
+  background-color: white;
+  border:solid;
+  margin-top: -33px;
+}
+
+.b-table-heading {
+  border: 1px solid rgba(168, 168, 168, 0.42);
+  padding: 8px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.table-data {
+  border: 1px solid rgba(168, 168, 168, 0.42);
+  padding: 8px;
+  color: black;
+}
+
+.capex-button {
+  background-color: #0e5ea3;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: small;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+
+.approve-button {
+  background-color: limegreen;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+
+.reject-button {
+  background-color: #ff2b3f;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+}
+
+::ng-deep .mat-expansion-panel-body {
+  padding: 10px !important;
+}
+
+::ng-deep .mat-expansion-panel-body table {
+  border: none !important;
+  font-size: 12px !important;
+  border-collapse: collapse !important;
+  text-align: center;
+  margin-bottom: 6px !important;
+}
+
+::ng-deep .mat-header-cell,
+td.mat-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  font-size: 13px !important;
+  vertical-align: middle;
+}
+
+::ng-deep .mat-header-cell {
+  font-weight: 500 !important;
+  color: #fff !important;
+  background-color: #45657d !important;
+}
+
+::ng-deep td.mat-cell {
+  font-weight: 400 !important;
+  color: rgb(61, 74, 82) !important;
+  border-bottom: none !important;
+  background-color: #e5f3fd !important;
+}
+
+th.mat-header-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  text-align: center;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]) {
+  box-shadow: 0 2px 6px 1px rgba(0, 0, 0, .19)!important;
+  border-radius: 10px!important;
+  border: 1px #dadcde!important;
+  margin-bottom: 0.5rem !important;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  border-radius: 10px!important;
+}
+
+.mat-expansion-panel-header {
+  display: flex!important;
+  flex-direction: row!important;
+  align-items: center!important;
+  padding: 0 24px!important;
+  height: 48px !important;
+  color: black;
+}
+
+.mat-expansion-panel-header-title[_ngcontent-c9],
+.mat-expansion-panel-header-description {
+  margin-top: 0!important;
+}
+
+.mat-expansion-panel-body {
+  padding: 0 24px 8px!important;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]):hover {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .19)!important;
+}
+
+.exp-hdr {
+  font-weight: 500;
+  color: black;
+}
+
+.exp-val {
+  font-weight: 400;
+  color: black;
+  margin-left: 5px;
+}
+.screen-headings{
+  background-color: #147c9d;
+  width: 25%;
+  text-align: center;
+  height: 81%;
+  color: white;
+  font-size: large;
+ 
+}
+/* .container-fluid {
+  background-image: linear-gradient(#ffc107, #0dcaf0);
+  position: absolute;
+  height: 70%;
+} */
+
+.head{
+  background-color: #147c9d;
+  width: 25%;
+  text-align: center;
+  height: 81%;
+  color: white;
+  font-size: large;
+}
+.pstyle{
+  text-align: center;
+  background-color: #0e5ea3;
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+}
+button{
+  float: left;
+  color: black;
+  margin-left: 25px;
+  border-radius: initial;
+  border: rgb(85, 82, 82) groove;
+}
+.card{
+  height: auto;
+  border: solid;
+}
+.spanText{
+  font-size: 13px;
+  background-color: #fff;
+  color: black;
+  border: 0ch;
+  float: right;
+}
+mat-form-field{
+  margin: 2% 15% 0 12%;
+  width: -webkit-fill-available;
+}
+mat-icon{
+  background-color: white;
+}
+.save{
+  background-color: limegreen;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Abel', sans-serif;
+  border: 0px;
+  width: 100px;
+  margin-bottom: 5px;
+  float: right;
+}
+.selected-color{
+  background-color: green;
+  color: white
+}
+.capex-headings-lite{
+color: black;
+text-align: center;
+}
+ng-template{
+  border-radius: 15px;
+}

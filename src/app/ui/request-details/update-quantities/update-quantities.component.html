@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <p class="capex-headings-lite">Edit Quantities</p>
+    </div>
+    <div class="col-md-2" align="right">
+      <button mat-dialog-close style="background-color: #ff1d0f; color: white">X</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="container-fluid border border-success">
+        <div class="row">
+          <div class="col-md-12">
+            <br>
+            <p class="capex-headings-lite">You're sure about to edit these values</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field  appearance="fill">
+              <mat-label>Approx Value</mat-label>
+              <input type="number" matInput [(ngModel)]="appoxVal">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field appearance="fill">
+              <mat-label> Qty Required</mat-label>
+              <input type="number" matInput  [(ngModel)]="qty">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12" align="right">
+            <button mat-raised-button [mat-dialog-close]="false">No,Thanks</button>&nbsp;
+            <button mat-raised-button color="primary" mat-dialog-close (click)="updateQty()">Update</button>
+          </div>
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,299 @@
+<div class="container-fluid cont-padding">
+  <div class="main-bg">
+    <div class="row width40">
+      <mat-card class="card-blank">
+        <div class="col-md-12" align="center">
+          <h1><span class="heading" style="text-decoration: underline;">Capex Approval Request</span></h1>
+        </div>
+        <br>
+
+        <div class="row">
+          <!--          <div class="col-md-6">-->
+          <!--            <form [formGroup]="budgetcode">-->
+          <!--            <mat-form-field appearance="outline">-->
+          <!--              <mat-label>Capex Approval Code</mat-label>-->
+          <!--              <input type="text" matInput placeholder="Temp code" disabled >-->
+          <!--            </mat-form-field>-->
+          <!--            </form>-->
+          <!--          </div>-->
+
+          <!--            <div class="col-md-6 type" >-->
+          <!--              <mat-label>Select Capex type</mat-label>-->
+          <!--              <mat-select (selectionChange)="typeselector($event)"  placeholder="Select type">-->
+          <!--                <mat-option [value]="data.id" *ngFor="let data of typeofcapex">{{data.type}}-->
+          <!--                </mat-option>-->
+          <!--              </mat-select>-->
+          <!--            </div>-->
+        </div>
+
+        <form [formGroup]="budgetForm">
+          <div class="row rowbtween">
+            <div class="col-md-6">
+              <mat-label>Select Capex type</mat-label>
+              <mat-select (selectionChange)="typeselector($event)" placeholder="Select type">
+                <mat-option [value]="data.id" *ngFor="let data of typeofcapex">{{data.type}}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div class="col-md-6">
+              <mat-label> Plants</mat-label>
+              <mat-select formControlName="plantSelect" (selectionChange)="onSelectionPlantANdAinvest()"
+                          placeholder="Select Plants">
+                <input matInput type="text" (keyup)="onKey($event)" placeholder="Search"
+                       style="height: 60px;position: sticky;top: 0;background-color: white">
+                <mat-option [value]="plant.plant_id" *ngFor="let plant of plants">{{plant.plantName }}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px;">
+              <mat-label>Investment Type</mat-label>
+              <mat-select formControlName="investmentSelect" (selectionChange)="onSelectionPlantANdAinvest()"
+                          placeholder="Investment Type">
+                <input matInput type="text" (keyup)="searchinvest($event)" placeholder="Search"
+                       style="height: 60px;position: sticky;top: 0;background-color: white">
+                <mat-option [value]="investment.investment_id"
+                            *ngFor="let investment of investments">{{investment.investment_name}}
+                </mat-option>
+              </mat-select>
+            </div>
+            <div class="col-md-6" style="margin-top: 20px;"
+                 *ngIf="department == 'QA' || department == 'Information Technology' || department == 'R&D' || department == 'Purchase' || department == 'SCM'">
+              <section class="example-section">
+                <mat-checkbox class="example-margin" (change)="checker($event)">Access to other plants</mat-checkbox>
+              </section>
+            </div>
+          </div>
+          <br>
+          <div class="col-md-12">
+            <mat-form-field>
+              <mat-label>Select Budget ID</mat-label>
+              <mat-select formControlName="budgetSelect" [multiple]="true"
+                          (selectionChange)="onSelectBudget()" [disabled]="selectortype === '2'">
+                <input matInput type="text" (keyup)="searchBudgetIds($event)" placeholder="Search"
+                       style="height: 60px;position: sticky;top: 0;background-color: white">
+                <mat-option [value]="data.requestId" *ngFor="let data of dataList">{{data.Detail}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field appearance="fill">
+              <mat-label>Capex Description</mat-label>
+              <input type="text" matInput formControlName="budgetDesc">
+            </mat-form-field>
+          </div>
+          <div class="col-md-12">
+            <mat-form-field appearance="fill">
+              <mat-label>Capex Amount</mat-label>
+              <input type="number" matInput formControlName="budgetAmount" (keyup)="amountsimon()"
+                     *ngIf="selectortype !='4'">
+              <input type="number" matInput formControlName="budgetAmount" *ngIf="selectortype =='4'">
+            </mat-form-field>
+          </div>
+        </form>
+        <div class="row" *ngFor="let data of selectedList;let i = index">
+          <div class="col-md-5">
+            <p class="spanText">Amount From - {{data.budgetId}} </p>
+          </div>
+          <div class="col-md-1">
+            <button style="border-radius: 25%;margin-top: 20px;" (click)="idDetaildWindow(data)">
+              <mat-icon>details</mat-icon>
+            </button>
+          </div>
+
+          <div class="col-md-4" align="right">
+            <mat-form-field appearance="outline">
+              <mat-label>Enter amount from Available Budget</mat-label>
+              <input type="number" matInput [(ngModel)]="check" [disabled]="isBudgetSaved(data.requestId)"
+                     *ngIf="selectortype =='1'">
+              <input type="number" matInput [(ngModel)]="data.amount" [disabled]="isBudgetSaved(data.requestId)"
+                     *ngIf="selectortype !='1'">
+              <mat-hint>Available Amount : {{data.availAmount}}</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="col-md-2" style="margin-left: -25px;margin-top: 7px;">
+            <button mat-icon-button (click)="localsavebudget(check, data.requestId,data.availAmount)"
+                    *ngIf="!isBudgetSaved(data.requestId) && selectortype =='1'">
+              <mat-icon><span class="material-icons-round">task_alt</span></mat-icon>
+            </button>
+            <button mat-icon-button (click)="localsavebudget(data.amount, data.requestId,data.availAmount)"
+                    *ngIf="!isBudgetSaved(data.requestId) && selectortype !='1'">
+              <mat-icon><span class="material-icons-round">task_alt</span></mat-icon>
+            </button>
+            <button mat-icon-button
+                    *ngIf="isBudgetSaved(data.requestId)" (click)="uncheckbudgetid(data.requestId)">
+              <mat-icon><span class="material-icons-round">edit</span></mat-icon>
+            </button>
+            <!-- [ngClass]="{'selected-color' : isBudgetSaved(i)}" -->
+            <button mat-icon-button color="black" (click)="localdeletebudget(data.requestId,data.amount)">
+              <mat-icon><span class="material-icons-round">remove_circle_outline</span></mat-icon>
+            </button>
+          </div>
+        </div>
+        <br>
+        <br>
+        <form [formGroup]="Contiguousgrp">
+          <div class="row">
+            <div class="col-md-6 text">
+              Payback
+              <mat-radio-group aria-label="Select an option" formControlName="payback">
+                <mat-radio-button [value]="true" class="radio-btn-text"> Yes</mat-radio-button>&nbsp;&nbsp;
+                <mat-radio-button [value]="false" class="radio-btn-text">No</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <div class="col-md-5">
+            </div>
+          </div>
+          <br>
+          <div class="row">
+            <div class="col-md-6">
+              <div>
+                <p>Payback Document &nbsp;&nbsp;
+                  <button (click)="paybackupload()">
+                    <mat-icon>cloud_upload</mat-icon>
+                  </button>
+                </p>
+                <ag-grid-angular style="height: 200px; width: 100%;margin-bottom: 75px;" class="ag-theme-balham"
+                                 [scrollbarWidth]="8" [headerHeight]="35" [rowHeight]="40"
+                                 (cellClicked)="onGridCellClickedpayback($event)"
+                                 [rowData]="payloadfile" [columnDefs]="columnDefs" enableCellTextSelection=true>
+                </ag-grid-angular>
+              </div>
+            </div>
+            <div class="col-md-6">
+
+              <p>Upload Document &nbsp;&nbsp;
+                <button (click)="upload()">
+                  <mat-icon>cloud_upload</mat-icon>
+                </button>
+              </p>
+              <ag-grid-angular style="height: 200px; width: 100%;margin-bottom: 75px;" class="ag-theme-balham"
+                               [scrollbarWidth]="8" [headerHeight]="35" [rowHeight]="40"
+                               (cellClicked)="onGridCellClicked($event)"
+                               [rowData]="rowData" [columnDefs]="columnDefspay" enableCellTextSelection=true>
+              </ag-grid-angular>
+            </div>
+          </div>
+        </form>
+        <br>
+        <div class="row">
+          <div class="col-md-12" align="center">
+            <button mat-raised-button class="approve-button" (click)="submitallatonce()">
+              <mat-icon><span class="material-icons-outlined">task_alt</span></mat-icon>&nbsp;Submit Capex for Approval
+              &nbsp;
+            </button>&nbsp;
+          </div>
+          <p style="color: red;" [hidden]="submit ===1">* please click on
+            <mat-icon><span
+              class="material-icons-round">task_alt</span></mat-icon>
+          </p>
+        </div>
+      </mat-card>
+
+    </div>
+  </div>
+</div>
+<!--<ng-template #approveWarning>-->
+<!--  <div class="container-fluid">-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-10">-->
+<!--        <p class="capex-headings-lite">Submit Capex Approval</p>-->
+<!--      </div>-->
+<!--      <div class="col-md-2" align="right">-->
+<!--        <button mat-dialog-close style="background-color: #131110; color: white;">X</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--      <div class="col-md-12">-->
+<!--        <div class="container-fluid">-->
+<!--          <br>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--              <p class="capex-headings-lite">Details</p>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12">-->
+<!--              <table class="budgetTable">-->
+<!--                <tr>-->
+<!--                  <td class="b-table-heading">Budget Code</td>-->
+<!--                  <td class="table-data">{{budgetCd}}</td>-->
+<!--                  <td class="b-table-heading">Budget Description</td>-->
+<!--                  <td class="table-data">{{budgetDesc}}</td>-->
+<!--                </tr>-->
+<!--                <tr>-->
+<!--                  <td class="b-table-heading">Capex Amount</td>-->
+<!--                  <td class="table-data">{{budgetAmount}}</td>-->
+<!--                  <td class="b-table-heading">Contiguous</td>-->
+<!--                  <td class="table-data" *ngIf="contigious === true">Yes</td>-->
+<!--                  <td class="table-data" *ngIf="contigious === false">NO</td>-->
+
+<!--                </tr>-->
+
+<!--              </table>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row">-->
+<!--            <div class="col-md-12 offset-md-5" align="centerS">-->
+
+<!--              <br><br>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->
+
+<ng-template #Details>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-10">
+        <p class="capex-headings-lite">Budget Detail</p>
+      </div>
+      <div class="col-md-2" align="right">
+        <button mat-dialog-close style="background-color: #131110; color: white;">X</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container-fluid">
+          <br>
+          <div class="row">
+            <div class="col-md-12">
+              <p class="capex-headings-lite">Details</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="budgetTable">
+                <tr>
+                  <td class="b-table-heading">Budget Id</td>
+                  <td class="table-data">{{RequestDetail.budgetId}}</td>
+                  <td class="b-table-heading">Budget Amount</td>
+                  <td class="table-data">{{RequestDetail.availAmount}}</td>
+                </tr>
+                <tr>
+                  <td class="b-table-heading">Investment Justification</td>
+                  <td class="table-data">{{RequestDetail.justification}}</td>
+                  <td class="b-table-heading">CreatedBy</td>
+                  <td class="table-data">{{RequestDetail.creationBy}}</td>
+
+
+                </tr>
+
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 offset-md-5" align="centerS">
+
+              <br><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

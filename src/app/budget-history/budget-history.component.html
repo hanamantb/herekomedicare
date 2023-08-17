@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <ul class="timeline">
+                <li *ngFor="let data of datalist">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <a style="font-size: 16px;font-family: 'Abel', sans-serif !important">{{data.title}}</a>
+                        </div>
+                        <div class="col-md-4">
+                            <a class="float-right" style="font-style: italic;">{{data.time}}</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p style="font-style: italic; color: #d97105">{{data.message}}</p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: -12px;">
+                        <div class="col-md-10">
+                            <p style="font-style: italic; color: #d97105"> Remarks : {{data.remarks}}</p>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+
+
+<!-- edited -->
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card1" routerLink="/submitted-request">
+                <img src="./assets/pending.png" alt="">
+                <p class=" card-text "> Total Pending <br> {{rqstSubmitted}} </p>
+
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="card1 " routerLink="/approved-request">
+                <img src="./assets/validation.png " alt="">
+                <p class=" card-text "> Total Approved <br> {{rqstApproved}} </p>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="card1 " routerLink="/rejected-request">
+                <img src="./assets/rejected.png " alt=" ">
+                <p class="card-text "> Total Rejected <br>{{rqstRejected}} </p>
+            </div>
+        </div>
+        <div class="col-md-3 ">
+            <div class="card1 " routerLink="/resubmit-request">
+                <img src="./assets/resubmit.png " alt=" ">
+                <p class="card-text "> Request Resubmitted <br>{{rqstResubmitted}} </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row h ">
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <button mat-raised-button class="btns">Request Submitted</button>
+        </div>
+        <div class="col-md-5">
+            <button mat-raised-button class="btn " (click)="gotoRequests() ">Goto Requests &nbsp;<i class="fa fa-arrow-right " aria-hidden="true "></i></button>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <br>
+    <div class="row">
+
+        <div class=" col-md-10 " style="margin-left: 4%">
+            <ag-grid-angular style="height: 404px;width:108%;position: absolute;box-shadow: 2px 12px 11px 4px rgb(0 0 0 / 20%);position: relative; " class="ag-theme-balham " [scrollbarWidth]="8 " [headerHeight]="35 " [rowHeight]="50 " [rowData]="rowData
+        " [columnDefs]="columnDefs " enableCellTextSelection=true>
+            </ag-grid-angular>
+        </div>
+
+    </div>
+
+
+</div>
