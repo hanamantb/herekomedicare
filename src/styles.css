@@ -2,14 +2,19 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "ag-grid-community/dist/styles/ag-grid.css";
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
-html, body { height: 100%; }
+
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&display=swap');
+
+html, body {
+  height: 100%;
+}
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Lato,sans-serif !important;
   background-color: aliceblue;
   overflow-x: hidden;
 }
-
 input {
   width: 100%;
   height: 30px;
@@ -26,10 +31,15 @@ mat-select {
   line-height: 29px;
 }
 
-p{
-  font-size:13px;
+p {
+  font-size: 13px;
 }
-
+p, button, select, textarea, input, .ag-theme-alpine {
+  font-family: Lato,sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', serif !important;
+}
 .ag-theme-alpine {
   --ag-row-border-color: rgba(0, 0, 0, 0.12);
   --ag-header-foreground-color: #3A4448;
@@ -122,9 +132,10 @@ select {
   border-left: solid 5px transparent;
   border-right: solid 5px transparent;
 }
-.sidebar-content-wrapper .mat-tab-label{
+.sidebar-content-wrapper .mat-tab-label {
   font-weight: 300;
   font-size: 16px;
+  font-family: Lato,sans-serif !important;
 }
 .cdk-overlay-pane {
   max-width: 400px !important;
