@@ -234,7 +234,7 @@ mat-select{
   position: relative;
 }
 .plan-item-card h1{
-  font-size: 21px;
+  font-size: 18px;
 }
 
 .content {
@@ -410,6 +410,7 @@ mat-select{
   font-size: 38px;
   color: #30b1ff;
   font-weight: 300;
+  font-family: Lato,sans-serif !important;
 }
 .monthly-premium{
   font-size: 38px;

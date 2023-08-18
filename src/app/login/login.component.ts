@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.commonService.checkEmail(formValues.Email).subscribe((response: any) => {
-      if (response==true) {
+      if (response.status==true) {
         this.route.navigate(['quoting'])
       } else {
         alert('User not found.');
