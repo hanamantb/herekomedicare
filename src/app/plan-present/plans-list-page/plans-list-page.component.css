@@ -51,7 +51,7 @@ mat-select{
   width: 38px;
 }
 .benfit-btn{
-  font-size: 12.5px;
+  font-size: 12px;
   width: 100%;
   text-align: left;
 }
@@ -72,7 +72,7 @@ mat-select{
   position: relative;
 }
 .plan-item-card h1{
-    font-size: 18px;
+    font-size: 21px;
 }
 
 .content {
@@ -268,7 +268,6 @@ mat-select{
   font-size: 38px;
   color: #30b1ff;
   font-weight: 300;
-  font-family: Lato,sans-serif !important;
 }
 .monthly-premium{
     font-size: 38px;
@@ -375,7 +374,4 @@ mat-select mat-option{
 }
 .item-show-btn mat-icon{
     color: #4b8bb2;
-}
-.estimated-cost-label small{
-    display: block;
 }

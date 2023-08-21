@@ -35,10 +35,16 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.drugDosage, {year,rxcui},'');
   }
   public searchPlans(searchPlanReqBody:any,plan_type:any,snp_type:any,zip:any,fips:any,
-                     page:any,isDrugAdded=true,year="2023",
-                     sort_order="ANNUAL_TOTAL"): Observable<any> {
-    return this.apiProvider.post(UrlConstants.searchPlans, {searchPlanReqBody,plan_type,snp_type,
-      page,year,fips,sort_order,zip,isDrugAdded},'');
+                     page:any,isDrugAdded=true,star_rating='5',year="2023",organization_name='',
+                     plan_category_filter=[],sort_order="ANNUAL_TOTAL",vision_coverage=true,
+                     dental_coverage=true,hearing_coverage=true,transportation=true,
+                     silver_sneakers=true
+  ): Observable<any> {
+    return this.apiProvider.post(UrlConstants.searchPlans,
+      {searchPlanReqBody,plan_type,snp_type,page,year,
+        fips,sort_order,zip,isDrugAdded,vision_coverage,
+        dental_coverage,hearing_coverage,transportation,
+        silver_sneakers,organization_name,plan_category_filter},'');
   }
   public checkEmail(email: any): Observable<any> {
     let s = this.apiProvider.get(UrlConstants.checkEmail + email);
@@ -46,10 +52,14 @@ export class CommonService {
     return s;
 
   }
+  public carrierName(fips:any,effectiveYear:any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.carrierName, {fips,effectiveYear},'');
+  }
+
   // public checkEmail(email: any): Observable<any> {
   //   let s = this.apiProvider.get(UrlConstants.checkEmail + email);
   //   console.log(s)
   //   return s;
-    
+
   // }
 }
