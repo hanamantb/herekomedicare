@@ -32,120 +32,181 @@
         <mat-expansion-panel-header>
           <p class="panel-headers">Company</p>
         </mat-expansion-panel-header>
-        <p class="exp-sub"> Cigna</p>
-        <p class="exp-sub"> AARP</p>
-      </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = true">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Premium</p>
-        </mat-expansion-panel-header>
-        <mat-slider min="200" max="500">
-          <input value="300" matSliderStartThumb>
-          <input value="400" matSliderEndThumb>
-        </mat-slider>
-        <div class="d-flex justify-content-center">
-          <div class="d-flex">
-            <em class="material-icons prefix">attach_money</em>
-            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"
-                   type="text">
-          </div>
-          <div class="d-flex">
-            <em class="material-icons prefix">attach_money</em>
-            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"
-                   type="text">
-          </div>
-          <div class="col s2 input-field filter-go-btn ">
-            <button mat-raised-button>Go</button>
-          </div>
+        <div class="d-flex p-2" *ngFor="let carrier of carrierNames">
+          <input class="form-check-input" type="radio" name="carrier" value="{{carrier.carrierName}}"  (change)="carrierFilter($event)"> &nbsp;
+          <label class="form-check-label" >
+           {{carrier.carrierName}}
+          </label>
         </div>
       </mat-expansion-panel>
+
+      <!--Premium filter-->
+<!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                           (closed)="panelOpenState = true">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <p class="panel-headers">Premium</p>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <mat-slider min="200" max="500">-->
+<!--          <input value="300" matSliderStartThumb>-->
+<!--          <input value="400" matSliderEndThumb>-->
+<!--        </mat-slider>-->
+<!--        <div class="d-flex justify-content-center">-->
+<!--          <div class="d-flex">-->
+<!--            <em class="material-icons prefix">attach_money</em>-->
+<!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
+<!--                   type="text">-->
+<!--          </div>-->
+<!--          <div class="d-flex">-->
+<!--            <em class="material-icons prefix">attach_money</em>-->
+<!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
+<!--                   type="text">-->
+<!--          </div>-->
+<!--          <div class="col s2 input-field filter-go-btn ">-->
+<!--            <button mat-raised-button>Go</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </mat-expansion-panel>-->
+
+      <!--Deductible-->
+<!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                           (closed)="panelOpenState = true">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <p class="panel-headers">Deductible</p>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <mat-slider min="200" max="500">-->
+<!--          <input value="300" matSliderStartThumb>-->
+<!--          <input value="400" matSliderEndThumb>-->
+<!--        </mat-slider>-->
+<!--        <div class="d-flex justify-content-center">-->
+<!--          <div class="d-flex">-->
+<!--            <em class="material-icons prefix">attach_money</em>-->
+<!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
+<!--                   type="text">-->
+<!--          </div>-->
+<!--          <div class="d-flex">-->
+<!--            <em class="material-icons prefix">attach_money</em>-->
+<!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
+<!--                   type="text">-->
+<!--          </div>-->
+<!--          <div class="col s2 input-field filter-go-btn">-->
+<!--            <button mat-raised-button>Go</button>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </mat-expansion-panel>-->
+
+      <!--Plan Type-->
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = true">
+                           (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
-          <p class="panel-headers">Deductible</p>
+          <p class="panel-headers">Special Needs Plans</p>
         </mat-expansion-panel-header>
-        <mat-slider min="200" max="500">
-          <input value="300" matSliderStartThumb>
-          <input value="400" matSliderEndThumb>
-        </mat-slider>
-        <div class="d-flex justify-content-center">
-          <div class="d-flex">
-            <em class="material-icons prefix">attach_money</em>
-            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"
-                   type="text">
-          </div>
-          <div class="d-flex">
-            <em class="material-icons prefix">attach_money</em>
-            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"
-                   type="text">
-          </div>
-          <div class="col s2 input-field filter-go-btn">
-            <button mat-raised-button>Go</button>
-          </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="SNP_TYPE_CHRONIC_OR_DISABLING" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="SNP_TYPE_DUAL_ELIGIBLE" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Plans for people who have both Medicare and Medicaid.
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="SNP_TYPE_INSTITUTIONAL"(change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Plans for people who need long-term care in a facility or at home.
+          </label>
         </div>
       </mat-expansion-panel>
+
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <p class="panel-headers">Plan Type</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_HMO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
-            Basic(1)
+            HMO (Health Maintenance Organization)
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_PPO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
-            Enhanced(1)
+            PPO (Preferred Provider Organization)
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
-            Local HMO(10)
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            Local PPO(2)
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            MSA(2)
+            MSA (Medical Savings Account)
           </label>
         </div>
       </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <p class="panel-headers">Plan Benefits</p>
+        </mat-expansion-panel-header>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="" (change)="updateBenefits('vision',$event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Vision
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="" (change)="updateBenefits('dental',$event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Dental
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Hearing
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('transportation',$event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Transportation
+          </label>
+        </div>
+        <div class="d-flex p-2">
+          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('silver_snekers',$event)" id="flexCheckChecked"> &nbsp;
+          <label class="form-check-label" for="flexCheckChecked">
+            Fitness benefits
+          </label>
+        </div>
+      </mat-expansion-panel>
+
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <p class="panel-headers">Overall Star Rating</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="" name="star" id="flexCheckChecked"  (change)="starRating(4)"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             4 ⭐ & above
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="" name="star" id="flexCheckChecked"  (change)="starRating(3)"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             3 ⭐ & above
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="" name="star" id="flexCheckChecked" (change)="starRating(2)"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             2 ⭐ & above
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="radio" value="" name="star" id="flexCheckChecked" (change)="starRating(1)"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             1 ⭐ & above
           </label>
@@ -157,90 +218,53 @@
           <p class="panel-headers">Optional Packages</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" checked
+          <input class="form-check-input" type="radio" checked (change)="optnchk($event)"
                   value="" id="flexCheckChecked"> &nbsp;
-          <!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
-          <label class="form-check-label" for="flexCheckChecked">
+          <!--          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
+          <label class="form-check-label" for="flexCheckChecked" >
             Yes, show optional packages
           </label>
         </div>
       </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Insulin Support</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            Yes
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" > &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            No
-          </label>
-        </div>
-      </mat-expansion-panel>
+
+<!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+<!--                           (closed)="panelOpenState = false">-->
+<!--        <mat-expansion-panel-header>-->
+<!--          <p class="panel-headers">Insulin Support</p>-->
+<!--        </mat-expansion-panel-header>-->
+<!--        <div class="d-flex p-2">-->
+<!--          <input class="form-check-input" type="radio"> &nbsp;-->
+<!--          <label class="form-check-label" for="flexCheckChecked">-->
+<!--            Yes-->
+<!--          </label>-->
+<!--        </div>-->
+<!--        <div class="d-flex p-2">-->
+<!--          <input class="form-check-input" type="radio" > &nbsp;-->
+<!--          <label class="form-check-label" for="flexCheckChecked">-->
+<!--            No-->
+<!--          </label>-->
+<!--        </div>-->
+<!--      </mat-expansion-panel>-->
+
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <p class="panel-headers">Plan Benefits</p>
         </mat-expansion-panel-header>
-        <!--<div class="d-flex p-2">
-    <input class="form-check-input" type="checkbox" checked
-           value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;-->
-        <!--          <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
-        <!--<label class="form-check-label" for="flexCheckChecked">
-      Yes, show additional benefits
-    </label>
-  </div>-->
         <div class="d-flex p-2">
-          <input class="form-check-input" checked type="checkbox"
-                 value=""> &nbsp;
-          <label class="form-check-label">
-            Vision Coverage
+          <input class="form-check-input" type="radio" checked
+                 value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;
+<!--          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
+          <label class="form-check-label" for="flexCheckChecked">
+            Yes, show additional benefits
           </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" checked type="checkbox"
-                 value=""> &nbsp;
-          <label class="form-check-label">
-            Dental Coverage
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" checked type="checkbox"
-                 value=""> &nbsp;
-          <label class="form-check-label">
-            Hearing Coverage
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" checked type="checkbox"
-                 value=""> &nbsp;
-          <label class="form-check-label">
-            Transportation
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" checked type="checkbox"
-                 value=""> &nbsp;
-          <label class="form-check-label">
-            Fitness Benefits
-          </label>
-        </div>
-        <div class="d-flex p-2 sidebar-filter-actions">
-          <button mat-raised-button color="secondary" class="px-3 me-2">Clear</button>
-          <button mat-raised-button color="primary" class="px-3">Apply</button>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
 <!--    <div class="p-2">-->
 <!--      <p>Providers</p>-->
 <!--      <div class=" form-check">-->
-<!--        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">-->
+<!--        <input class="form-check-input" type="radio" value="" id="flexCheckChecked">-->
 <!--        <label class="form-check-label" for="flexCheckChecked">-->
 <!--          Dr. Sheena Mehta Zapata M>D - (Internal Medicine. Hospice and Palliative)-->
 <!--        </label>-->
@@ -255,52 +279,16 @@
   <mat-tab label="Sort By">
     <div class="sort mt-3">
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Lowest to Highest Premium
+        <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)"> Lowest yearly drug deductible
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Highest to Lowest Premium
+        <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)"> Lowest health plan deductible
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Lowest to Highest Deductible
+        <input type="radio" style="height: 20px" name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)"> Lowest drug + premium cost
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Highest to Lowest Deductible
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Lowest to Highest Max Out of Pocket
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Highest to Lowest Max Out of Pocket
-      </div>
-      <!--<div class="d-flex  p-2">
-    <input type="radio" style="height: 20px"> In-network doctors
-  </div>
-  <div class="d-flex  p-2">
-    <input type="radio" style="height: 20px"> In-network facility
-  </div>
-  <div class="d-flex  p-2">
-    <input type="radio" style="height: 20px"> In-network drugs
-  </div>
-  <div class="d-flex  p-2">
-    <input type="radio" style="height: 20px"> CSR applicable
-  </div>-->
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Company (A to Z)
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Company (Z to A)
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Star Rating (Low to High)
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Star Rating (High to Low)
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Estimated Annual Drug Cost (Low to High)
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px"> Estimated Annual Drug Cost (High to Low)
+        <input type="radio" style="height: 20px" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)"> Lowest monthly premium
       </div>
     </div>
   </mat-tab>
