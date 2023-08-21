@@ -1,11 +1,14 @@
 // shared.service.ts
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {BehaviorSubject, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SharedService {
+    [x: string]: any;
   private radioState:any = {
     vision: false,
     dental: false,
@@ -14,7 +17,7 @@ export class SharedService {
     silver_snekers: false,
   }
 
-
+  authStatusListener = new Subject<boolean>();
   public numberSubject = new Subject<number>();
   number$ = this.numberSubject.asObservable();
   public benefitcheck : BehaviorSubject<any> = new BehaviorSubject(true);
@@ -32,7 +35,10 @@ export class SharedService {
   public sortings : BehaviorSubject<any> = new BehaviorSubject('');
   sortBy = this.sortings.asObservable();
 
+  constructor(private router: Router) { }
+
   radioState$ = new BehaviorSubject<any>(this.radioState);
+    isAuthenticated: boolean = true;
 
   incrementNumber() {
     this.numberSubject.next(1);
@@ -80,5 +86,11 @@ export class SharedService {
       }
     }
     this.radioState$.next(this.radioState);
+  }
+  logout() {
+    this.isAuthenticated = false;
+    this.authStatusListener.next(false);
+    this.router.navigate(['/login']);
+    return this.isAuthenticated;
   }
 }

@@ -8,7 +8,8 @@ import {SharedService} from "../../../services/shared.service";
   styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent implements OnInit {
-  number=0
+  number = 0
+  s!: boolean;
   constructor(private route: Router,private sharedService: SharedService) { }
 
   ngOnInit(): void {
@@ -19,5 +20,8 @@ export class ToolbarComponent implements OnInit {
 
   cart() {
     this.route.navigate(['cart-home'])
+  }
+  onLogout() {
+    let s=this.sharedService.logout();
   }
 }
