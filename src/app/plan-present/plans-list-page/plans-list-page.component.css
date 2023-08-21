@@ -290,11 +290,8 @@ mat-select{
   font-size: 16px;
   font-weight: 300;
 }
-h2.premium-title{
-    margin-bottom: 0;
-}
-.material-icons {
-  font-size: 21px;
+.material-icons{
+    font-size: 21px;
 }
 .card-footer {
   background: #fff;

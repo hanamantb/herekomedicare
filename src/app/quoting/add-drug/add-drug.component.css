@@ -70,10 +70,9 @@ h3{
   margin-bottom: 0;
   padding-bottom: 0;
 }
-.add-drugs-info h3 {
+.add-drugs-info h3{
   font-size: 15px;
   padding-top: 0 !important;
-  font-family: Lato,sans-serif !important;
 }
 .prescription-drugs-title{
     font-weight: 500;
