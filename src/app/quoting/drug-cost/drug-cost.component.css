@@ -48,13 +48,19 @@
 }
 .mat-expansion-panel-header p{
     margin-bottom: 0;
+    font-weight: 600;
 }
 .mat-accordion .mat-expansion-panel:first-of-type{
     border-radius: 0 !important;
 }
 .mat-accordion table th {
-  font-weight: 500;
-  color: #252525
+  font-weight: 600;
+  color: #252525;
+  font-family: Lato,sans-serif !important;
+}
+.mat-accordion table.w-justified th {
+  min-width: 160px;
+  max-width: 220px;
 }
 .d-cost-label{
     font-size: 26px;  
@@ -131,5 +137,29 @@ th h4{
     font-size: 16px;
     margin-bottom: 5px;
     font-weight: 500;
+}
+.d-cost-label {
+  font-family: 'Merriweather', serif !important;
+}
+.dcd-content {
+  background-color: #cae3f3;
+  border-radius: 2px;
+  border: 1px solid #aad0e9;
+}
+.dcd-content p, .dcd-content h3{
+    color: #252525;
+}
+.dcd-content mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  margin-right: 2px;
+}
+.dcd-content a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 8px;
 }
 

@@ -103,8 +103,8 @@ label{
   color: #fff;
   line-height: 22px;
   margin-bottom: 0;
-  word-wrap: break-word;
   display: inline-block;
+  word-break: break-word;
 }
 .refresh-btn{
   max-width: 64px;
@@ -148,4 +148,5 @@ mat-expansion-panel .form-check-input[type="checkbox"] {
     border-radius: 2px;
     height: 32px;
     line-height: 32px;
+
 }

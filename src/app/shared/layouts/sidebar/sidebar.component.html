@@ -101,19 +101,19 @@
           <p class="panel-headers">Special Needs Plans</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="SNP_TYPE_CHRONIC_OR_DISABLING" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="SNP_TYPE_CHRONIC_OR_DISABLING" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="SNP_TYPE_DUAL_ELIGIBLE" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="SNP_TYPE_DUAL_ELIGIBLE" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Plans for people who have both Medicare and Medicaid.
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="SNP_TYPE_INSTITUTIONAL"(change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="SNP_TYPE_INSTITUTIONAL"(change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Plans for people who need long-term care in a facility or at home.
           </label>
@@ -126,19 +126,19 @@
           <p class="panel-headers">Plan Type</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_HMO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_HMO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             HMO (Health Maintenance Organization)
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_PPO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_PPO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             PPO (Preferred Provider Organization)
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             MSA (Medical Savings Account)
           </label>
@@ -151,31 +151,31 @@
           <p class="panel-headers">Plan Benefits</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="" (change)="updateBenefits('vision',$event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="" (change)="updateBenefits('vision',$event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Vision
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="" (change)="updateBenefits('dental',$event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="" (change)="updateBenefits('dental',$event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Dental
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Hearing
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('transportation',$event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="updateBenefits('transportation',$event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Transportation
           </label>
         </div>
         <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="PLAN_FILTER_MSA"(change)="updateBenefits('silver_snekers',$event)" id="flexCheckChecked"> &nbsp;
+          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="updateBenefits('silver_snekers',$event)" id="flexCheckChecked"> &nbsp;
           <label class="form-check-label" for="flexCheckChecked">
             Fitness benefits
           </label>
@@ -249,7 +249,7 @@
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
-          <p class="panel-headers">Plan Benefits</p>
+          <p class="panel-headers">Additional Benefits</p>
         </mat-expansion-panel-header>
         <div class="d-flex p-2">
           <input class="form-check-input" type="radio" checked

@@ -38,7 +38,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
+                  <th scope="col">Sl. No.</th>
                   <th scope="col">Drug Name</th>
                   <th scope="col">Package</th>
                   <th scope="col">Drug Type</th>
@@ -89,12 +89,19 @@
             <mat-expansion-panel-header>
               <p class="panel-headers">Yearly Drug costs</p>
             </mat-expansion-panel-header>
-            <table class="table">
+            <table class="table w-justified">
               <thead>
                 <tr>
                   <th scope="col" valign="middle">Drugs</th>
                   <th scope="col">
                     <h4>Maximum Physical Healthcare, Inc</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
                     <small class="out-of-network">
                       <mat-icon>close</mat-icon>
                       <span>Out-of-network</span>
@@ -138,6 +145,7 @@
                   <td>$0.00</td>
                   <td>$2,953.30</td>
                   <td>$0.00</td>
+                  <td>$0.00</td>
                 </tr>
                 <tr>
                   <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>
@@ -145,6 +153,7 @@
                   <td>$175.00</td>
                   <td>$175.00</td>
                   <td>$3,118.75</td>
+                  <td>$210.00</td>
                   <td>$210.00</td>
                 </tr>
                 <tr>
@@ -154,6 +163,50 @@
                   <td>$175.00</td>
                   <td>$6,072.05</td>
                   <td>$210.00</td>
+                  <td>$210.00</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Estimated total drug + Premium cost</p>
+            </mat-expansion-panel-header>
+            <table class="table w-justified">
+              <thead>
+                <tr>
+                  <th scope="col" valign="middle"></th>
+                  <th scope="col">
+                    <h4>Maximum Physical Healthcare, Inc</h4>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
+                  </th>
+                  <th scope="col">
+                    <h4>Winn Dixie</h4>
+                  </th>
+                  <th scope="col">
+                    <h4>Walgreens #6385</h4>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
+                  </th>
+                  <th scope="col">
+                    <h4>Winn Dixie</h4>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td scope="row">Total drug + Premium cost (for the rest of 2023)</td>
+                  <td>$140.00</td>
+                  <td>$140.00</td>
+                  <td>$140.00</td>
+                  <td>$140.00</td>
+                  <td>$140.00</td>
+                  <td>$140.00</td>
                 </tr>
 
               </tbody>
@@ -164,12 +217,19 @@
             <mat-expansion-panel-header>
               <p class="panel-headers">Estimated monthly total drug cost</p>
             </mat-expansion-panel-header>
-            <table class="table">
+            <table class="table w-justified">
               <thead>
                 <tr>
                   <th scope="col" valign="middle">Drugs</th>
                   <th scope="col">
                     <h4>Maximum Physical Healthcare, Inc</h4>
+                    <small class="out-of-network">
+                      <mat-icon>close</mat-icon>
+                      <span>Out-of-network</span>
+                    </small>
+                  </th>
+                  <th scope="col">
+                    <h4>Clay Eye Physicians And Surgeons</h4>
                     <small class="out-of-network">
                       <mat-icon>close</mat-icon>
                       <span>Out-of-network</span>
@@ -213,6 +273,7 @@
                   <td>$35.00</td>
                   <td>$1,214.41</td>
                   <td>$105.00</td>
+                  <td>$105.00</td>
                 </tr>
                 <tr>
                   <td scope="row">September</td>
@@ -220,6 +281,7 @@
                   <td>$35.00</td>
                   <td>$35.00</td>
                   <td>$1,214.41</td>
+                  <td>$105.00</td>
                   <td>$105.00</td>
                 </tr>
                 <tr>
@@ -229,6 +291,7 @@
                   <td>$35.00</td>
                   <td>$1,214.41</td>
                   <td>$105.00</td>
+                  <td>$105.00</td>
                 </tr>
                 <tr>
                   <td scope="row">November</td>
@@ -236,6 +299,7 @@
                   <td>$35.00</td>
                   <td>$35.00</td>
                   <td>$1,214.41</td>
+                  <td>$105.00</td>
                   <td>$105.00</td>
                 </tr>
                 <tr>
@@ -245,6 +309,7 @@
                   <td>$35.00</td>
                   <td>$1,214.41</td>
                   <td>$105.00</td>
+                  <td>$105.00</td>
                 </tr>
 
               </tbody>
@@ -252,6 +317,98 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
+      <div class="p-2 mb-3">
+        <div class="col-12">
+          <div class="dcd-content p-3">
+            <h3 class="mb-1">Estimated drug costs during coverage phases</h3>
+            <p class="mb-1">The drug prices shown may vary based on the plan and pharmacy you've selected. Contact the plan if you have specific questions about drug costs.</p>
+            <a href="#"><mat-icon>arrow_forward_ios</mat-icon>Learn about coverage phases</a>
+          </div>
+        </div>
+      </div>
+      <div class="px-2 pb-4">
+        <mat-accordion>
+          <mat-expansion-panel expanded="true">
+            <mat-expansion-panel-header>
+              <p class="main-panel-headers">CVS Pharmacy #0519 | Drug costs during coverage phases.</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Retail cost</th>
+                  <th scope="col">Cost after deductible</th>
+                  <th scope="col">Cost in coverage gap</th>
+                  <th scope="col">Cost after coverage gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+          <mat-expansion-panel expanded="true">
+            <mat-expansion-panel-header>
+              <p class="main-panel-headers">CVS Pharmacy #0519 | Drug costs during coverage phases.</p>
+            </mat-expansion-panel-header>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col"></th>
+                  <th scope="col">Retail cost</th>
+                  <th scope="col">Cost after deductible</th>
+                  <th scope="col">Cost in coverage gap</th>
+                  <th scope="col">Cost after coverage gap</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+                <tr>
+                  <th scope="row">Abacavir 300mg Tablet</th>
+                  <td>$301.44</td>
+                  <td>$0.00</td>
+                  <td>$0.00</td>
+                  <td>$15.07</td>
+                </tr>
+              </tbody>
+            </table>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      
     </div>
   </div>
 </div>
