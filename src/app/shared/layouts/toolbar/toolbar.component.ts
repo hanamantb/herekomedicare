@@ -9,7 +9,6 @@ import {SharedService} from "../../../services/shared.service";
 })
 export class ToolbarComponent implements OnInit {
   number = 0
-  s!: boolean;
   constructor(private route: Router,private sharedService: SharedService) { }
 
   ngOnInit(): void {
