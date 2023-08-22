@@ -166,11 +166,12 @@ button{
   border-radius: 2px !important
 }
 .invalid-feedback {
-  font-size: 12px;
+  
 }
 .invalid-feedback {
-  white-space: nowrap;
   overflow: hidden;
+  line-height: 14px;
+  font-size: 12px;
 }
 .ag-cell-value, .ag-group-value{
     word-break: break-word;
