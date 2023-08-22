@@ -103,6 +103,8 @@ label{
   color: #fff;
   line-height: 22px;
   margin-bottom: 0;
+  display: inline-block;
+  word-break: break-word;
 }
 .refresh-btn{
   max-width: 64px;
