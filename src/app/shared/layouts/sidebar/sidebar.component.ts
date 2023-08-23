@@ -19,6 +19,25 @@ export class SidebarComponent implements OnInit {
   carrierNames: any;
   filterPlanType: any = []
   filterSnpType: any = ["SNP_TYPE_NOT_SNP"]
+  planBenefits=[
+    {name:'Vision',value:'vision', checked: false},
+    {name:'Dental',value:'dental', checked: false},
+    {name:'Hearing',value:'hearing', checked: false},
+    {name:'Transportation',value:'transportation', checked: false},
+    {name:'Fitness benefits',value:'silver_snekers', checked: false},
+  ]
+
+  snpPlanTypes=[
+    {label:'Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).',value:'SNP_TYPE_CHRONIC_OR_DISABLING',isChecked:false},
+    {label:'Plans for people who have both Medicare and Medicaid.',value:'SNP_TYPE_DUAL_ELIGIBLE',isChecked:false},
+    {label:'Plans for people who need long-term care in a facility or at home.',value:'SNP_TYPE_INSTITUTIONAL',isChecked:false}
+  ]
+
+  planTypes=[
+    {label:'HMO (Health Maintenance Organization)',value:'PLAN_FILTER_HMO',checked:false},
+    {label:'PPO (Preferred Provider Organization)',value:'PLAN_FILTER_HMO',checked:false},
+    {label:'MSA (Medical Savings Account)',value:'PLAN_FILTER_HMO',checked:false}
+  ]
 
   constructor(private route: Router,
               private shared: SharedService,
@@ -113,6 +132,7 @@ export class SidebarComponent implements OnInit {
         }
       })
     }
+    console.log('snp_types',this.filterSnpType)
     this.shared.snpTypechange(this.filterSnpType)
   }
 
@@ -126,5 +146,25 @@ export class SidebarComponent implements OnInit {
       this.shared.updateRadioStatetofalse(variable);
     }
   }
+  benefitapply() {
+    this.shared.triggerFunction()
+  }
+  clearbenefits(){
+    this.shared.updatebenefitAlltofalse()
+    for (const item of this.planBenefits) {
+      item.checked = false;
+    }
+  }
+  clearplanTypes(){
+    for (const item of this.planTypes) {
+      item.checked = false;
+    }
+  }
 
+  clearsnpTypes(){
+
+    for (const item of this.snpPlanTypes) {
+      item.isChecked = false;
+    }
+  }
 }

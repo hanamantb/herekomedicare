@@ -48,11 +48,11 @@ export class PlansListPageComponent implements OnInit {
   sort_order: any='ANNUAL_TOTAL';
   filterplanType: any=[];
   filterEnable: boolean = false
-  vision: boolean = true
-  dental: boolean = true
-  hearing: boolean = true
-  transportation: boolean = true
-  silver_snekers: boolean = true
+  vision: boolean = false
+  dental: boolean = false
+  hearing: boolean = false
+  transportation: boolean = false
+  silver_snekers: boolean = false
   snp_type: any=[
     "SNP_TYPE_NOT_SNP",
     "SNP_TYPE_CHRONIC_OR_DISABLING",
@@ -119,13 +119,11 @@ export class PlansListPageComponent implements OnInit {
     this.sharedService.planTypeFilter.subscribe((value: any) => {
       if (this.filterEnable){
         this.filterplanType = value;
-        this.getPlans('0')
       }
     });
     this.sharedService.snpTypeFilter.subscribe((value: any) => {
       if (this.filterEnable){
         this.snp_type = value;
-        this.getPlans('0')
       }
     });
     this.sharedService.sortBy.subscribe((value: any) => {
@@ -134,18 +132,21 @@ export class PlansListPageComponent implements OnInit {
         this.getPlans('0')
       }
     });
+     this.sharedService.applyFilter.subscribe(() => {
+         this.getPlans('0')
+        });
     this.sharedService.radioState$.subscribe(state => {
-      if (this.filterEnable) {
+      // if (this.filterEnable) {
         this.vision = state.vision
         this.dental = state.dental
         this.hearing = state.hearing
         this.transportation = state.transportation
         this.silver_snekers = state.silver_snekers
-        this.getPlans('0')
+//         this.getPlans('0')
         console.log('starRating', state)
         console.log('starRating', this.vision)
 
-      }
+      // }
     });
     let cartArray: any[] = [];
     const cart = sessionStorage.getItem('cart')

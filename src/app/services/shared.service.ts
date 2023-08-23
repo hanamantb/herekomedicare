@@ -34,7 +34,8 @@ export class SharedService {
   snpTypeFilter = this.snpTypeFilters.asObservable();
   public sortings : BehaviorSubject<any> = new BehaviorSubject('');
   sortBy = this.sortings.asObservable();
-
+ public applyFilters = new Subject<void>();
+  applyFilter = this.applyFilters.asObservable();
   constructor(private router: Router) { }
 
   radioState$ = new BehaviorSubject<any>(this.radioState);
@@ -87,10 +88,19 @@ export class SharedService {
     }
     this.radioState$.next(this.radioState);
   }
+  updatebenefitAlltofalse() {
+    for (const key in this.radioState) {
+        this.radioState[key] = false;
+    }
+    this.radioState$.next(this.radioState);
+  }
   logout() {
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     this.router.navigate(['/login']);
     return this.isAuthenticated;
   }
+   triggerFunction() {
+      this.applyFilters.next();
+    }
 }

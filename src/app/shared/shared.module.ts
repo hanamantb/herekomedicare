@@ -18,6 +18,7 @@ import { LoadingSpinnerComponent } from './layouts/loading-spinner/loading-spinn
 import { ErrorPopupComponent } from './layouts/error-popup/error-popup.component';
 import { DrugsCoveredDialogboxComponent } from './layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 import { NoPharmaciesPopupComponent } from './layouts/no-pharmacies-popup/no-pharmacies-popup.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { NoPharmaciesPopupComponent } from './layouts/no-pharmacies-popup/no-pha
     MatSidenavModule,
     MatSliderModule,
     MatBadgeModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    FormsModule
   ],
     exports: [
         ToolbarComponent,

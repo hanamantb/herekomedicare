@@ -53,3 +53,6 @@ h3{
    border-radius: 2px;
    font-weight: 400;
 }
+/deep/.edit-zipcode {
+  border: #B8C0D4 1px ridge !important;
+}
