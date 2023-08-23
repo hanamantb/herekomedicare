@@ -4,3 +4,24 @@
 mat-select{
   border: none;
 }
+.email-proposal-container {
+  background: #fff;
+  padding-bottom: 25px;
+  padding-top: 5px;
+  border-radius: 2px;
+}
+.email-proposal-container button{
+    border-radius: 2px;
+}
+.email-proposal-container label{
+    margin-bottom: 5px;
+}
+mat-select{
+    border: #B8C0D4 solid 1px;
+}
+/deep/.mat-form-field-wrapper{
+    padding-bottom: 0;
+}
+/deep/.mat-form-field-infix{
+    padding-top: 0;
+}
