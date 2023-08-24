@@ -82,6 +82,9 @@ export class CartHomeComponent implements OnInit {
   cartTabShow() {
     this.cartShow = !this.cartShow
   }
+  continueShopping() {
+    this.route.navigate(['/Plans']);
+  }
 
 
   f1() {

@@ -1,6 +1,15 @@
 .mat-form-field{
   display: block !important;
 }
-mat-select{
-  border: none;
+.email-proposal-container {
+  background: #fff;
+  padding-bottom: 25px;
+  padding-top: 5px;
+  border-radius: 2px;
+}
+.email-proposal-container button{
+    border-radius: 2px;
+}
+.email-proposal-container label{
+    margin-bottom: 5px;
 }
