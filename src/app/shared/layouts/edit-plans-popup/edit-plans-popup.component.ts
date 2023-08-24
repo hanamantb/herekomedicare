@@ -75,6 +75,10 @@ export class EditPlansPopupComponent implements OnInit {
   }
   close(change:boolean) {
     console.log(this.editForm.value.effectYear)
+    if(this.myControl.invalid && change){
+      console.log("invalid zipcode")
+
+    }else{
     if (change){
       sessionStorage.setItem('zipcode', this.zipcode)
       sessionStorage.setItem('fip',this.selectedCountie.fips)
@@ -83,6 +87,8 @@ export class EditPlansPopupComponent implements OnInit {
       sessionStorage.setItem('effectyear',this.editForm.value.effectYear)
     }
     this.dialogRef.close(change)
+  }
+
   }
   yeargetter() {
     const currentDate = new Date();
