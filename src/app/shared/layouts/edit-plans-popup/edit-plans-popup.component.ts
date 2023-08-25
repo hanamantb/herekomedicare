@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonService} from "../../../services/common.service";
+import { PharmacyZipCodeComponent } from './pharmacy-zip-code/pharmacy-zip-code.component';
 
 @Component({
   selector: 'app-edit-plans-popup',
@@ -83,6 +84,9 @@ export class EditPlansPopupComponent implements OnInit {
       sessionStorage.setItem('effectyear',this.editForm.value.effectYear)
     }
     this.dialogRef.close(change)
+  }
+  openPharmacyZip() {
+    this.dialog.open(PharmacyZipCodeComponent);
   }
   yeargetter() {
     const currentDate = new Date();

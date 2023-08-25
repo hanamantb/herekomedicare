@@ -163,3 +163,12 @@ mat-expansion-panel .form-check-input[type="checkbox"] {
   opacity: .4;
   pointer-events: none;
 }
+mat-expansion-panel input[type="input"],
+mat-expansion-panel input[type="radio"]{
+    margin-left: 3px;
+}
+.refresh-btn button {
+  background: transparent;
+  border: 0;
+  color: #fff;
+}

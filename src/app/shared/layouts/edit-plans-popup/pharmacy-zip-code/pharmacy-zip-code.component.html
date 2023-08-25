@@ -1,0 +1,25 @@
+<div class="container-fluid position-relative popup-body-wrapper">
+  <div class="row">
+    <div class="col-md-2 popup-close-btn" align="right">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 zipcode-val-popup-body">
+      <div class="container-fluid p-3">
+        <div class="row">
+          <div class="col-md-12">
+            <p>Would you like to select pharmacies for the updated ZIP Code?</p>
+            <div class="d-flex justify-content-end popup-action">
+              <button class="me-2" mat-raised-button color="secondary">No</button>
+              <button mat-raised-button color="primary">Yes</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-end mt-2" *ngIf="buttons">
+    <button mat-raised-button color="primary" class="mx-auto" (click)="continue()">Continue</button>
+  </div>
+</div>
