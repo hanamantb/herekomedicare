@@ -81,8 +81,6 @@ export class PlansListPageComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
-  cartPlanIds: String[] = [];  
-  
   constructor(private route: Router,
               private sharedService: SharedService,
               private commonservice: CommonService,
@@ -199,13 +197,10 @@ export class PlansListPageComponent implements OnInit {
   addToCart(plan: any) {
     if (!plan.cartAdded) {
       this.cart.push(plan)
-      this.cartPlanIds.push(plan.planID)
       this.sharedService.cartCount(this.cart.length);
     }
     plan.cartAdded = true
     console.log('cli',this.cart)
-    
-sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
@@ -268,29 +263,10 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
           benefits: true,
           alloptnpkShow: true,
         };
-      });      
-      const planIds= sessionStorage.getItem('cartPlanIds')              
-      if(planIds){
-        console.log("inside add cart")
-        let planIdsArray: any[] = []; 
-        planIdsArray=JSON.parse(planIds);
-        console.log("inside add cart"+planIdsArray)
-        console.log('stringList', planIdsArray.length) 
-     planIdsArray.forEach((planId: string) => {
-      addedplans.forEach((element: any) => {
-        if(planId == element.planID){
-          element.cartAdded =true;
-        }
-        this.plans.push(element)
-      }) 
-
-     })
-    }else{
-      console.log('response', response)
+      });
       addedplans.forEach((element: any) => {
         this.plans.push(element)
-      })   
-    } 
+      })
         this.filterEnable=true
       this.filtrPlans = this.plans
       sessionStorage.setItem('plans', JSON.stringify(this.plans))
