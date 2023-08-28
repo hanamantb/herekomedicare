@@ -8,6 +8,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./pharmacy-zip-code.component.css']
 })
 export class PharmacyZipCodeComponent implements OnInit {
+  zipcode:any;
   buttons = false
   constructor(private route: Router,private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
