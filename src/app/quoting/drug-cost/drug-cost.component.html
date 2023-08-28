@@ -7,7 +7,7 @@
       <div class="d-flex p-2">
         <div class="col-6">
           <span class="d-cost-label">Estimated Cost and Savings</span>
-          <p>Plan - Cigna No Premium (HMO)(H1215-002-0)</p>
+          <p>Plan - {{plan.planName}}</p>
         </div>
         <div class="col-6 d-flex justify-content-end drug-cost-buttons">
           <div class="btn-icon">
@@ -41,7 +41,6 @@
                   <th scope="col">Sl. No.</th>
                   <th scope="col">Drug Name</th>
                   <th scope="col">Package</th>
-                  <th scope="col">Drug Type</th>
                   <th scope="col">tier</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Frequency</th>
@@ -52,32 +51,31 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Abacavir 300mg Tablet</td>
-                  <td></td>
-                  <td>Generic</td>
-                  <td>2</td>
-                  <td>60</td>
-                  <td>Every month</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                <tr *ngFor="let drug of dcomparedList ; let i = index">
+                  <th scope="row">i</th>
+                  <td>{{drug.drugName}}</td>
+                  <td>{{drug.package}}</td>
+                  <td>{{drug.tier}}</td>
+                  <td>{{drug.quantity}}</td>
+                  <td>{{drug.frequency}}</td>
+                  <td>
+                    <p *ngIf="drug.frequency">Yes</p>
+                    <p *ngIf="!drug.frequency">No</p>
+                  </td>
+                  <td>
+                    <p *ngIf="drug.quantity_limit">Yes</p>
+                    <p *ngIf="!drug.quantity_limit">No</p>
+                  </td>
+                  <td>
+                    <p *ngIf="drug.step_therapy">Yes</p>
+                    <p *ngIf="!drug.step_therapy">No</p>
+                  </td>
+                  <td>
+                    <p *ngIf="drug.tier ==0">No</p>
+                    <p *ngIf="drug.tier !==0">Yes</p>
+                  </td>
                 </tr>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Lisiniporil 10mg Tablet</td>
-                  <td></td>
-                  <td>Generic</td>
-                  <td>6</td>
-                  <td>30</td>
-                  <td>Every month</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+
 
               </tbody>
             </table>
@@ -408,7 +406,7 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-      
+
     </div>
   </div>
 </div>
