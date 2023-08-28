@@ -24,19 +24,19 @@
         <div class=" d-flex p-2">
           <div class="col-4 p-2">
             <mat-form-field appearance="fill">
-              <mat-label>First Name</mat-label>
-              <input type="text" matInput>
+              <label>First Name</label>
+              <input type="text" >
             </mat-form-field>
           </div>
           <div class="col-4 p-2">
             <mat-form-field appearance="fill">
-              <mat-label>Last Name</mat-label>
-              <input type="text" matInput>
+              <label>Last Name</label>
+              <input type="text" >
             </mat-form-field>
           </div>
           <div class="col-4 p-2">
             <mat-form-field appearance="fill">
-              <mat-label>Select the format to generate proposal</mat-label>
+              <label>Select the format to generate proposal</label>
               <mat-select value="0">
                 <mat-option [value]="0">
                   PDF Format
@@ -76,7 +76,7 @@
 
 
 
-      <div class="card mt-2 plan-item-card"  *ngFor="let plan of cartItems ; let i = index">
+      <div class="card mt-2 plan-item-card" *ngFor="let plan of cartItems ; let i = index">
         <div class="d-flex">
           <div class="col-9">
             <div class="row">
@@ -97,8 +97,8 @@
                   <h2>{{ benefits.attributeName }}</h2>
                   <p *ngIf="benefits.apiParameter != 'rating'">{{benefits.displayValue}}</p>
                   <div class="star-rating" *ngIf="benefits.apiParameter === 'rating'">
-                        <span *ngFor="let star of stars"
-                              [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
+                    <span *ngFor="let star of stars"
+                          [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
                   </div>
                 </div>
               </div>
@@ -108,27 +108,27 @@
                 <h6>Office Visits</h6>
                 <div class="clear"></div>
                 <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Office_Visits']">
-                      <bdo>{{benefits.attributeName}}</bdo>
+                  <bdo>{{benefits.attributeName}}</bdo>
                   {{benefits.displayValue}}
-                    </span>
+                </span>
 
               </div>
               <div class="col s6 m4 l4">
                 <h6>Emergency Services</h6>
                 <div class="clear"></div>
                 <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Emergency_Services']">
-                      <bdo>{{benefits.attributeName}}</bdo>
+                  <bdo>{{benefits.attributeName}}</bdo>
                   {{benefits.displayValue}}
-                    </span>
+                </span>
               </div>
 
               <div class="col s6 m4 l4">
                 <h6>Outpatient Services</h6>
                 <div class="clear"></div>
                 <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Outpatient_Services']">
-                      <bdo>{{benefits.attributeName}}</bdo>
+                  <bdo>{{benefits.attributeName}}</bdo>
                   {{benefits.displayValue}}
-                    </span>
+                </span>
               </div>
             </div>
             <div class="d-flex col-12 justify-content-center p-2">
@@ -149,7 +149,7 @@
               </div>
             </div>
             <div class="row px-3" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
-              <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
+              <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
                 <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                   <mat-icon class="benefit-icon-true">check</mat-icon>
                   {{additionalbenefits.attributeName}}
@@ -189,23 +189,23 @@
                 Remove from cart
               </button>
             </div>
-<!--            <div class="d-flex drug-cost-details-btn">-->
-<!--              <span class="me-2 d-flex align-items-center">Drugs Covered:</span>-->
-<!--              <button mat-button >2 of 2-->
-<!--                <mat-icon class="ms-2">edit</mat-icon>-->
-<!--              </button>-->
-<!--            </div>-->
-              <div class="ms-2 optional-packages-btn d-flex align-items-center">
-                <span class="d-flex justify-content-center" (click)="showOp(plan)">
-                  <p class="mb-0">Optional Packages</p>
-                  <mat-icon>keyboard_arrow_down</mat-icon>
-                </span>
-              </div>
+            <!--            <div class="d-flex drug-cost-details-btn">-->
+            <!--              <span class="me-2 d-flex align-items-center">Drugs Covered:</span>-->
+            <!--              <button mat-button >2 of 2-->
+            <!--                <mat-icon class="ms-2">edit</mat-icon>-->
+            <!--              </button>-->
+            <!--            </div>-->
+            <div class="ms-2 optional-packages-btn d-flex align-items-center">
+              <span class="d-flex justify-content-center" (click)="showOp(plan)">
+                <p class="mb-0">Optional Packages</p>
+                <mat-icon>keyboard_arrow_down</mat-icon>
+              </span>
+            </div>
             <div class="col-2 d-flex align-items-center justify-content-center">
               <div class="dropdown documents-dropdown">
-                <button class="btn  dropdown-toggle" style="padding: 0" type="button" id="dropdownMenuButton1"
-                        data-bs-toggle="dropdown">
-                  Documents
+                <button class="btn  dropdown-toggle" style="padding: 0" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                  Documents <mat-icon>keyboard_arrow_down</mat-icon>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><a class="dropdown-item" href="#">Documents</a></li>
@@ -218,12 +218,12 @@
             <div class=" d-flex col-2">
               <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
               <!--                <label  class="ms-2"> Additional Details</label>-->
-              <button mat-raised-button >
+              <button mat-raised-button>
                 <mat-icon>remove_red_eye</mat-icon>
                 Plan Details
               </button>
             </div>
-            <div class=" d-flex col-3 justify-content-end me-1" >
+            <div class=" d-flex col-3 justify-content-end me-1">
               <button class="cart-select-btn" mat-raised-button (click)="cart(plan)" [ngClass]="{'selected': plan.selected}">
                 {{plan.selected?'Selected':'Select'}}
               </button>
@@ -248,13 +248,13 @@
 
       <div class="py-2 pb-0 mt-3">
         <h2 class="mb-0">Custom Plans</h2>
-        <p> Do you want to add custom plan in proposal? &nbsp;&nbsp; NO
+        <p>
+          Do you want to add custom plan in proposal? &nbsp;&nbsp; NO
           <mat-slide-toggle checked="false">YES</mat-slide-toggle>
         </p>
       </div>
       <div class="d-flex justify-content-end pb-4">
-        <button mat-button style="background-color: white" class="ms-2"> Continue Shopping</button>
-        <button mat-button style="background-color: white" class="ms-2">Cancel</button>
+        <button mat-button style="background-color: white" class="ms-2" (click)="continueShopping()"> Continue Shopping</button>
         <button mat-button style="background-color: #4b8bb2; color: white" class="ms-2">Begin Enrollment</button>
       </div>
     </div>

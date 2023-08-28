@@ -421,7 +421,7 @@ mat-select{
 }
 .monthly-premium, .estimated-annual-cost {
   font-size: 38px;
-  color: #30b1ff;
+  color: #4b8bb2;
   font-weight: 300;
   font-family: Lato,sans-serif !important;
 }
@@ -551,4 +551,19 @@ mat-select mat-option{
 }
 /deep/.mat-form-field-wrapper{
     padding-bottom: 0;
+}
+.documents-dropdown button{
+    display: flex;
+    align-items: center;
+}
+.documents-dropdown button:after {
+  display: none;
+}
+.documents-dropdown mat-icon {
+  height: 14px;
+  display: flex;
+  align-items: center;
+}
+.copy-proposal-drodown{
+    background-color: #fff;
 }
