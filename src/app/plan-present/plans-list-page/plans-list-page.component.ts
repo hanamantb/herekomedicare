@@ -34,9 +34,9 @@ export class PlansListPageComponent implements OnInit {
   couties: any
   fips: any
   lis: any
-  effYear: any ='2023'
-  drugsArray: any
-  showDiv:any=false
+  effYear: any = '2023'
+  drugsArray: any=[]
+  showDiv: any = false
   page: any = 0;
   selectedCountie: any;
   planTypes: any = "PLAN_TYPE_MAPD"
@@ -44,17 +44,17 @@ export class PlansListPageComponent implements OnInit {
   response: any = [];
   cart: any = [];
   currentYear!: number;
-  starRating: any='5';
-  filterCarrier: any='';
-  sort_order: any='ANNUAL_TOTAL';
-  filterplanType: any=[];
+  starRating: any = '6';
+  filterCarrier: any = '';
+  sort_order: any = 'ANNUAL_TOTAL';
+  filterplanType: any = [];
   filterEnable: boolean = false
   vision: boolean = false
   dental: boolean = false
   hearing: boolean = false
   transportation: boolean = false
   silver_snekers: boolean = false
-  snp_type: any=[
+  snp_type: any = [
     "SNP_TYPE_NOT_SNP",
   ];
   nextYear!: number;
@@ -79,8 +79,7 @@ export class PlansListPageComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
-  cartPlanIds: String[] = [];  
-  
+
   constructor(private route: Router,
               private sharedService: SharedService,
               private commonservice: CommonService,
@@ -102,48 +101,48 @@ export class PlansListPageComponent implements OnInit {
       this.optinPackChange(value)
     });
     this.sharedService.carrierFilter.subscribe((value: any) => {
-      if (this.filterEnable){
-        this.filterCarrier =value
+      if (this.filterEnable) {
+        this.filterCarrier = value
         console.log('filterCarrier', this.filterCarrier)
         this.getPlans('0')
       }
     });
 
     this.sharedService.starRatings.subscribe((value) => {
-      if (this.filterEnable){
-        console.log('starRating',value)
+      if (this.filterEnable) {
+        console.log('starRating', value)
         this.starRating = value;
         this.getPlans('0')
       }
     });
 
     this.sharedService.planTypeFilter.subscribe((value: any) => {
-
-      if (this.filterEnable){
+      console.log('plantype', value)
+      if (this.filterEnable) {
         this.filterplanType = value;
       }
     });
     this.sharedService.snpTypeFilter.subscribe((value: any) => {
-      if (this.filterEnable){
+      if (this.filterEnable) {
         this.snp_type = value;
       }
     });
     this.sharedService.sortBy.subscribe((value: any) => {
-      if (this.filterEnable){
+      if (this.filterEnable) {
         this.sort_order = value;
         this.getPlans('0')
       }
     });
-     this.sharedService.applyFilter.subscribe(() => {
-         this.getPlans('0')
-        });
+    this.sharedService.applyFilter.subscribe(() => {
+      this.getPlans('0')
+    });
     this.sharedService.radioState$.subscribe(state => {
       // if (this.filterEnable) {
-        this.vision = state.vision
-        this.dental = state.dental
-        this.hearing = state.hearing
-        this.transportation = state.transportation
-        this.silver_snekers = state.silver_snekers
+      this.vision = state.vision
+      this.dental = state.dental
+      this.hearing = state.hearing
+      this.transportation = state.transportation
+      this.silver_snekers = state.silver_snekers
 //         this.getPlans('0')
 
 
@@ -198,13 +197,10 @@ export class PlansListPageComponent implements OnInit {
   addToCart(plan: any) {
     if (!plan.cartAdded) {
       this.cart.push(plan)
-      this.cartPlanIds.push(plan.planID)
       this.sharedService.cartCount(this.cart.length);
     }
     plan.cartAdded = true
-    console.log('cli',this.cart)
-    
-sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
+    console.log('cli', this.cart)
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
@@ -213,12 +209,9 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   }
 
 
-
-
-
   getPlans(page: any) {
-    this.plans=[]
-    this.filtrPlans=[]
+    this.plans = []
+    this.filtrPlans = []
     const spine = this.spinner.start()
     const zip = sessionStorage.getItem('zipcode')
     const fips = sessionStorage.getItem('fip')
@@ -245,63 +238,45 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     ];
 
     let isDrugAdded = true
-    if (this.drugsArray.length === 0){
+    if (this.drugsArray.length === 0) {
       isDrugAdded = false
     }
 
     this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
-      fips, page, isDrugAdded,this.starRating,this.effYear,this.filterCarrier,
-      this.filterplanType,this.sort_order,this.vision,this.dental,this.hearing,this.transportation,
+      fips, page, isDrugAdded, this.starRating, this.effYear, this.filterCarrier,
+      this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
       this.silver_snekers).subscribe((response) => {
 
-      if (response.status){
-      this.response = response.data
-      sessionStorage.setItem('planResponse', JSON.stringify(this.response))
-      const resp = response.data.plans
-      const addedplans = resp.map((element: any, index: any) => {
-        return {
-          ...element, checked: false,
-          showmore: false,
-          optnpkShow: false,
-          cartAdded: false,
-          benefits: true,
-          alloptnpkShow: true,
-        };
-      });      
-      const planIds= sessionStorage.getItem('cartPlanIds')  
-      const cart=    sessionStorage.getItem('cart')         
-      if(planIds && cart){       
-        let planIdsArray: any[] = []; 
-        planIdsArray=JSON.parse(planIds);        
-    
-      addedplans.forEach((element: any) => {
-        planIdsArray.forEach((planId: string) => {
-        if(planId == element.planID){
-          element.cartAdded =true;
-        }
-      })
-        this.plans.push(element)
-      }) 
-
-     
-    }else{
-      console.log('response', response)
-      addedplans.forEach((element: any) => {
-        this.plans.push(element)
-      })   
-    } 
-        this.filterEnable=true
-      this.filtrPlans = this.plans
-      sessionStorage.setItem('plans', JSON.stringify(this.plans))
-      this.page = this.page + 1
-      this.spinner.stop(spine)
-      console.log('response', response)
-    }else{
+      if (response.status) {
+        this.response = response.data
+        sessionStorage.setItem('planResponse', JSON.stringify(this.response))
+        const resp = response.data.plans
+        const addedplans = resp.map((element: any, index: any) => {
+          return {
+            ...element, checked: false,
+            showmore: false,
+            optnpkShow: false,
+            cartAdded: false,
+            benefits: true,
+            alloptnpkShow: true,
+          };
+        });
+        addedplans.forEach((element: any) => {
+          this.plans.push(element)
+        })
+        this.filterEnable = true
+        this.filtrPlans = this.plans
+        sessionStorage.setItem('plans', JSON.stringify(this.plans))
+        this.page = this.page + 1
+        this.spinner.stop(spine)
+        console.log('response', response)
+      } else {
         this.spinner.stop(spine)
         this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
 
         console.log('response false', response)
-      }})
+      }
+    })
 
   }
 
@@ -364,15 +339,17 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   }
 
   updateApidrugs(data: any) {
+    console.log('data-----------', data)
+    if (data !== undefined) {
+      data.forEach((drugsObj: any) => {
+        this.frequency.forEach((freobj: any) => {
+          if (freobj.name === drugsObj.frequency) {
+            drugsObj.frequency = freobj.values
+          }
+        })
 
-    data.forEach((drugsObj: any) => {
-      this.frequency.forEach((freobj: any) => {
-        if (freobj.name === drugsObj.frequency) {
-          drugsObj.frequency = freobj.values
-        }
-      })
-
-    });
+      });
+    }
   }
 
   navHome() {
@@ -406,15 +383,15 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     this.getPlans(0)
   }
 
-  effectYearChange(event:any) {
-    sessionStorage.setItem('effectyear',this.effYear)
+  effectYearChange(event: any) {
+    sessionStorage.setItem('effectyear', this.effYear)
     this.getPlans(0)
   }
 
-  planDetail(plan:any) {
-    sessionStorage.setItem('plandetail',JSON.stringify(plan) )
+  planDetail(plan: any) {
+    sessionStorage.setItem('plandetail', JSON.stringify(plan))
     this.route.navigate(['/plan-detail'], {
-      state: { data: plan },
+      state: {data: plan},
     });
   }
 
@@ -455,22 +432,23 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   //
   // }
   clearCompare() {
-    this.checkedData=[]
-    this.isChecked=false
-    this.plans.forEach((element:any)=>{
-      element.checked=false
+    this.checkedData = []
+    this.isChecked = false
+    this.plans.forEach((element: any) => {
+      element.checked = false
     })
   }
 
   planbenefitcheck(attribute: any) {
-    const filData=attribute.filter((x:any)=> x.displayValue=== 'true')
-    console.log('planbenefitcheck',filData)
-    if (filData.length !== 0){
+    const filData = attribute.filter((x: any) => x.displayValue === 'true')
+    console.log('planbenefitcheck', filData)
+    if (filData.length !== 0) {
       return true
-    }else{
+    } else {
       return false
     }
   }
+
   yeargetter() {
     const currentDate = new Date();
 
@@ -487,9 +465,9 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     }
   }
 
-  drugCost(drug:any) {
-    console.log('drugcost',drug)
-    sessionStorage.setItem('drugcost',JSON.stringify(drug))
+  drugCost(drug: any) {
+    console.log('drugcost', drug)
+    sessionStorage.setItem('drugcost', JSON.stringify(drug))
     window.open('/drug-cost')
     // this.route.navigate(['/drug-cost'])
   }

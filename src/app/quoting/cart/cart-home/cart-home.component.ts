@@ -81,12 +81,12 @@ export class CartHomeComponent implements OnInit {
   emailProposalShow() {
     this.emailProposal = !this.emailProposal
     this.cpyShow=false
-        this.cartShow=false
+    this.cartShow=false
   }
   cartTabShow() {
     this.cartShow = !this.cartShow
     this.cpyShow=false
-            this.emailProposal=false
+    this.emailProposal=false
   }
 
 
@@ -102,13 +102,6 @@ export class CartHomeComponent implements OnInit {
 
   remove(plan:any) {
     if (!plan.selected) {
-      const planIds= sessionStorage.getItem('cartPlanIds') 
-      if(planIds){  
-        let planIdsArray: any[] = []; 
-        planIdsArray=JSON.parse(planIds);
-        planIdsArray = planIdsArray.filter(item => item !==plan.planID)
-        sessionStorage.setItem('cartPlanIds',JSON.stringify(planIdsArray));
-      }
       this.cartItems.forEach((element: any, index: any) => {
         console.log('remove', element.planID)
         if (plan.planID === element.planID) {
