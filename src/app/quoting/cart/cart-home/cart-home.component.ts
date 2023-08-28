@@ -88,6 +88,9 @@ export class CartHomeComponent implements OnInit {
     this.cpyShow=false
             this.emailProposal=false
   }
+  continueShopping() {
+    this.route.navigate(['/Plans']);
+  }
 
 
   f1() {

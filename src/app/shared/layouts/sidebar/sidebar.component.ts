@@ -185,5 +185,6 @@ export class SidebarComponent implements OnInit {
     this.clearbenefits();
     this.carrierVal = '';
     this.shared.carrierchange(null);
+    this.shared.optncheckchange(null);
   }
 }

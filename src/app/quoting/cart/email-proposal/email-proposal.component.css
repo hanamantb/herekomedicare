@@ -4,3 +4,26 @@
 mat-select{
   border: none;
 }
+.email-proposal-container {
+  background: #fff;
+  padding-bottom: 25px;
+  padding-top: 5px;
+  border-radius: 2px;
+}
+.email-proposal-container button{
+    border-radius: 2px;
+}
+.email-proposal-container label{
+    margin-bottom: 5px;
+}
+mat-select {
+  border-radius: 2px;
+  height: 32px;
+  padding-left: 10px;
+  padding-right: 10px;
+  line-height: 23px;
+  margin-top: 0;
+  max-width: 100%;
+  border: #B8C0D4 solid 1px;
+  height: 38px;
+}
