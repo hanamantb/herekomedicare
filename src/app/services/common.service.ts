@@ -44,7 +44,7 @@ export class CommonService {
       {searchPlanReqBody,plan_type,snp_type,page,year,
         fips,sort_order,zip,isDrugAdded,vision_coverage,
         dental_coverage,hearing_coverage,transportation,
-        silver_sneakers,organization_name,plan_category_filter},'');
+        silver_sneakers,organization_name,plan_category_filter,star_rating},'');
   }
   public checkEmail(email: any): Observable<any> {
     let s = this.apiProvider.get(UrlConstants.checkEmail + email);

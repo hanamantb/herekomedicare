@@ -29,7 +29,7 @@ mat-select {
 p{
   font-size:13px;
 }
-p, button, select, textarea, input, .ag-theme-alpine, label {
+p, button, select, textarea, input, .ag-theme-alpine {
   font-family: Lato,sans-serif !important;
 }
 

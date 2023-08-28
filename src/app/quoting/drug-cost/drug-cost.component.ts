@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-drug-cost',
@@ -9,25 +10,36 @@ export class DrugCostComponent implements OnInit {
   opened: boolean = false;
   panelOpenState = false;
   plan:any
+  effYear:any
   drugInfoList:any
+  drugcosts:any=[]
   dcomparedList:any[]=[]
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
+    const currentDate = new Date();
+    this.effYear= currentDate.getFullYear()
     let costArray: any[] = [];
     const cart = sessionStorage.getItem('drugcost')
     if (cart) {
       this.plan = JSON.parse(cart);
       this.drugInfoList=this.plan.drugInfoList
+      // this.drugcosts=this.plan.costs
     }
     const drugs = sessionStorage.getItem('drugs')
     let drugsArray: any[] = [];
     if (drugs) {
       drugsArray = JSON.parse(drugs);
     }
-    console.log('costArray',this.plan)
+    const pharmdata = sessionStorage.getItem('pharmdata')
+    let pharmdataArray: any[]=[];
+    if (pharmdata) {
+      pharmdataArray = JSON.parse(pharmdata);
+    }
+    console.log('pharmdataArray',pharmdataArray)
     console.log('drug',drugsArray)
     this.drugCompare(drugsArray)
+    this.pharmacyDataUpdate(pharmdataArray,this.plan.costs)
   }
 
   drugCompare(drug:any){
@@ -52,18 +64,59 @@ export class DrugCostComponent implements OnInit {
           "frequency": drugItem.frequency,
         }
         this.dcomparedList.push(array)
-        // // Update the fields in drugArray with values from matchingCostItem
-        // drugItem.tier = matchingCostItem.tier;
-        // drugItem.prior_auth = matchingCostItem.prior_auth;
-        // drugItem.step_therapy = matchingCostItem.step_therapy;
-        // drugItem.quantity_limit = matchingCostItem.quantity_limit;
-        // drugItem.on_formulary = matchingCostItem.on_formulary;
-        // drugItem.quantity_limit_amount = matchingCostItem.quantity_limit_amount;
-        // drugItem.quantity_limit_days = matchingCostItem.quantity_limit_days;
-        // drugItem.biosimilars = matchingCostItem.biosimilars;
       }
     }
     console.log('dcomparedList',this.dcomparedList)
   }
 
+  pharmacyDataUpdate(pharmData:any,drugCost:any){
+    for (const pharm of pharmData){
+
+      const matchingCostItem = drugCost.find((costItem:any) => costItem.npi === pharm.npi);
+
+      if (matchingCostItem){
+let array:any=
+  {
+    "npi":matchingCostItem.npi ,
+    "drug_costs":matchingCostItem.drug_costs ,
+    "estimated_monthly_costs": matchingCostItem.estimated_monthly_costs,
+    "in_network": matchingCostItem.in_network,
+    "phase_information":matchingCostItem.phase_information ,
+    "estimated_yearly_total": matchingCostItem.estimated_yearly_total,
+    "preferred": matchingCostItem.preferred,
+    "mail_order": matchingCostItem.mail_order,
+    "ltc": matchingCostItem.ltc,
+    "name":pharm.name
+  }
+
+        this.drugcosts.push(array)
+    }
+
+  }
+    console.log('drugcosts',this.drugcosts)
+
+  }
+
+  drugNameGetter(ndc:any){
+    const data = this.dcomparedList.find((drug: any) => drug.ndc === ndc);
+    // console.log('drugNameGetter',data)
+    return data ? data.drugName : 'N/A'; // Return 'N/A' if drug not found
+  }
+
+  getMonthOnly(dateString: string): string {
+    const months = [
+      "January", "February", "March", "April",
+      "May", "June", "July", "August",
+      "September", "October", "November", "December"
+    ];
+
+    const date = new Date(dateString);
+    const monthIndex = date.getMonth();
+
+    return months[monthIndex];
+  }
+
+  plansNav() {
+    this.route.navigate(['/Plans'])
+  }
 }
