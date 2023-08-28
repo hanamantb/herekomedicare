@@ -75,15 +75,18 @@ export class CartHomeComponent implements OnInit {
 
   cpyShowtog() {
     this.cpyShow = !this.cpyShow
+    this.emailProposal=false
+    this.cartShow=false
   }
   emailProposalShow() {
     this.emailProposal = !this.emailProposal
+    this.cpyShow=false
+        this.cartShow=false
   }
   cartTabShow() {
     this.cartShow = !this.cartShow
-  }
-  continueShopping() {
-    this.route.navigate(['/Plans']);
+    this.cpyShow=false
+            this.emailProposal=false
   }
 
 
