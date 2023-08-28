@@ -162,4 +162,9 @@ th h4{
     text-decoration: none;
     margin-top: 8px;
 }
-
+.total-yearly-dc p,
+.monthly-totals-tr p {
+    font-weight: 600;
+    margin-bottom: 0;
+    font-size: 14px;
+}
