@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonService} from "../../../services/common.service";
+import { PharmacyZipCodeComponent } from './pharmacy-zip-code/pharmacy-zip-code.component';
 
 @Component({
   selector: 'app-edit-plans-popup',
@@ -75,10 +76,6 @@ export class EditPlansPopupComponent implements OnInit {
   }
   close(change:boolean) {
     console.log(this.editForm.value.effectYear)
-    if(this.myControl.invalid && change){
-      console.log("invalid zipcode")
-
-    }else{
     if (change){
       sessionStorage.setItem('zipcode', this.zipcode)
       sessionStorage.setItem('fip',this.selectedCountie.fips)
@@ -88,7 +85,8 @@ export class EditPlansPopupComponent implements OnInit {
     }
     this.dialogRef.close(change)
   }
-
+  openPharmacyZip() {
+    this.dialog.open(PharmacyZipCodeComponent);
   }
   yeargetter() {
     const currentDate = new Date();

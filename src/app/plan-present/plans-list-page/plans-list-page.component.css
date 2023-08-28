@@ -3,12 +3,13 @@
   border: none;
   height: 40px;
 }
-
+/deep/html.cdk-global-scrollblock {
+  top: 0 !important
+}
 /*p{*/
 /*  text-align: center;*/
 /*}*/
-
-mat-icon{
+mat-icon {
   color: black;
 }
 .sub-line{
@@ -347,7 +348,9 @@ h1{
 }
 .documents-dropdown button{
     font-weight: 400 !important;
-    font-size: 14px
+    font-size: 14px;
+    display: flex;
+    align-items: center;
 }
 .optional-packages-btn p{
     font-size: 14px;
@@ -379,8 +382,16 @@ mat-select mat-option{
 .estimated-cost-label small {
   display: block;
 }
+.dropdown.documents-dropdown button:after{
+    display: none;
+}
+.dropdown.documents-dropdown mat-icon{
+    height: 14px;
+    display: flex;
+    align-items: center;
+}
 #highlighted-text {
-  color: blue; /* Set the text color */
-  text-decoration: underline; /* Underline the text */
-  cursor: pointer; /* Change cursor to indicate interactivity */
+    color: blue; /* Set the text color */
+    text-decoration: underline; /* Underline the text */
+    cursor: pointer; /* Change cursor to indicate interactivity */
 }

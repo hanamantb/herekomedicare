@@ -17,6 +17,7 @@ export class SidebarComponent implements OnInit {
   panelOpenState = false;
   benefitchck = true
   carrierNames: any;
+  carrierVal: any;
   filterPlanType: any = []
   filterSnpType: any = ["SNP_TYPE_NOT_SNP"]
   planBenefits=[
@@ -99,6 +100,7 @@ export class SidebarComponent implements OnInit {
 
   carrierFilter(event: any) {
     console.log('event.target-', event.target)
+    this.carrierVal = event.target.value
     // if (event.target.checked){
     //   this.filtercarrier.push(event.target.value)
     // }else{
@@ -156,18 +158,32 @@ export class SidebarComponent implements OnInit {
     this.shared.updatebenefitAlltofalse()
     for (const item of this.planBenefits) {
       item.checked = false;
+      this.shared.benefitcheckchange(null);
     }
   }
   clearplanTypes(){
     for (const item of this.planTypes) {
       item.checked = false;
+      this.shared.planTypechange(null);
     }
   }
+  clearStarRating() {
+     this.shared.starRatingchange(null);
+  }
+
 
   clearsnpTypes(){
-
     for (const item of this.snpPlanTypes) {
       item.isChecked = false;
+      this.shared.snpTypechange(null);
     }
+    
+  }
+  clearFilters() {
+    this.clearplanTypes();
+    this.clearsnpTypes();
+    this.clearbenefits();
+    this.carrierVal = '';
+    this.shared.carrierchange(null);
   }
 }
