@@ -36,8 +36,8 @@ export class SidebarComponent implements OnInit {
 
   planTypes=[
     {label:'HMO (Health Maintenance Organization)',value:'PLAN_FILTER_HMO',checked:false},
-    {label:'PPO (Preferred Provider Organization)',value:'PLAN_FILTER_HMO',checked:false},
-    {label:'MSA (Medical Savings Account)',value:'PLAN_FILTER_HMO',checked:false}
+    {label:'PPO (Preferred Provider Organization)',value:'PLAN_FILTER_PPO',checked:false},
+    {label:'MSA (Medical Savings Account)',value:'PLAN_FILTER_MSA',checked:false}
   ]
 
   constructor(private route: Router,
@@ -46,6 +46,9 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.shared.getCarrier.subscribe(() => {
+      this.getcarrierNames()
+    });
     this.getcarrierNames()
   }
 

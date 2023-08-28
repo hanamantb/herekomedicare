@@ -143,25 +143,12 @@ label{
 mat-expansion-panel .form-check-input[type="checkbox"] {
   width: 15px;
   height: 15px;
-  min-width: 15px;
 }
 .sidebar-filter-actions button{
     border-radius: 2px;
     height: 32px;
     line-height: 32px;
-}
-.sidebar-filter-actions {
-  border-top: 1px solid rgba(255, 255, 255, .3);
-  padding-top: 8px;
-  justify-content: flex-end;
-  margin-top: 5px;
-}
-.sidebar-filter-actions button[color="primary"]{
-    margin-right: 5px;
-}
-.add-doctors-btn{
-  opacity: .4;
-  pointer-events: none;
+
 }
 mat-expansion-panel input[type="input"],
 mat-expansion-panel input[type="radio"]{

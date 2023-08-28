@@ -390,3 +390,8 @@ mat-select mat-option{
     display: flex;
     align-items: center;
 }
+#highlighted-text {
+    color: blue; /* Set the text color */
+    text-decoration: underline; /* Underline the text */
+    cursor: pointer; /* Change cursor to indicate interactivity */
+}

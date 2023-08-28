@@ -9,6 +9,7 @@ import {QuoteDataDetailsService} from "../../services/quote-data-details.service
 import {SpinnerService} from "../../services/spinner.service";
 import {DrugsCoveredDialogboxComponent} from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 import {EditPlansPopupComponent} from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
+import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
 
 
 @Component({
@@ -55,9 +56,6 @@ export class PlansListPageComponent implements OnInit {
   silver_snekers: boolean = false
   snp_type: any=[
     "SNP_TYPE_NOT_SNP",
-    "SNP_TYPE_CHRONIC_OR_DISABLING",
-    "SNP_TYPE_DUAL_ELIGIBLE",
-    "SNP_TYPE_INSTITUTIONAL"
   ];
   nextYear!: number;
   frequency = [{
@@ -81,6 +79,8 @@ export class PlansListPageComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
+  cartPlanIds: String[] = [];  
+  
   constructor(private route: Router,
               private sharedService: SharedService,
               private commonservice: CommonService,
@@ -111,12 +111,14 @@ export class PlansListPageComponent implements OnInit {
 
     this.sharedService.starRatings.subscribe((value) => {
       if (this.filterEnable){
+        console.log('starRating',value)
         this.starRating = value;
         this.getPlans('0')
       }
     });
 
     this.sharedService.planTypeFilter.subscribe((value: any) => {
+
       if (this.filterEnable){
         this.filterplanType = value;
       }
@@ -143,8 +145,7 @@ export class PlansListPageComponent implements OnInit {
         this.transportation = state.transportation
         this.silver_snekers = state.silver_snekers
 //         this.getPlans('0')
-        console.log('starRating', state)
-        console.log('starRating', this.vision)
+
 
       // }
     });
@@ -197,10 +198,13 @@ export class PlansListPageComponent implements OnInit {
   addToCart(plan: any) {
     if (!plan.cartAdded) {
       this.cart.push(plan)
+      this.cartPlanIds.push(plan.planID)
       this.sharedService.cartCount(this.cart.length);
     }
     plan.cartAdded = true
     console.log('cli',this.cart)
+    
+sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
@@ -263,10 +267,29 @@ export class PlansListPageComponent implements OnInit {
           benefits: true,
           alloptnpkShow: true,
         };
-      });
+      });      
+      const planIds= sessionStorage.getItem('cartPlanIds')  
+      const cart=    sessionStorage.getItem('cart')         
+      if(planIds && cart){       
+        let planIdsArray: any[] = []; 
+        planIdsArray=JSON.parse(planIds);        
+    
+      addedplans.forEach((element: any) => {
+        planIdsArray.forEach((planId: string) => {
+        if(planId == element.planID){
+          element.cartAdded =true;
+        }
+      })
+        this.plans.push(element)
+      }) 
+
+     
+    }else{
+      console.log('response', response)
       addedplans.forEach((element: any) => {
         this.plans.push(element)
-      })
+      })   
+    } 
         this.filterEnable=true
       this.filtrPlans = this.plans
       sessionStorage.setItem('plans', JSON.stringify(this.plans))
@@ -275,6 +298,8 @@ export class PlansListPageComponent implements OnInit {
       console.log('response', response)
     }else{
         this.spinner.stop(spine)
+        this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
+
         console.log('response false', response)
       }})
 
@@ -409,6 +434,7 @@ export class PlansListPageComponent implements OnInit {
         this.lis = sessionStorage.getItem('lis')
         this.effYear = sessionStorage.getItem('effectyear')
         this.zipcode += ' ' + sessionStorage.getItem('countie')
+        this.sharedService.getAllcarriers()
       }
     })
   }
@@ -464,6 +490,7 @@ export class PlansListPageComponent implements OnInit {
   drugCost(drug:any) {
     console.log('drugcost',drug)
     sessionStorage.setItem('drugcost',JSON.stringify(drug))
-    this.route.navigate(['/drug-cost'])
+    window.open('/drug-cost')
+    // this.route.navigate(['/drug-cost'])
   }
 }

@@ -205,6 +205,9 @@ export class AddDrugComponent implements OnInit {
         frequency: "Every month"
       })
       this.drugname.reset()
+    }else if(this.packages.length !==0 && this.drugForm.value.package === null){
+      this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'Please select a package.'}, width: '600px'})
+
     } else if (this.drugForm.valid) {
 
       if (pack === null || pack === '') {
