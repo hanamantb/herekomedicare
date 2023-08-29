@@ -1,5 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'pharmacy-zip-code',
@@ -7,20 +8,23 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dial
   styleUrls: ['./pharmacy-zip-code.component.css']
 })
 export class PharmacyZipCodeComponent implements OnInit {
+  zipcode:any;
   buttons = false
-  constructor(private dialog: MatDialog,
+  constructor(private route: Router,private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<PharmacyZipCodeComponent>) { }
 
   ngOnInit(): void {
-    this.buttons = this.data.buttons
+    
   }
-
-  close() {
-    this.dialog.closeAll()
-  }
-
-  continue() {
-    this.dialogRef.close(true)
+  openPharmacyZip() {
+    this.dialog.closeAll()   
+    this.route.navigate(['add-pharmacy'])
+  } 
+  continue() {   
+    this.dialog.closeAll()      
+    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+this.route.onSameUrlNavigation = 'reload';
+this.route.navigate(['Plans'])
   }
 }

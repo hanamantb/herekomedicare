@@ -86,7 +86,14 @@ export class EditPlansPopupComponent implements OnInit {
     this.dialogRef.close(change)
   }
   openPharmacyZip() {
+    console.log("this.zipcode"+this.zipcode)
+    sessionStorage.setItem('zipcode', this.zipcode)
+      sessionStorage.setItem('fip',this.selectedCountie.fips)
+      sessionStorage.setItem('countie',this.selectedCountie.name +', '+this.selectedCountie.state)
+      sessionStorage.setItem('lis',this.editForm.value.lis)
+      sessionStorage.setItem('effectyear',this.editForm.value.effectYear)
     this.dialog.open(PharmacyZipCodeComponent);
+    this.dialog.closeAll;
   }
   yeargetter() {
     const currentDate = new Date();
