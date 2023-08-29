@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject,OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from "@angular/material/dialog";
 import {Router} from "@angular/router";
 
@@ -20,15 +20,11 @@ export class PharmacyZipCodeComponent implements OnInit {
   openPharmacyZip() {
     this.dialog.closeAll()   
     this.route.navigate(['add-pharmacy'])
-  }
-  close() {
-    this.dialog.closeAll()
-  }
-  cancel() {
-    this.dialog.closeAll()
-  }
-
-  continue() {
-    this.dialogRef.close(true)
+  } 
+  continue() {   
+    this.dialog.closeAll()      
+    this.route.routeReuseStrategy.shouldReuseRoute = () => false;
+this.route.onSameUrlNavigation = 'reload';
+this.route.navigate(['Plans'])
   }
 }
