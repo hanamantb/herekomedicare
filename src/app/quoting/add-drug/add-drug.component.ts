@@ -43,9 +43,9 @@ export class AddDrugComponent implements OnInit {
       valueGetter: (node: any) => String(node.node.rowIndex + 1)
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
-    {field: 'dosage', headerName: 'Dosage', filter: true, width: 150},
-    {field: 'package', headerName: 'Package', filter: true, width: 200},
-    {field: 'quantity', headerName: 'Quantity', filter: true, width: 150},
+    {field: 'dosage', headerName: 'Dosage', filter: true, width: 180},
+    {field: 'package', headerName: 'Package', filter: true, width: 180},
+    {field: 'quantity', headerName: 'Quantity', filter: true, width: 110},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
       headerName: 'Actions',
