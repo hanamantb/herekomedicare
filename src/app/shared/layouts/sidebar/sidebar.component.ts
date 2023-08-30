@@ -20,25 +20,34 @@ export class SidebarComponent implements OnInit {
   carrierVal: any;
   filterPlanType: any = []
   filterSnpType: any = ["SNP_TYPE_NOT_SNP"]
-  planBenefits=[
-    {name:'Vision',value:'vision', checked: false},
-    {name:'Dental',value:'dental', checked: false},
-    {name:'Hearing',value:'hearing', checked: false},
-    {name:'Transportation',value:'transportation', checked: false},
-    {name:'Fitness benefits',value:'silver_snekers', checked: false},
+  planBenefits = [
+    {name: 'Vision', value: 'vision', checked: false},
+    {name: 'Dental', value: 'dental', checked: false},
+    {name: 'Hearing', value: 'hearing', checked: false},
+    {name: 'Transportation', value: 'transportation', checked: false},
+    {name: 'Fitness benefits', value: 'silver_snekers', checked: false},
   ]
 
-  snpPlanTypes=[
-    {label:'Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).',value:'SNP_TYPE_CHRONIC_OR_DISABLING',isChecked:false},
-    {label:'Plans for people who have both Medicare and Medicaid.',value:'SNP_TYPE_DUAL_ELIGIBLE',isChecked:false},
-    {label:'Plans for people who need long-term care in a facility or at home.',value:'SNP_TYPE_INSTITUTIONAL',isChecked:false}
+  snpPlanTypes = [
+    {
+      label: 'Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).',
+      value: 'SNP_TYPE_CHRONIC_OR_DISABLING',
+      isChecked: false
+    },
+    {label: 'Plans for people who have both Medicare and Medicaid.', value: 'SNP_TYPE_DUAL_ELIGIBLE', isChecked: false},
+    {
+      label: 'Plans for people who need long-term care in a facility or at home.',
+      value: 'SNP_TYPE_INSTITUTIONAL',
+      isChecked: false
+    }
   ]
 
-  planTypes=[
-    {label:'HMO (Health Maintenance Organization)',value:'PLAN_FILTER_HMO',checked:false},
-    {label:'PPO (Preferred Provider Organization)',value:'PLAN_FILTER_PPO',checked:false},
-    {label:'MSA (Medical Savings Account)',value:'PLAN_FILTER_MSA',checked:false}
+  planTypes = [
+    {label: 'HMO (Health Maintenance Organization)', value: 'PLAN_FILTER_HMO', checked: false},
+    {label: 'PPO (Preferred Provider Organization)', value: 'PLAN_FILTER_PPO', checked: false},
+    {label: 'MSA (Medical Savings Account)', value: 'PLAN_FILTER_MSA', checked: false}
   ]
+  selectedOption: any
 
   constructor(private route: Router,
               private shared: SharedService,
@@ -137,48 +146,58 @@ export class SidebarComponent implements OnInit {
         }
       })
     }
-    console.log('snp_types',this.filterSnpType)
+    console.log('snp_types', this.filterSnpType)
     this.shared.snpTypechange(this.filterSnpType)
   }
 
-  sortBy(event:any){
+  sortBy(event: any) {
     this.shared.sortingchange(event.target.value)
   }
-  updateBenefits(variable: string,event:any) {
-    if (event.target.checked){
+
+  updateBenefits(variable: string, event: any) {
+    if (event.target.checked) {
       this.shared.updateRadioState(variable);
-    }else{
+    } else {
       this.shared.updateRadioStatetofalse(variable);
     }
   }
+
   benefitapply() {
     this.shared.triggerFunction()
   }
-  clearbenefits(){
+
+  clearbenefits() {
     this.shared.updatebenefitAlltofalse()
     for (const item of this.planBenefits) {
       item.checked = false;
       this.shared.benefitcheckchange(null);
     }
+    this.shared.triggerFunction()
   }
-  clearplanTypes(){
+
+  clearplanTypes() {
     for (const item of this.planTypes) {
       item.checked = false;
-      this.shared.planTypechange(null);
+      this.shared.planTypechange([]);
     }
+    this.shared.triggerFunction()
   }
+
   clearStarRating() {
-     this.shared.starRatingchange(null);
+    this.shared.starRatingchange('6');
+    this.selectedOption = null
+    this.shared.triggerFunction()
   }
 
 
-  clearsnpTypes(){
+  clearsnpTypes() {
     for (const item of this.snpPlanTypes) {
       item.isChecked = false;
-      this.shared.snpTypechange(null);
+      this.shared.snpTypechange(["SNP_TYPE_NOT_SNP"]);
     }
-    
+    this.shared.triggerFunction()
   }
+
   clearFilters() {
     this.clearplanTypes();
     this.clearsnpTypes();
@@ -187,4 +206,6 @@ export class SidebarComponent implements OnInit {
     this.shared.carrierchange(null);
     this.shared.optncheckchange(null);
   }
+
+
 }

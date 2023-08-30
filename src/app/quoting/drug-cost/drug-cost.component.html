@@ -102,37 +102,53 @@
                     </small>
                     <small class="in-network" *ngIf="pharmname.in_network">
                       <mat-icon>check</mat-icon>
-                      <span>In-network</span> <span *ngIf="pharmname.preferred" >&nbsp; Preferred</span>
-                      <span *ngIf="!pharmname.preferred" >&nbsp; Standard</span>
+                      <span>In-network</span> <span *ngIf="pharmname.preferred">&nbsp; Preferred</span>
+                      <span *ngIf="!pharmname.preferred">&nbsp; Standard</span>
                     </small>
                   </th>
                 </tr>
+                
               </thead>
               <tbody>
-              <tr *ngFor="let cost of drugcosts[0]?.drug_costs; let i = index">
-                <td>{{ drugNameGetter(cost.ndc) }}</td>
-                <td *ngFor="let drucost of drugcosts">
-                  ${{ drucost.drug_costs[i]?.estimated_yearly_total }}
-                </td>
-              </tr>
-<!--                <tr>-->
-<!--                  <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>-->
-<!--                  <td>$3,118.75</td>-->
-<!--                  <td>$175.00</td>-->
-<!--                  <td>$175.00</td>-->
-<!--                  <td>$3,118.75</td>-->
-<!--                  <td>$210.00</td>-->
-<!--                  <td>$210.00</td>-->
-<!--                </tr>-->
-<!--                <tr>-->
-<!--                  <td scope="row">Total yearly drug cost</td>-->
-<!--                  <td>$6,072.05</td>-->
-<!--                  <td>$175.00</td>-->
-<!--                  <td>$175.00</td>-->
-<!--                  <td>$6,072.05</td>-->
-<!--                  <td>$210.00</td>-->
-<!--                  <td>$210.00</td>-->
-<!--                </tr>-->
+                <tr *ngFor="let cost of drugcosts[0]?.drug_costs; let i = index">
+                  <td>{{ drugNameGetter(cost.ndc) }}</td>
+                  <td *ngFor="let drucost of drugcosts">
+                    ${{ drucost.drug_costs[i]?.estimated_yearly_total }}
+                  </td>
+                </tr>
+                <tr class="total-yearly-dc">
+                  <th scope="col" valign="middle">Total yearly drug costs</th>
+                  <td scope="col">
+                    <p>$3,847.33</p>
+                  </td>
+                  <td scope="col">
+                    <p>$3,847.33</p>
+                  </td>
+                  <td scope="col">
+                    <p>$3,847.33</p>
+                  </td>
+                  <td scope="col">
+                    <p>$3,847.33</p>
+                  </td>
+                </tr>
+                <!--                <tr>-->
+                <!--                  <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>-->
+                <!--                  <td>$3,118.75</td>-->
+                <!--                  <td>$175.00</td>-->
+                <!--                  <td>$175.00</td>-->
+                <!--                  <td>$3,118.75</td>-->
+                <!--                  <td>$210.00</td>-->
+                <!--                  <td>$210.00</td>-->
+                <!--                </tr>-->
+                <!--                <tr>-->
+                <!--                  <td scope="row">Total yearly drug cost</td>-->
+                <!--                  <td>$6,072.05</td>-->
+                <!--                  <td>$175.00</td>-->
+                <!--                  <td>$175.00</td>-->
+                <!--                  <td>$6,072.05</td>-->
+                <!--                  <td>$210.00</td>-->
+                <!--                  <td>$210.00</td>-->
+                <!--                </tr>-->
 
               </tbody>
             </table>
@@ -226,11 +242,18 @@
               </thead>
               <tbody>
                 <tr *ngFor="let drug of drucost.drug_costs">
-                  <th scope="row" >{{ drugNameGetter(drug.ndc) }}</th>
+                  <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
                   <td>${{drug.full_cost}}</td>
                   <td>${{drug.deductible_cost}}</td>
                   <td>${{drug.gap_cost}}</td>
                   <td>${{drug.catastrophic_cost}}</td>
+                </tr>
+                <tr class="monthly-totals-tr" >
+                  <th scope="row">Monthly totals</th>
+                  <td><p>$0.00</p></td>
+                  <td><p>$0.00</p></td>
+                  <td><p>$0.00</p></td>
+                  <td><p>$0.00</p></td>
                 </tr>
               </tbody>
             </table>
