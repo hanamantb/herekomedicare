@@ -129,18 +129,9 @@
                 </tr>
                 <tr class="total-yearly-dc">
                   <th scope="col" valign="middle">Total yearly drug costs</th>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
+                  <td scope="col"  *ngFor="let pharmname of drugcosts">
+                    <p>{{pharmname.estimated_yearly_total}}</p>
+                  </td>                  
                 </tr>
                 <!--                <tr>-->
                 <!--                  <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>-->
