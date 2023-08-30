@@ -42,13 +42,15 @@
                   <th scope="col">Drug Name</th>
                   <th scope="col">Dosage</th>
                   <th scope="col">Package</th>
-                  <th scope="col">tier</th>
+                  <th scope="col">Tier</th>
                   <th scope="col">Quantity</th>
                   <th scope="col">Frequency</th>
                   <th scope="col">Prior Authorization</th>
                   <th scope="col">Quantity Limit</th>
                   <th scope="col">Step Therapy</th>
                   <th scope="col">Covered</th>
+                  <th scope="col">Quantity Amount</th>
+                  <th scope="col">Quantity Days</th>
                 </tr>
               </thead>
               <tbody>
@@ -60,6 +62,7 @@
                   <td>{{drug.tier}}</td>
                   <td>{{drug.quantity}}</td>
                   <td>{{drug.frequency}}</td>
+                  <td>{{drug.prior_auth}}</td>
                   <td>
                     <p *ngIf="drug.frequency">Yes</p>
                     <p *ngIf="!drug.frequency">No</p>
@@ -73,9 +76,17 @@
                     <p *ngIf="!drug.step_therapy">-</p>
                   </td>
                   <td>
+                    <p *ngIf="drug.quantity">{{drug.quantity_limit_amount}}</p>
+                    <p *ngIf="!drug.quantity">-</p>
+                  </td>
+                  <td>
+                    <p *ngIf="drug.quantity">{{drug.quantity_limit_days}}</p>
+                    <p *ngIf="!drug.quantity">-</p>
+                  </td>
+                  <!-- <td>
                     <p *ngIf="drug.tier ==0"><mat-icon style="color: red">close</mat-icon></p>
                     <p *ngIf="drug.tier !==0"><mat-icon style="color: green">check</mat-icon></p>
-                  </td>
+                  </td> -->
                 </tr>
 
 
@@ -220,7 +231,7 @@
           <div class="dcd-content p-3">
             <h3 class="mb-1">Estimated drug costs during coverage phases</h3>
             <p class="mb-1">The drug prices shown may vary based on the plan and pharmacy you've selected. Contact the plan if you have specific questions about drug costs.</p>
-            <a href="#"><mat-icon>arrow_forward_ios</mat-icon>Learn about coverage phases</a>
+            <a><mat-icon>arrow_forward_ios</mat-icon>Learn about coverage phases</a>
           </div>
         </div>
       </div>

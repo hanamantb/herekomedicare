@@ -67,9 +67,9 @@
           <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style"
                                    (change)="planType($event)"
                                    [(ngModel)]="planTypes">
-            <mat-button-toggle value="PLAN_TYPE_MAPD">Medicare Advantage & Prescription Plans</mat-button-toggle>
-            <mat-button-toggle value="PLAN_TYPE_MA" ta>Medicare Advantage Plans (Part C)</mat-button-toggle>
-            <mat-button-toggle value="PLAN_TYPE_PDP">Prescription Plans (Part D)</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_MAPD" (click)="handleToggleClick(false)">Medicare Advantage & Prescription Plans</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_MA" (click)="handleToggleClick(true)">Medicare Advantage Plans (Part C)</mat-button-toggle>
+            <mat-button-toggle value="PLAN_TYPE_PDP" (click)="handleToggleClick(false)">Prescription Plans (Part D)</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
         <div class="section p-2">
@@ -177,7 +177,7 @@
                     <a href="">About this rate</a><br>
                     <p class="estimated-cost-label">Estimated Annual Cost<small> (Drug Cost + Premium)</small></p>
                     <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                    <span id="highlighted-text" (click)="drugCost(plan)">Drug Cost Details<br></span>
+                    <span *ngIf="!shouldHideSpan" id="highlighted-text" (click)="drugCost(plan)">Drug Cost Details<br></span>
                   </div>
                 </div>
               </div>

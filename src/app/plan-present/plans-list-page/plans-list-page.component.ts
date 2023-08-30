@@ -79,8 +79,9 @@ export class PlansListPageComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
-  cartPlanIds: String[] = [];
-
+  shouldHideSpan:boolean =false;
+  cartPlanIds: String[] = [];  
+  
   constructor(private route: Router,
               private sharedService: SharedService,
               private commonservice: CommonService,
@@ -490,5 +491,8 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('drugcost', JSON.stringify(drug))
     window.open('/drug-cost')
     // this.route.navigate(['/drug-cost'])
+  }
+  handleToggleClick(value:boolean) {   
+    this.shouldHideSpan = value;   
   }
 }
