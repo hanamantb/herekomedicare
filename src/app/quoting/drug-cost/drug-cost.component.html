@@ -190,7 +190,8 @@
                     </small>
                     <small class="in-network" *ngIf="pharmname.in_network">
                       <mat-icon>check</mat-icon>
-                      <span>In-network</span>
+                      <span>In-network</span> <span *ngIf="pharmname.preferred">&nbsp; Preferred</span>
+                      <span *ngIf="!pharmname.preferred">&nbsp; Standard</span>
                     </small>
                   </th>
 
