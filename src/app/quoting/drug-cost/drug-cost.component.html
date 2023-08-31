@@ -62,7 +62,10 @@
                   <td>{{drug.tier}}</td>
                   <td>{{drug.quantity}}</td>
                   <td>{{drug.frequency}}</td>
-                  <td>{{drug.prior_auth}}</td>
+                  <td>
+                    <p *ngIf="drug.prior_auth">Yes</p>
+                    <p *ngIf="!drug.prior_auth">-</p>                   
+                  </td>
                   <td>
                     <p *ngIf="drug.frequency">Yes</p>
                     <p *ngIf="!drug.frequency">No</p>
