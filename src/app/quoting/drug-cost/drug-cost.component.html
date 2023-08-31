@@ -48,9 +48,7 @@
                   <th scope="col">Prior Authorization</th>
                   <th scope="col">Quantity Limit</th>
                   <th scope="col">Step Therapy</th>
-                  <th scope="col">Covered</th>
-                  <th scope="col">Quantity Amount</th>
-                  <th scope="col">Quantity Days</th>
+                  <th scope="col">Covered</th>                  
                 </tr>
               </thead>
               <tbody>
@@ -62,10 +60,13 @@
                   <td>{{drug.tier}}</td>
                   <td>{{drug.quantity}}</td>
                   <td>{{drug.frequency}}</td>
-                  <td>{{drug.prior_auth}}</td>
                   <td>
-                    <p *ngIf="drug.frequency">Yes</p>
-                    <p *ngIf="!drug.frequency">No</p>
+                    <p *ngIf="drug.prior_auth">Yes</p>
+                    <p *ngIf="!drug.prior_auth">-</p>                   
+                  </td>
+                  <td>
+                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Quantity: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}">Yes</p>
+                    <p *ngIf="!drug.quantity_limit">-</p>
                   </td>
                   <td>
                     <p *ngIf="drug.tier !==0" style="color: #4b8bb2" matTooltip="Quantity: {{drug.quantity}}" matTooltipPosition="above">Yes</p>
@@ -74,15 +75,7 @@
                   <td>
                     <p *ngIf="drug.step_therapy">Yes</p>
                     <p *ngIf="!drug.step_therapy">-</p>
-                  </td>
-                  <td>
-                    <p *ngIf="drug.quantity">{{drug.quantity_limit_amount}}</p>
-                    <p *ngIf="!drug.quantity">-</p>
-                  </td>
-                  <td>
-                    <p *ngIf="drug.quantity">{{drug.quantity_limit_days}}</p>
-                    <p *ngIf="!drug.quantity">-</p>
-                  </td>
+                  </td>                
                   <!-- <td>
                     <p *ngIf="drug.tier ==0"><mat-icon style="color: red">close</mat-icon></p>
                     <p *ngIf="drug.tier !==0"><mat-icon style="color: green">check</mat-icon></p>
@@ -129,18 +122,9 @@
                 </tr>
                 <tr class="total-yearly-dc">
                   <th scope="col" valign="middle">Total yearly drug costs</th>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
-                  <td scope="col">
-                    <p>$3,847.33</p>
-                  </td>
+                  <td scope="col"  *ngFor="let pharmname of drugcosts">
+                    <p>${{pharmname.estimated_yearly_total}}</p>
+                  </td>                  
                 </tr>
                 <!--                <tr>-->
                 <!--                  <td scope="row">Humalog kwikpen 100unit/ml solution pen injector</td>-->
@@ -206,7 +190,8 @@
                     </small>
                     <small class="in-network" *ngIf="pharmname.in_network">
                       <mat-icon>check</mat-icon>
-                      <span>In-network</span>
+                      <span>In-network</span> <span *ngIf="pharmname.preferred">&nbsp; Preferred</span>
+                      <span *ngIf="!pharmname.preferred">&nbsp; Standard</span>
                     </small>
                   </th>
 
@@ -230,8 +215,7 @@
         <div class="col-12">
           <div class="dcd-content p-3">
             <h3 class="mb-1">Estimated drug costs during coverage phases</h3>
-            <p class="mb-1">The drug prices shown may vary based on the plan and pharmacy you've selected. Contact the plan if you have specific questions about drug costs.</p>
-            <a><mat-icon>arrow_forward_ios</mat-icon>Learn about coverage phases</a>
+            <p class="mb-1">The drug prices shown may vary based on the plan and pharmacy you've selected. Contact the plan if you have specific questions about drug costs.</p>            
           </div>
         </div>
       </div>
