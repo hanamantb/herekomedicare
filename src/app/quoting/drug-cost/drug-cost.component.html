@@ -48,9 +48,7 @@
                   <th scope="col">Prior Authorization</th>
                   <th scope="col">Quantity Limit</th>
                   <th scope="col">Step Therapy</th>
-                  <th scope="col">Covered</th>
-                  <th scope="col">Quantity Amount</th>
-                  <th scope="col">Quantity Days</th>
+                  <th scope="col">Covered</th>                  
                 </tr>
               </thead>
               <tbody>
@@ -77,15 +75,7 @@
                   <td>
                     <p *ngIf="drug.step_therapy">Yes</p>
                     <p *ngIf="!drug.step_therapy">-</p>
-                  </td>
-                  <td>
-                    <p *ngIf="drug.quantity">{{drug.quantity_limit_amount}}</p>
-                    <p *ngIf="!drug.quantity">-</p>
-                  </td>
-                  <td>
-                    <p *ngIf="drug.quantity">{{drug.quantity_limit_days}}</p>
-                    <p *ngIf="!drug.quantity">-</p>
-                  </td>
+                  </td>                
                   <!-- <td>
                     <p *ngIf="drug.tier ==0"><mat-icon style="color: red">close</mat-icon></p>
                     <p *ngIf="drug.tier !==0"><mat-icon style="color: green">check</mat-icon></p>
