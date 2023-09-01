@@ -33,7 +33,7 @@
         <mat-accordion>
           <mat-expansion-panel expanded="true">
             <mat-expansion-panel-header>
-              <p class="main-panel-headers">Drug Details (2 Drugs Selected)</p>
+              <p class="main-panel-headers">Drug Details ( {{drugsSize}} Drugs Selected)</p>
             </mat-expansion-panel-header>
             <table class="table">
               <thead>
@@ -65,7 +65,7 @@
                     <p *ngIf="!drug.prior_auth">-</p>                   
                   </td>
                   <td>
-                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Quantity: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}">Yes</p>
+                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Amount: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}">Yes</p>
                     <p *ngIf="!drug.quantity_limit">-</p>
                   </td>
                   <td>
@@ -245,10 +245,10 @@
                 </tr>
                 <tr class="monthly-totals-tr" >
                   <th scope="row">Monthly totals</th>
-                  <td><p>$0.00</p></td>
-                  <td><p>$0.00</p></td>
-                  <td><p>$0.00</p></td>
-                  <td><p>$0.00</p></td>
+                  <td><p>${{retailCost}}</p></td>
+                  <td><p>${{costAfterDeductible}}</p></td>
+                  <td><p>${{costInCoverageGap}}</p></td>
+                  <td><p>${{costAfterCoverageGap}}</p></td>
                 </tr>
               </tbody>
             </table>

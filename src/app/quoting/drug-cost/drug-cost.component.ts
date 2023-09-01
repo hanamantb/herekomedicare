@@ -12,8 +12,13 @@ export class DrugCostComponent implements OnInit {
   plan:any
   effYear:any
   drugInfoList:any
+  retailCost:number = 0;
+  costAfterDeductible:number = 0;
+  costInCoverageGap:number = 0;
+  costAfterCoverageGap:number = 0;
   drugcosts:any=[]
   dcomparedList:any[]=[]
+  drugsSize:any;
   constructor(private route: Router) { }
 
   ngOnInit(): void {
@@ -30,6 +35,7 @@ export class DrugCostComponent implements OnInit {
     let drugsArray: any[] = [];
     if (drugs) {
       drugsArray = JSON.parse(drugs);
+      this.drugsSize=drugsArray.length
     }
     const pharmdata = sessionStorage.getItem('pharmdata')
     let pharmdataArray: any[]=[];
@@ -93,6 +99,15 @@ let array:any=
     }
 
   }
+  this.drugcosts.forEach((element: any) => {
+    let array =element.drug_costs;
+    array.forEach((element:any) => {      
+      this.retailCost += element.full_cost
+      this.costAfterDeductible += element.deductible_cost
+      this.costInCoverageGap += element.gap_cost
+      this.costAfterCoverageGap += element.catastrophic_cost      
+    }); 
+  });  
     console.log('drugcosts',this.drugcosts)
 
   }
