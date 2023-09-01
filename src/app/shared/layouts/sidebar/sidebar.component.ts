@@ -182,6 +182,14 @@ export class SidebarComponent implements OnInit {
     }
     this.shared.triggerFunction()
   }
+  clearCompanies() {
+    for (const item of this.carrierNames) {
+      item.checked = false;
+      this.shared.carrierchange;
+    }
+    this.carrierVal = '';
+    this.shared.carrierchange(null);
+  }
 
   clearStarRating() {
     this.shared.starRatingchange('6');
@@ -202,9 +210,9 @@ export class SidebarComponent implements OnInit {
     this.clearplanTypes();
     this.clearsnpTypes();
     this.clearbenefits();
-    this.carrierVal = '';
-    this.shared.carrierchange(null);
-    this.shared.optncheckchange(null);
+    this.clearStarRating();
+    this.clearCompanies();
+    /*this.shared.optncheckchange(null);*/
   }
 
 
