@@ -20,7 +20,7 @@ import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.
 export class PlansListPageComponent implements OnInit {
   @ViewChild('Zipchange', {static: true}) Zipchange!: TemplateRef<any>;
   benefits: boolean = false
-  optnpkShow: boolean = false
+  optnpkShow: boolean = false  
   isChecked: boolean = false
   sideopen: boolean = true
   checkedData: any = [];
@@ -79,7 +79,8 @@ export class PlansListPageComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
-  shouldHideSpan:boolean =false;
+  shouldHideSpan:boolean =true;  
+  showDrugs:boolean =false;
   cartPlanIds: String[] = [];  
   
   constructor(private route: Router,
@@ -96,6 +97,15 @@ export class PlansListPageComponent implements OnInit {
     this.fips = sessionStorage.getItem('fips')
     this.lis = sessionStorage.getItem('lis')
     this.zipcode += ' ' + sessionStorage.getItem('countie')
+    const drugs = sessionStorage.getItem('drugs')
+    if (drugs) {
+      this.drugsArray = JSON.parse(drugs);
+      if(this.drugsArray.length !== 0){
+        console.log(this.drugsArray)
+        this.showDrugs = !this.showDrugs
+      }
+    }
+    console.log("this.showDrugs"+this.showDrugs)
     this.sharedService.benefitcheck$.subscribe((value: any) => {
       this.benefitChange(value)
     });
