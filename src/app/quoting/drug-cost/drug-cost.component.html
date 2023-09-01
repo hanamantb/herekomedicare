@@ -69,9 +69,9 @@
                     <p *ngIf="!drug.quantity_limit">-</p>
                   </td>
                   <td>
-                    <p *ngIf="drug.tier !==0" style="color: #4b8bb2" matTooltip="Quantity: {{drug.quantity}}" matTooltipPosition="above">Yes</p>
-                    <p *ngIf="drug.tier ==0">-</p>
-                  </td>
+                    <p *ngIf="drug.step_therapy">Yes</p>
+                    <p *ngIf="!drug.step_therapy">-</p>
+                  </td>  
                   <td>
                     <p *ngIf="drug.step_therapy">Yes</p>
                     <p *ngIf="!drug.step_therapy">-</p>

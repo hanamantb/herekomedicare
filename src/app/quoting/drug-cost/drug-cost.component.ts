@@ -72,7 +72,7 @@ export class DrugCostComponent implements OnInit {
   pharmacyDataUpdate(pharmData:any,drugCost:any){
     for (const pharm of pharmData){
 
-      const matchingCostItem = drugCost.find((costItem:any) => costItem.npi === pharm.npi);
+      const matchingCostItem = drugCost.find((costItem:any) => costItem.npi === pharm.npi || costItem.npi ==='');
 
       if (matchingCostItem){
 let array:any=
