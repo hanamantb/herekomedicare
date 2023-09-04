@@ -41,7 +41,7 @@
           </label>
         </div>
         <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button>Clear</button>
+          <button mat-flat-button (click)="clearCompanies()">Clear</button>
         </div>
       </mat-expansion-panel>
 
@@ -307,7 +307,7 @@
         <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)"> Lowest health plan deductible
       </div>
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px" name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)"> Lowest drug + premium cost
+        <input type="radio" style="height: 20px" checked name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)"> Lowest drug + premium cost
       </div>
       <div class="d-flex  p-2">
         <input type="radio" style="height: 20px" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)"> Lowest monthly premium
