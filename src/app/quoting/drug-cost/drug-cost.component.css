@@ -168,3 +168,6 @@ th h4{
     margin-bottom: 0;
     font-size: 14px;
 }
+::ng-deep .mat-tooltip {
+  white-space: pre-line; 
+}

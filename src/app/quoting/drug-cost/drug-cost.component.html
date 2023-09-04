@@ -65,7 +65,8 @@
                     <p *ngIf="!drug.prior_auth">-</p>                   
                   </td>
                   <td>
-                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Amount: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}">Yes</p>
+                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Amount:{{drug.quantity_limit_amount}} 
+                    Days:{{drug.quantity_limit_days}}">Yes</p>
                     <p *ngIf="!drug.quantity_limit">-</p>
                   </td>
                   <td>
