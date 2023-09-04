@@ -8,6 +8,8 @@
       <th scope="col">Package<br />Type</th>
       <th scope="col">Quantity</th>
       <th scope="col">Frequency</th>
+      <th scope="col">Tier</th>
+      <th scope="col">Covered</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +20,11 @@
       <td>{{drug.package}}</td>
       <td>{{drug.quantity}}</td>
       <td>{{drug.frequency}}</td>
+      <td>{{drug.tier}}</td>
+      <td>
+        <p *ngIf="drug.tier>0">Yes</p>
+        <p *ngIf="drug.tier==0">No</p>
+      </td>  
     </tr>
   </tbody>
 </table>

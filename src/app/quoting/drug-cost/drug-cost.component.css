@@ -185,3 +185,6 @@ th h4{
     color: #ed0000;
 
 }
+::ng-deep .mat-tooltip {
+    white-space: pre-line;
+}
