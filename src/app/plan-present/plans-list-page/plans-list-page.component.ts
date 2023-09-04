@@ -101,7 +101,7 @@ export class PlansListPageComponent implements OnInit {
     if (drugs) {
       this.drugsArray = JSON.parse(drugs);
       if(this.drugsArray.length !== 0){
-        console.log(this.drugsArray)
+        console.log('this.drugsArray',this.drugsArray)
         this.showDrugs = !this.showDrugs
       }
     }
@@ -264,6 +264,7 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
 
       if (response.status) {
         this.response = response.data
+        console.log('this.response',this.response)
         sessionStorage.setItem('planResponse', JSON.stringify(this.response))
         const resp = response.data.plans
         const addedplans = resp.map((element: any, index: any) => {
@@ -426,7 +427,24 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     });
   }
 
-  openDrugsCovered() {
+  openDrugsCovered(plan:any) {
+    console.log('plan',plan)
+    const drugs = sessionStorage.getItem('drugs')
+    let drugList:[]=[];
+    if (drugs) {
+      drugList = JSON.parse(drugs);      
+        console.log('drugList',drugList)
+    }
+    plan.forEach((plan:any) => {
+      drugList.forEach((drug:any) => {
+        if(plan.ndc === drug.ndc){
+          drug.tier = plan.tier;
+        }
+      });
+      
+    });
+    sessionStorage.setItem('drugs', JSON.stringify(drugList))
+    console.log('updated drug list',drugList)
     this.dialog.open(DrugsCoveredDialogboxComponent);
   }
 
