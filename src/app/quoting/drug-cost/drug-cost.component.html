@@ -61,20 +61,20 @@
                   <td>{{drug.quantity}}</td>
                   <td>{{drug.frequency}}</td>
                   <td>
-                    <p *ngIf="drug.prior_auth">Yes</p>
-                    <p *ngIf="!drug.prior_auth">-</p>                   
+                    <p class="covered-icon" *ngIf="drug.prior_auth"><mat-icon>check</mat-icon></p>
+                    <p class="not-covered-icon" *ngIf="!drug.prior_auth"><mat-icon>cancel</mat-icon></p>                   
                   </td>
                   <td>
-                    <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Amount: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}">Yes</p>
-                    <p *ngIf="!drug.quantity_limit">-</p>
+                    <p class="covered-icon" *ngIf="drug.quantity_limit" matTooltipClass="custom-tooltip" matTooltip="Amount: {{drug.quantity_limit_amount}},Days: {{drug.quantity_limit_days}}" ><mat-icon>check</mat-icon></p>
+                    <p class="not-covered-icon" *ngIf="!drug.quantity_limit"><mat-icon>cancel</mat-icon></p>
                   </td>
                   <td>
-                    <p *ngIf="drug.step_therapy">Yes</p>
-                    <p *ngIf="!drug.step_therapy">-</p>
+                    <p class="covered-icon" *ngIf="drug.step_therapy"><mat-icon>check</mat-icon></p>
+                    <p class="not-covered-icon" *ngIf="!drug.step_therapy"><mat-icon>cancel</mat-icon></p>
                   </td>  
                   <td>
-                    <p *ngIf="drug.step_therapy">Yes</p>
-                    <p *ngIf="!drug.step_therapy">-</p>
+                    <p class="covered-icon" *ngIf="drug.step_therapy"><mat-icon>check</mat-icon></p>
+                    <p class="not-covered-icon" *ngIf="!drug.step_therapy"><mat-icon>cancel</mat-icon></p>
                   </td>                
                   <!-- <td>
                     <p *ngIf="drug.tier ==0"><mat-icon style="color: red">close</mat-icon></p>
@@ -223,7 +223,7 @@
         <mat-accordion>
           <mat-expansion-panel expanded="true" *ngFor="let drucost of drugcosts">
             <mat-expansion-panel-header>
-              <p class="main-panel-headers">{{drucost.name}}  | Drug costs during coverage phases.</p>
+              <p class="main-panel-headers">{{drucost.name}}  | Drug costs during coverage phases</p>
             </mat-expansion-panel-header>
             <table class="table">
               <thead>

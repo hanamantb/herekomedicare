@@ -129,6 +129,9 @@ export class AddDrugComponent implements OnInit {
   delete(event: any) {
     console.log('delete', event)
   }
+  checkQty(input: any) {
+    input.value = input.value == 0 ? '' : input.value;
+  }
 
   addPharmacy() {
     this.dialog.closeAll()
@@ -317,12 +320,14 @@ export class AddDrugComponent implements OnInit {
           this.packages = this.dosages
         }
         console.log('test',this.dosages[0])
+        const quantityDefault = Number(this.dosages[0].default_quantity,);
+        const defaultQtyEmpty = quantityDefault == 0 ? '' : quantityDefault;
         this.drugForm.patchValue({
           ndc: this.dosages[0].ndc,
           dosage: this.dosages[0],
-          quantity: Number(this.dosages[0].default_quantity
-          )
+          quantity: defaultQtyEmpty,
         })
+        
       } else {
         const editndc = this.dosagesDetails.filter((item: any) => item.ndc === this.nonEditDrug.ndc)
         console.log('editndc', editndc)
@@ -352,10 +357,12 @@ export class AddDrugComponent implements OnInit {
     console.log('dos pack', pack)
     console.log('dos packages', this.packages)
     console.log('dos event  package_description\n', event.value)
+    const quantityDefault = Number(event.value.default_quantity);
+    const defaultQtyEmpty = quantityDefault == 0 ? '' : quantityDefault;
     this.drugForm.patchValue({
       ndc: event.value.ndc,
       package: event.value,
-      quantity: Number(event.value.default_quantity)
+      quantity: defaultQtyEmpty
     })
 
   }
