@@ -11,6 +11,7 @@ table{
 table th {
   font-weight: 600;
   background-color: aliceblue;
+  vertical-align: top;
 }
 table td, table th{
     font-size: 14px;
