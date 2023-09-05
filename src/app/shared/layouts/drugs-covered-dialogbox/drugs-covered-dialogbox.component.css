@@ -9,7 +9,7 @@ table{
     border: 1px solid #ddd;
 }
 table th {
-  font-weight: 500;
+  font-weight: 600;
   background-color: aliceblue;
 }
 table td, table th{
