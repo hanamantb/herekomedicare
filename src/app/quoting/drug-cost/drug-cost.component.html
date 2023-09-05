@@ -222,7 +222,7 @@
       </div>
       <div class="px-2 pb-4">
         <mat-accordion>
-          <mat-expansion-panel expanded="true" *ngFor="let drucost of drugcosts">
+          <mat-expansion-panel (afterExpand)="getMonthlyTotals(drucost)" *ngFor="let drucost of drugcosts">
             <mat-expansion-panel-header>
               <p class="main-panel-headers">{{drucost.name}}  | Drug costs during coverage phases</p>
             </mat-expansion-panel-header>
@@ -236,7 +236,7 @@
                   <th scope="col">Cost after coverage gap</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody >
                 <tr *ngFor="let drug of drucost.drug_costs">
                   <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
                   <td>${{drug.full_cost}}</td>

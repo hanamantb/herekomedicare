@@ -92,22 +92,18 @@ let array:any=
     "preferred": matchingCostItem.preferred,
     "mail_order": matchingCostItem.mail_order,
     "ltc": matchingCostItem.ltc,
-    "name":pharm.name
+    "name":pharm.name,
+    "retailCost": matchingCostItem.retailCost,
+    "costAfterCoverageGap": matchingCostItem.costAfterCoverageGap,
+    "costAfterDeductible": matchingCostItem.costAfterDeductible,
+    "costInCoverageGap": matchingCostItem.costInCoverageGap
   }
 
         this.drugcosts.push(array)
     }
 
   }
-  this.drugcosts.forEach((element: any) => {
-    let array =element.drug_costs;
-    array.forEach((element:any) => {      
-      this.retailCost += element.full_cost
-      this.costAfterDeductible += element.deductible_cost
-      this.costInCoverageGap += element.gap_cost
-      this.costAfterCoverageGap += element.catastrophic_cost      
-    }); 
-  });  
+ 
     console.log('drugcosts',this.drugcosts)
 
   }
@@ -133,5 +129,11 @@ let array:any=
 
   plansNav() {
     this.route.navigate(['/Plans'])
+  }
+  getMonthlyTotals(drugcost:any){
+    this.retailCost = drugcost.retailCost;
+    this.costAfterCoverageGap = drugcost.costAfterCoverageGap;
+    this.costInCoverageGap = drugcost.costInCoverageGap;
+    this.costAfterDeductible = drugcost.costAfterDeductible;
   }
 }
