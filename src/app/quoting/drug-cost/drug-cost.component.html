@@ -246,10 +246,10 @@
                 </tr>
                 <tr class="monthly-totals-tr">
                   <th scope="row">Monthly totals</th>
-                  <td><p>${{retailCost}}</p></td>
-                  <td><p>${{costAfterDeductible}}</p></td>
-                  <td><p>${{costInCoverageGap}}</p></td>
-                  <td><p>${{costAfterCoverageGap}}</p></td>
+                  <td><p>${{retailCost | number:'1.2-2'}}</p></td>
+                  <td><p>${{costAfterDeductible | number:'1.2-2'}}</p></td>
+                  <td><p>${{costInCoverageGap | number:'1.2-2'}}</p></td>
+                  <td><p>${{costAfterCoverageGap | number:'1.2-2'}}</p></td>
                 </tr>
               </tbody>
             </table>
