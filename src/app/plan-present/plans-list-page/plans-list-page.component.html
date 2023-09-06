@@ -101,7 +101,7 @@
                       <p *ngIf="benefits.apiParameter != 'rating'">{{benefits.displayValue}}</p>
                       <div class="star-rating" *ngIf="benefits.apiParameter === 'rating'">
                         <span *ngFor="let star of stars"
-                              [ngClass]="{'filled': star <= benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
+                              [ngClass]="{'filled': star < benefits.displayValue, 'half-filled': star === benefits.displayValue - 0.5}"></span>
                       </div>
                     </div>
                   </div>

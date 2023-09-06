@@ -25,7 +25,7 @@ export class PlansListPageComponent implements OnInit {
   sideopen: boolean = true
   checkedData: any = [];
   value = 4.5;
-  stars: number[] = [1, 2, 3, 4, 5];
+  stars: number[] = [0, 1, 2, 3, 4];
   selectedCardIndex: any;
   plans: any = [];
   filtrPlans: any = [];
