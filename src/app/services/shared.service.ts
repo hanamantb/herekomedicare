@@ -63,6 +63,7 @@ export class SharedService {
   }
 
   starRatingchange(value: any) {
+    debugger;
     this.starRating.next(value)
   }
 

@@ -102,27 +102,19 @@
   background-color: #4b8bb2;
 }
 th small mat-icon {
-  width: 18px;
-  height: 18px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  margin-right: 5px;
-  text-align: center;
+  margin-right: 2px;
+  font-size: 21px;
+  font-weight: bold;
 }
 .in-network mat-icon {
-  background-color: #12890e;
-  color: white;
-  font-size: 16px;
+  color: #12890e;
 }
 .out-of-network mat-icon {
   color: #ed0000;
-  font-size: 21px;
 }
-th small span{
-    font-size: 14px;
-    
+th small span {
+  font-size: 14px;
 }
 th small {
   clear: left;
@@ -167,21 +159,15 @@ th h4{
     font-size: 14px;
 }
 .covered-icon mat-icon {
-  width: 18px;
-  height: 18px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 20px;
-  font-size: 16px;
+  font-size: 21px;
   margin-right: 5px;
-  color: white;
   text-align: center;
-  background-color: #12890e;
-  padding: 2px;
+  color: #12890e;
+  font-weight: bold;
 }
 .not-covered-icon mat-icon{
     font-size: 21px;
+    font-weight: 600;
     color: #ed0000;
 
 }

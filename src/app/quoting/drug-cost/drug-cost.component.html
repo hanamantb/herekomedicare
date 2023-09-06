@@ -61,8 +61,8 @@
                   <td>{{drug.quantity}}</td>
                   <td>{{drug.frequency}}</td>
                   <td>
-                    <p class="covered-icon" *ngIf="drug.prior_auth"><mat-icon>check</mat-icon></p>
-                    <p class="not-covered-icon" *ngIf="!drug.prior_auth"><mat-icon>cancel</mat-icon></p>
+                    <p *ngIf="drug.prior_auth">Yes</p>
+                    <p *ngIf="!drug.prior_auth">-</p>
                   </td>
                   <td>
                     <p *ngIf="drug.quantity_limit" style="color: #4b8bb2" matTooltipClass="custom-tooltip" matTooltip="Amount:{{drug.quantity_limit_amount}}
@@ -70,12 +70,12 @@
                     <p *ngIf="!drug.quantity_limit">-</p>
                   </td>
                   <td>
-                    <p class="covered-icon" *ngIf="drug.step_therapy"><mat-icon>check</mat-icon></p>
-                    <p class="not-covered-icon" *ngIf="!drug.step_therapy"><mat-icon>cancel</mat-icon></p>
+                    <p *ngIf="drug.step_therapy">Yes</p>
+                    <p *ngIf="!drug.step_therapy">-</p>
                   </td>
                   <td>
-                    <p class="covered-icon" *ngIf="drug.step_therapy"><mat-icon>check</mat-icon></p>
-                    <p class="not-covered-icon" *ngIf="!drug.step_therapy"><mat-icon>cancel</mat-icon></p>
+                    <p class="covered-icon" *ngIf="drug.tier"><mat-icon>check</mat-icon></p>
+                    <p class="not-covered-icon" *ngIf="!drug.tier"><mat-icon>close</mat-icon></p>
                   </td>
                   <!-- <td>
                     <p *ngIf="drug.tier ==0"><mat-icon style="color: red">close</mat-icon></p>
