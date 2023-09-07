@@ -154,6 +154,17 @@ export class AddPharmacyComponent implements OnInit {
             checked: false,
           }
         })
+        console.log('this.rowData',this.rowData)
+        if(this.rowData.length !== 0){
+         this.rowData.forEach((checked:any) => {
+           this.pharmacies.map((element: any, index: any) => {
+            if(checked.npi === element.npi){
+              element.checked = true;
+            }
+          })
+         });
+        }
+        
         this.page = response.data.total_results
       }else{
         this.dialog.open(ErrorPopupComponent, {
