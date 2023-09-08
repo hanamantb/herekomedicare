@@ -234,22 +234,20 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     const npis = sessionStorage.getItem('pharmacies')
     const lis = sessionStorage.getItem('lis')
     let npiArray: any[] = [];
-    let drugsArray: any[] = [];
-   
+    let drugsArray: any[] = [];   
     if (drugs) {
-      this.drugsArray = JSON.parse(drugs);
+      drugsArray = JSON.parse(drugs);
     }
     if (npis) {
       npiArray = JSON.parse(npis);
-    }
+    }   
     this.updateApidrugs(this.drugsArray)
-    if(this.drugsArray){
+    if(drugsArray.length === 0){
       console.log('inside null')
-      npiArray = [];
-      console.log('inside npiArray',npiArray)
+      npiArray = []; 
     }
-    
-    console.log('this.drugsArra----', this.drugsArray)
+    console.log(' A this.drugsArray',this.drugsArray)
+    console.log(' A npiArray',npiArray)
     const searchPlanReqBody = {
       npis: npiArray,
       prescriptions: this.drugsArray,
