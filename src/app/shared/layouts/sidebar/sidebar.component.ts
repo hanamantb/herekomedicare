@@ -101,10 +101,11 @@ export class SidebarComponent implements OnInit {
       effectyear = currentDate.getFullYear();
     }
     this.commonservice.carrierName(fips, effectyear).subscribe(response => {
+      console.log('shdvhvd',response.data.maPdCarrier)
+      this.carrierNames = response.data.maPdCarrier
 
-      this.carrierNames = response.data
     })
-
+    console.log('this.carrierNames',this.carrierNames)
   }
 
   carrierFilter(event: any) {
@@ -182,11 +183,7 @@ export class SidebarComponent implements OnInit {
     }
     this.shared.triggerFunction()
   }
-  clearCompanies() {
-    for (const item of this.carrierNames) {
-      item.checked = false;
-      this.shared.carrierchange;
-    }
+  clearCompanies() {   
     this.carrierVal = '';
     this.shared.carrierchange(null);
   }
