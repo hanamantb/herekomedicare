@@ -207,3 +207,10 @@ button{
   border-top: 1px solid #ddd;
   padding-top: 15px;
 }
+.green-check {
+  font-size: 21px;
+  margin-right: 5px;
+  text-align: center;
+  color: #12890e;
+  font-weight: bold;
+}
