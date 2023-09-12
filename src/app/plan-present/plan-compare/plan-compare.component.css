@@ -6,6 +6,7 @@ h2{
 table{
     background: #FFF;
     border: 1px solid rgba(0,0,0,.05);
+    table-layout: fixed;
 }
 th{
     padding: 10px 15px;
@@ -72,11 +73,15 @@ th{
 }
 .compare-main-th button{
     line-height: normal;
-    margin-right: 10px;
     border-radius: 2px;
     padding: 5px 15px;
     font-size: 15px;
-    box-shadow: none
+    box-shadow: none;
+}
+.compare-item-actions{
+    display: flex;
+    gap: 5px;
+    justify-content: flex-start;
 }
 .compare-main-th {
   position: sticky;

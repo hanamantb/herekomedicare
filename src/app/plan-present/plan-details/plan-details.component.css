@@ -120,8 +120,7 @@
 }
 
 .plan-details-accordion h3 {
-  font-size: 16px;
-  text-transform: uppercase;
+  font-size: 17px;
   font-weight: 500;
   margin-bottom: 10px;
 }
@@ -140,4 +139,19 @@
 
 .star-rating-container p {
   margin-bottom: 0;
+}
+.limits-btn {
+    border: 0;
+    padding: 0;
+    background: transparent;
+    font-size: 16px;
+    font-weight: 400;
+    color: #485785;
+    display: flex;
+}
+.limits-btn mat-icon{
+    font-size: 21px;
+}
+.pd-pharmacy button{
+  border-radius: 2px;
 }
