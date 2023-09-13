@@ -1,6 +1,14 @@
 <div class="container">
-  <table class="table table-striped">
-    <tr class="compare-main-th">
+  <div class="row my-3 compare-top-links">
+    <div class="col-6">
+      <button mat-raised-button color="secondary" class="fw-normal"><mat-icon class=" text-center">arrow_back_ios</mat-icon><span>Back to Plan Listing</span></button>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button href="#" mat-raised-button color="primary" class="fw-normal"><mat-icon class="me-1">print</mat-icon><span>Print</span></button>
+    </div>
+  </div>
+  <table class="table table-striped compare-main-th">
+    <tr>
       <th></th>
       <th>
         <h3>Simply More (HMO)</h3>
@@ -65,6 +73,297 @@
         </span>
       </th>
     </tr>
+  </table>
+  <h4>Star Rating</h4>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false" class="star-rating-container">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Star Rating
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-3">
+          <table>
+            <tr>
+              <th colspan="1">Overall Rating	</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-12 mb-4">
+          <div class="d-flex align-items-center mt-3 mb-2">
+            <h3 class="me-4 mb-0">Staying healthy: screenings, tests, & vaccines</h3>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+
+            </div>
+          </div>
+
+          <table>
+            <tr>
+              <th colspan="1">Breast cancer screening</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Colorectal cancer screening</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Colorectal cancer screening</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Yearly flu vaccine</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="col-12 mb-4">
+          <div class="d-flex align-items-center mt-3 mb-2">
+            <h3 class="me-4 mb-0">Managing chronic (long term) conditions</h3>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <tr>
+              <th colspan="1">Members whose plan did an assessment of their health needs and risks</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Yearly review of all medications and supplements being taken</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Yearly pain screening or pain management plan</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Osteoporosis management</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Eye exam to check for damage from diabetes</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Kidney function testing for members with diabetes</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Plan members with diabetes whose blood sugar is under control</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Controlling Blood Pressure</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Reducing the risk of falling</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Improving bladder control</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">The plan makes sure member medication records are up-to-date after hospital discharge</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">The plan makes sure members with heart disease get the most effective drugs to treat high cholesterol</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </mat-expansion-panel>
+  <table class="table table-striped">
     <tr>
       <th><label>Star rating</label></th>
       <td>
@@ -165,81 +464,81 @@
       <th><label>Plan features</label></th>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>

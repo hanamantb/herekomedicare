@@ -65,7 +65,8 @@ import {EditPlansPopupComponent} from './shared/layouts/edit-plans-popup/edit-pl
     PlanDetailsComponent,
     PlanCompareComponent,
     PlansListPageComponent,
-    EditPlansPopupComponent
+    EditPlansPopupComponent,
+    PlanCompareComponent
 
   ],
   imports: [
