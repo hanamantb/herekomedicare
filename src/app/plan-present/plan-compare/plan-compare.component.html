@@ -6,8 +6,11 @@
         <h3>Simply More (HMO)</h3>
         <h5 class="c-price">$0.00</h5>
         <p>Medicare Advantage and drug monthly premium</p>
-        <button mat-raised-button color="primary" class="btn">Enroll</button>
-        <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        <div class="compare-item-actions p-0">
+          <button mat-raised-button color="primary" class="btn">Enroll</button>
+          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        </div>
+
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
         </span>
@@ -17,8 +20,10 @@
         <h3>Alignment Health Platinum (HMO-POS)</h3>
         <h5 class="c-price">$0.00</h5>
         <p>Medicare Advantage and drug monthly premium</p>
-        <button mat-raised-button color="primary" class="btn">Enroll</button>
-        <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        <div class="compare-item-actions p-0">
+          <button mat-raised-button color="primary" class="btn">Enroll</button>
+          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
         </span>
@@ -27,8 +32,10 @@
         <h3>Simply Freedom (PPO)</h3>
         <h5 class="c-price">$0.00</h5>
         <p>Medicare Advantage and drug monthly premium</p>
-        <button mat-raised-button color="primary" class="btn">Enroll</button>
-        <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        <div class="compare-item-actions p-0">
+          <button mat-raised-button color="primary" class="btn">Enroll</button>
+          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
         </span>
@@ -37,8 +44,22 @@
         <h3>BlueMedicare Premier (HMO)</h3>
         <h5 class="c-price">$0.00</h5>
         <p>Medicare Advantage and drug monthly premium</p>
-        <button mat-raised-button color="primary" class="btn">Enroll</button>
-        <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        <div class="compare-item-actions p-0">
+          <button mat-raised-button color="primary" class="btn">Enroll</button>
+          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        </div>
+        <span class="remove-plan-btn">
+          <mat-icon>close</mat-icon>
+        </span>
+      </th>
+      <th>
+        <h3>Simply More (PPO)</h3>
+        <h5 class="c-price">$0.00</h5>
+        <p>Medicare Advantage and drug monthly premium</p>
+        <div class="compare-item-actions p-0">
+          <button mat-raised-button color="primary" class="btn">Enroll</button>
+          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
+        </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
         </span>
@@ -82,9 +103,19 @@
           <mat-icon>star_half</mat-icon>
         </div>
       </td>
+      <td>
+        <div class="rating-stars me-2">
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>star_half</mat-icon>
+        </div>
+      </td>
     </tr>
     <tr>
       <th><label>Health deductible</label></th>
+      <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
@@ -96,6 +127,7 @@
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
     <tr>
       <th><label>Maximum you pay for health services</label></th>
@@ -103,9 +135,11 @@
       <td><p>$3,450 In-network</p></td>
       <td><p>$11,000 In and Out-of-network<br />$6,500 In-network</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
     <tr>
       <th><label>Health premium</label></th>
+      <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
@@ -117,9 +151,11 @@
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
     <tr>
       <th><label>Part B premium</label></th>
+      <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
@@ -191,10 +227,26 @@
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
+      <td>
+        <ul>
+          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+        </ul>
+        <a href="#" class="additional-benfits-btn">View additional benefits</a>
+      </td>
     </tr>
 
     <tr class="table-headings">
-      <td colspan="5">
+      <td colspan="6">
         <h2>Benefits & Costs</h2>
       </td>
     </tr>
@@ -203,6 +255,7 @@
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0 copay<br />
@@ -213,6 +266,7 @@
     <tr>
       <th><label>Specialist visit</label></th>
       <td><p>$10 copay per visity</p></td>
+      <td><p>$35 copay per visit</p></td>
       <td><p>$35 copay per visit</p></td>
       <td><p>$35 copay per visit</p></td>
       <td>
@@ -227,6 +281,7 @@
       <td><p>$0-50 copay</p></td>
       <td><p>$0-200 copay</p></td>
       <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
       <td>
         <p>
           In-network: $0-30 copay<br />
@@ -236,6 +291,7 @@
     </tr>
     <tr>
       <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
@@ -251,6 +307,7 @@
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0-110 copay<br />
@@ -263,6 +320,7 @@
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0-110 copay<br />
@@ -274,6 +332,7 @@
       <th><label>Emergency care</label></th>
       <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
     </tr>
@@ -304,10 +363,18 @@
           Out-of-network: 40% per stay
         </p>
       </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
     </tr>
     <tr>
       <th><label>Outpatient hospital coverage</label></th>
       <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
@@ -322,6 +389,7 @@
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td>
         <p>
           In-network: $0 copay<br />
@@ -330,7 +398,7 @@
       </td>
     </tr>
     <tr class="table-headings">
-      <td colspan="5">
+      <td colspan="6">
         <h2>Extra Benefits</h2>
       </td>
     </tr>
@@ -339,6 +407,7 @@
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0 copay<br />
@@ -351,6 +420,7 @@
       <td><p>$10 copay per visity</p></td>
       <td><p>$35 copay per visit</p></td>
       <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
       <td>
         <p>
           In-network: $40 copay<br />
@@ -363,6 +433,7 @@
       <td><p>$0-50 copay</p></td>
       <td><p>$0-200 copay</p></td>
       <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
       <td>
         <p>
           In-network: $0-30 copay<br />
@@ -372,6 +443,7 @@
     </tr>
     <tr>
       <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
@@ -387,6 +459,7 @@
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0-110 copay<br />
@@ -398,6 +471,7 @@
       <th><label>Outpatient x-rays</label></th>
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td>
         <p>
@@ -412,6 +486,7 @@
       <td><p>$120 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
     </tr>
     <tr>
       <th><label>Inpatient hospital coverage</label></th>
@@ -440,10 +515,17 @@
           Out-of-network: 40% per stay
         </p>
       </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
     </tr>
     <tr>
       <th><label>Outpatient hospital coverage</label></th>
       <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
@@ -457,6 +539,7 @@
       <th><label>Preventive services</label></th>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
         <p>
@@ -466,15 +549,26 @@
       </td>
     </tr>
     <tr class="table-headings">
-      <td colspan="5">
+      <td colspan="6">
         <h2>Drug coverage & costs</h2>
       </td>
     </tr>
     <tr>
       <th><label>Drugs covered/Not covered</label></th>
-      <td><p><strong>1 of 2</strong><br />
-Prescription drugs covered<br />
-<a href="#">Restrictions may apply</a></p></td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
       <td>
         <p>
           <strong>1 of 2</strong><br />
@@ -498,10 +592,12 @@ Prescription drugs covered<br />
       </td>
     </tr>
     <tr>
-      <th><label>Total drug + premium cost (for the rest of 2023)</label>
-          <a href="#">How do pharmacy networks affect what I pay?</a>
+      <th>
+        <label>Total drug + premium cost (for the rest of 2023)</label>
+        <a href="#">How do pharmacy networks affect what I pay?</a>
       </th>
       <td><p>$10 copay per visity</p></td>
+      <td><p>$35 copay per visit</p></td>
       <td><p>$35 copay per visit</p></td>
       <td><p>$35 copay per visit</p></td>
       <td>
@@ -516,6 +612,7 @@ Prescription drugs covered<br />
       <td><p>$0-50 copay</p></td>
       <td><p>$0-200 copay</p></td>
       <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
       <td>
         <p>
           In-network: $0-30 copay<br />
@@ -525,6 +622,7 @@ Prescription drugs covered<br />
     </tr>
     <tr>
       <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
@@ -540,6 +638,7 @@ Prescription drugs covered<br />
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0-110 copay<br />
@@ -552,6 +651,7 @@ Prescription drugs covered<br />
       <td><p>$0-90 copay</p></td>
       <td><p>$150-200 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
       <td>
         <p>
           In-network: $0-110 copay<br />
@@ -563,6 +663,7 @@ Prescription drugs covered<br />
       <th><label>Emergency care</label></th>
       <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
       <td><p>$90 copay per visit (always covered)</p></td>
     </tr>
@@ -593,10 +694,18 @@ Prescription drugs covered<br />
           Out-of-network: 40% per stay
         </p>
       </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
     </tr>
     <tr>
       <th><label>Outpatient hospital coverage</label></th>
       <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
@@ -610,6 +719,7 @@ Prescription drugs covered<br />
       <th><label>Preventive services</label></th>
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
         <p>
@@ -620,4 +730,3 @@ Prescription drugs covered<br />
     </tr>
   </table>
 </div>
-
