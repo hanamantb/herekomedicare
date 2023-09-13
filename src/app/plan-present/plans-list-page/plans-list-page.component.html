@@ -74,9 +74,7 @@
         </div>
         <div class="section p-2">
           <p class="p-2">
-            Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span
-            style="font-weight: bold;font-size: large">{{response.total_results}}</span> Medicare Advantage &
-            Prescription Plans
+            Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{response.total_results}}</span> {{planTypeName}}
           </p>
 
           <div class="card mb-3 plan-item-card" *ngFor="let plan of plans ; let i = index">
