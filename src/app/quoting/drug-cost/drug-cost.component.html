@@ -241,11 +241,11 @@
                   <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
                   <td>${{drug.full_cost}}</td>
                   <td>
-                    <p *ngIf="drug.has_deductible">{{drug.deductible_cost}}</p>
-                    <p *ngIf="!drug.prior_auth">{{drug.initial_cost}}</p>
+                    <p *ngIf="drug.has_deductible">{{drug.deductible_cost | number:'1.2-2'}}</p>
+                    <p *ngIf="!drug.prior_auth">{{drug.initial_cost | number:'1.2-2'}}</p>
                   </td>
-                  <td>${{drug.gap_cost}}</td>
-                  <td>${{drug.catastrophic_cost}}</td>
+                  <td>${{drug.gap_cost | number:'1.2-2'}}</td>
+                  <td>${{drug.catastrophic_cost | number:'1.2-2'}}</td>
                 </tr>
                 <tr class="monthly-totals-tr">
                   <th scope="row">Monthly totals</th>
