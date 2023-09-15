@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./plan-compare.component.css']
 })
 export class PlanCompareComponent implements OnInit {
-
+  panelOpenState = false;
+  details: any
   constructor() { }
 
   ngOnInit(): void {

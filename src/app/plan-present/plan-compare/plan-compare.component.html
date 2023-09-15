@@ -1,6 +1,14 @@
 <div class="container">
-  <table class="table table-striped">
-    <tr class="compare-main-th">
+  <div class="row my-3 compare-top-links">
+    <div class="col-6">
+      <button mat-raised-button color="secondary" class="fw-normal"><mat-icon class=" text-center">arrow_back_ios</mat-icon><span>Back to Plan Listing</span></button>
+    </div>
+    <div class="col-6 d-flex justify-content-end">
+      <button href="#" mat-raised-button color="primary" class="fw-normal"><mat-icon class="me-1">print</mat-icon><span>Print</span></button>
+    </div>
+  </div>
+  <table class="table table-striped compare-main-th">
+    <tr>
       <th></th>
       <th>
         <h3>Simply More (HMO)</h3>
@@ -8,7 +16,6 @@
         <p>Medicare Advantage and drug monthly premium</p>
         <div class="compare-item-actions p-0">
           <button mat-raised-button color="primary" class="btn">Enroll</button>
-          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
         </div>
 
         <span class="remove-plan-btn">
@@ -22,7 +29,6 @@
         <p>Medicare Advantage and drug monthly premium</p>
         <div class="compare-item-actions p-0">
           <button mat-raised-button color="primary" class="btn">Enroll</button>
-          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
         </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
@@ -34,7 +40,6 @@
         <p>Medicare Advantage and drug monthly premium</p>
         <div class="compare-item-actions p-0">
           <button mat-raised-button color="primary" class="btn">Enroll</button>
-          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
         </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
@@ -46,7 +51,6 @@
         <p>Medicare Advantage and drug monthly premium</p>
         <div class="compare-item-actions p-0">
           <button mat-raised-button color="primary" class="btn">Enroll</button>
-          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
         </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
@@ -58,13 +62,17 @@
         <p>Medicare Advantage and drug monthly premium</p>
         <div class="compare-item-actions p-0">
           <button mat-raised-button color="primary" class="btn">Enroll</button>
-          <button mat-raised-button color="secondary" class="btn">Plan Details</button>
         </div>
         <span class="remove-plan-btn">
           <mat-icon>close</mat-icon>
         </span>
       </th>
     </tr>
+  </table>
+  <!--<h4>Star Rating</h4>-->
+  <h2 class="compare-head my-2">Summary</h2>
+  <h4>Overall Star Rating</h4>
+  <table class="table table-striped">
     <tr>
       <th><label>Star rating</label></th>
       <td>
@@ -103,9 +111,1083 @@
           <mat-icon>star_half</mat-icon>
         </div>
       </td>
+      <td>
+        <div class="rating-stars me-2">
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>grade</mat-icon>
+          <mat-icon>star_half</mat-icon>
+        </div>
+      </td>
     </tr>
+  </table>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false" class="star-rating-container">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Detailed Star Rating
+      </mat-panel-title>
+      <mat-panel-description>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Health plan star rating
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <table class="mb-3">
+        <tr>
+          <th>Breast cancer screening</th>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">Colorectal cancer screening</th>
+          <td colspan="2">
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">Yearly flu vaccine</th>
+          <td colspan="2">
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th colspan="1">Monitoring physical activity</th>
+          <td colspan="2">
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Member experience with health plan
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <table>
+          <tr>
+            <th colspan="1">Ease of getting needed care and seeing specialists</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Getting appointments and care quickly</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Health plan provides information or help when members need it</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Member's rating of health care quality</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Member's rating of health plan</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Coordination of members' health care services</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th colspan="1">Osteoporosis management</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Eye exam to check for damage from diabetes</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Kidney function testing for members with diabetes</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Plan members with diabetes whose blood sugar is under control</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Controlling Blood Pressure</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Reducing the risk of falling</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">Improving bladder control</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">The plan makes sure member medication records are up-to-date after hospital discharge</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th colspan="1">The plan makes sure members with heart disease get the most effective drugs to treat high cholesterol</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Managing chronic (long term) conditions
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <div class="d-flex align-items-center mt-3 mb-2">
+            <h3 class="me-4 mb-0">Managing chronic (long term) conditions</h3>
+            <div class="d-flex align-items-center">
+              <div class="rating-stars me-2">
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>grade</mat-icon>
+                <mat-icon>star_half</mat-icon>
+              </div>
+            </div>
+          </div>
+
+          <table>
+            <tr>
+              <th colspan="1">Members whose plan did an assessment of their health needs and risks</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Yearly review of all medications and supplements being taken</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Yearly pain screening or pain management plan</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Osteoporosis management</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Eye exam to check for damage from diabetes</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Kidney function testing for members with diabetes</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Plan members with diabetes whose blood sugar is under control</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Controlling Blood Pressure</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Reducing the risk of falling</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Improving bladder control</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">The plan makes sure member medication records are up-to-date after hospital discharge</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">The plan makes sure members with heart disease get the most effective drugs to treat high cholesterol</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Member complaints & changes in the health plan's performance
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <table>
+            <tr>
+              <th colspan="1">Complaints about the health plan (more stars are better because it means fewer complaints)</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Improvement (if any) in the health plan's performance</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Health plan customer service
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <table>
+            <tr>
+              <th colspan="1">Health plan makes timely decisions about appeals</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Fairness of the health plan's appeal decisions, based on an independent reviewer</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Availability of TTY services and foreign language interpretation when prospective members call the health plan</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Drug plan star rating
+        </mat-panel-title>
+        <mat-panel-description>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="col-12 mb-3">
+        <table>
+          <tr>
+            <th colspan="1">Summary rating of drug plan quality:</th>
+            <td colspan="2">
+              <div class="d-flex align-items-center">
+                <div class="rating-stars me-2">
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>grade</mat-icon>
+                  <mat-icon>star_half</mat-icon>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+
+
+        </table>
+      </div>
+
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Drug plan customer service:
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <table>
+            <tr>
+              <th colspan="1">
+                Availability of TTY services and foreign language interpretation when prospective members call the drug plan
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Member complaints & changes in the drug plan's performance
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Complaints about the drug plan (more stars are better because it means fewer complaints)
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Improvement (if any) in the drug plan's performance
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Member experience with the drug plan
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Members' rating of drug plan
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Ease of getting prescriptions filled when using the plan
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Member complaints & changes in the health plan's performance
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <table>
+            <tr>
+              <th colspan="1">Complaints about the health plan (more stars are better because it means fewer complaints)</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">Improvement (if any) in the health plan's performance</th>
+              <td colspan="2">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Drug safety & accuracy of drug pricing
+          </mat-panel-title>
+          <mat-panel-description>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="col-12 mb-4">
+          <table>
+            <tr>
+              <th colspan="1">
+                Plan provides accurate drug pricing information for this website
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Taking diabetes medication as directed
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Taking blood pressure medication as directed
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Taking cholesterol medication as directed
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th colspan="1">
+                Members who had a pharmacist (or other health professional) help them understand and manage their medications
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+
+            </tr>
+            <tr>
+              <th colspan="1">
+                The plan makes sure members with diabetes take the most effective drugs to treat high cholesterol
+              </th>
+              <td colspan="1">
+                <div class="d-flex align-items-center">
+                  <div class="rating-stars me-2">
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>grade</mat-icon>
+                    <mat-icon>star_half</mat-icon>
+                  </div>
+                </div>
+              </td>
+            </tr>
+
+
+
+
+
+          </table>
+        </div>
+
+      </mat-expansion-panel>
+
+    </mat-expansion-panel>
+
+
+
+  </mat-expansion-panel>
+  <h4>Key Benefits</h4>
+  <table class="table table-striped">
     <tr>
       <th><label>Health deductible</label></th>
+      <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
@@ -117,6 +1199,7 @@
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
     <tr>
       <th><label>Maximum you pay for health services</label></th>
@@ -124,9 +1207,14 @@
       <td><p>$3,450 In-network</p></td>
       <td><p>$11,000 In and Out-of-network<br />$6,500 In-network</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
+  </table>
+  <h4>PREMIUMS</h4>
+  <table class="table table-striped">
     <tr>
       <th><label>Health premium</label></th>
+      <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
@@ -138,6 +1226,7 @@
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
     <tr>
       <th><label>Part B premium</label></th>
@@ -145,190 +1234,2209 @@
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
       <td><p>$0.00</p></td>
+      <td><p>$0.00</p></td>
     </tr>
+  </table>
+  <h4>Main Features</h4>
+  <table class="table table-striped">
     <tr>
       <th><label>Plan features</label></th>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
       <td>
         <ul>
-          <li><mat-icon>check_circle</mat-icon><span>Vision</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Dental</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Hearing</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Transportation</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Fitness benefits</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Worldwide emergency</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Over the counter drug benefits</span></li>
-          <li class="cancel-icon"><mat-icon>cancel</mat-icon><span>In-home support services</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Home and bathroom safety devices</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Meals for short duration</span></li>
-          <li><mat-icon>check_circle</mat-icon><span>Annual physical exams</span></li>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
+        </ul>
+        <a href="#" class="additional-benfits-btn">View additional benefits</a>
+      </td>
+      <td>
+        <ul>
+          <li><mat-icon>check</mat-icon><span>Vision</span></li>
+          <li><mat-icon>check</mat-icon><span>Dental</span></li>
+          <li><mat-icon>check</mat-icon><span>Hearing</span></li>
+          <li><mat-icon>check</mat-icon><span>Transportation</span></li>
+          <li><mat-icon>check</mat-icon><span>Fitness benefits</span></li>
+          <li><mat-icon>check</mat-icon><span>Worldwide emergency</span></li>
+          <li><mat-icon>check</mat-icon><span>Over the counter drug benefits</span></li>
+          <li class="cancel-icon"><mat-icon>close</mat-icon><span>In-home support services</span></li>
+          <li><mat-icon>check</mat-icon><span>Home and bathroom safety devices</span></li>
+          <li><mat-icon>check</mat-icon><span>Meals for short duration</span></li>
+          <li><mat-icon>check</mat-icon><span>Annual physical exams</span></li>
         </ul>
         <a href="#" class="additional-benfits-btn">View additional benefits</a>
       </td>
     </tr>
+  </table>
+  <h2 class="compare-head mt-3">Benefits & Costs</h2>
+  <h4>Office visits</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Primary doctor visit</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: $40 copay per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Specialist visit</label></th>
+      <td><p>$10 copay per visity</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $40 copay<br />
+          Out-of-network: $70 copay per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Preventive Care/Screening Immunization</label></th>
+      <td><p>$10 copay per visity</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $40 copay<br />
+          Out-of-network: $70 copay per visit
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Emergency Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Emergency Room</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Urgent Care</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Ambulance</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Outpatient Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Facility Fees</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic Tests (x-ray, blood work)</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Skilled Nursing Care Cost Share</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Preferred Retail Pharmacies - Initial Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+  </table>
 
-    <tr class="table-headings">
-      <td colspan="5">
-        <h2>Benefits & Costs</h2>
-      </td>
-    </tr>
+  <h4>Preferred Retail Pharmacies - Gap Coverage</h4>
+  <table class="table table-striped">
     <tr>
-      <th><label>Primary doctor visit</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
+      <th><label>Generic Drugs</label></th>
       <td>
         <p>
-          In-network: $0 copay<br />
-          Out-of-network: $40 copay per visit
+          ---
         </p>
       </td>
-    </tr>
-    <tr>
-      <th><label>Specialist visit</label></th>
-      <td><p>$10 copay per visity</p></td>
-      <td><p>$35 copay per visit</p></td>
-      <td><p>$35 copay per visit</p></td>
       <td>
         <p>
-          In-network: $40 copay<br />
-          Out-of-network: $70 copay per visit
+          ---
         </p>
       </td>
-    </tr>
-    <tr>
-      <th><label>Diagnostic tests & procedures</label></th>
-      <td><p>$0-50 copay</p></td>
-      <td><p>$0-200 copay</p></td>
-      <td><p>$0-200 copay</p></td>
       <td>
         <p>
-          In-network: $0-30 copay<br />
-          Out-of-network: 40% coinsurance
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
         </p>
       </td>
     </tr>
     <tr>
-      <th><label>Lab services</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
+      <th><label>Brand-Name Drugs</label></th>
       <td>
         <p>
-          In-network: $0 copay<br />
-          Out-of-network: 40% coinsurance
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
         </p>
       </td>
     </tr>
     <tr>
-      <th><label>Diagnostic radiology services (like MRI)</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
       <td>
         <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
         </p>
       </td>
     </tr>
     <tr>
-      <th><label>Outpatient x-rays</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
       <td>
         <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
         </p>
       </td>
     </tr>
     <tr>
-      <th><label>Emergency care</label></th>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$120 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
     </tr>
     <tr>
-      <th><label>Inpatient hospital coverage</label></th>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
       <td>
         <p>
-          $75 per day for days 1 through 4<br />
-          $0 per day for days 5 through 90
+          ---
         </p>
       </td>
       <td>
         <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
+          ---
         </p>
       </td>
       <td>
         <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
+          ---
         </p>
       </td>
       <td>
         <p>
-          In-network: $350 per day for days 1 through 5
-          $0 per day for days 6 through 90<br />
-          Out-of-network: 40% per stay
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
         </p>
       </td>
     </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+
+  <h4>Catastrophic Coverage Phase</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Generic Drugs</label></th>
+      <td>
+        <p>
+          $4.15 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $4.15 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $4.15 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $4.15 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $4.15 copay or 5% (whichever costs more)
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Brand-Name Drugs</label></th>
+      <td>
+        <p>
+          $10.35 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $10.35 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $10.35 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $10.35 copay or 5% (whichever costs more)
+        </p>
+      </td>
+      <td>
+        <p>
+          $10.35 copay or 5% (whichever costs more)
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Preferred Mail Order Pharmacies - Initial Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Preferred Mail Order Pharmacies - Gap Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Generic Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Brand-Name Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Standard Retail Pharmacies - Initial Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Standard Retail Pharmacies - Gap Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Generic Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Brand-Name Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Standard Mail Order Pharmacies - Initial Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) 33%
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Standard Mail Order Pharmacies - Gap Coverage</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Generic Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Brand-Name Drugs</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 1 (Preferred Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 2 (Generic Drugs)</label></th>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+      <td>
+        <p>
+          (30 Days Supply) $0.00 copay<br />
+          (90 Days Supply) $0.00 copay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 3 (Preferred Brand Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 4 (Non-Preferred Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 5 (Specialty Tier Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Tier 6 (Select Care Drugs)</label></th>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+      <td>
+        <p>
+          ---
+        </p>
+      </td>
+    </tr>
+  </table>
+  <table class="table table-striped">
     <tr>
       <th><label>Outpatient hospital coverage</label></th>
       <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
@@ -343,294 +3451,6 @@
       <td><p>$0 copay</p></td>
       <td><p>$0 copay</p></td>
       <td><p>$0-200 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $0 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr class="table-headings">
-      <td colspan="5">
-        <h2>Extra Benefits</h2>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Primary doctor visit</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0 copay<br />
-          Out-of-network: $40 copay per visit
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Specialist visit</label></th>
-      <td><p>$10 copay per visity</p></td>
-      <td><p>$35 copay per visit</p></td>
-      <td><p>$35 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $40 copay<br />
-          Out-of-network: $70 copay per visit
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Diagnostic tests & procedures</label></th>
-      <td><p>$0-50 copay</p></td>
-      <td><p>$0-200 copay</p></td>
-      <td><p>$0-200 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-30 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Lab services</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Diagnostic radiology services (like MRI)</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Outpatient x-rays</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Emergency care</label></th>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$120 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
-    </tr>
-    <tr>
-      <th><label>Inpatient hospital coverage</label></th>
-      <td>
-        <p>
-          $75 per day for days 1 through 4<br />
-          $0 per day for days 5 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          In-network: $350 per day for days 1 through 5
-          $0 per day for days 6 through 90<br />
-          Out-of-network: 40% per stay
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Outpatient hospital coverage</label></th>
-      <td><p>$0-75 copay per visit</p></td>
-      <td><p>$0-200 copay per visit</p></td>
-      <td><p>$0-200 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $0-295 copay per visit<br />
-          Out-of-network: 40% coinsurance per visit
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Preventive services</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0-200 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $0 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr class="table-headings">
-      <td colspan="5">
-        <h2>Drug coverage & costs</h2>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Drugs covered/Not covered</label></th>
-      <td><p><strong>1 of 2</strong><br />
-Prescription drugs covered<br />
-<a href="#">Restrictions may apply</a></p></td>
-      <td>
-        <p>
-          <strong>1 of 2</strong><br />
-          Prescription drugs covered<br />
-          <a href="#">Restrictions may apply</a>
-        </p>
-      </td>
-      <td>
-        <p>
-          <strong>1 of 2</strong><br />
-          Prescription drugs covered<br />
-          <a href="#">Restrictions may apply</a>
-        </p>
-      </td>
-      <td>
-        <p>
-          <strong>1 of 2</strong><br />
-          Prescription drugs covered<br />
-          <a href="#">Restrictions may apply</a>
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Total drug + premium cost (for the rest of 2023)</label>
-          <a href="#">How do pharmacy networks affect what I pay?</a>
-      </th>
-      <td><p>$10 copay per visity</p></td>
-      <td><p>$35 copay per visit</p></td>
-      <td><p>$35 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $40 copay<br />
-          Out-of-network: $70 copay per visit
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Diagnostic tests & procedures</label></th>
-      <td><p>$0-50 copay</p></td>
-      <td><p>$0-200 copay</p></td>
-      <td><p>$0-200 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-30 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Lab services</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Diagnostic radiology services (like MRI)</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Outpatient x-rays</label></th>
-      <td><p>$0-90 copay</p></td>
-      <td><p>$150-200 copay</p></td>
-      <td><p>$0 copay</p></td>
-      <td>
-        <p>
-          In-network: $0-110 copay<br />
-          Out-of-network: 40% coinsurance
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Emergency care</label></th>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$120 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
-      <td><p>$90 copay per visit (always covered)</p></td>
-    </tr>
-    <tr>
-      <th><label>Inpatient hospital coverage</label></th>
-      <td>
-        <p>
-          $75 per day for days 1 through 4<br />
-          $0 per day for days 5 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          $325 per day for days 1 through 5<br />
-          $0 per day for days 6 through 90
-        </p>
-      </td>
-      <td>
-        <p>
-          In-network: $350 per day for days 1 through 5
-          $0 per day for days 6 through 90<br />
-          Out-of-network: 40% per stay
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Outpatient hospital coverage</label></th>
-      <td><p>$0-75 copay per visit</p></td>
-      <td><p>$0-200 copay per visit</p></td>
-      <td><p>$0-200 copay per visit</p></td>
-      <td>
-        <p>
-          In-network: $0-295 copay per visit<br />
-          Out-of-network: 40% coinsurance per visit
-        </p>
-      </td>
-    </tr>
-    <tr>
-      <th><label>Preventive services</label></th>
-      <td><p>$0 copay</p></td>
-      <td><p>$0 copay</p></td>
       <td><p>$0-200 copay per visit</p></td>
       <td>
         <p>
@@ -640,5 +3460,1289 @@ Prescription drugs covered<br />
       </td>
     </tr>
   </table>
-</div>
+  <!--<table class="table table-striped">
+    <tr>
+      <th><label>Diagnostic tests & procedures</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic radiology services (like MRI)</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient x-rays</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Emergency care</label></th>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+    </tr>
+    <tr>
+      <th><label>Inpatient hospital coverage</label></th>
+      <td>
+        <p>
+          $75 per day for days 1 through 4<br />
+          $0 per day for days 5 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient hospital coverage</label></th>
+      <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0-295 copay per visit<br />
+          Out-of-network: 40% coinsurance per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Preventive services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>-->
+  <table class="table table-striped">
+    <tr>
+      <th><label>Diagnostic tests & procedures</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic radiology services (like MRI)</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient x-rays</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Emergency care</label></th>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+    </tr>
+    <tr>
+      <th><label>Inpatient hospital coverage</label></th>
+      <td>
+        <p>
+          $75 per day for days 1 through 4<br />
+          $0 per day for days 5 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient hospital coverage</label></th>
+      <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0-295 copay per visit<br />
+          Out-of-network: 40% coinsurance per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Preventive services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h2 class="compare-head">Extra Benefits</h2>
+  <h4>Hearing Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        <label>
+          Hearing exam
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Fittings
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
 
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Hearing Aid
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+  </table>
+  <h4>Other Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Foot Exams and Treatment</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+    <tr>
+      <th><label>Routine Foot Care</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th><label>Wellness Programs</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+  </table>
+  <h4>Rehabilitation Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Occupational Therapy Visit</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Other Therapies
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+  </table>
+  <h4>Vision Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Routine eye exam</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Contact lenses
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Eyeglasses (frames & lenses)
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Eyeglass frames only
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Eyeglass lenses only
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Upgrades
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Other
+        </label>
+      </th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+  </table>
+  <!--<table class="table table-striped">
+    <tr>
+      <th><label>Primary doctor visit</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: $40 copay per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Specialist visit</label></th>
+      <td><p>$10 copay per visity</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td><p>$35 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $40 copay<br />
+          Out-of-network: $70 copay per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic tests & procedures</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic radiology services (like MRI)</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient x-rays</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Emergency care</label></th>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
+    </tr>
+    <tr>
+      <th><label>Inpatient hospital coverage</label></th>
+      <td>
+        <p>
+          $75 per day for days 1 through 4<br />
+          $0 per day for days 5 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient hospital coverage</label></th>
+      <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0-295 copay per visit<br />
+          Out-of-network: 40% coinsurance per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Preventive services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>-->
+  <h4>Dental Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Periodic Oral Evaluation</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Prophylaxis</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Fluoride Treatments</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Dental X-ray(s)</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Non Surgical / General Services / Anesthesia</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Lab and Other Diagnostic Tests</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Restorations</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Endodontics</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Periodontics</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th colspan="1"><label>Extractions</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Medical Equipment/Supplies</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Durable Medical Equipment</label></th>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+    </tr>
+    <tr>
+      <th><label>Diabetes Supplies</label></th>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+      <td><p>0-20% coinsurance per item	</p></td>
+
+    </tr>
+
+  </table>
+  <h4>Mental Health Services</h4>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Inpatient hospital - psychiatric</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+    </tr>
+    <tr>
+      <th><label>Outpatient group therapy with a psychiatrist</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th><label>Outpatient individual therapy with a psychiatrist</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th><label>Outpatient group therapy visit</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+    <tr>
+      <th><label>Outpatient individual therapy visit</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+
+    </tr>
+
+  </table>
+
+
+  <h2 class="compare-head">Drug coverage & costs</h2>
+  <table class="table table-striped">
+    <tr>
+      <th><label>Drugs covered/Not covered</label></th>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+      <td>
+        <p>
+          <strong>1 of 2</strong><br />
+          Prescription drugs covered<br />
+          <a href="#">Restrictions may apply</a>
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <label>Total drug + premium cost (for the rest of 2023)</label>
+        <a href="#">How do pharmacy networks affect what I pay?</a>
+      </th>
+      <td>
+        <ul class="compare-pharmacy-items">
+          <li>
+            <h5>WINN DIXIE</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>WALGREENS #6385</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>MAXIMUM PHYSICAL HEALTHCARE, INC</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+
+        </ul>
+      </td>
+      <td>
+        <ul class="compare-pharmacy-items">
+          <li>
+            <h5>WINN DIXIE</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>WALGREENS #6385</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>MAXIMUM PHYSICAL HEALTHCARE, INC</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+
+        </ul>
+      </td>
+      <td>
+        <ul class="compare-pharmacy-items">
+          <li>
+            <h5>WINN DIXIE</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>WALGREENS #6385</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>MAXIMUM PHYSICAL HEALTHCARE, INC</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+
+        </ul>
+      </td>
+      <td>
+        <ul class="compare-pharmacy-items">
+          <li>
+            <h5>WINN DIXIE</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>WALGREENS #6385</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>MAXIMUM PHYSICAL HEALTHCARE, INC</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+
+        </ul>
+      </td>
+      <td>
+        <ul class="compare-pharmacy-items">
+          <li>
+            <h5>WINN DIXIE</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>WALGREENS #6385</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+          <li>
+            <h5>MAXIMUM PHYSICAL HEALTHCARE, INC</h5>
+            <!--<small class="out-of-network">
+              <mat-icon>close</mat-icon>
+              <span>Out-of-network</span>
+            </small>-->
+            <small class="in-network">
+              <mat-icon>check</mat-icon>
+              <span>In-network</span>
+            </small>
+            <p><strong>$0.00</strong></p>
+          </li>
+
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic tests & procedures</label></th>
+      <td><p>$0-50 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td><p>$0-200 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-30 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Lab services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Diagnostic radiology services (like MRI)</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient x-rays</label></th>
+      <td><p>$0-90 copay</p></td>
+      <td><p>$150-200 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td>
+        <p>
+          In-network: $0-110 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Emergency care</label></th>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$120 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+      <td><p>$90 copay per visit (always covered)</p></td>
+    </tr>
+    <tr>
+      <th><label>Inpatient hospital coverage</label></th>
+      <td>
+        <p>
+          $75 per day for days 1 through 4<br />
+          $0 per day for days 5 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          $325 per day for days 1 through 5<br />
+          $0 per day for days 6 through 90
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+      <td>
+        <p>
+          In-network: $350 per day for days 1 through 5
+          $0 per day for days 6 through 90<br />
+          Out-of-network: 40% per stay
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Outpatient hospital coverage</label></th>
+      <td><p>$0-75 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0-295 copay per visit<br />
+          Out-of-network: 40% coinsurance per visit
+        </p>
+      </td>
+    </tr>
+    <tr>
+      <th><label>Preventive services</label></th>
+      <td><p>$0 copay</p></td>
+      <td><p>$0 copay</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td><p>$0-200 copay per visit</p></td>
+      <td>
+        <p>
+          In-network: $0 copay<br />
+          Out-of-network: 40% coinsurance
+        </p>
+      </td>
+    </tr>
+  </table>
+  <h4>Contact Information</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        <label>
+          View plan website
+        </label>
+      </th>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Address
+        </label>
+      </th>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Members
+        </label>
+      </th>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Non-Members
+        </label>
+      </th>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+    </tr>
+  </table>
+  <h4>Drug Details</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        <label>
+          Abacavir - Generic | Solution, 20mg/ml, 240ml bottle
+        </label>
+      </th>
+      <td><p>Yes</p></td>
+      <td><p>Yes</p></td>
+      <td><p>Yes</p></td>
+      <td><p>Yes</p></td>
+      <td><p>Yes</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Address
+        </label>
+      </th>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+      <td><p>Attn: Pre Enrollment, PO Box 31685, Tampa, FL 33631</p></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Members
+        </label>
+      </th>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+      <td><a href="tel:1-833-444-9088">1-833-444-9088</a></td>
+    </tr>
+    <tr>
+      <th>
+        <label>
+          Non-Members
+        </label>
+      </th>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+      <td><a href="tel:1-844-917-0175">1-844-917-0175</a></td>
+    </tr>
+  </table>
+  <h4>Plan Brochures</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        <label>
+          In Network Providers
+        </label>
+      </th>
+      <td><a href="#" target="_blank">View</a></td>
+      <td><a href="#" target="_blank">View</a></td>
+      <td><a href="#" target="_blank">View</a></td>
+      <td><a href="#" target="_blank">View</a></td>
+      <td><a href="#" target="_blank">View</a></td>
+    </tr>
+  </table>
+  <h4>URL's</h4>
+  <table class="table table-striped">
+    <tr>
+      <th>
+        <label>
+          Provider Network Directory
+        </label>
+      </th>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+      <td><a href="#" target="_blank">www.website.com</a></td>
+    </tr>
+  </table>
+</div>
