@@ -118,13 +118,13 @@
                 <tr *ngFor="let cost of drugcosts[0]?.drug_costs; let i = index">
                   <td>{{ drugNameGetter(cost.ndc) }}</td>
                   <td *ngFor="let drucost of drugcosts">
-                    ${{ drucost.drug_costs[i]?.estimated_yearly_total }}
+                    ${{ drucost.drug_costs[i]?.estimated_yearly_total | number:'1.2-2' }}
                   </td>
                 </tr>
                 <tr class="total-yearly-dc">
                   <th scope="col" valign="middle">Total yearly drug costs</th>
                   <td scope="col" *ngFor="let pharmname of drugcosts">
-                    <p>${{pharmname.estimated_yearly_total}}</p>
+                    <p>${{pharmname.estimated_yearly_total | number:'1.2-2'}}</p>
                   </td>
                 </tr>
                 <!--                <tr>-->
@@ -167,7 +167,7 @@
                 <tr>
                   <td scope="row">Total drug + Premium cost (for the rest of {{effYear}})</td>
                   <td *ngFor="let drucost of drugcosts">
-                    ${{ drucost.estimated_yearly_total }}
+                    ${{ drucost.estimated_yearly_total | number:'1.2-2' }}
                   </td>
                 </tr>
 
@@ -202,7 +202,7 @@
                 <tr *ngFor="let cost of drugcosts[0]?.estimated_monthly_costs; let i = index">
                   <td>{{getMonthOnly(cost.date)}}</td>
                   <td *ngFor="let drucost of drugcosts">
-                    ${{ drucost.estimated_monthly_costs[i]?.total }}
+                    ${{ drucost.estimated_monthly_costs[i]?.total | number:'1.2-2' }}
                   </td>
                 </tr>
 
