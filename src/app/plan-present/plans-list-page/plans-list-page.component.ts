@@ -531,11 +531,12 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     }
   }
 
-  drugCost(drug: any) {
-    console.log('drugcost', drug)
-    sessionStorage.setItem('drugcost', JSON.stringify(drug))
-    window.open('/drug-cost')
-    // this.route.navigate(['/drug-cost'])
+  drugCost(drug: any) { 
+    sessionStorage.setItem('planName', drug.planName)
+    sessionStorage.setItem('planID', drug.planID)
+    sessionStorage.setItem('monthlypremium', drug.monthlypremium)
+    sessionStorage.setItem('drugcost', JSON.stringify(drug))     
+    window.open('/drug-cost')    
   }
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   
