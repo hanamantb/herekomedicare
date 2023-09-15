@@ -81,7 +81,8 @@ export class PlansListPageComponent implements OnInit {
   selected: boolean = false;
   shouldHideSpan:boolean =true;  
   showDrugs:boolean =false;
-  cartPlanIds: String[] = [];  
+  cartPlanIds: String[] = [];
+  planTypeName: string = 'Medicare Advantage & Prescription Plans';
   
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -363,8 +364,19 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   planType(event: any) {
     console.log(event.value)
     this.planTypes = event.value
+
     this.plans = []
     this.getPlans(0)
+    if (this.planTypes == 'PLAN_TYPE_MA') {
+      this.planTypeName = 'Medicare Advantage Plans (Part C)';
+    }
+    else if (this.planTypes == 'PLAN_TYPE_PDP') {
+      this.planTypeName = 'Prescription Plans (Part D)';
+    }
+    else {
+      this.planTypeName = 'Medicare Advantage & Prescription Plans';
+    }
+    
   }
 
   onPageChange(event: any) {
@@ -519,11 +531,12 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     }
   }
 
-  drugCost(drug: any) {
-    console.log('drugcost', drug)
-    sessionStorage.setItem('drugcost', JSON.stringify(drug))
-    window.open('/drug-cost')
-    // this.route.navigate(['/drug-cost'])
+  drugCost(drug: any) { 
+    sessionStorage.setItem('planName', drug.planName)
+    sessionStorage.setItem('planID', drug.planID)
+    sessionStorage.setItem('monthlypremium', drug.monthlypremium)
+    sessionStorage.setItem('drugcost', JSON.stringify(drug))     
+    window.open('/drug-cost')    
   }
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   

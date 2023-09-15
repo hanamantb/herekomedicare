@@ -26,6 +26,7 @@ export class ApiProviderService {
   }
 
   public get(apiUrl: string): Observable<any> {
+    console.log('REQUEST BODY for API get:', apiUrl);
     return this.http.get(apiUrl);
   }
 

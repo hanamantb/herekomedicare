@@ -9,5 +9,6 @@ export class UrlConstants {
   public static searchPlans = UrlConstants.api + "search-plans"
   public static checkEmail = UrlConstants.api + "login?username="
   public static carrierName = UrlConstants.api + "carrier-name"
+  public static drugCost = UrlConstants.api + "drug-cost"
 
 }

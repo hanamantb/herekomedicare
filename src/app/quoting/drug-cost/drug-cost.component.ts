@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-
+import {CommonService} from "../../services/common.service";
+import {SpinnerService} from "../../services/spinner.service";
 @Component({
   selector: 'app-drug-cost',
   templateUrl: './drug-cost.component.html',
@@ -9,57 +10,107 @@ import {Router} from "@angular/router";
 export class DrugCostComponent implements OnInit {
   opened: boolean = false;
   panelOpenState = false;
-  plan:any
-  effYear:any
-  drugInfoList:any
+  drugCostResponse: any;
+  effYear:any;
+  drugInfoList:any;
   retailCost:number = 0;
   costAfterDeductible:number = 0;
   costInCoverageGap:number = 0;
   costAfterCoverageGap:number = 0;
-  drugcosts:any=[]
-  dcomparedList:any[]=[]
+  drugcosts:any=[];
+  dcomparedList:any[]=[];
   drugsSize:any;
-  constructor(private route: Router) { }
+  planName:any;
+  drugsArray: any=[]
+  lis:any;
+  year:any;
+  monthlypremium:any
+  planID: any;
+  npis: any = [];
+  frequency = [{
+    name: 'Every month',
+    values: 'FREQUENCY_30_DAYS'
+  },
+    {
+      name: 'Every 2 months',
+      values: 'FREQUENCY_60_DAYS'
+    },
+    {
+      name: 'Every 3 months',
+      values: 'FREQUENCY_90_DAYS'
+    },
+    {
+      name: 'Every 6 months',
+      values: 'FREQUENCY_180_DAYS'
+    },
+    {
+      name: 'Every 12 months',
+      values: 'FREQUENCY_360_DAYS'
+    }]
+  constructor(private route: Router,private commonservice: CommonService,
+    private spinner: SpinnerService) { }
 
   ngOnInit(): void {
+    const spine = this.spinner.start()
     const currentDate = new Date();
-    this.effYear= currentDate.getFullYear()
-    let costArray: any[] = [];
-    const cart = sessionStorage.getItem('drugcost')
-    if (cart) {
-      this.plan = JSON.parse(cart);
-      this.drugInfoList=this.plan.drugInfoList
-      // this.drugcosts=this.plan.costs
-    }
+    this.effYear= currentDate.getFullYear()   
+    const planId = sessionStorage.getItem('planID')
+    if(planId)
+    this.planID = planId.replace(/"/g, '');
+    const lis = sessionStorage.getItem('lis')
+    if(lis)
+    this.lis = lis.replace(/"/g, '');
+    const year = sessionStorage.getItem('effectyear')
+    if(year)
+    this.year = year.replace(/"/g, '');
+    const monthlypremium = sessionStorage.getItem('monthlypremium')
+    if(monthlypremium)
+    this.monthlypremium = monthlypremium.replace(/"/g, '');  
+    const planName = sessionStorage.getItem('planName')
+    if(planName)
+    this.planName =planName.replace(/"/g, '');
+    console.log('planName',this.planName)
     const drugs = sessionStorage.getItem('drugs')
-    let drugsArray: any[] = [];
+    let drugsArrayPayload: any[] = [];    
     if (drugs) {
-      drugsArray = JSON.parse(drugs);
-      this.drugsSize=drugsArray.length
+      drugsArrayPayload = JSON.parse(drugs);
+      this.drugsArray = JSON.parse(drugs);
+      this.drugsSize=drugsArrayPayload.length
     }
     const pharmdata = sessionStorage.getItem('pharmdata')
     let pharmdataArray: any[]=[];
     if (pharmdata) {
       pharmdataArray = JSON.parse(pharmdata);
     }
-    console.log('pharmdataArray',pharmdataArray)
-    console.log('drug',drugsArray)
-    this.drugCompare(drugsArray)
-    this.pharmacyDataUpdate(pharmdataArray,this.plan.costs)
+    pharmdataArray.forEach((element:any) => {
+      this.npis.push(element.npi);
+    });
+    console.log('this.npis',this.npis)
+    this.updateApidrugs(drugsArrayPayload) 
+    this.commonservice.drugCost(this.npis,drugsArrayPayload,this.lis,
+        this.year,this.planID,this.monthlypremium).subscribe(response => {
+      console.log('shdvhdrug-cost response',response.data)
+      this.drugCostResponse = response.data
+      console.log('this.drugCostResponse',this.drugCostResponse)
+    this.drugInfoList=this.drugCostResponse.drugInfoList
+    this.drugCompare(this.drugsArray)
+    this.pharmacyDataUpdate(pharmdataArray,this.drugCostResponse.costs)
+    }) 
+    this.spinner.stop(spine)
   }
 
   drugCompare(drug:any){
-
+console.log('drug',drug)
     for (const drugItem of drug) {
       const matchingCostItem = this.drugInfoList.find((costItem:any) => costItem.ndc === drugItem.ndc);
-
+    
       if (matchingCostItem) {
         let array:any={
           "ndc": matchingCostItem.ndc,
           "tier": matchingCostItem.tier,
           "prior_auth": matchingCostItem.prior_auth,
           "step_therapy": matchingCostItem.step_therapy,
-          "quantity_limit": matchingCostItem.quantity_limit,
+          "quantity_limit": matchingCostItem.quantity_limit,          
           "on_formulary": matchingCostItem.on_formulary,
           "quantity_limit_amount":  matchingCostItem.quantity_limit_amount,
           "quantity_limit_days": matchingCostItem.quantity_limit_days,
@@ -76,10 +127,11 @@ export class DrugCostComponent implements OnInit {
   }
 
   pharmacyDataUpdate(pharmData:any,drugCost:any){
+    console.log('drugCost',drugCost)
     for (const pharm of pharmData){
 
       const matchingCostItem = drugCost.find((costItem:any) => costItem.npi === pharm.npi || costItem.npi ==='');
-
+console.log('matchingCostItem',matchingCostItem)
       if (matchingCostItem){
 let array:any=
   {
@@ -128,12 +180,26 @@ let array:any=
   }
 
   plansNav() {
-    this.route.navigate(['/Plans'])
+    window.close();
   }
   getMonthlyTotals(drugcost:any){
+    console.log('getMonthlyTotals',drugcost)
     this.retailCost = drugcost.retailCost;
     this.costAfterCoverageGap = drugcost.costAfterCoverageGap;
     this.costInCoverageGap = drugcost.costInCoverageGap;
     this.costAfterDeductible = drugcost.costAfterDeductible;
+  }
+  updateApidrugs(data: any) {
+    console.log('data-----------', data)
+    if (data !== undefined) {
+      data.forEach((drugsObj: any) => {
+        this.frequency.forEach((freobj: any) => {
+          if (freobj.name === drugsObj.frequency) {
+            drugsObj.frequency = freobj.values
+          }
+        })
+
+      });
+    }
   }
 }
