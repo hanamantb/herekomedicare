@@ -151,16 +151,16 @@
                     <h6 class="add-benefit-head ms-3">Plan Benefits</h6>
                   </div>
                 </div>
-                <div class="row px-3" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
-                  <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
-                    <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
+                <div class="row px-3 mx-0 plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
+                  <div class="cols px-3" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
+                    <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                       <mat-icon class="benefit-icon-true">check</mat-icon>
-                      {{additionalbenefits.attributeName}}
-                    </button>
-                    <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'false'">
+                      <small>{{additionalbenefits.attributeName}}</small>
+                    </span>
+                    <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'false'">
                       <mat-icon class="benefit-icon-false">close</mat-icon>
-                      {{additionalbenefits.attributeName}}
-                    </button>
+                      <small>{{additionalbenefits.attributeName}}</small>
+                    </span>
                   </div>
                 </div>
               </div>
