@@ -239,7 +239,7 @@
               <tbody >
                 <tr *ngFor="let drug of drucost.drug_costs">
                   <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
-                  <td>${{drug.full_cost}}</td>
+                  <td>${{drug.full_cost | number:'1.2-2'}}</td>
                   <td>
                     <p *ngIf="drug.has_deductible">{{drug.deductible_cost | number:'1.2-2'}}</p>
                     <p *ngIf="!drug.prior_auth">{{drug.initial_cost | number:'1.2-2'}}</p>
