@@ -7,7 +7,7 @@
       <div class="d-flex p-2">
         <div class="col-6">
           <span class="d-cost-label">Estimated Cost and Savings</span>
-          <p>Plan - {{plan.planName}}</p>
+          <p>Plan - {{planName}}</p>
         </div>
         <div class="col-6 d-flex justify-content-end drug-cost-buttons">
           <div class="btn-icon">
@@ -240,7 +240,10 @@
                 <tr *ngFor="let drug of drucost.drug_costs">
                   <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
                   <td>${{drug.full_cost}}</td>
-                  <td>${{drug.deductible_cost}}</td>
+                  <td>
+                    <p *ngIf="drug.has_deductible">{{drug.deductible_cost}}</p>
+                    <p *ngIf="!drug.prior_auth">{{drug.initial_cost}}</p>
+                  </td>
                   <td>${{drug.gap_cost}}</td>
                   <td>${{drug.catastrophic_cost}}</td>
                 </tr>

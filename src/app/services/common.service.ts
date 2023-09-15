@@ -97,6 +97,9 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.carrierName, {fips, effectiveYear}, '');
   }
 
+  public drugCost(npis: any,prescriptions: any,lis: any, year: any,planID: any,monthlypremium: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.drugCost, {npis, prescriptions,lis,year,planID,monthlypremium}, '');
+  }
   // public checkEmail(email: any): Observable<any> {
   //   let s = this.apiProvider.get(UrlConstants.checkEmail + email);
   //   console.log(s)
