@@ -242,7 +242,7 @@
                   <td>${{drug.full_cost | number:'1.2-2'}}</td>
                   <td>
                     <p *ngIf="drug.has_deductible">${{drug.deductible_cost | number:'1.2-2'}}</p>
-                    <p *ngIf="!drug.prior_auth">${{drug.initial_cost | number:'1.2-2'}}</p>
+                    <p *ngIf="!drug.has_deductible">${{drug.initial_cost | number:'1.2-2'}}</p>
                   </td>
                   <td>${{drug.gap_cost | number:'1.2-2'}}</td>
                   <td>${{drug.catastrophic_cost | number:'1.2-2'}}</td>
