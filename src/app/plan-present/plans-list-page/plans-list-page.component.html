@@ -209,9 +209,9 @@
                     </ul>
                   </div>
                 </div>
-                <div class="d-flex drug-cost-details-btn" *ngIf="showDrugs">
+                <div class="d-flex drug-cost-details-btn" *ngIf="shouldHideSpan && showDrugs">
                   <span class="me-2 d-flex align-items-center" >Drugs Covered:</span>
-                  <button mat-button (click)="openDrugsCovered(plan.drugInfoList)">{{plan.costs[0].drugsCoveredCount}} of {{drugsArray.length}}
+                  <button mat-button (click)="openDrugsCovered(plan.drugInfoList)">{{plan.drugsCoveredCount}} of {{drugsArray.length}}
                     <mat-icon class="ms-2">edit</mat-icon>
                   </button>
                 </div>
