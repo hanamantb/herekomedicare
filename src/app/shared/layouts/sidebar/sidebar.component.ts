@@ -30,13 +30,13 @@ export class SidebarComponent implements OnInit {
 
   snpPlanTypes = [
     {
-      label: 'Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).',
+      label: 'C-SNP: Plans for people who have a chronic or disabling condition (like stroke, cancer, or dementia).',
       value: 'SNP_TYPE_CHRONIC_OR_DISABLING',
       isChecked: false
     },
-    {label: 'Plans for people who have both Medicare and Medicaid.', value: 'SNP_TYPE_DUAL_ELIGIBLE', isChecked: false},
+    {label: ' D-SNP: Plans for people who have both Medicare and Medicaid.', value: 'SNP_TYPE_DUAL_ELIGIBLE', isChecked: false},
     {
-      label: 'Plans for people who need long-term care in a facility or at home.',
+      label: 'I-SNP: Plans for people who need long-term care in a facility or at home.',
       value: 'SNP_TYPE_INSTITUTIONAL',
       isChecked: false
     }
