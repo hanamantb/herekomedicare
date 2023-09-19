@@ -99,7 +99,7 @@
       <!--      </mat-expansion-panel>-->
       <!--Plan Type-->
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
         <mat-expansion-panel-header>
           <p class="panel-headers">Special Needs Plans</p>
         </mat-expansion-panel-header>
@@ -128,7 +128,7 @@
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
         <mat-expansion-panel-header>
           <p class="panel-headers">Plan Type</p>
         </mat-expansion-panel-header>
@@ -157,7 +157,7 @@
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
         <mat-expansion-panel-header>
           <p class="panel-headers">Plan Benefits</p>
         </mat-expansion-panel-header>
@@ -203,7 +203,7 @@
       </mat-expansion-panel>
 
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false" >
         <mat-expansion-panel-header>
           <p class="panel-headers">Overall Star Rating</p>
         </mat-expansion-panel-header>
@@ -236,7 +236,7 @@
         </div>
       </mat-expansion-panel>
       <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
+                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
         <mat-expansion-panel-header>
           <p class="panel-headers">Optional Packages</p>
         </mat-expansion-panel-header>

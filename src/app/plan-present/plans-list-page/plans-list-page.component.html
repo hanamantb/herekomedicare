@@ -4,7 +4,7 @@
 
     <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px; overflow-y: auto;overflow-x: hidden"
          *ngIf="sideopen">
-      <app-sidebar [planCount]="plans.length" [totalCount]="response.total_results"></app-sidebar>
+      <app-sidebar [planCount]="plans.length" [totalCount]="response.total_results" [selectedFilters]="selectedFilter"></app-sidebar>
     </div>
     <div class="col mt-2 p-2">
       <div class="p-2 plan-presentation-top">
@@ -170,12 +170,14 @@
                   </div>
                   <div class="p-2 justify-content-end" style="text-align: end">
                     <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
-                    <p>Orginal Rate:</p>
-                    <h2 class="original-rate">${{plan.orginalRate}}</h2>
-                    <a href="">About this rate</a><br>
-                    <p class="estimated-cost-label">Estimated Annual Cost<small> (Drug Cost + Premium)</small></p>
+                    <div class="original-rate-container" *ngIf="originalRateC">
+                      <p>Orginal Rate:</p>
+                      <h2 class="original-rate">${{plan.orginalRate}}</h2>
+                      <!--<a href="">About this rate</a><br>-->
+                    </div>
+                    <!--<p class="estimated-cost-label">Estimated Annual Cost<small> (Drug Cost + Premium)</small></p>
                     <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                    <span *ngIf="shouldHideSpan && showDrugs" id="highlighted-text" (click)="drugCost(plan)">Drug Cost Details<br></span>
+                    <span *ngIf="shouldHideSpan && showDrugs" id="highlighted-text" (click)="drugCost(plan)">Drug Cost Details<br></span>-->
                   </div>
                 </div>
               </div>

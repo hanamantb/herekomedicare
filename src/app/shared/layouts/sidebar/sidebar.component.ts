@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
   benefitchck = true
   carrierNames: any;
   carrierVal: any;
+  @Input() selectedFilters: boolean = true
   filterPlanType: any = []
   filterSnpType: any = ["SNP_TYPE_NOT_SNP"]
   planBenefits = [

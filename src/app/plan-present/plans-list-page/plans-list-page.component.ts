@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
+import {Component, HostListener, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import EventEmitter = NodeJS.EventEmitter;
 import {Router} from "@angular/router";
 import {SharedService} from "../../services/shared.service";
@@ -54,6 +54,9 @@ export class PlansListPageComponent implements OnInit {
   hearing: boolean = false
   transportation: boolean = false
   silver_snekers: boolean = false
+  originalRateC: boolean = true
+  selectedFilter: boolean = true
+  
   snp_type: any = [
     "SNP_TYPE_NOT_SNP",
   ];
@@ -369,12 +372,19 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     this.getPlans(0)
     if (this.planTypes == 'PLAN_TYPE_MA') {
       this.planTypeName = 'Medicare Advantage Plans (Part C)';
+      this.originalRateC = false;
+      this.selectedFilter = true;
+
     }
     else if (this.planTypes == 'PLAN_TYPE_PDP') {
       this.planTypeName = 'Prescription Plans (Part D)';
+      this.originalRateC = true;
+      this.selectedFilter = false;
     }
     else {
       this.planTypeName = 'Medicare Advantage & Prescription Plans';
+      this.originalRateC = true;
+      this.selectedFilter = true;
     }
     
   }
