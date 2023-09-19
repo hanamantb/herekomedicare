@@ -54,8 +54,9 @@ export class PlansListPageComponent implements OnInit {
   hearing: boolean = false
   transportation: boolean = false
   silver_snekers: boolean = false
-  originalRateC: boolean = true
+  originalRateC: boolean = false
   selectedFilter: boolean = true
+  eacDrugcostPre: boolean = true
   
   snp_type: any = [
     "SNP_TYPE_NOT_SNP",
@@ -374,17 +375,20 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
       this.planTypeName = 'Medicare Advantage Plans (Part C)';
       this.originalRateC = false;
       this.selectedFilter = true;
+      this.eacDrugcostPre = false
 
     }
     else if (this.planTypes == 'PLAN_TYPE_PDP') {
       this.planTypeName = 'Prescription Plans (Part D)';
-      this.originalRateC = true;
+      this.originalRateC = false;
       this.selectedFilter = false;
+      this.eacDrugcostPre = true
     }
     else {
       this.planTypeName = 'Medicare Advantage & Prescription Plans';
-      this.originalRateC = true;
+      this.originalRateC = false;
       this.selectedFilter = true;
+      this.eacDrugcostPre = true
     }
     
   }
