@@ -301,9 +301,9 @@
   <mat-tab label="Sort By">
     <div class="sort mt-3">
       <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)"> Lowest yearly drug deductible
+        <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)" > Lowest yearly drug deductible
       </div>
-      <div class="d-flex  p-2">
+      <div class="d-flex  p-2" *ngIf="selectedFilters">
         <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)"> Lowest health plan deductible
       </div>
       <div class="d-flex  p-2">
