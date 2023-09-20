@@ -86,16 +86,27 @@ export class EditPlansPopupComponent implements OnInit {
     this.dialogRef.close(change)
   }
   openPharmacyZip() { 
-    const zipcode =  sessionStorage.getItem('zipcode')  
-    const drugs = sessionStorage.getItem('drugs')
+    // const zipcode =  sessionStorage.getItem('zipcode') 
+    let drugsList:[]=[]; 
+     const drugs = sessionStorage.getItem('drugs')  
+     const zipcode = sessionStorage.getItem('zipcode')    
     sessionStorage.setItem('fip',this.selectedCountie.fips)
     sessionStorage.setItem('countie',this.selectedCountie.name +', '+this.selectedCountie.state)
-    sessionStorage.setItem('lis',this.editForm.value.lis)
-    if(drugs && zipcode !== this.zipcode){
-    sessionStorage.setItem('zipcode', this.zipcode)   
-    sessionStorage.setItem('effectyear',this.editForm.value.effectYear)   
-    this.dialog.open(PharmacyZipCodeComponent);
-    this.dialog.closeAll;
+    sessionStorage.setItem('lis',this.editForm.value.lis)    
+    sessionStorage.setItem('effectyear',this.editForm.value.effectYear)    
+    if(drugs){  
+      drugsList =JSON.parse(drugs);
+      console.log('drugsList.length',drugsList.length)
+      if(drugsList.length !== 0 && this.zipcode !== zipcode){
+        sessionStorage.setItem('zipcode',this.zipcode)
+        console.log('inside without drugs')    
+        this.dialog.open(PharmacyZipCodeComponent);
+        this.dialog.closeAll;
+      }else{
+        sessionStorage.setItem('zipcode',this.zipcode)
+        console.log("close")
+        this.dialogRef.close(true);
+      }      
     }else{
       console.log("close")
       this.dialogRef.close(true);
