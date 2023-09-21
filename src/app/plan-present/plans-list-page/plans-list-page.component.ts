@@ -452,11 +452,12 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   }
 
   planDetail(plan: any) {
-    sessionStorage.setItem('plandetail', JSON.stringify(plan))
-    this.route.navigate(['/plan-detail'], {
-      state: {data: plan},
-    });
+  sessionStorage.setItem('plandetail', JSON.stringify(plan));
+  const newWindow = window.open('/plan-detail', '_blank');
+  if (newWindow) {
+    newWindow.postMessage({ data: plan }, '*');
   }
+}
 
   openDrugsCovered(plan:any) {
     console.log('plan',plan)

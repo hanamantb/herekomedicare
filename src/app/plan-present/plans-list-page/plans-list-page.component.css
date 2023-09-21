@@ -192,6 +192,10 @@ h6{
   font-weight: 100;
   line-height: normal;
 }
+.sub-prop bdo{
+    font-weight: 600;
+    color: #252525 !important;
+}
 .clear{
   clear: both;
 }
@@ -419,4 +423,17 @@ mat-select mat-option{
 }
 .plan-benefits-items-list .cols .benfit-btn{
     display: flex;
+}
+.card.item-optional-packages {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
+  background: #f4f6ff;
+  border-color: #bdc7ff;
+}
+.card.item-optional-packages label{
+    font-weight: 600;
+}
+.opt-pkg-btn {
+    cursor: pointer;
 }
