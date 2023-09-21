@@ -145,19 +145,19 @@
             </div>
             <div class="row" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
               <div class="col-12">
-                <h6 class="add-benefit-head ms-3">Plan Benefits</h6>
+                <h6 class="add-benefit-head ms-3">Additional Benefits</h6>
               </div>
             </div>
-            <div class="row px-3" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
-              <div class="col" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
-                <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
+            <div class="row px-3 plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
+              <div class="cols px-3" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
+                <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                   <mat-icon class="benefit-icon-true">check</mat-icon>
                   {{additionalbenefits.attributeName}}
-                </button>
-                <button mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'false'">
+                </span>
+                <span mat-icon-button class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'false'">
                   <mat-icon class="benefit-icon-false">close</mat-icon>
                   {{additionalbenefits.attributeName}}
-                </button>
+                </span>
               </div>
             </div>
           </div>
@@ -196,7 +196,7 @@
             <!--              </button>-->
             <!--            </div>-->
             <div class="ms-2 optional-packages-btn d-flex align-items-center">
-              <span class="d-flex justify-content-center" (click)="showOp(plan)">
+              <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
                 <p class="mb-0">Optional Packages</p>
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </span>
@@ -223,17 +223,17 @@
                 Plan Details
               </button>
             </div>
-            <div class=" d-flex col-3 justify-content-end me-1">
+            <div class=" d-flex col-3 justify-content-end me-2 ps-1">
               <button class="cart-select-btn" mat-raised-button (click)="cart(plan)" [ngClass]="{'selected': plan.selected}">
                 {{plan.selected?'Selected':'Select'}}
               </button>
             </div>
           </div>
 
-          <div class="card p-2" *ngIf="plan.optnpkShow">
-            <div *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
-              <div class="d-flex mb-2">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+          <div class="card p-3 item-optional-packages mt-2 me-2" *ngIf="plan.optnpkShow">
+            <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
+              <div class="d-flex mb-2 align-items-center">
+                <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
                 <label class="form-check-label" for="flexCheckChecked">
                   {{optbenefits.package_number}}
                 </label>

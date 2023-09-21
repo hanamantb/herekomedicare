@@ -146,7 +146,7 @@
                 </div>
                 <div class="row" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
                   <div class="col-12">
-                    <h6 class="add-benefit-head ms-3">Plan Benefits</h6>
+                    <h6 class="add-benefit-head ms-3">Additional Benefits</h6>
                   </div>
                 </div>
                 <div class="row px-3 mx-0 plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
@@ -196,7 +196,7 @@
                   </label>
                 </div>
                 <div class="ms-2 optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
-                <span class="d-flex justify-content-center" (click)="showOp(plan)" *ngIf="plan.alloptnpkShow">
+                <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)" *ngIf="plan.alloptnpkShow">
                   <p>Optional Packages</p>
                   <mat-icon>keyboard_arrow_down</mat-icon>
                 </span>
@@ -221,7 +221,7 @@
                 <div class=" d-flex">
                   <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
                   <!--                <label  class="ms-2"> Additional Details</label>-->
-                  <button mat-raised-button class="plan-details-btn" (click)="planDetail(plan)" target="_blank">
+                  <button mat-raised-button class="plan-details-btn" (click)="planDetail(plan)">
                     <mat-icon>remove_red_eye</mat-icon>
                     Plan Details
                   </button>
@@ -233,10 +233,10 @@
                   </button>
                 </div>
               </div>
-              <div class="card p-2 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
-                <div *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
-                  <div class="d-flex mb-2">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+              <div class="card p-3 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
+                <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
+                  <div class="d-flex mb-2 align-items-center">
+                    <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
                     <label class="form-check-label" for="flexCheckChecked">
                       {{optbenefits.package_number}}
                     </label>
