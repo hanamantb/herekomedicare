@@ -141,6 +141,7 @@ let array:any=
     "in_network": matchingCostItem.in_network,
     "phase_information":matchingCostItem.phase_information ,
     "estimated_yearly_total": matchingCostItem.estimated_yearly_total,
+    "estimated_yearly__drug_planPremium_total": matchingCostItem.estimated_yearly__drug_planPremium_total,
     "preferred": matchingCostItem.preferred,
     "mail_order": matchingCostItem.mail_order,
     "ltc": matchingCostItem.ltc,

@@ -167,7 +167,7 @@
                 <tr>
                   <td scope="row">Total drug + Premium cost (for the rest of {{effYear}})</td>
                   <td *ngFor="let drucost of drugcosts">
-                    ${{ drucost.estimated_yearly_total | number:'1.2-2' }}
+                    ${{ drucost.estimated_yearly__drug_planPremium_total | number:'1.2-2' }}
                   </td>
                 </tr>
 
