@@ -160,7 +160,10 @@ export class AddDrugComponent implements OnInit {
       this.item = ret
       this.itemName = ret.name
       this.rxcui = ret.rxcui
-      if (!ret.is_generic) {
+      console.log('ret.is_generic', ret.is_generic)
+      
+      if (!ret.is_generic && ret.generic != null) {
+        console.log('ret.is_generic is true')
         this.dialog.open(this.generic, {width: 'auto'})
       }
       this.getDosageDetails()
