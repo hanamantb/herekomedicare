@@ -11,9 +11,12 @@
   width: 10%;
   height: 15px;
 }
-.map-img{
-  height: 75vh;
+.map-img {
   margin-top: 17%;
+  border-radius: 6px;
+}
+.map-img{
+    
 }
 
 .side-img{
