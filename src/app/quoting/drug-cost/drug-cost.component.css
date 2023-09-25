@@ -128,6 +128,9 @@ th h4{
     margin-bottom: 5px;
     font-weight: 500;
 }
+.mat-expansion-panel td, mat-expansion-panel th{
+    vertical-align: middle;
+}
 .d-cost-label {
   font-family: 'Merriweather', serif !important;
 }
