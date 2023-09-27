@@ -20,5 +20,8 @@ const detail = sessionStorage.getItem('plandetail')
       this.details = JSON.parse(detail);
     }
   }
+  closePlanDetails() {
+    window.close();
+  }
 
 }

@@ -155,3 +155,13 @@
 .pd-pharmacy button{
   border-radius: 2px;
 }
+.back-to-plans{
+    border-radius: 2px;
+    width: auto;
+}
+.back-to-plans mat-icon{
+    font-size: 17px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
