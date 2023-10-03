@@ -556,4 +556,22 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   
   }
+
+  packageSelection(event:any,plan:any,monthlypremium:any){
+    console.log('event packageSelection',event)
+    console.log('plan packageSelection',plan)
+    console.log('monthlypremium packageSelection',monthlypremium)
+    console.log('plan.monthlypremium',plan.monthlypremium)
+    let result: DoubleRange = plan.monthlypremium + 15.00;
+    plan.monthlypremium === result;
+    this.plans.forEach((element: any) => {
+      if(element.planID === plan.planID){
+        console.log('element.monthlypremium'+element.monthlypremium)
+        console.log('result'+result)
+        element.monthlypremium = '15.00'
+        console.log('after result element.monthlypremiu'+element.monthlypremium)
+      }
+    })
+     console.log('after package add',result)
+  }
 }
