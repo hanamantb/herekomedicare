@@ -139,7 +139,7 @@ export class ZipcodeQoutingComponent implements OnInit {
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
     sessionStorage.setItem('effectyear',currentYear.toString())
-    if (currentMonth > 10) {
+    if (currentMonth >= 10) {
       // If the current month is greater than October, show the div
       this.showDiv = true;
 
