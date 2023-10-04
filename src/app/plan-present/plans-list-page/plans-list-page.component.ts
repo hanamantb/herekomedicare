@@ -538,7 +538,7 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     // Extract the current year and month
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1; // January is 0, so we add 1
-    if (currentMonth > 10) {
+    if (currentMonth >= 10) {
       // If the current month is greater than October, show the div
       this.showDiv = true;
 
