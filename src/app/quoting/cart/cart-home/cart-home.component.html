@@ -60,13 +60,10 @@
       <app-email-proposal *ngIf="emailProposal"></app-email-proposal>
       <app-cart *ngIf="cartShow"></app-cart>
       <div class="d-flex mt-2 plan-info-strip">
-        <div class="col-4 p-2" style="background-color: #4b8bb2; color: white">
-          Medicare Advantage/Medicare Part D Plan
-        </div>
         <div class="col-5 p-2" style="background-color: white">
           {{zipcode}}
         </div>
-        <div class="col-3 d-flex p-2 justify-content-end" style="background-color: white;color: green">
+        <div class="col-7 d-flex p-2 justify-content-end" style="background-color: white;color: green">
           Effective date: {{ today | date:'dd MMMM yyyy'  }}
         </div>
       </div>
