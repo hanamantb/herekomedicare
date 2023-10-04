@@ -14,6 +14,16 @@ export class PlanDetailsComponent implements OnInit {
   drugDeductible:any
   keyBenefits:any=[];
   keyBenefitValue:any
+  primaryCareVisit:any
+  specialistVisit:any
+  preventiveCare:any
+  officeVisits:any=[];
+  officeVisitValue:any
+  benifitAmbulance:any
+  serviceUrgentCare:any
+  emergencyCareCost:any
+  emergencyService:any=[];
+  emergencyServiceValue:any
   constructor(private route: Router) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
@@ -41,6 +51,32 @@ const detail = sessionStorage.getItem('plandetail')
         }
         if(value.apiParameter === 'maximum_oopc'){
           this.maxOOP = value.displayValue
+        }
+    })
+
+    //office visits
+    let officeVisits:[];
+    officeVisits = this.details.attributes['Office_Visits']
+    console.log(officeVisits,'officeVisits')
+    for(const ov of officeVisits){
+      this.officeVisitValue = ov;
+      let array: any = {
+        "apiParameter":this.officeVisitValue.apiParameter,
+        "displayValue":this.officeVisitValue.displayValue,
+        "attributeName":this.officeVisitValue.attributeName
+      }
+      this.officeVisits.push(array);      
+    }
+    console.log('this.officeVisits',this.officeVisits)
+    this.officeVisits.forEach((value:any) => {
+        if(value.apiParameter === 'primary_doctor_visit_cost'){
+          this.primaryCareVisit = value.displayValue
+        }
+        if(value.apiParameter === 'specialist_doctor_visit_cost'){
+          this.specialistVisit = value.displayValue
+        }
+        if(value.apiParameter === 'BENEFIT_PREVENTIVE_CARE'){
+          this.preventiveCare = value.displayValue
         }
     })
   }
