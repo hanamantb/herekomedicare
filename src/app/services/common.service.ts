@@ -19,11 +19,11 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.zipCode, {zipcode}, '');
   }
 
-  public drugByLetter(letter: any, year = "2023"): Observable<any> {
+  public drugByLetter(letter: any, year: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.drugByLetter, {letter, year}, '');
   }
 
-  public searchDrug(name: any, year = "2023"): Observable<any> {
+  public searchDrug(name: any, year: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.searchDrug, {name, year}, '');
   }
 
@@ -31,12 +31,12 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.searchPharmacy, {zipcode, radius_miles, page, count, address}, '');
   }
 
-  public drugDosage(rxcui: any, year = "2023"): Observable<any> {
+  public drugDosage(rxcui: any, year: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.drugDosage, {year, rxcui}, '');
   }
 
   public searchPlans(searchPlanReqBody: any, plan_type: any, snp_type: any, zip: any, fips: any,
-                     page: any, isDrugAdded = true, star_rating = '6', year = "2023", organization_name = '',
+    year: any,page: any, isDrugAdded = true, star_rating = '6', organization_name = '',
                      plan_category_filter = [], sort_order = "ANNUAL_TOTAL", vision_coverage = true,
                      dental_coverage = true, hearing_coverage = true, transportation = true,
                      silver_sneakers = true

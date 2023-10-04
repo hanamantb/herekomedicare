@@ -76,6 +76,7 @@ export class AddDrugComponent implements OnInit {
       name: 'Every 12 months',
       values: 'FREQUENCY_360_DAYS'
     }]
+  effYear: any;
 
   constructor(private route: Router, public dialog: MatDialog,
               private offcanvasService: NgbOffcanvas,
@@ -114,7 +115,8 @@ export class AddDrugComponent implements OnInit {
     }
     console.log('drugsArray-length', drugsArray.length)
     console.log('drugsArray', this.rowData)
-
+    this.effYear = sessionStorage.getItem('effectyear')
+    console.log('this.effYear',this.effYear)
   }
 
   colDef5 = function () {
@@ -272,7 +274,7 @@ export class AddDrugComponent implements OnInit {
 
   getDrugs(event: any) {
     console.log(event)
-    this.commonservice.searchDrug(event.target.value).subscribe((response) => {
+    this.commonservice.searchDrug(event.target.value,this.effYear).subscribe((response) => {
       this.drugs = response.data.drugs
       console.log(response)
     })
@@ -313,7 +315,7 @@ export class AddDrugComponent implements OnInit {
     this.drugForm.patchValue({
       frequency: "Every month"
     })
-    this.commonservice.drugDosage(this.rxcui).subscribe((response) => {
+    this.commonservice.drugDosage(this.rxcui,this.effYear).subscribe((response) => {
       this.dosagesDetails = response.data
       console.log('getDosageDetails', response)
       const distinctValues = Array.from(new Set(this.dosagesDetails.map((item: any) => item)));

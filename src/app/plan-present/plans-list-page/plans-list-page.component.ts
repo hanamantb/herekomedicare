@@ -34,7 +34,7 @@ export class PlansListPageComponent implements OnInit {
   couties: any
   fips: any
   lis: any
-  effYear: any = '2023'
+  effYear: any
   drugsArray: any=[]
   showDiv: any = false
   page: any = 0;
@@ -238,6 +238,8 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     const drugs = sessionStorage.getItem('drugs')
     const npis = sessionStorage.getItem('pharmacies')
     const lis = sessionStorage.getItem('lis')
+    this.effYear = sessionStorage.getItem('effectyear')
+    console.log('this.effYear',this.effYear)
     let npiArray: any[] = [];
     let drugsArray: any[] = [];   
     if (drugs) {
@@ -266,9 +268,9 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     if (this.drugsArray.length === 0) {
       isDrugAdded = false
     }
-
+    console.log('this.effYear plan list',this.effYear)
     this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
-      fips, page, isDrugAdded, this.starRating, this.effYear, this.filterCarrier,
+      fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
       this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
       this.silver_snekers).subscribe((response) => {
 
@@ -576,6 +578,7 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
           console.log('result false'+finalMonthlyPremium)
       }
     }
-    })   
+    })
+   
   }
 }

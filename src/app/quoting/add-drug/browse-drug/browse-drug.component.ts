@@ -12,6 +12,7 @@ export class BrowseDrugComponent implements OnInit {
   alphabets: string[] = [];
   items:any = [];
   selectedItem:any = [];
+  effYear: any
   itemName=''
   constructor(private commonservice:CommonService,private dialog:MatDialog,
               private dialogRef: MatDialogRef<BrowseDrugComponent>,
@@ -25,6 +26,8 @@ export class BrowseDrugComponent implements OnInit {
 
   ngOnInit(): void {
 this.IntialdrugByAlphabet()
+this.effYear = sessionStorage.getItem('effectyear')
+    console.log('this.effYear',this.effYear)
   }
 
   toggleItemSelection(item: any) {
@@ -45,7 +48,7 @@ this.dialogRef.close(this.selectedItem)
 
   drugByAlphabet(event:any) {
     console.log('workss',event.target.value)
-    this.commonservice.drugByLetter(event.target.value).subscribe((response)=>{
+    this.commonservice.drugByLetter(event.target.value,this.effYear).subscribe((response)=>{
       this.items = response.data.drugs
       console.log('drugs',response)
       this.selectedItem =[]
@@ -53,7 +56,7 @@ this.dialogRef.close(this.selectedItem)
   }
 
   IntialdrugByAlphabet() {
-    this.commonservice.drugByLetter('A').subscribe((response)=>{
+    this.commonservice.drugByLetter('A',this.effYear).subscribe((response)=>{
       this.items = response.data.drugs
     })
   }

@@ -146,7 +146,14 @@ export class ZipcodeQoutingComponent implements OnInit {
       // Calculate the next year
       this.currentYear = currentYear;
       this.nextYear = currentYear + 1;
+      sessionStorage.setItem('effectyear',this.nextYear.toString())
+    }else{
+      sessionStorage.setItem('effectyear',this.currentYear.toString())
     }
+  }
+  handleCheckboxClick(year:any){
+    sessionStorage.setItem('effectyear',year)
+    console.log('effectyear',year)
   }
 
 }

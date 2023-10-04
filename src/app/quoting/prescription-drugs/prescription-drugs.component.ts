@@ -56,6 +56,7 @@ export class PrescriptionDrugsComponent implements OnInit {
       values: 'FREQUENCY_360_DAYS'
     }]
   selected: boolean = false;
+  effYear: any;
 
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -87,6 +88,8 @@ export class PrescriptionDrugsComponent implements OnInit {
     this.lis = sessionStorage.getItem('lis')
     this.zipcode += ' ' + sessionStorage.getItem('countie')
     console.log('lis', this.lis)
+    this.effYear = sessionStorage.getItem('effectyear')
+    console.log('this.effYear',this.effYear)
     this.sharedService.benefitcheck$.subscribe((value: any) => {
       this.benefitChange(value)
     });
@@ -150,6 +153,8 @@ export class PrescriptionDrugsComponent implements OnInit {
     const drugs = sessionStorage.getItem('drugs')
     const npis = sessionStorage.getItem('pharmacies')
     const lis = sessionStorage.getItem('lis')
+    this.effYear = sessionStorage.getItem('effectyear')
+    console.log('this.effYear',this.effYear)
     let npiArray: any[] = [];
     let drugsArray: any[] = [];
     if (npis) {
@@ -174,7 +179,8 @@ export class PrescriptionDrugsComponent implements OnInit {
       "SNP_TYPE_DUAL_ELIGIBLE",
       "SNP_TYPE_INSTITUTIONAL"
     ]
-    this.commonservice.searchPlans(searchPlanReqBody, plan_type, snp_type, zip, fips, page).subscribe((response) => {
+    console.log('this.effYear befor searchPlans',this.effYear)
+    this.commonservice.searchPlans(searchPlanReqBody, plan_type, snp_type, zip, fips,this.effYear, page).subscribe((response) => {
       this.response = response.data
       sessionStorage.setItem('planResponse', JSON.stringify(this.response))
       const resp = response.data.plans

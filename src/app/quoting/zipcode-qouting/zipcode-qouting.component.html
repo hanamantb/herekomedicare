@@ -81,8 +81,8 @@
           <!--          <mat-icon style="color: #4b8bb2" matTooltip="">info_outlined</mat-icon>-->
         </div>
         <div class=" col-4 mt-2 d-flex  justify-content-start">
-          <input type="radio" name="optradio" checked class="seeplan">{{nextYear}}
-          <input type="radio" name="optradio" class="seeplan ms-4">{{currentYear}}
+          <input type="radio" name="optradio" checked class="seeplan" (change)="handleCheckboxClick(nextYear)">{{nextYear}}
+          <input type="radio" name="optradio" class="seeplan ms-4" (change)="handleCheckboxClick(currentYear)">{{currentYear}}
         </div>
       </div>
 
