@@ -165,12 +165,12 @@
             <div class="card p-2">
               <div class="card-title">
                 <h2 class="premium-title" style="text-align: right">Monthly Premium</h2>
+                <h2 class="monthly-premium text-end">${{plan.monthlypremium}}</h2>
               </div>
-              <div class="p-2 justify-content-end" style="text-align: end">
-                <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
-                <p>Orginal Rate:</p>
+              <div class="p-2 justify-content-end" style="text-align: end" *ngIf="plan.planType !== 'MA'">
+                <!--<p>Orginal Rate:</p>
                 <h2 class="original-rate">${{plan.orginalRate}}</h2>
-                <a href="">About this rate</a><br>
+                <a href="">About this rate</a>-->
                 <p class="estimated-cost-label">Estimated Annual Cost<small>(Drug Cost + Premium)</small></p>
                 <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
                 <a href="/drug-cost">Drug Cost Details</a><br>
