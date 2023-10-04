@@ -556,4 +556,26 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   
   }
+
+  packageSelection(event:any,plan:any,monthlypremium:any){
+    const stringWithoutFirstLetter = monthlypremium.slice(1);
+    console.log('stringWithoutFirstLetter',stringWithoutFirstLetter);
+    const packageValue = parseFloat(stringWithoutFirstLetter);
+    console.log('packageValue',packageValue);
+    const monthlyPremiumParseValue = parseFloat(plan.monthlypremium);
+    console.log('monthlyPremiumParseValue',monthlyPremiumParseValue)
+    this.plans.forEach((element: any) => {
+      if(element.planID === plan.planID){
+        if(event.target.checked === true){
+          const finalMonthlyPremium = packageValue + monthlyPremiumParseValue;
+          console.log('finalMonthlyPremium',finalMonthlyPremium)
+        element.monthlypremium = finalMonthlyPremium.toString();        
+      }else{       
+        const finalMonthlyPremium = monthlyPremiumParseValue - packageValue;
+          element.monthlypremium = finalMonthlyPremium.toString();
+          console.log('result false'+finalMonthlyPremium)
+      }
+    }
+    })   
+  }
 }
