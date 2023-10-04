@@ -79,6 +79,32 @@ const detail = sessionStorage.getItem('plandetail')
           this.preventiveCare = value.displayValue
         }
     })
+    //emergency services
+    //office visits
+    let emergencyServices:[];
+    emergencyServices = this.details.attributes['Emergency_Services']
+    console.log(emergencyServices,'emergencyServices')
+    for(const es of emergencyServices){
+      this.emergencyServiceValue = es;
+      let array: any = {
+        "apiParameter":this.emergencyServiceValue.apiParameter,
+        "displayValue":this.emergencyServiceValue.displayValue,
+        "attributeName":this.emergencyServiceValue.attributeName
+      }
+      this.emergencyService.push(array);      
+    }
+    console.log('this.emergencyService',this.emergencyService)
+    this.emergencyService.forEach((value:any) => {
+        if(value.apiParameter === 'BENEFIT_AMBULANCE'){
+          this.benifitAmbulance = value.displayValue
+        }
+        if(value.apiParameter === 'SERVICE_URGENT_CARE'){
+          this.serviceUrgentCare = value.displayValue
+        }
+        if(value.apiParameter === 'emergency_care_cost'){
+          this.emergencyCareCost = value.displayValue
+        }
+    })
   }
   closePlanDetails() {
     window.close();
