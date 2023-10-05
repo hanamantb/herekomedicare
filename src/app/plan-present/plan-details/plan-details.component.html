@@ -213,7 +213,28 @@
               <tr>
                 <th colspan="3">Medical Equipment/Supplies</th>
               </tr>
+              <tr *ngFor="let medicalEquipment of  plan?.attributes['Medical_Equipment/Supplies']">
+                <td>{{medicalEquipment.attributeName}}</td>
+                <td>{{medicalEquipment.displayValue}}</td>
+                <td>
+                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
+                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                </td>
+              </tr> 
               <tr>
+                <th colspan="3">Mental Health Services</th>
+              </tr>  
+              <tr *ngFor="let mentalHealth of  plan?.attributes['Mental_Health_Services']">
+                <td>{{mentalHealth.attributeName}}</td>
+                <td>{{mentalHealth.displayValue}}</td>
+                <td>
+                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
+                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                </td>
+              </tr>
+               <!-- <tr>
                 <td>Durable Medical Equipment</td>
                 <td>0-20% coinsurance per item</td>
                 <td>
@@ -278,7 +299,7 @@
                     Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
@@ -349,7 +370,7 @@
                     Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
                 </td>
-              </tr>
+              </tr> 
             </table>
           </div>
         </div>
