@@ -308,69 +308,15 @@
           <div class="col-12">
             <h3>OTHER SERVICES</h3>
             <table>
-              <tr>
-                <td>Foot Exams and Treatment</td>
-                <td>0-20% coinsurance per item</td>
+              <tr *ngFor="let os of  plan?.attributes['Other_Services']">
+                <td>{{os.attributeName}}</td>
+                <td>{{os.displayValue}}</td>
                 <td>
                   <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
                     Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
                 </td>
-              </tr>
-              <tr>
-                <td>Routine Foot Care</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Wellness Programs</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy with a psychiatrist</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient individual therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr> 
+              </tr>             
             </table>
           </div>
         </div>
