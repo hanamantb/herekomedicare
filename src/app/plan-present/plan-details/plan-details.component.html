@@ -333,46 +333,10 @@
         </mat-expansion-panel-header>
         <div class="col-12">
           <table>
-            <tr>
-              <th colspan="1">Periodic Oral Evaluation</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Prophylaxis</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Fluoride Treatments</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Dental X-ray(s)</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Non Surgical / General Services / Anesthesia</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Lab and Other Diagnostic Tests</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Restorations</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Endodontics</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Periodontics</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Extractions</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
+            <tr *ngFor="let ds of plan?.attributes['Dental_Services']">
+              <th colspan="1">{{ds.attributeName}}</th>
+              <td colspan="2">{{ds.displayValue}}</td>
+            </tr>           
           </table>
         </div>
       </mat-expansion-panel>
