@@ -468,38 +468,10 @@
             <div class="col-12 mb-4">
               <h3>Catastrophic Coverage Phase</h3>
               <table>
-                <tr>
-                  <th colspan="1">Generic Drugs</th>
-                  <td colspan="2">$4.15 copay or 5% (whichever costs more)</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Brand-Name Drugs</th>
-                  <td colspan="2">$10.35 copay or 5% (whichever costs more)</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let cc of plan?.attributes['Catastrophic Coverage Phase']">
+                  <th colspan="1">{{cc.attributeName}}</th>
+                  <td colspan="2">{{cc.displayValue}}</td>
+                </tr>                
               </table>
             </div>
 
