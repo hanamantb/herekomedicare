@@ -11,7 +11,7 @@
           </div>
           <h1>{{plan?.planName}}</h1>
           <p><strong>Plan type:</strong><span>{{planType}}</span></p>
-          <p><strong>Plan id:</strong><span>{{planIdDisplay}}</span></p>
+          <p><strong>Plan id:</strong><span>{{planId}}</span></p>
           <!--<div class="row">
             <div class="col-12">
               <p>
@@ -90,25 +90,10 @@
         <div class="col-12">
           <h3>Contact Information</h3>
           <table>
-            <tr>
-              <th colspan="1">Website</th>
-              <td colspan="2"><a href="https://shop.simplyhealthcareplans.com/medicare/" target="_blank">Go to plan website</a></td>
-            </tr>
-            <tr>
-              <th colspan="1">Address</th>
-              <td colspan="2"><p>	
-                  9250 W Flagler Street<br />
-                  Suite 600<br />
-                  Miami, FL 33174</p></td>
-            </tr>
-            <tr>
-              <th colspan="1">Members</th>
-              <td colspan="2"><a href="tel:1-877-577-0115">1-877-577-0115</a></td>
-            </tr>
-            <tr>
-              <th colspan="1">Non-members</th>
-              <td colspan="2"><a href="tel:1-855-679-0556">1-855-679-0556</a></td>
-            </tr>
+            <tr *ngFor="let contact of  plan?.attributes['CONTACT INFORMATION']">
+              <th colspan="1"> {{contact.attributeName}}</th>              
+              <td colspan="2"><a href={{contact.displayValue}} target="_blank">{{contact.displayValue}}</a></td>
+            </tr>           
           </table>
         </div>
       </mat-expansion-panel>
