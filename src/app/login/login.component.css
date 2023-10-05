@@ -10,7 +10,7 @@
   padding-bottom: 120px;
 }
 .login h2{
-    font-weight: 500;
+    font-weight: 600;
     font-size: 26px;
     color: #252525
 }
@@ -25,5 +25,15 @@ button:hover{
     background-color: #3f51b5;
   border-color: #3f51b5;
   color: #fff;
+}
+.login-main-wrapper {
+  background: url(../../assets/login-bg.jpg) no-repeat fixed top left;
+  background-attachment: fixed;
+  min-height: calc(100vh - 78px);
+  background-size: 100% auto;
+}
+.login-form-container{
+    max-width: 480px;
+    min-height: 320px;
 }
 

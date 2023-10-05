@@ -29,11 +29,11 @@ mat-select {
 p{
   font-size:13px;
 }
-p, button, select, textarea, input, .ag-theme-alpine {
+p, button, select, textarea, input, .ag-theme-alpine, h2, h3, h4, h5, h6 {
   font-family: Lato,sans-serif !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 { 
   font-family: 'Merriweather', serif !important;
 }
 .ag-theme-alpine {
