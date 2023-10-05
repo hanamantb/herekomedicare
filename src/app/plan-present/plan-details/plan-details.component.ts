@@ -24,6 +24,11 @@ export class PlanDetailsComponent implements OnInit {
   emergencyCareCost:any
   emergencyService:any=[];
   emergencyServiceValue:any
+  skilledNursing:any
+  diagonaticTests:any
+  facilityFees:any
+  outPatientService:any=[];
+  outPatientServiceValue:any
   constructor(private route: Router) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
@@ -80,7 +85,6 @@ const detail = sessionStorage.getItem('plandetail')
         }
     })
     //emergency services
-    //office visits
     let emergencyServices:[];
     emergencyServices = this.details.attributes['Emergency_Services']
     console.log(emergencyServices,'emergencyServices')
@@ -105,7 +109,33 @@ const detail = sessionStorage.getItem('plandetail')
           this.emergencyCareCost = value.displayValue
         }
     })
+     //outpatient service
+     let outPatientServices:[];
+     outPatientServices = this.details.attributes['Outpatient_Services']
+     console.log(outPatientServices,'outPatientServices')
+     for(const os of outPatientServices){
+       this.outPatientServiceValue = os;
+       let array: any = {
+         "apiParameter":this.outPatientServiceValue.apiParameter,
+         "displayValue":this.outPatientServiceValue.displayValue,
+         "attributeName":this.outPatientServiceValue.attributeName
+       }
+       this.outPatientService.push(array);      
+     }
+     console.log('this.outPatientService',this.outPatientService)
+     this.outPatientService.forEach((value:any) => {
+         if(value.apiParameter === 'BENEFIT_OUTPATIENT_HOSPITAL'){
+           this.facilityFees = value.displayValue
+         }
+         if(value.apiParameter === 'SERVICE_DIAGNOSTIC_TESTS'){
+           this.diagonaticTests = value.displayValue
+         }
+         if(value.apiParameter === 'BENEFIT_SKILLED_NURSING_FACILITY'){
+           this.skilledNursing = value.displayValue
+         }
+     })
   }
+  
   closePlanDetails() {
     window.close();
   }
