@@ -399,32 +399,12 @@
               </table>
             </div>
             <div class="col-12 mb-4">
-              <h3>Preferred Retail Pharmacies - Initial Coverage</h3>
+              <h3>Preferred Mail Order Pharmacies - Initial Coverage</h3>
               <table>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $35.00 copay | (90 Days Supply) $105.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $95.00 copay | (90 Days Supply) $285.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2">(30 Days Supply) 33%</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Mail Order Pharmacies - Initial Coverage']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>               
               </table>
             </div>
             <div class="col-12 mb-4">
