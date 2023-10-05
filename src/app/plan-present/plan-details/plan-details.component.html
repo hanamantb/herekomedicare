@@ -147,8 +147,8 @@
               <tr>
                 <th>Inpatient Facility Fees</th>
               </tr>
-              <tr>
-                <td>$140 per day for days 1 through 6; $0 per day for days 7 through 90</td>
+              <tr *ngFor="let ip of plan?.attributes['Inpatient_Services']">
+                <td>{{ip.displayValue}}</td>
               </tr>
             </table>
           </div>
