@@ -374,28 +374,12 @@
           </table>
          </div>
             <div class="col-12 mb-4">
+              <h3>Medicare PartB drugs</h3>
               <table>
-                <tr>
-                  <th colspan="3">Medicare PartB drugs</th>
-                </tr>
-                <tr>
-                  <td>Chemotherapy</td>
-                  <td>0-20% coinsurance per item</td>
-                  <td>
-                    <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                      Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Other Part B drugs</td>
-                  <td>0-20% coinsurance per item</td>
-                  <td>
-                    <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                      Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                    </button>
-                  </td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Medicare_PartB_drugs']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>               
               </table>
             </div>
             <div class="col-12 mb-4">
@@ -410,7 +394,7 @@
             <div class="col-12 mb-4">
               <h3>Preferred Retail Pharmacies - Initial Coverage</h3>
               <table>
-                <tr *ngFor="let prpic of plan?.attributes['Preferred Mail Order Pharmacies - Initial Coverage']">
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Retail Pharmacies - Initial Coverage']">
                   <th colspan="1">{{prpic.attributeName}}</th>
                   <td colspan="2">{{prpic.displayValue}}</td>
                 </tr>                
@@ -428,32 +412,13 @@
             </div>
 
             <div class="col-12 mb-4">
-              <h3>Preferred Mail Order Pharmacies - Initial Coverage</h3>
+              <h3>Preferred Mail Order Pharmacies - Gap Coverage
+              </h3>
               <table>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $35.00 copay | (90 Days Supply) $105.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $95.00 copay | (90 Days Supply) $285.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2">	(30 Days Supply) 33%</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Mail Order Pharmacies - Gap Coverage']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>                
               </table>
             </div>
       </mat-expansion-panel>
