@@ -10,9 +10,9 @@ import { CommonService } from 'src/app/services/common.service';
 export class PlanDetailsComponent implements OnInit {
   contractId:any
   planId:any
+  planIdDisplay:any
   segmentId:any
   panelOpenState = false;
-  details:any
   deductible:any
   maxOOP:any
   drugDeductible:any
@@ -33,19 +33,27 @@ export class PlanDetailsComponent implements OnInit {
   facilityFees:any
   outPatientService:any=[];
   outPatientServiceValue:any  
-  planDetails:any
+  plan:any
+  logo:any
+  planType:any
+  drugPlanDeductible: any;
   constructor(private route: Router,private commonservice: CommonService,) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
 
-  ngOnInit(): void {
-   const detail = sessionStorage.getItem('plandetail')
-    if (detail) {
-      this.details = JSON.parse(detail);
-    }
+  ngOnInit(): void {   
     const planId = sessionStorage.getItem('planID')
-    console.log('planId',planId)
-    if(planId){
+    this.planIdDisplay =planId
+    const logo = sessionStorage.getItem('logo')
+    if(logo){
+      this.logo = logo;
+    }
+    const planType = sessionStorage.getItem('planType')
+    if(planType){
+      this.planType = planType;
+    }
+    console.log('this.planId',this.planId)
+    if(planId){      
     const splitArray: string[] = planId.split('-');
     console.log('splitArray',splitArray)
     splitArray.forEach((element, index) => {
@@ -66,13 +74,10 @@ export class PlanDetailsComponent implements OnInit {
       segment_id:this.segmentId
     }
     this.commonservice.planDetails(lis,urlParam).subscribe((response) => {
-      this.planDetails =response.data
-      console.log('plandetails api',this.planDetails)
-    })
-    }
-    console.log('this.details',this.details)
-    let keyBenefits:[];
-    keyBenefits = this.details.attributes['Key_Benefits']
+      this.plan =response.data.plandetail
+      console.log('plandetails api',this.plan)
+      let keyBenefits:[];
+    keyBenefits = this.plan.attributes['Key_Benefits']
     console.log(keyBenefits,'keyBenefits')
     for(const kb of keyBenefits){
       this.keyBenefitValue = kb;
@@ -89,12 +94,16 @@ export class PlanDetailsComponent implements OnInit {
         }
         if(value.apiParameter === 'maximum_oopc'){
           this.maxOOP = value.displayValue
+          console.log('this.maxOOP',this.maxOOP)
+        }
+        if(value.apiParameter === 'drug_plan_deductible'){
+          this.drugPlanDeductible = value.displayValue
         }
     })
 
     //office visits
     let officeVisits:[];
-    officeVisits = this.details.attributes['Office_Visits']
+    officeVisits = this.plan.attributes['Office_Visits']
     console.log(officeVisits,'officeVisits')
     for(const ov of officeVisits){
       this.officeVisitValue = ov;
@@ -119,7 +128,7 @@ export class PlanDetailsComponent implements OnInit {
     })
     //emergency services
     let emergencyServices:[];
-    emergencyServices = this.details.attributes['Emergency_Services']
+    emergencyServices = this.plan.attributes['Emergency_Services']
     console.log(emergencyServices,'emergencyServices')
     for(const es of emergencyServices){
       this.emergencyServiceValue = es;
@@ -144,7 +153,7 @@ export class PlanDetailsComponent implements OnInit {
     })
      //outpatient service
      let outPatientServices:[];
-     outPatientServices = this.details.attributes['Outpatient_Services']
+     outPatientServices = this.plan.attributes['Outpatient_Services']
      console.log(outPatientServices,'outPatientServices')
      for(const os of outPatientServices){
        this.outPatientServiceValue = os;
@@ -167,6 +176,9 @@ export class PlanDetailsComponent implements OnInit {
            this.skilledNursing = value.displayValue
          }
      })
+    })
+    }
+    
   }
   
   closePlanDetails() {
