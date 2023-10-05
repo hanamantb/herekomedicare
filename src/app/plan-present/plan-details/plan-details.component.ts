@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-plan-details',
@@ -7,6 +8,9 @@ import {ActivatedRoute, Router} from "@angular/router";
   styleUrls: ['./plan-details.component.css']
 })
 export class PlanDetailsComponent implements OnInit {
+  contractId:any
+  planId:any
+  segmentId:any
   panelOpenState = false;
   details:any
   deductible:any
@@ -28,16 +32,45 @@ export class PlanDetailsComponent implements OnInit {
   diagonaticTests:any
   facilityFees:any
   outPatientService:any=[];
-  outPatientServiceValue:any
-  constructor(private route: Router) {
+  outPatientServiceValue:any  
+  planDetails:any
+  constructor(private route: Router,private commonservice: CommonService,) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
 
   ngOnInit(): void {
-const detail = sessionStorage.getItem('plandetail')
+   const detail = sessionStorage.getItem('plandetail')
     if (detail) {
       this.details = JSON.parse(detail);
     }
+    const planId = sessionStorage.getItem('planID')
+    console.log('planId',planId)
+    if(planId){
+    const splitArray: string[] = planId.split('-');
+    console.log('splitArray',splitArray)
+    splitArray.forEach((element, index) => {
+      if(index === 0){
+        this.contractId =element
+      }else if(index === 1){
+        this.planId =element
+      }else if(index === 2){
+        this.segmentId =element
+      }
+    });
+    const lis = sessionStorage.getItem('lis')
+    const year = sessionStorage.getItem('effectyear')
+    const urlParam  = {
+      year:year,
+      contract_id:this.contractId,
+      plan_id:this.planId,
+      segment_id:this.segmentId
+    }
+    this.commonservice.planDetails(lis,urlParam).subscribe((response) => {
+      this.planDetails =response.data
+      console.log('plandetails api',this.planDetails)
+    })
+    }
+    console.log('this.details',this.details)
     let keyBenefits:[];
     keyBenefits = this.details.attributes['Key_Benefits']
     console.log(keyBenefits,'keyBenefits')
