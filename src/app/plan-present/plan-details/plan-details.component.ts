@@ -32,7 +32,12 @@ export class PlanDetailsComponent implements OnInit {
   diagonaticTests:any
   facilityFees:any
   outPatientService:any=[];
-  outPatientServiceValue:any  
+  outPatientServiceValue:any 
+  partBPremiumReduction:any
+  standardPartBPremium:any
+  partBPremium:any
+  partB:any=[];
+  partBValue:any 
   plan:any
   logo:any
   planType:any
@@ -174,6 +179,32 @@ export class PlanDetailsComponent implements OnInit {
          }
          if(value.apiParameter === 'BENEFIT_SKILLED_NURSING_FACILITY'){
            this.skilledNursing = value.displayValue
+         }
+     })
+
+     //outpatient service
+     let partB:[];
+     partB = this.plan.attributes['Part_B']
+     console.log(partB,'partB')
+     for(const pb of partB){
+       this.partBValue = pb;
+       let array: any = {
+         "apiParameter":this.partBValue.apiParameter,
+         "displayValue":this.partBValue.displayValue,
+         "attributeName":this.partBValue.attributeName
+       }
+       this.partB.push(array);      
+     }
+     console.log('this.partB',this.partB)
+     this.partB.forEach((value:any) => {
+         if(value.apiParameter === 'STD_PARTB_PREMIUM'){
+           this.standardPartBPremium = value.displayValue
+         }
+         if(value.apiParameter === 'PARTB_PREMIUM'){
+           this.partBPremium = value.displayValue
+         }
+         if(value.apiParameter === 'partb_premium_reduction'){
+           this.partBPremiumReduction = value.displayValue
          }
      })
     })
