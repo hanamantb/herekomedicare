@@ -15,6 +15,7 @@ export class DrugCostComponent implements OnInit {
   drugInfoList:any;
   retailCost:number = 0;
   costAfterDeductible:number = 0;
+  costBeforeDeductible:number = 0;
   costInCoverageGap:number = 0;
   costAfterCoverageGap:number = 0;
   drugcosts:any=[];
@@ -147,6 +148,7 @@ let array:any=
     "ltc": matchingCostItem.ltc,
     "name":pharm.name,
     "retailCost": matchingCostItem.retailCost,
+    "costBeforeDeductible": matchingCostItem.costBeforeDeductible, //added this for cost before deductible
     "costAfterCoverageGap": matchingCostItem.costAfterCoverageGap,
     "costAfterDeductible": matchingCostItem.costAfterDeductible,
     "costInCoverageGap": matchingCostItem.costInCoverageGap
@@ -189,6 +191,7 @@ let array:any=
     this.costAfterCoverageGap = drugcost.costAfterCoverageGap;
     this.costInCoverageGap = drugcost.costInCoverageGap;
     this.costAfterDeductible = drugcost.costAfterDeductible;
+    this.costBeforeDeductible = drugcost.costBeforeDeductible; //added this for cost before deductible
   }
   updateApidrugs(data: any) {
     console.log('data-----------', data)

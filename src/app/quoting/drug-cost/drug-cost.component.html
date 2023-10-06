@@ -241,7 +241,7 @@
                 <tr *ngFor="let drug of drucost.drug_costs">
                   <th scope="row">{{ drugNameGetter(drug.ndc) }}</th>
                   <td>${{drug.full_cost | number:'1.2-2'}}</td>
-                  <td>$0.00</td>
+                  <td>${{drug.deductible_cost}}</td>
                   <td>
                     <p *ngIf="drug.has_deductible">${{drug.deductible_cost | number:'1.2-2'}}</p>
                     <p *ngIf="!drug.has_deductible">${{drug.initial_cost | number:'1.2-2'}}</p>
@@ -252,7 +252,7 @@
                 <tr class="monthly-totals-tr">
                   <th scope="row">Monthly totals</th>
                   <td><p>${{retailCost | number:'1.2-2'}}</p></td>
-                  <td><p>$0.00</p></td>
+                  <td><p>${{costBeforeDeductible | number:'1.2-2'}}</p></td>
                   <td><p>${{costAfterDeductible | number:'1.2-2'}}</p></td>
                   <td><p>${{costInCoverageGap | number:'1.2-2'}}</p></td>
                   <td><p>${{costAfterCoverageGap | number:'1.2-2'}}</p></td>
