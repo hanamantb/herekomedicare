@@ -1141,135 +1141,17 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
+                <tr *ngFor="let dp of plan?.attributes['DRUG PLAN CUSTOMER SERVICE']">
                   <th colspan="1">
-                    Availability of TTY services and foreign language interpretation when prospective members call the drug plan
+                    {{dp.attributeName}}
                   </th>
                   <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < dp.displayValue, 'half-filled': star === dp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Member complaints & changes in the drug plan's performance
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Complaints about the drug plan (more stars are better because it means fewer complaints)
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Improvement (if any) in the drug plan's performance
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Member experience with the drug plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members' rating of drug plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Ease of getting prescriptions filled when using the plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-             
+                </tr>                
               </table>
             </div>
 
@@ -1286,52 +1168,17 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
-                  <th colspan="1">Complaints about the health plan (more stars are better because it means fewer complaints)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let dp of plan?.attributes['DRUG PLAN CUSTOMER SERVICE']">
+                  <th colspan="1">
+                    {{dp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < dp.displayValue, 'half-filled': star === dp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Improvement (if any) in the health plan's performance</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
+                </tr>                
               </table>
             </div>
 
@@ -1347,110 +1194,19 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
+                <tr *ngFor="let ds of plan?.attributes['DRUG SAFETY & ACCURACY OF DRUG PRICING']">
                   <th colspan="1">
-                    Plan provides accurate drug pricing information for this website
+                    {{ds.attributeName}}
                   </th>
                   <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking diabetes medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking blood pressure medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking cholesterol medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members who had a pharmacist (or other health professional) help them understand and manage their medications
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    The plan makes sure members with diabetes take the most effective drugs to treat high cholesterol
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
-
+                </tr>                
               </table>
             </div>
-
           </mat-expansion-panel>
 
         </mat-expansion-panel>
