@@ -1115,13 +1115,10 @@
               <tr>
                 <th colspan="1">Summary rating of drug plan quality:</th>
                 <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
+                  <div class="d-flex align-items-center" *ngFor="let ds of  plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
                     </div>
                   </div>
                 </td>

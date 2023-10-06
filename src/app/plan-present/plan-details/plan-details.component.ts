@@ -42,6 +42,7 @@ export class PlanDetailsComponent implements OnInit {
   logo:any
   planType:any
   drugPlanDeductible: any;
+  stars: number[] = [0, 1, 2, 3, 4];
   constructor(private route: Router,private commonservice: CommonService,) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
