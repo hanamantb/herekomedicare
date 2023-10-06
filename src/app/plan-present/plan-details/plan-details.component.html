@@ -496,65 +496,21 @@
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <table class="mb-3">
-            <tr>
-              <th colspan="1">Breast cancer screening</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
+          <div class="col-12 mb-3">
+            <table>
+              <tr>
+                <th colspan="1">Summary rating of drug plan quality:</th>
+                <td colspan="2">
+                  <div class="d-flex align-items-center" *ngFor="let ds of  plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Colorectal cancer screening</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Yearly flu vaccine</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Monitoring physical activity</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-
+                </td>
+              </tr>
+            </table>
+          </div>  
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -1048,55 +1004,19 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
-                  <th colspan="1">Health plan makes timely decisions about appeals</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let hp of plan?.attributes['HEALTH PLAN CUSTOMER SERVICE']">
+                  <th colspan="1">
+                    {{hp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hp.displayValue, 'half-filled': star === hp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Fairness of the health plan's appeal decisions, based on an independent reviewer</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Availability of TTY services and foreign language interpretation when prospective members call the health plan</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
+                </tr>                
               </table>
             </div>
-
           </mat-expansion-panel>
 
         </mat-expansion-panel>
@@ -1123,13 +1043,8 @@
                   </div>
                 </td>
               </tr>
-
-
-
             </table>
-          </div>
-
-          
+          </div>          
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -1168,7 +1083,7 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr *ngFor="let dp of plan?.attributes['DRUG PLAN CUSTOMER SERVICE']">
+                <tr *ngFor="let dp of plan?.attributes['MEMBER COMPLAINTS & CHANGES IN THE HEALTH PLANS PERFORMANCE']">
                   <th colspan="1">
                     {{dp.attributeName}}
                   </th>
