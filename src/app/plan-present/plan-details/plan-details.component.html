@@ -478,21 +478,18 @@
         <div class="col-12 mb-3">
           <table>
             <tr>
-              <th colspan="1">Overall Rating	</th>
+              <th colspan="1">Overall Rating</th>
               <td colspan="2">
                 <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
+                  <div class="star-rating">
+                    <span *ngFor="let star of stars"
+                          [ngClass]="{'filled': star < overAllStarRating, 'half-filled': star === overAllStarRating - 0.5}"></span>
                   </div>
                 </div>
               </td>
             </tr>
           </table>
-        </div>
+        </div> 
         <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
@@ -504,19 +501,44 @@
           </mat-expansion-panel-header>
           <div class="col-12 mb-3">
             <table>
-              <tr>
-                <th colspan="1">Summary rating of drug plan quality:</th>
+              <tr *ngFor="let hps of plan?.attributes['HEALTH PLAN STAR RATINGS:']">
+                <th colspan="1">{{hps.attributeName}}</th>
                 <td colspan="2">
-                  <div class="d-flex align-items-center" *ngFor="let ds of  plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                  <div class="d-flex align-items-center">
                     <div class="star-rating">
                       <span *ngFor="let star of stars"
-                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
+                            [ngClass]="{'filled': star < hps.displayValue, 'half-filled': star === hps.displayValue - 0.5}"></span>
                     </div>
                   </div>
                 </td>
               </tr>
             </table>
-          </div>  
+          </div> 
+          <mat-expansion-panel (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false">
+<mat-expansion-panel-header>
+<mat-panel-title>
+Staying Healthy
+</mat-panel-title>
+<mat-panel-description>
+</mat-panel-description>
+</mat-expansion-panel-header>
+<div class="col-12 mb-4">
+<table>
+<tr *ngFor="let sh of plan?.attributes['STAYING HEALTHY: SCREENINGS, TESTS, & VACCINES']">
+<th colspan="1">
+{{sh.attributeName}}
+</th>
+<td colspan="1">
+<div class="star-rating">
+ <span *ngFor="let star of stars"
+       [ngClass]="{'filled': star < sh.displayValue, 'half-filled': star === sh.displayValue - 0.5}"></span>
+</div>
+</td>
+</tr>                
+</table>
+</div>
+</mat-expansion-panel> 
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -631,19 +653,19 @@
           </mat-expansion-panel-header>
           <div class="col-12 mb-3">
             <table>
-              <tr>
-                <th colspan="1">Summary rating of drug plan quality:</th>
+              <tr *ngFor="let dps of plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                <th colspan="1">{{dps.attributeName}}</th>
                 <td colspan="2">
-                  <div class="d-flex align-items-center" *ngFor="let ds of  plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                  <div class="d-flex align-items-center">
                     <div class="star-rating">
                       <span *ngFor="let star of stars"
-                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
+                            [ngClass]="{'filled': star < dps.displayValue, 'half-filled': star === dps.displayValue - 0.5}"></span>
                     </div>
                   </div>
                 </td>
               </tr>
             </table>
-          </div>          
+          </div>       
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>

@@ -43,6 +43,7 @@ export class PlanDetailsComponent implements OnInit {
   planType:any
   drugPlanDeductible: any;
   stars: number[] = [0, 1, 2, 3, 4];
+  overAllStarRating: any;
   constructor(private route: Router,private commonservice: CommonService,) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
@@ -104,6 +105,9 @@ export class PlanDetailsComponent implements OnInit {
         }
         if(value.apiParameter === 'drug_plan_deductible'){
           this.drugPlanDeductible = value.displayValue
+        }
+        if(value.apiParameter === 'rating'){
+          this.overAllStarRating = value.displayValue
         }
     })
 
