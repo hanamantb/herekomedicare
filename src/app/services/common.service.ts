@@ -100,6 +100,9 @@ export class CommonService {
   public drugCost(npis: any,prescriptions: any,lis: any, year: any,planID: any,monthlypremium: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.drugCost, {npis, prescriptions,lis,year,planID,monthlypremium}, '');
   }
+  public planDetails(lis: any,urlParam: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.planDetails, {lis, urlParam}, '');
+  }
   // public checkEmail(email: any): Observable<any> {
   //   let s = this.apiProvider.get(UrlConstants.checkEmail + email);
   //   console.log(s)

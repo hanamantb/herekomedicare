@@ -455,6 +455,9 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
 
   planDetail(plan: any) {
   sessionStorage.setItem('plandetail', JSON.stringify(plan));
+  sessionStorage.setItem('planID', plan.planID)
+  sessionStorage.setItem('logo', plan.logo)
+  sessionStorage.setItem('planType', plan.planType)
   const newWindow = window.open('/plan-detail', '_blank');
   if (newWindow) {
     newWindow.postMessage({ data: plan }, '*');

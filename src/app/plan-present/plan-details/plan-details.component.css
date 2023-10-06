@@ -165,3 +165,24 @@
     align-items: center;
     justify-content: center;
 }
+.star-rating {
+  font-size: 24px;
+}
+
+.star-rating span {
+  display: inline-block;
+  width: 24px;
+  height: 20px;
+  background-color: transparent;
+  background-image: url('../../../assets/empty.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.star-rating span.filled {
+  background-image: url('../../../assets/full.png');
+}
+
+.star-rating span.half-filled {
+  background-image: url('../../../assets/half.png');
+}

@@ -7,11 +7,11 @@
       <div class="row">
         <div class="col-sm-9">
           <div class="plan-logo mb-2">
-            <img src="data:image/png;base64,{{details.logo}}" alt="" style="width: 90%">
+            <img src="data:image/png;base64,{{logo}}" alt="" style="width: 90%">
           </div>
-          <h1>{{details.planName}}</h1>
-          <p><strong>Plan type:</strong><span>{{details.planType}}</span></p>
-          <p><strong>Plan id:</strong><span>{{details.planID}}</span></p>
+          <h1>{{plan?.planName}}</h1>
+          <p><strong>Plan type:</strong><span>{{planType}}</span></p>
+          <p><strong>Plan id:</strong><span>{{planIdDisplay}}</span></p>
           <!--<div class="row">
             <div class="col-12">
               <p>
@@ -38,11 +38,11 @@
       <div class="row">
         <div class="col-sm-4">
           <p>Total monthly premium</p>
-          <h3>${{details.monthlypremium}}</h3>
+          <h3>${{plan?.monthlypremium}}</h3>
         </div>
         <div class="col-sm-4">
           <p>Health deductible</p>
-          <h3>${{details.monthlypremium}}</h3>
+          <h3>${{plan?.monthlypremium}}</h3>
         </div>
         <div class="col-sm-4">
           <p>Primary doctor</p>
@@ -90,25 +90,10 @@
         <div class="col-12">
           <h3>Contact Information</h3>
           <table>
-            <tr>
-              <th colspan="1">Website</th>
-              <td colspan="2"><a href="https://shop.simplyhealthcareplans.com/medicare/" target="_blank">Go to plan website</a></td>
-            </tr>
-            <tr>
-              <th colspan="1">Address</th>
-              <td colspan="2"><p>	
-                  9250 W Flagler Street<br />
-                  Suite 600<br />
-                  Miami, FL 33174</p></td>
-            </tr>
-            <tr>
-              <th colspan="1">Members</th>
-              <td colspan="2"><a href="tel:1-877-577-0115">1-877-577-0115</a></td>
-            </tr>
-            <tr>
-              <th colspan="1">Non-members</th>
-              <td colspan="2"><a href="tel:1-855-679-0556">1-855-679-0556</a></td>
-            </tr>
+            <tr *ngFor="let contact of  plan?.attributes['CONTACT INFORMATION']">
+              <th colspan="1"> {{contact.attributeName}}</th>              
+              <td colspan="2"><a href={{contact.displayValue}} target="_blank">{{contact.displayValue}}</a></td>
+            </tr>           
           </table>
         </div>
       </mat-expansion-panel>
@@ -131,9 +116,9 @@
                 <th>Drug Deductible</th>
               </tr>
               <tr>
-                <td>$0</td>
-                <td>$3,700 In-network</td>
-                <td>$0</td>
+                <td>{{deductible}}</td>
+                <td>{{maxOOP}}</td>
+                <td>{{drugPlanDeductible}}</td>
               </tr>
             </table>
           </div>
@@ -148,9 +133,9 @@
                 <th>Part B Premium Reduction</th>
               </tr>
               <tr>
-                <td>$164.90</td>
-                <td>$164.90</td>
-                <td>$0.00</td>
+                <td>{{standardPartBPremium}}</td>
+                <td>{{partBPremium}}</td>
+                <td>{{partBPremiumReduction}}</td>
               </tr>
             </table>
           </div>
@@ -162,8 +147,8 @@
               <tr>
                 <th>Inpatient Facility Fees</th>
               </tr>
-              <tr>
-                <td>$140 per day for days 1 through 6; $0 per day for days 7 through 90</td>
+              <tr *ngFor="let ip of plan?.attributes['Inpatient_Services']">
+                <td>{{ip.displayValue}}</td>
               </tr>
             </table>
           </div>
@@ -178,9 +163,9 @@
                 <th>Preventive Care/Screening Immunization</th>
               </tr>
               <tr>
-                <td>$0 copay</td>
-                <td>$10 copay per visit</td>
-                <td>$0 copay</td>
+                <td>{{primaryCareVisit}}</td>
+                <td>{{specialistVisit}}</td>
+                <td>{{preventiveCare}}</td>
               </tr>
             </table>
           </div>
@@ -196,9 +181,9 @@
                 <th>Ambulance</th>
               </tr>
               <tr>
-                <td>$110 copay per visit (always covered)</td>
-                <td>$20 copay per visit (always covered)</td>
-                <td>$215 copay</td>
+                <td>{{emergencyCareCost}}</td>
+                <td>{{serviceUrgentCare}}</td>
+                <td>{{benifitAmbulance}}</td>
               </tr>
             </table>
           </div>
@@ -214,9 +199,9 @@
                 <th>Skilled Nursing Care Cost Share</th>
               </tr>
               <tr>
-                <td>$0-150 copay per visit</td>
-                <td>$0-95 copay</td>
-                <td>$10 per day for days 1 through 20; $196 per day for days 21 through 100</td>
+                <td>{{facilityFees}}</td>
+                <td>{{diagonaticTests}}</td>
+                <td>{{skilledNursing}}</td>
               </tr>
             </table>
           </div>
@@ -228,7 +213,28 @@
               <tr>
                 <th colspan="3">Medical Equipment/Supplies</th>
               </tr>
+              <tr *ngFor="let medicalEquipment of  plan?.attributes['Medical_Equipment/Supplies']">
+                <td>{{medicalEquipment.attributeName}}</td>
+                <td>{{medicalEquipment.displayValue}}</td>
+                <td>
+                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
+                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                </td>
+              </tr> 
               <tr>
+                <th colspan="3">Mental Health Services</th>
+              </tr>  
+              <tr *ngFor="let mentalHealth of  plan?.attributes['Mental_Health_Services']">
+                <td>{{mentalHealth.attributeName}}</td>
+                <td>{{mentalHealth.displayValue}}</td>
+                <td>
+                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
+                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
+                  </button>
+                </td>
+              </tr>
+               <!-- <tr>
                 <td>Durable Medical Equipment</td>
                 <td>0-20% coinsurance per item</td>
                 <td>
@@ -293,7 +299,7 @@
                     Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
@@ -302,69 +308,15 @@
           <div class="col-12">
             <h3>OTHER SERVICES</h3>
             <table>
-              <tr>
-                <td>Foot Exams and Treatment</td>
-                <td>0-20% coinsurance per item</td>
+              <tr *ngFor="let os of  plan?.attributes['Other_Services']">
+                <td>{{os.attributeName}}</td>
+                <td>{{os.displayValue}}</td>
                 <td>
                   <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
                     Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                   </button>
                 </td>
-              </tr>
-              <tr>
-                <td>Routine Foot Care</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Wellness Programs</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy with a psychiatrist</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient group therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>Outpatient individual therapy visit</td>
-                <td>0-20% coinsurance per item</td>
-                <td>
-                  <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                    Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                  </button>
-                </td>
-              </tr>
+              </tr>             
             </table>
           </div>
         </div>
@@ -381,46 +333,10 @@
         </mat-expansion-panel-header>
         <div class="col-12">
           <table>
-            <tr>
-              <th colspan="1">Periodic Oral Evaluation</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Prophylaxis</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Fluoride Treatments</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Dental X-ray(s)</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Non Surgical / General Services / Anesthesia</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Lab and Other Diagnostic Tests</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Restorations</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Endodontics</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Periodontics</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
-            <tr>
-              <th colspan="1">Extractions</th>
-              <td colspan="2">$0 copay</td>
-            </tr>
+            <tr *ngFor="let ds of plan?.attributes['Dental_Services']">
+              <th colspan="1">{{ds.attributeName}}</th>
+              <td colspan="2">{{ds.displayValue}}</td>
+            </tr>           
           </table>
         </div>
       </mat-expansion-panel>
@@ -432,188 +348,71 @@
           </mat-panel-title>
           <mat-panel-description>
           </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="col-12 mb-4">
-          <table>
-            <tr>
-              <th colspan="2">Pharmacies
-                <div class="d-flex pd-pharmacy justify-content-between">
-                  <p>Check the network status of each pharmacy on your list.<br />You can change pharmacies at any time to find lower costs for drugs.</p>
-                  <button mat-raised-button color="primary" class="ms-2">Change Pharmacy</button>
-                </div>
-              </th>
-            </tr>
-            <tr>
-              <td>CVS PHARMACY #03631</td>
-              <td><div class="d-flex"><mat-icon class="green-check">check</mat-icon><span>In-network</span></div></td>
-            </tr>
-            <tr>
-              <td>WALGREENS #4657</td>
-              <td><div class="d-flex"><mat-icon class="green-check">check</mat-icon><span>In-network</span></div></td>
-            </tr>
-            <tr>
-              <td>PUBLIX PHARMACY #1437</td>
-              <td><div class="d-flex"><mat-icon class="green-check">check</mat-icon><span>In-network</span></div></td>
-            </tr>
-          </table>
-         </div>
+        </mat-expansion-panel-header>   
             <div class="col-12 mb-4">
+              <h3>Medicare PartB drugs</h3>
               <table>
-                <tr>
-                  <th colspan="3">Medicare PartB drugs</th>
-                </tr>
-                <tr>
-                  <td>Chemotherapy</td>
-                  <td>0-20% coinsurance per item</td>
-                  <td>
-                    <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                      Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Other Part B drugs</td>
-                  <td>0-20% coinsurance per item</td>
-                  <td>
-                    <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                      Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                    </button>
-                  </td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Medicare_PartB_drugs']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>               
+              </table>
+            </div>
+            <div class="col-12 mb-4">
+              <h3>Preferred Mail Order Pharmacies - Initial Coverage</h3>
+              <table>
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Mail Order Pharmacies - Initial Coverage']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>               
               </table>
             </div>
             <div class="col-12 mb-4">
               <h3>Preferred Retail Pharmacies - Initial Coverage</h3>
               <table>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $35.00 copay | (90 Days Supply) $105.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $95.00 copay | (90 Days Supply) $285.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2">(30 Days Supply) 33%</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Retail Pharmacies - Initial Coverage']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>                
               </table>
             </div>
             <div class="col-12 mb-4">
-              <h3>Preferred Retail Pharmacies - Initial Coverage</h3>
+              <h3>Preferred Mail Order Pharmacies - Gap Coverage</h3>
               <table>
-                <tr>
-                  <th colspan="1">Generic Drugs</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Brand-Name Drugs</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let pmop of plan?.attributes['Preferred Mail Order Pharmacies - Gap Coverage']">
+                  <th colspan="1">{{pmop.attributeName}}</th>
+                  <td colspan="2">{{pmop.displayValue}}</td>
+                </tr>               
+              </table>
+            </div>
+            <div class="col-12 mb-4">
+              <h3>Preferred Retail Pharmacies - Gap Coverage</h3>
+              <table>
+                <tr *ngFor="let prp of plan?.attributes['Preferred Retail Pharmacies - Gap Coverage']">
+                  <th colspan="1">{{prp.attributeName}}</th>
+                  <td colspan="2">{{prp.displayValue}}</td>
+                </tr>                
               </table>
             </div>
 
             <div class="col-12 mb-4">
               <h3>Catastrophic Coverage Phase</h3>
               <table>
-                <tr>
-                  <th colspan="1">Generic Drugs</th>
-                  <td colspan="2">$4.15 copay or 5% (whichever costs more)</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Brand-Name Drugs</th>
-                  <td colspan="2">$10.35 copay or 5% (whichever costs more)</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let cc of plan?.attributes['Catastrophic Coverage Phase']">
+                  <th colspan="1">{{cc.attributeName}}</th>
+                  <td colspan="2">{{cc.displayValue}}</td>
+                </tr>                
               </table>
             </div>
 
             <div class="col-12 mb-4">
-              <h3>Preferred Mail Order Pharmacies - Initial Coverage</h3>
+              <h3>Preferred Mail Order Pharmacies - Gap Coverage
+              </h3>
               <table>
-                <tr>
-                  <th colspan="1">Tier 1 (Preferred Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 2 (Generic Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $0.00 copay | (90 Days Supply) $0.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 3 (Preferred Brand Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $35.00 copay | (90 Days Supply) $105.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 4 (Non-Preferred Drugs)</th>
-                  <td colspan="2">(30 Days Supply) $95.00 copay | (90 Days Supply) $285.00 copay</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 5 (Specialty Tier Drugs)</th>
-                  <td colspan="2">	(30 Days Supply) 33%</td>
-                </tr>
-                <tr>
-                  <th colspan="1">Tier 6 (Select Care Drugs)</th>
-                  <td colspan="2"></td>
-                </tr>
+                <tr *ngFor="let prpic of plan?.attributes['Preferred Mail Order Pharmacies - Gap Coverage']">
+                  <th colspan="1">{{prpic.attributeName}}</th>
+                  <td colspan="2">{{prpic.displayValue}}</td>
+                </tr>                
               </table>
             </div>
       </mat-expansion-panel>
@@ -631,112 +430,39 @@
             <tr>
               <th colspan="3">Hearing  Services</th>
             </tr>
-            <tr>
-              <td>Hearing exam</td>
-              <td>0-20% coinsurance per item</td>
+            <tr *ngFor="let hs of plan?.attributes['Hearing_Services']">
+              <td>{{hs.attributeName}}</td>
+              <td>{{hs.displayValue}}</td>
               <td>
                 <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
                   Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </td>
-            </tr>
-            <tr>
-              <td>Fittings</td>
-              <td>0-20% coinsurance per item</td>
-              <td>
-                <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                  Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Hearing Aid</td>
-              <td>0-20% coinsurance per item</td>
-              <td>
-                <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                  Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-              </td>
-            </tr>
+            </tr>          
             <tr>
               <th colspan="3">Rehabilitation services</th>
             </tr>
-            <tr>
-              <td>Occupational Therapy Visit</td>
-              <td>0-20% copay per visit</td>
+            <tr *ngFor="let rs of plan?.attributes['Rehabilitation_services']">
+              <td>{{rs.attributeName}}</td>
+              <td>{{rs.displayValue}}</td>
               <td>
                 <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
                   Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </td>
-            </tr>
+            </tr>     
             <tr>
-              <td>Other Therapies</td>
-              <td>0-20% copay per visit</td>
+              <th colspan="3">Vision services</th>
+            </tr>
+            <tr *ngFor="let vs of plan?.attributes['Vision_Services']">
+              <td>{{vs.attributeName}}</td>
+              <td>{{vs.displayValue}}</td>
               <td>
                 <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
                   Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
                 </button>
               </td>
-            </tr>
-            <tr>
-              <th colspan="3">Vision</th>
-            </tr>
-            <tr>
-              <td>Routine eye exam</td>
-              <td>$0 copay</td>
-              <td>
-                <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                  Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Contact lenses</td>
-              <td>$0 copay</td>
-              <td>
-                <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                  Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Eyeglasses (frames & lenses)</td>
-              <td>$0 copay</td>
-              <td>
-                <button class="limits-btn" matTooltip="Advanced Plan Approval Required - A process through which the physician or other health care provider is required to obtain advance approval from the plan that payment will be made for a service or item furnished to an enrollee. Unless specified otherwise with respect to a particular item or service, the enrollee is not responsible for obtaining (prior) authorization." aria-label="Button that displays a tooltip when focused or hovered over">
-                  Limits apply<mat-icon>keyboard_arrow_right</mat-icon>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>Eyeglass frames only</td>
-              <td>Not covered</td>
-              <td>
-               
-              </td>
-            </tr>
-            <tr>
-              <td>Eyeglass lenses only</td>
-              <td>Not covered</td>
-              <td>
-                
-              </td>
-            </tr>
-            <tr>
-              <td>Upgrades</td>
-              <td>Not covered</td>
-              <td>
-                
-              </td>
-            </tr>
-            <tr>
-              <td>Others</td>
-              <td>Not covered</td>
-              <td>
-              
-              </td>
-            </tr>
+            </tr>        
           </table>
         </div>
       </mat-expansion-panel>
@@ -752,21 +478,18 @@
         <div class="col-12 mb-3">
           <table>
             <tr>
-              <th colspan="1">Overall Rating	</th>
+              <th colspan="1">Overall Rating</th>
               <td colspan="2">
                 <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
+                  <div class="star-rating">
+                    <span *ngFor="let star of stars"
+                          [ngClass]="{'filled': star < overAllStarRating, 'half-filled': star === overAllStarRating - 0.5}"></span>
                   </div>
                 </div>
               </td>
             </tr>
           </table>
-        </div>
+        </div> 
         <mat-expansion-panel (opened)="panelOpenState = true"
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
@@ -776,65 +499,46 @@
             <mat-panel-description>
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <table class="mb-3">
-            <tr>
-              <th colspan="1">Breast cancer screening</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
+          <div class="col-12 mb-3">
+            <table>
+              <tr *ngFor="let hps of plan?.attributes['HEALTH PLAN STAR RATINGS:']">
+                <th colspan="1">{{hps.attributeName}}</th>
+                <td colspan="2">
+                  <div class="d-flex align-items-center">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hps.displayValue, 'half-filled': star === hps.displayValue - 0.5}"></span>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Colorectal cancer screening</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Yearly flu vaccine</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th colspan="1">Monitoring physical activity</th>
-              <td colspan="2">
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </td>
-            </tr>
-          </table>
-
+                </td>
+              </tr>
+            </table>
+          </div> 
+          <mat-expansion-panel (opened)="panelOpenState = true"
+          (closed)="panelOpenState = false">
+<mat-expansion-panel-header>
+<mat-panel-title>
+Staying Healthy
+</mat-panel-title>
+<mat-panel-description>
+</mat-panel-description>
+</mat-expansion-panel-header>
+<div class="col-12 mb-4">
+<table>
+<tr *ngFor="let sh of plan?.attributes['STAYING HEALTHY: SCREENINGS, TESTS, & VACCINES']">
+<th colspan="1">
+{{sh.attributeName}}
+</th>
+<td colspan="1">
+<div class="star-rating">
+ <span *ngFor="let star of stars"
+       [ngClass]="{'filled': star < sh.displayValue, 'half-filled': star === sh.displayValue - 0.5}"></span>
+</div>
+</td>
+</tr>                
+</table>
+</div>
+</mat-expansion-panel> 
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -844,220 +548,21 @@
               <mat-panel-description>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <table>
-              <tr>
-                <th colspan="1">Ease of getting needed care and seeing specialists</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
+            <div class="col-12 mb-4">
+              <table>
+                <tr *ngFor="let hp of plan?.attributes['MEMBER EXPERIENCE WITH HEALTH PLAN']">
+                  <th colspan="1">
+                    {{hp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hp.displayValue, 'half-filled': star === hp.displayValue - 0.5}"></span>
                     </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Getting appointments and care quickly</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Health plan provides information or help when members need it</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Member's rating of health care quality</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Member's rating of health plan</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Coordination of members' health care services</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th colspan="1">Osteoporosis management</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Eye exam to check for damage from diabetes</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Kidney function testing for members with diabetes</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Plan members with diabetes whose blood sugar is under control</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Controlling Blood Pressure</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Reducing the risk of falling</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">Improving bladder control</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">The plan makes sure member medication records are up-to-date after hospital discharge</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th colspan="1">The plan makes sure members with heart disease get the most effective drugs to treat high cholesterol</th>
-                <td colspan="2">
-                  <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </table>
-
+                  </td>
+                </tr>                
+              </table>
+            </div>
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
@@ -1069,192 +574,20 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
-              <div class="d-flex align-items-center mt-3 mb-2">
-                <h3 class="me-4 mb-0">Managing chronic (long term) conditions</h3>
-                <div class="d-flex align-items-center">
-                  <div class="rating-stars me-2">
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>grade</mat-icon>
-                    <mat-icon>star_half</mat-icon>
-                  </div>
-                </div>
-              </div>
-
               <table>
-                <tr>
-                  <th colspan="1">Members whose plan did an assessment of their health needs and risks</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let hp of plan?.attributes['MANAGING CHRONIC (LONG TERM) CONDITIONS']">
+                  <th colspan="1">
+                    {{hp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hp.displayValue, 'half-filled': star === hp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Yearly review of all medications and supplements being taken</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Yearly pain screening or pain management plan</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Osteoporosis management</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Eye exam to check for damage from diabetes</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Kidney function testing for members with diabetes</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Plan members with diabetes whose blood sugar is under control</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Controlling Blood Pressure</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Reducing the risk of falling</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Improving bladder control</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">The plan makes sure member medication records are up-to-date after hospital discharge</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">The plan makes sure members with heart disease get the most effective drugs to treat high cholesterol</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                </tr>                
               </table>
-            </div>
-
-          </mat-expansion-panel>
+            </div>          </mat-expansion-panel>
 
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
@@ -1267,55 +600,19 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
-                  <th colspan="1">Complaints about the health plan (more stars are better because it means fewer complaints)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let hp of plan?.attributes['MEMBER COMPLAINTS & CHANGES IN THE HEALTH PLANS PERFORMANCE']">
+                  <th colspan="1">
+                    {{hp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hp.displayValue, 'half-filled': star === hp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Improvement (if any) in the health plan's performance</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
+                </tr>                
               </table>
-            </div>
-
+            </div>   
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
@@ -1328,55 +625,19 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
-                  <th colspan="1">Health plan makes timely decisions about appeals</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let hp of plan?.attributes['HEALTH PLAN CUSTOMER SERVICE']">
+                  <th colspan="1">
+                    {{hp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < hp.displayValue, 'half-filled': star === hp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Fairness of the health plan's appeal decisions, based on an independent reviewer</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Availability of TTY services and foreign language interpretation when prospective members call the health plan</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
+                </tr>                
               </table>
             </div>
-
           </mat-expansion-panel>
 
         </mat-expansion-panel>
@@ -1392,27 +653,19 @@
           </mat-expansion-panel-header>
           <div class="col-12 mb-3">
             <table>
-              <tr>
-                <th colspan="1">Summary rating of drug plan quality:</th>
+              <tr *ngFor="let dps of plan?.attributes['DRUG PLAN (PART D) STAR RATING:']">
+                <th colspan="1">{{dps.attributeName}}</th>
                 <td colspan="2">
                   <div class="d-flex align-items-center">
-                    <div class="rating-stars me-2">
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>grade</mat-icon>
-                      <mat-icon>star_half</mat-icon>
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < dps.displayValue, 'half-filled': star === dps.displayValue - 0.5}"></span>
                     </div>
                   </div>
                 </td>
               </tr>
-
-
-
             </table>
-          </div>
-
-          
+          </div>       
           <mat-expansion-panel (opened)="panelOpenState = true"
                                (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
@@ -1424,135 +677,17 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
+                <tr *ngFor="let dp of plan?.attributes['DRUG PLAN CUSTOMER SERVICE']">
                   <th colspan="1">
-                    Availability of TTY services and foreign language interpretation when prospective members call the drug plan
+                    {{dp.attributeName}}
                   </th>
                   <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < dp.displayValue, 'half-filled': star === dp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Member complaints & changes in the drug plan's performance
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Complaints about the drug plan (more stars are better because it means fewer complaints)
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Improvement (if any) in the drug plan's performance
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Member experience with the drug plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members' rating of drug plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Ease of getting prescriptions filled when using the plan
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-             
+                </tr>                
               </table>
             </div>
 
@@ -1569,52 +704,17 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
-                  <th colspan="1">Complaints about the health plan (more stars are better because it means fewer complaints)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                <tr *ngFor="let dp of plan?.attributes['MEMBER COMPLAINTS & CHANGES IN THE HEALTH PLANS PERFORMANCE']">
+                  <th colspan="1">
+                    {{dp.attributeName}}
+                  </th>
+                  <td colspan="1">
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < dp.displayValue, 'half-filled': star === dp.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Members choosing to leave the plan (more stars are better because it means fewer members choose to leave the plan)</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">Improvement (if any) in the health plan's performance</th>
-                  <td colspan="2">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
+                </tr>                
               </table>
             </div>
 
@@ -1630,110 +730,19 @@
             </mat-expansion-panel-header>
             <div class="col-12 mb-4">
               <table>
-                <tr>
+                <tr *ngFor="let ds of plan?.attributes['DRUG SAFETY & ACCURACY OF DRUG PRICING']">
                   <th colspan="1">
-                    Plan provides accurate drug pricing information for this website
+                    {{ds.attributeName}}
                   </th>
                   <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
+                    <div class="star-rating">
+                      <span *ngFor="let star of stars"
+                            [ngClass]="{'filled': star < ds.displayValue, 'half-filled': star === ds.displayValue - 0.5}"></span>
                     </div>
                   </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking diabetes medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking blood pressure medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Taking cholesterol medication as directed
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    Members who had a pharmacist (or other health professional) help them understand and manage their medications
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th colspan="1">
-                    The plan makes sure members with diabetes take the most effective drugs to treat high cholesterol
-                  </th>
-                  <td colspan="1">
-                    <div class="d-flex align-items-center">
-                      <div class="rating-stars me-2">
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>grade</mat-icon>
-                        <mat-icon>star_half</mat-icon>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-
-
-
-
-
+                </tr>                
               </table>
             </div>
-
           </mat-expansion-panel>
 
         </mat-expansion-panel>
