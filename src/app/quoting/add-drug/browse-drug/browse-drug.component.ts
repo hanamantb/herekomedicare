@@ -25,9 +25,9 @@ export class BrowseDrugComponent implements OnInit {
   }
 
   ngOnInit(): void {
-this.IntialdrugByAlphabet()
-this.effYear = sessionStorage.getItem('effectyear')
+    this.effYear = sessionStorage.getItem('effectyear')
     console.log('this.effYear',this.effYear)
+this.IntialdrugByAlphabet()
   }
 
   toggleItemSelection(item: any) {
