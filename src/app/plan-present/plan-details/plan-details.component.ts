@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import { CommonService } from 'src/app/services/common.service';
+import {SpinnerService} from "../../services/spinner.service";
 
 @Component({
   selector: 'app-plan-details',
@@ -44,11 +45,13 @@ export class PlanDetailsComponent implements OnInit {
   drugPlanDeductible: any;
   stars: number[] = [0, 1, 2, 3, 4];
   overAllStarRating: any;
-  constructor(private route: Router,private commonservice: CommonService,) {
+  constructor(private route: Router,private commonservice: CommonService,
+    private spinner: SpinnerService) {
     // this.details= this.route.getCurrentNavigation()?.extras.state;
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void { 
+    const spine = this.spinner.start()  
     const planId = sessionStorage.getItem('planID')
     this.planIdDisplay =planId
     const logo = sessionStorage.getItem('logo')
@@ -214,7 +217,7 @@ export class PlanDetailsComponent implements OnInit {
      })
     })
     }
-    
+    this.spinner.stop(spine)
   }
   
   closePlanDetails() {

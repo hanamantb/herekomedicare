@@ -92,7 +92,8 @@
           <table>
             <tr *ngFor="let contact of  plan?.attributes['CONTACT INFORMATION']">
               <th colspan="1"> {{contact.attributeName}}</th>              
-              <td colspan="2"><a href={{contact.displayValue}} target="_blank">{{contact.displayValue}}</a></td>
+              <td colspan="2" *ngIf="contact.apiParameter === 'url'"><a href={{contact.displayValue}} target="_blank">{{contact.displayValue}}</a></td>
+              <td colspan="2" *ngIf="contact.apiParameter !== 'url'">{{contact.displayValue}}</td>
             </tr>           
           </table>
         </div>
