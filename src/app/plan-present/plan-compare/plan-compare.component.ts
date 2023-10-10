@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfirmCompareComponent } from '../../shared/layouts/confirm-compare/confirm-compare.component';
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: 'app-plan-compare',
@@ -8,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 export class PlanCompareComponent implements OnInit {
   panelOpenState = false;
   details: any
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
+  openCompareConfirm() {
+    this.dialog.open(ConfirmCompareComponent);
+  }
 
 }
+
