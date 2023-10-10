@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 import {SpinnerService} from "../../services/spinner.service";
+import { PlansListPageComponent } from 'src/app/plan-present/plans-list-page/plans-list-page.component';
+
 @Component({
   selector: 'app-drug-cost',
   templateUrl: './drug-cost.component.html',
   styleUrls: ['./drug-cost.component.css']
 })
 export class DrugCostComponent implements OnInit {
+
+  has_deductible: boolean = false;
   opened: boolean = false;
   panelOpenState = false;
   drugCostResponse: any;
@@ -22,12 +26,14 @@ export class DrugCostComponent implements OnInit {
   dcomparedList:any[]=[];
   drugsSize:any;
   planName:any;
+  planType:any;
   drugsArray: any=[]
   lis:any;
   year:any;
   monthlypremium:any
   planID: any;
   npis: any = [];
+  checkPDP: boolean = false
   frequency = [{
     name: 'Every month',
     values: 'FREQUENCY_30_DAYS'
@@ -52,6 +58,7 @@ export class DrugCostComponent implements OnInit {
     private spinner: SpinnerService) { }
 
   ngOnInit(): void {
+
     const spine = this.spinner.start()
     const currentDate = new Date();
     this.effYear= currentDate.getFullYear()   
@@ -71,6 +78,17 @@ export class DrugCostComponent implements OnInit {
     if(planName)
     this.planName =planName.replace(/"/g, '');
     console.log('planName',this.planName)
+
+    const planType = sessionStorage.getItem('planType')
+    if(planType)
+    this.planType = planType.replace(/"/g, '');
+    console.log('planType',this.planType)
+        
+    if (sessionStorage.getItem('planType')=='PDP'){
+      this.checkPDP = true;
+    }
+    console.log(this.checkPDP) //check if plan type is pdp or not
+
     const drugs = sessionStorage.getItem('drugs')
     let drugsArrayPayload: any[] = [];    
     if (drugs) {
@@ -161,6 +179,8 @@ let array:any=
  
     console.log('drugcosts',this.drugcosts)
 
+    console.log('has_deductible', this.drugcosts[0]?.drug_costs[0].has_deductible) //to check value
+    this.has_deductible = this.drugcosts[0]?.drug_costs[0].has_deductible //storing value for has deductible
   }
 
   drugNameGetter(ndc:any){

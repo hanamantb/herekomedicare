@@ -551,6 +551,8 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('planID', drug.planID)
     sessionStorage.setItem('monthlypremium', drug.monthlypremium)
     sessionStorage.setItem('drugcost', JSON.stringify(drug))     
+    sessionStorage.setItem('planType', drug.planType)
+
     window.open('/drug-cost')    
   }
   handleToggleClick(value:boolean) {   
