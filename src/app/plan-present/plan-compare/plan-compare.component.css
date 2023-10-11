@@ -8,6 +8,24 @@ h4{
     padding: 10px 15px;
     margin-bottom: 0;
     color: #0f1e6c;
+    display: flex;
+    align-items: center;
+}
+h4 input[type="checkbox"]{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+th label input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 0;
+  margin-top: 3px;
+}
+th label{
+    position: relative;
+    padding-left: 22px;
 }
 .mat-expansion-panel {
   border-radius: 2px;
@@ -66,7 +84,7 @@ th {
 }
 
 .table-striped th label {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
 }
 
@@ -165,9 +183,10 @@ th {
 }
 
 .compare-main-th h3 {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 17px;
-  min-height: 56px;
+  min-height: 42px;
+  line-height: normal;
 }
 
 .compare-main-th h5 {
@@ -232,4 +251,14 @@ th {
     font-family: Lato,sans-serif !important;
     font-size: 16px;
     font-weight: 600;
+}
+.compare-logo img{
+    height: 36px;
+    width: auto;
+}
+.category-close{
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: flex;
 }
