@@ -57,6 +57,9 @@ export class PlansListPageComponent implements OnInit {
   originalRateC: boolean = false
   selectedFilter: boolean = true
   eacDrugcostPre: boolean = true
+  maxSelections: number = 5;
+  showTooltip: boolean = false;
+  tooltipIndex: number = -1;
   
   snp_type: any = [
     "SNP_TYPE_NOT_SNP",
@@ -325,10 +328,22 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   }
 
   onCheckboxChange(plan: any) {
-    this.checkedData.push(plan)
-    console.log('checkkkk', this.checkedData.length)
+    const index = this.checkedData.indexOf(plan);
+
+    if (index === -1 && this.checkedData.length < this.maxSelections) {
+      // If the plan is not in the checkedData array, add it
+      this.checkedData.push(plan);
+    } else {
+      // If the plan is already in the checkedData array, remove it
+      this.checkedData.splice(index, 1);
+    }
+
+    console.log('checkkkk', this.checkedData.length);
+
     if (this.checkedData.length >= 2) {
-      this.isChecked = true
+      this.isChecked = true;
+    } else {
+      this.isChecked = false;
     }
   }
 
@@ -370,6 +385,7 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
   planType(event: any) {
     console.log(event.value)
     this.planTypes = event.value
+    this.clearCompare();
 
     this.plans = []
     this.getPlans(0)
