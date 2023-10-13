@@ -437,3 +437,20 @@ mat-select mat-option{
 .opt-pkg-btn {
     cursor: pointer;
 }
+.custom-tooltip {
+  position: absolute;
+  color: #111108 !important;
+  background-color: #fcfceb;
+  border: 1px solid #d0d0b3;
+  font-size: 12px;
+  transform-origin: unset !important;
+  padding: 5px 10px;
+  font-weight: 400;
+  z-index: 1;
+  border-radius: 4px;
+  max-width: 200px;
+}
+.card-footer input[disabled],
+.card-footer input[disabled] ~ .form-check-label {
+  opacity: 1;
+}

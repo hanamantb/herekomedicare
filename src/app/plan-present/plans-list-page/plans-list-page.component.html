@@ -188,12 +188,15 @@
             </div>
             <div class="card-footer pe-2">
               <div class="d-flex align-items-center justify-content-between">
-                <div class="form-check d-flex align-items-center compare-checkbox">
+                <div class="form-check d-flex align-items-center compare-checkbox" (mouseenter)="tooltipIndex = i" (mouseleave)="tooltipIndex = -1">
                   <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckChecked"
-                         [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)">
+                         [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)" [disabled]="checkedData.length >= maxSelections && !plan.checked">
                   <label class="form-check-label" for="flexCheckChecked">
                     Compare
                   </label>
+                  <span *ngIf="tooltipIndex === i && (checkedData.length >= maxSelections && !plan.checked)" class="custom-tooltip">
+                    Only a maximum of 5 plans can be compared.
+                  </span>
                 </div>
                 <div class="ms-2 optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
                 <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)" *ngIf="plan.alloptnpkShow">
