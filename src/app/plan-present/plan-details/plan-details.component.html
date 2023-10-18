@@ -51,11 +51,12 @@
       </div>
     </div>
   </div>
-
+  <div class="row pt-4">
+    <mat-accordion class="px-0 plan-details-accordion">
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false" *ngFor="let ds of plan">
         <mat-expansion-panel-header>
-          <mat-panel-title >
+          <mat-panel-title>
             {{ds.category}}
           </mat-panel-title>
           <mat-panel-description>
@@ -66,9 +67,10 @@
             <tr *ngFor="let value of ds.attribute">
               <th colspan="1">{{value.attributeName}}</th>
               <td colspan="2">{{value.displayValue}}</td>
-            </tr>           
+            </tr>
           </table>
         </div>
       </mat-expansion-panel>
-    
-</div>
+    </mat-accordion>
+    </div>
+  </div>
