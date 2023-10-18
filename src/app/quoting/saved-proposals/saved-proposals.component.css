@@ -1,0 +1,58 @@
+h4 mat-icon {
+  color: #4b8bb2;
+  margin: 0 auto;
+}
+button.btn-primary{
+    border-radius: 2px;
+    color: #fff;
+    display: flex;
+    background-color: #3f51b5;
+}
+table {
+  background: #FFF;
+  border: 1px solid rgba(0,0,0,.05);
+  table-layout: fixed;
+}
+table a{
+    text-decoration: none;
+}
+th {
+  padding: 10px 15px;
+  border-right: 1px solid rgba(0,0,0,.1);
+}
+
+.table-striped tr:nth-of-type(odd) {
+  background-color: rgba(136, 155, 183, .05);
+}
+.table-striped td {
+  border-right: 1px solid rgba(0,0,0,.1);
+}
+.saved-proposal-wrapper p{
+  margin-bottom: 0;
+}
+.saved-proposal-wrapper td ul{
+  list-style: none;
+  margin-bottom: 0;
+}
+.table-striped tr {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.proposal-action-links a{
+    margin-right: 8px;
+}
+.saved-proposal-wrapper td small{
+    color: #555
+}
+.proposal-search-box{
+    max-width: 360px;
+}
+.proposal-search-box button{
+    border: 0;
+    background: #3f51b5;
+    border: 0;
+    height: 38px;
+    border-radius: 0 2px 2px 0;
+}
+.proposal-search-box button mat-icon{
+    color: #fff;
+}
