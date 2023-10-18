@@ -284,10 +284,55 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
 
 Promise.all([searchPlans, processPlans]).then(results => {
  results[0].subscribe((response) => {
-  this.searchPlans = 
-  response.data
-        console.log('this.searchPlans',this.searchPlans)
- });
+  
+
+  if (response.status) {
+    this.response = response.data
+    console.log('this.response',this.response)
+    sessionStorage.setItem('planResponse', JSON.stringify(this.response))
+    const resp = response.data.plans
+    const addedplans = resp.map((element: any, index: any) => {
+      return {
+        ...element, checked: false,
+        showmore: false,
+        optnpkShow: false,
+        cartAdded: false,
+        benefits: true,
+        alloptnpkShow: true,
+      };
+    });
+  const planIds= sessionStorage.getItem('cartPlanIds')
+  const cart=    sessionStorage.getItem('cart')
+  if(planIds && cart){
+    let planIdsArray: any[] = [];
+    planIdsArray=JSON.parse(planIds);
+    addedplans.forEach((element: any) => {
+    planIdsArray.forEach((planId: string) => {
+    if(planId == element.planID){
+      element.cartAdded =true;
+    }
+  })
+      this.plans.push(element)
+    })
+}else{
+  console.log('response', response)
+  addedplans.forEach((element: any) => {
+    this.plans.push(element)
+  })
+}
+    this.filterEnable = true
+    this.filtrPlans = this.plans
+    sessionStorage.setItem('plans', JSON.stringify(this.plans))
+    this.page = this.page + 1
+    this.spinner.stop(spine)
+    console.log('response', response)
+  } else {
+    this.spinner.stop(spine)
+    this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
+
+    console.log('response false', response)
+  }
+})
  
   results[1].subscribe((response) => {
     this.processPlans = 
@@ -296,60 +341,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
    });
   
 });
-    this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
-      fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
-      this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
-      this.silver_snekers).subscribe((response) => {
-
-      if (response.status) {
-        this.response = response.data
-        console.log('this.response',this.response)
-        sessionStorage.setItem('planResponse', JSON.stringify(this.response))
-        const resp = response.data.plans
-        const addedplans = resp.map((element: any, index: any) => {
-          return {
-            ...element, checked: false,
-            showmore: false,
-            optnpkShow: false,
-            cartAdded: false,
-            benefits: true,
-            alloptnpkShow: true,
-          };
-        });
-      const planIds= sessionStorage.getItem('cartPlanIds')
-      const cart=    sessionStorage.getItem('cart')
-      if(planIds && cart){
-        let planIdsArray: any[] = [];
-        planIdsArray=JSON.parse(planIds);
-        addedplans.forEach((element: any) => {
-        planIdsArray.forEach((planId: string) => {
-        if(planId == element.planID){
-          element.cartAdded =true;
-        }
-      })
-          this.plans.push(element)
-        })
-    }else{
-      console.log('response', response)
-      addedplans.forEach((element: any) => {
-        this.plans.push(element)
-      })
-    }
-        this.filterEnable = true
-        this.filtrPlans = this.plans
-        sessionStorage.setItem('plans', JSON.stringify(this.plans))
-        this.page = this.page + 1
-        this.spinner.stop(spine)
-        console.log('response', response)
-      } else {
-        this.spinner.stop(spine)
-        this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
-
-        console.log('response false', response)
-      }
-    })
-
-  }
+}
 
   onCheckboxChange(plan: any) {
     this.checkedData.push(plan)
