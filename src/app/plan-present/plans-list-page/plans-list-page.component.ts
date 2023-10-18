@@ -10,6 +10,7 @@ import {SpinnerService} from "../../services/spinner.service";
 import {DrugsCoveredDialogboxComponent} from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 import {EditPlansPopupComponent} from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -87,6 +88,8 @@ export class PlansListPageComponent implements OnInit {
   showDrugs:boolean =false;
   cartPlanIds: String[] = [];
   planTypeName: string = 'Medicare Advantage & Prescription Plans';
+  searchPlans: any;
+  processPlans: any;
   
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -269,6 +272,30 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
       isDrugAdded = false
     }
     console.log('this.effYear plan list',this.effYear)
+    const searchPlans = this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
+      fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
+      this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
+      this.silver_snekers);
+      const processPlans = this.commonservice.processPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
+        fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
+        this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
+        this.silver_snekers);
+
+
+Promise.all([searchPlans, processPlans]).then(results => {
+ results[0].subscribe((response) => {
+  this.searchPlans = 
+  response.data
+        console.log('this.searchPlans',this.searchPlans)
+ });
+ 
+  results[1].subscribe((response) => {
+    this.processPlans = 
+    response
+    console.log('this.processPlans',this.processPlans)
+   });
+  
+});
     this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
       fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
       this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
