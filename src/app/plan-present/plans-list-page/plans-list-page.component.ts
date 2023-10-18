@@ -10,6 +10,7 @@ import {SpinnerService} from "../../services/spinner.service";
 import {DrugsCoveredDialogboxComponent} from '../../shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component';
 import {EditPlansPopupComponent} from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
+import { forkJoin } from 'rxjs';
 
 
 @Component({
@@ -90,6 +91,8 @@ export class PlansListPageComponent implements OnInit {
   showDrugs:boolean =false;
   cartPlanIds: String[] = [];
   planTypeName: string = 'Medicare Advantage & Prescription Plans';
+  searchPlans: any;
+  processPlans: any;
   
   constructor(private route: Router,
               private sharedService: SharedService,
@@ -272,60 +275,76 @@ sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
       isDrugAdded = false
     }
     console.log('this.effYear plan list',this.effYear)
-    this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
+    const searchPlans = this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
       fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
       this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
-      this.silver_snekers).subscribe((response) => {
+      this.silver_snekers);
+      const processPlans = this.commonservice.processPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
+        fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
+        this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
+        this.silver_snekers);
 
-      if (response.status) {
-        this.response = response.data
-        console.log('this.response',this.response)
-        sessionStorage.setItem('planResponse', JSON.stringify(this.response))
-        const resp = response.data.plans
-        const addedplans = resp.map((element: any, index: any) => {
-          return {
-            ...element, checked: false,
-            showmore: false,
-            optnpkShow: false,
-            cartAdded: false,
-            benefits: true,
-            alloptnpkShow: true,
-          };
-        });
-      const planIds= sessionStorage.getItem('cartPlanIds')
-      const cart=    sessionStorage.getItem('cart')
-      if(planIds && cart){
-        let planIdsArray: any[] = [];
-        planIdsArray=JSON.parse(planIds);
-        addedplans.forEach((element: any) => {
-        planIdsArray.forEach((planId: string) => {
-        if(planId == element.planID){
-          element.cartAdded =true;
-        }
-      })
-          this.plans.push(element)
-        })
-    }else{
-      console.log('response', response)
-      addedplans.forEach((element: any) => {
-        this.plans.push(element)
-      })
+
+Promise.all([searchPlans, processPlans]).then(results => {
+ results[0].subscribe((response) => {
+  
+
+  if (response.status) {
+    this.response = response.data
+    console.log('this.response',this.response)
+    sessionStorage.setItem('planResponse', JSON.stringify(this.response))
+    const resp = response.data.plans
+    const addedplans = resp.map((element: any, index: any) => {
+      return {
+        ...element, checked: false,
+        showmore: false,
+        optnpkShow: false,
+        cartAdded: false,
+        benefits: true,
+        alloptnpkShow: true,
+      };
+    });
+  const planIds= sessionStorage.getItem('cartPlanIds')
+  const cart=    sessionStorage.getItem('cart')
+  if(planIds && cart){
+    let planIdsArray: any[] = [];
+    planIdsArray=JSON.parse(planIds);
+    addedplans.forEach((element: any) => {
+    planIdsArray.forEach((planId: string) => {
+    if(planId == element.planID){
+      element.cartAdded =true;
     }
-        this.filterEnable = true
-        this.filtrPlans = this.plans
-        sessionStorage.setItem('plans', JSON.stringify(this.plans))
-        this.page = this.page + 1
-        this.spinner.stop(spine)
-        console.log('response', response)
-      } else {
-        this.spinner.stop(spine)
-        this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
-
-        console.log('response false', response)
-      }
+  })
+      this.plans.push(element)
     })
+}else{
+  console.log('response', response)
+  addedplans.forEach((element: any) => {
+    this.plans.push(element)
+  })
+}
+    this.filterEnable = true
+    this.filtrPlans = this.plans
+    sessionStorage.setItem('plans', JSON.stringify(this.plans))
+    this.page = this.page + 1
+    this.spinner.stop(spine)
+    console.log('response', response)
+  } else {
+    this.spinner.stop(spine)
+    this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
 
+    console.log('response false', response)
   }
+})
+ 
+  results[1].subscribe((response) => {
+    this.processPlans = 
+    response
+    console.log('this.processPlans',this.processPlans)
+   });
+  
+});
+}
 
   onCheckboxChange(plan: any) {
     const index = this.checkedData.indexOf(plan);
