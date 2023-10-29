@@ -93,7 +93,7 @@
                   </div>
                 </div>
                 <div class="row p-2 base-dtl mx-0">
-                  <div class="col" *ngFor="let benefits of  plan.attributes['Key_Benefits']">
+                  <div class="col" *ngFor="let benefits of  plan.segments[1].attributeList">
                     <div class="attribute-name">
                       <h2>{{ benefits.attributeName }}</h2>
                       <p *ngIf="benefits.apiParameter != 'rating'">{{benefits.displayValue}}</p>
@@ -106,27 +106,27 @@
                 </div>
                 <div class="row p-2" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
                   <div class="col s6 m4 l4">
-                    <h6>Office Visits</h6>
+                    <h6>{{plan.segments[3].attributeName}}</h6>
                     <div class="clear"></div>
-                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Office_Visits']">
+                    <span class="sub-prop" *ngFor="let benefits of  plan.segments[3].attributeList">
                       <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
                     </span>
 
                   </div>
                   <div class="col s6 m4 l4">
-                    <h6>Emergency Services</h6>
+                    <h6>{{plan.segments[4].attributeName}}</h6>
                     <div class="clear"></div>
-                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Emergency_Services']">
+                    <span class="sub-prop" *ngFor="let benefits of  plan.segments[4].attributeList">
                       <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
                     </span>
                   </div>
 
                   <div class="col s6 m4 l4">
-                    <h6>Outpatient Services</h6>
+                    <h6>{{plan.segments[2].attributeName}}</h6>
                     <div class="clear"></div>
-                    <span class="sub-prop" *ngFor="let benefits of  plan.attributes['Outpatient_Services']">
+                    <span class="sub-prop" *ngFor="let benefits of  plan.segments[2].attributeList">
                       <bdo>{{benefits.attributeName}}</bdo>
                       {{benefits.displayValue}}
                     </span>
@@ -144,13 +144,13 @@
                     <mat-icon>keyboard_arrow_up</mat-icon>
                   </button>
                 </div>
-                <div class="row" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
+                <div class="row" *ngIf="plan.benefits && plan.segments[0].attributeList">
                   <div class="col-12">
-                    <h6 class="add-benefit-head ms-3">Additional Benefits</h6>
+                    <h6 class="add-benefit-head ms-3">{{plan.segments[0].attributeName}}</h6>
                   </div>
                 </div>
-                <div class="row px-3 mx-0 plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
-                  <div class="cols px-3" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']"  >
+                <div class="row px-3 mx-0 plan-benefits-items-list" *ngIf="plan.benefits && plan.segments[0].attributeList">
+                  <div class="cols px-3" *ngFor="let additionalbenefits of  plan.segments[0].attributeList"  >
                     <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                       <mat-icon class="benefit-icon-true">check</mat-icon>
                       <small>{{additionalbenefits.attributeName}}</small>
