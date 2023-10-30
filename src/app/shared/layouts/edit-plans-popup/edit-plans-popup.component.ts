@@ -3,7 +3,7 @@ import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CommonService} from "../../../services/common.service";
 import { PharmacyZipCodeComponent } from './pharmacy-zip-code/pharmacy-zip-code.component';
-
+import {ErrorPopupComponent} from "../error-popup/error-popup.component";
 @Component({
   selector: 'app-edit-plans-popup',
   templateUrl: './edit-plans-popup.component.html',
@@ -44,6 +44,13 @@ export class EditPlansPopupComponent implements OnInit {
   }
   getCounties(zip: any) {
     this.commonService.getCounties(zip).subscribe(response => {
+      if ( !response?.data?.counties ) {
+        this.dialog.open(ErrorPopupComponent, {
+          data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
+          width: '600px'
+        })
+      }
+      else{
       this.couties = response.data.counties
       //
       if (this.couties && this.couties.length === 1) {
@@ -57,7 +64,14 @@ export class EditPlansPopupComponent implements OnInit {
           this.selectedCountie =filCountie[0]
         }
       }
-    })
+      
+
+
+    }})
+
+  
+
+
   }
 
   inputCounties(event: any) {
