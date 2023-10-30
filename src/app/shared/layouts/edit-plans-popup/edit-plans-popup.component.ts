@@ -108,6 +108,7 @@ export class EditPlansPopupComponent implements OnInit {
         this.dialogRef.close(true);
       }      
     }else{
+      sessionStorage.setItem('zipcode',this.zipcode)
       console.log("close")
       this.dialogRef.close(true);
     }
