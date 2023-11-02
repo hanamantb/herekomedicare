@@ -56,10 +56,16 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.shared.getCarrier.subscribe(() => {
+    // Delay the execution of code for 1 minute (60,000 milliseconds)
+    setTimeout(() => {
+      // Your code here
+      this.shared.getCarrier.subscribe(() => {
+        this.getcarrierNames()
+      });
       this.getcarrierNames()
-    });
-    this.getcarrierNames()
+      // This code will run after 1 minute
+    }, 60000); // 60,000 milliseconds = 1 minute
+   
   }
 
   test(drawer: MatDrawer) {
