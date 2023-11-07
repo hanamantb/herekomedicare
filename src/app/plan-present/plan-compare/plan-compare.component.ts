@@ -15,7 +15,7 @@ export class PlanCompareComponent implements OnInit {
   ngOnInit(): void {
   }
   openCompareConfirm() {
-    this.dialog.open(ConfirmCompareComponent);
+    window.print();
   }
 
 }
