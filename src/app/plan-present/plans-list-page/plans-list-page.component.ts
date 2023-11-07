@@ -598,6 +598,10 @@ Promise.all([searchPlans, processPlans]).then(results => {
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   
   }
+  planCompare(){
+    console.log('plan compare')
+    this.route.navigate(['plan-compare'])
+  }
 
   packageSelection(event:any,plan:any,monthlypremium:any){
     const stringWithoutFirstLetter = monthlypremium.slice(1);
@@ -621,4 +625,5 @@ Promise.all([searchPlans, processPlans]).then(results => {
     })
    
   }
+ 
 }
