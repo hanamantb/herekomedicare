@@ -10,11 +10,25 @@
           <p>Plan - {{planName}}</p>
         </div>
         <div class="col-6 d-flex justify-content-end drug-cost-buttons">
-       
+
           <div class="me-2 back-to-all">
             <button mat-raised-button color="primary" style="width:100%;" class="ms-2" (click)="plansNav()">
               <mat-icon>arrow_back</mat-icon>
               Back to all plans
+            </button>
+          </div>
+          <div class="proposal-action-btns">
+            <button mat-raised-button color="primary" [matTooltipPosition]="'above'"
+                    matTooltip="Save">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [matTooltipPosition]="'above'"
+                    matTooltip="Download">
+              <mat-icon>download</mat-icon>
+            </button>
+            <button mat-raised-button color="primary" [matTooltipPosition]="'above'"
+                    matTooltip="Print">
+              <mat-icon>print</mat-icon>
             </button>
           </div>
         </div>
