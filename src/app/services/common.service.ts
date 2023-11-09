@@ -94,7 +94,7 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.planDetails, {lis, urlParam}, '');
   }
   public planCompare(lis: any,year: any,planTiles:any): Observable<any> {
-    return this.apiProvider.post(UrlConstants.planDetails, {lis, year,planTiles}, '');
+    return this.apiProvider.post(UrlConstants.planCompare, {lis, year,planTiles}, '');
   }
   public processPlans(searchPlanReqBody: any, plan_type: any, snp_type: any, zip: any, fips: any,
     year: any,page: any, isDrugAdded = true, star_rating = '6', organization_name = '',
