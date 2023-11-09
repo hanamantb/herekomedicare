@@ -31,7 +31,7 @@
   <table class="table table-striped" *ngFor="let pc of planCompare?.segment">
     <tr *ngFor="let attributes of pc.attributesList[0].atrribute">
       <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{attributes.attributeName}}</label></th>
-      <td><p>{{attributes.displayValue}}</p></td>      
+      <td *ngFor="let value of pc?.attributesList"><p *ngFor="let fv of value?.atrribute">{{fv.displayValue}}</p></td> 
     </tr>
     
   </table>
