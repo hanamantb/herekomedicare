@@ -226,7 +226,7 @@ export class PlansListPageComponent implements OnInit {
     plan.cartAdded = true
     console.log('cli',this.cart)
 
-sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
+    sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
@@ -600,6 +600,8 @@ Promise.all([searchPlans, processPlans]).then(results => {
   }
   planCompare(){
     console.log('plan compare')
+    console.log('this.checkedData',this.checkedData)
+    sessionStorage.setItem('planCompareData', JSON.stringify(this.checkedData))
     this.route.navigate(['plan-compare'])
   }
 
