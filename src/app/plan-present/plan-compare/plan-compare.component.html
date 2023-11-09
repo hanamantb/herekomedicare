@@ -31,11 +31,7 @@
   <table class="table table-striped" *ngFor="let pc of planCompare?.segment">
     <tr *ngFor="let attribute of pc.attributesList[0].atrribute">
       <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{attribute.attributeName}}</label></th>
-      <td><p>$0</p></td>
-      <td><p>$0</p></td>
-      <td><p>$0</p></td>
-      <td><p>$0</p></td>
-      <td><p>$0</p></td>
+      <td><p>{{attribute.displayValue}}</p></td>      
     </tr>
     
   </table>
