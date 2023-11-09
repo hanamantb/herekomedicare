@@ -29,30 +29,15 @@
   <!--<h4>Star Rating</h4>-->  
   <h4><input type="checkbox" matTooltip="Tooltip text placeholder"/>Key Benefits </h4>
   <table class="table table-striped" *ngFor="let pc of planCompare?.segment">
-    <tr>
-      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>Health deductible</label></th>
+    <tr *ngFor="let attribute of pc.attributesList[0].atrribute">
+      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{attribute.attributeName}}</label></th>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
       <td><p>$0</p></td>
     </tr>
-    <tr>
-      <th><label><input type="checkbox" />Drug plan deductible</label></th>
-      <td><p>$0.00</p></td>
-      <td><p>$0.00</p></td>
-      <td><p>$0.00</p></td>
-      <td><p>$0.00</p></td>
-      <td><p>$0.00</p></td>
-    </tr>
-    <tr>
-      <th><label><input type="checkbox" />Maximum you pay for health services</label></th>
-      <td><p>$3,450 In-network</p></td>
-      <td><p>$3,450 In-network</p></td>
-      <td><p>$11,000 In and Out-of-network<br />$6,500 In-network</p></td>
-      <td><p>$0.00</p></td>
-      <td><p>$0.00</p></td>
-    </tr>
+    
   </table>
   
 </div>
