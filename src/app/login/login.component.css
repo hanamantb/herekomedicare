@@ -18,10 +18,28 @@
   background: url(../../assets/login-bg.jpg) no-repeat fixed top left;
   background-attachment: fixed;
   min-height: calc(100vh - 78px);
-  background-size: 100% auto;
+  background-size: cover;
 }
 .login-form-container{
     max-width: 480px;
     min-height: 320px;
 }
+.login-form-row{
+    max-width: 1234px;
+    margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .login-form-container {
+    min-height: 240px;
+  }
 
+  .login-main-wrapper {
+    background: url(../../assets/login-bg.jpg) no-repeat fixed top left -100px;
+    background-size: cover;
+  }
+}
+@media (max-width: 480px) {
+  .login-form-row{
+      margin-top: 100px;
+  }
+}
