@@ -3,7 +3,6 @@
 }
 
 .plan-details-wrapper .plan-main-info a {
-  color: #252525;
   margin-right: 10px;
 }
 
@@ -17,23 +16,12 @@
   width: auto;
 }
 
-.plan-detail-action {
-  gap: 15px;
+.plan-detail-action a {
+  width: 100%;
+  color: #fff;
+  line-height: 50px;
+
 }
-
-  .plan-detail-action a {
-    border-radius: 2px;
-    width: 100%;
-    color: #fff !important;
-    font-weight: 400 !important;
-    height: 52px;
-    line-height: 52px;
-  }
-
-    .plan-detail-action a.btn-primary {
-      background-color: #485785;
-      border-color: #485785;
-    }
 
 .plan-details-wrapper h1 {
   font-weight: 300;
@@ -156,7 +144,6 @@
   border-radius: 2px;
 }
 .back-to-plans{
-    border-radius: 2px;
     width: auto;
 }
 .back-to-plans mat-icon{

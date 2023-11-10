@@ -57,7 +57,7 @@
             </div>
             <div class="col-2 p-2">
               <p>Quantity</p>
-              <input type="tel" formControlName="quantity" style="height: 38px"
+              <input type="tel" formControlName="quantity"
                      [ngClass]="{'ng-invalid-input': quantity.touched && quantity.invalid}">
               <div class="invalid-feedback d-flex" *ngIf="quantity.touched && quantity.invalid">
                 The entered quantity is not valid.
@@ -74,9 +74,9 @@
           </div>
         </form>
         <div class="d-flex col-8 px-3 pb-4 mt-2 add-dosage-action">
-          <button mat-raised-button color="danger" class="cancel-dosage-btn" (click)="cancelDrug()">Cancel</button>
+          <button mat-raised-button color="secondary" class="cancel-dosage-btn" (click)="cancelDrug()">Cancel</button>
 
-          <button mat-raised-button class="ms-2 add-dosage-btn" (click)="addDrug()">
+          <button mat-raised-button color="primary" class="ms-2 add-dosage-btn" (click)="addDrug()">
             Add to My Drug List
           </button>
         </div>
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="d-flex col-12  py-2 justify-content-end add-drugs-actions">
-        <button mat-raised-button class="secondary" (click)="navPlans()" *ngIf="rowData.length !=0">See Plans without drugs</button>
+        <button mat-raised-button color="secondary" (click)="navPlans()" *ngIf="rowData.length !=0">See Plans without drugs</button>
         <button mat-raised-button color="primary" class="ms-2" (click)="addPharmacy()">
           Continue
         </button>

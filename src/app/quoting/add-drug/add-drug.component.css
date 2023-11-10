@@ -1,6 +1,5 @@
 p{
   text-align: center;
-font-size: 15px
 }
 .card {
   width: 100%;
@@ -16,10 +15,6 @@ font-size: 15px
   border-radius: 4px;
 }
 select {
-  background-color: white;
-  height: 30px;
-  border: #B8C0D4 1px ridge;
-  border-radius: 5px;
   padding: 4px;
   width: 100%;
 }
@@ -71,17 +66,12 @@ h3{
   padding-bottom: 0;
 }
 .add-drugs-info h3 {
-  font-size: 15px;
-  padding-top: 0 !important;
-  font-family: Lato,sans-serif !important;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif !important;
 }
 .prescription-drugs-title{
     font-weight: 500;
     font-size: 16px;
-}
-button {
-  border-radius: 2px;
-  font-weight: 400;
 }
 .drug-dosage-info {
   border: 1px solid #ddd;
@@ -95,18 +85,9 @@ button {
   border-bottom: solid 1px #ddd;
   padding: 10px 9px 8px 9px;
   background: #f7f7f7;
-  font-weight: 400;
 }
 .drug-dosage-head h3{
     margin: 0
-}
-.add-dosage-btn {
-  background: #3f51b5;
-  color: #fff;
-}
-.cancel-dosage-btn {
-  background-color: #4b8bb2;
-  color: #fff;
 }
 .drug-dosage-info input, .drug-dosage-info select{
     padding: 0 10px;
@@ -159,20 +140,8 @@ button {
 .keep-the-drug{
     min-width: 150px;
 }
-.mat-input-element{
-    border: #B8C0D4 solid 1px;
-    background: #fff;
-}
 .mat-input-element:focus-visible {
   outline: 0 !important;
   box-shadow: 0 0 4px rgba(75, 139, 178, .9);
-}
-button[color="primary"] {
-  background-color: #4b8bb2;
-  color: #fff;
-}
-button[color="secondary"] {
-  background-color: #4b8bb2;
-  color: #fff;
 }
 

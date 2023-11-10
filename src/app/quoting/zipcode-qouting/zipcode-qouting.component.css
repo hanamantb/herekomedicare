@@ -1,5 +1,4 @@
 p{
-  font-size: 15px;
   margin-bottom: 0;
 }
 .btn{
@@ -44,15 +43,6 @@ mat-select{
     margin-bottom: 0;
     line-height: 26px;
 }
-.btn{
-    height: 38px;
-    border-radius: 2px;
-    font-size: 15px;
-}
-  .btn:hover {
-    background-color: #3f51b5;
-    color: #fff;
-  }
 .seeplan{
   width: 22px;
   height: 20px;

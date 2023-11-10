@@ -43,8 +43,6 @@ mat-select{
     background: #fff;
 }
 .card-footer button{
-    border-radius: 2px;
-    font-weight: 300;
     box-shadow: none
 }
 .cart-total{
@@ -227,8 +225,6 @@ mat-select{
 }
 .cart-select-btn {
   width: 100%;
-  background-color: #4b8bb2;
-  color: white
 }
 .premium .card {
   margin: 2px;
