@@ -4,8 +4,9 @@
 @import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 html, body { height: 100%; }
 body {
+  /*font-family: 'Roboto Condensed', sans-serif;*/
   margin: 0;
-  font-family: Lato,sans-serif !important;
+  font-family: 'Roboto', sans-serif;
   background-color: aliceblue;
   overflow-x: hidden;
 }
@@ -17,24 +18,32 @@ input {
   border: #B8C0D4 solid 1px;
 }
 
+
 mat-select {
-  background-color: white;
-  height: 38px;
-  border: #B8C0D4 1px ridge;
-  border-radius: 2px;
   padding: 4px;
   line-height: 29px;
 }
+input[type="text"],
+input[type="password"],
+input[type="tel"],
+input[type="email"],
+mat-select {
+  border: 0;
+  border-bottom: 2px solid #005875;
+  background-color: #F9F9F9;
+}
 
 p{
-  font-size:13px;
+  font-size:16px;
 }
 p, button, select, textarea, input, .ag-theme-alpine, h2, h3, h4, h5, h6 {
-  font-family: Lato,sans-serif !important;
+  font-family: 'Roboto', sans-serif !important;
 }
-
-h1 { 
-  font-family: 'Merriweather', serif !important;
+button{
+    font-weight: 700;
+}
+h1, h2, h3, h4, h5, h6, .mat-h2, .mat-title, .mat-typography .mat-h2, .mat-typography .mat-title, .mat-typography h2 {
+  font-family: 'Roboto Condensed', sans-serif !important;
 }
 .ag-theme-alpine {
   --ag-row-border-color: rgba(0, 0, 0, 0.12);
@@ -88,7 +97,7 @@ p{
   color: #252525;
 }
 .btn{
-  font-weight: 400 !important;
+  font-weight: 500 !important;
 }
 input[type="text"]:focus-visible,
 input[type="password"]:focus-visible,
@@ -106,10 +115,14 @@ input[type="tel"],
 input[type="email"],
 input[type="number"]
 input[type="date"]
-select {
+select,
+mat-select {
   padding: 0 10px;
-  height: 38px;
-  border-radius: 2px;
+  height: 48px;
+  border-radius: 0;
+}
+.mat-select-trigger{
+    height: 100%;
 }
 .sidebar-content-wrapper .mat-tab-label-active {
   background: #3c6f8e;
@@ -129,9 +142,8 @@ select {
   border-right: solid 5px transparent;
 }
 .sidebar-content-wrapper .mat-tab-label {
-  font-weight: 300;
   font-size: 16px;
-  font-family: Lato,sans-serif !important;
+  font-family: 'Roboto', sans-serif;
 }
 .cdk-overlay-pane {
   max-width: 400px !important;
@@ -145,7 +157,6 @@ select {
   padding: 0 !important
 }
 .mat-raised-button{
-    height: 38px;
     box-shadow: none;
 }
 button{
@@ -215,7 +226,7 @@ button{
   font-weight: bold;
 }
 mat-option.mat-option, .mat-select-panel {
-  font-family: Lato,sans-serif !important;
+  font-family: 'Roboto', sans-serif;
   font-size: 14px;
 }
 .proposal-action-btns{
@@ -238,4 +249,21 @@ mat-option.mat-option, .mat-select-panel {
     font-size: 18px;
     display: flex;
     align-items: center; justify-content: center;
+}
+button[color="primary"], .mat-raised-button.mat-primary, button[color="secondary"] {
+  border-radius: 6px;
+  min-height: 50px;
+  box-shadow: none;
+}
+button[color="primary"],
+button[color="secondary"] {
+  font-weight: 500;
+}
+button[color="primary"], .mat-raised-button.mat-primary {
+  background-color: #005875;
+  border-color: transparent;
+}
+button[color="secondary"], .mat-raised-button.mat-secondary{
+    color: #005875;
+    border: 1px solid #005875;
 }

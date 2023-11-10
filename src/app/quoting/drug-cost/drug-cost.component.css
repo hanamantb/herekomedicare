@@ -97,10 +97,6 @@
 .drug-cost-buttons .btn-icon button:last-child{
     border-right: 0;
 }
-  .drug-cost-buttons .back-to-all button {
-    border-radius: 2px;
-    background-color: #3f51b5;
-  }
 th small mat-icon {
   display: inline-flex;
   margin-right: 2px;
