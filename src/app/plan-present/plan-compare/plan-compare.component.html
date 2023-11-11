@@ -27,13 +27,16 @@
     </tr>
   </table>
   <!--<h4>Star Rating</h4>-->  
-  <h4><input type="checkbox" matTooltip="Tooltip text placeholder"/>Key Benefits </h4>
-  <table class="table table-striped" *ngFor="let pc of planCompare?.segment">
-    <tr *ngFor="let attributes of pc.attributesList[0].atrribute">
-      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{attributes.attributeName}}</label></th>
-      <td *ngFor="let value of pc?.attributesList"><p *ngFor="let fv of value?.atrribute">{{fv.displayValue}}</p></td> 
-    </tr>
-    
+
+ <div *ngFor="let  pc of planCompare?.attributes">
+  <h4><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{pc.category}}</h4>
+  <table class="table table-striped">
+    <tr *ngFor="let  row of pc.attribute">
+      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{row.attributeName}}</label></th>
+      <td *ngFor="let  co of row.data"><p>{{co.displayValue}}</p></td>
+      
+    </tr>   
   </table>
   
+ </div>
 </div>
