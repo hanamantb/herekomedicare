@@ -33,7 +33,16 @@
   <table class="table table-striped">
     <tr *ngFor="let  row of pc.attribute">
       <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{row.attributeName}}</label></th>
-      <td *ngFor="let  co of row.data"><p>{{co.displayValue}}</p></td>
+      <td *ngFor="let  co of row.data">
+        <p *ngIf="co.isSymbol === 0 && co.isHyperLink === 0 && co.isStarRating === 0">{{co.displayValue}}</p>
+        <li *ngIf="co.isSymbol === 1"><mat-icon>check</mat-icon><span>{{co.displayValue}}</span></li>
+        <a href="#" target="_blank" *ngIf="co.isHyperLink === 1">{{co.displayValue}}</a>
+        <div class="star-rating" *ngIf="co.isStarRating === 1">
+          <span *ngFor="let star of stars"
+                [ngClass]="{'filled': star < co.displayValue, 'half-filled': star === co.displayValue - 0.5}"></span>
+        </div>
+        
+      </td>
       
     </tr>   
   </table>

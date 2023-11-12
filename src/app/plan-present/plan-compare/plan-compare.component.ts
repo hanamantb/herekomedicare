@@ -14,6 +14,7 @@ export class PlanCompareComponent implements OnInit {
   plans:any
   drugsArray: any;
   planCompare: any;
+  stars: number[] = [0, 1, 2, 3, 4];
   constructor(private dialog: MatDialog,private commonservice: CommonService) { }
 
   ngOnInit(): void {
@@ -65,206 +66,273 @@ export class PlanCompareComponent implements OnInit {
     this.commonservice.planCompare(lis,
       year,planTiles).subscribe(response => {
         this.planCompare ={
-          "planDetail":[
-             {
-                "planName":"HealthSun MediMax (HMO)(H5431-006-0)",
-                "planId":"H5431-006-0",
-                "planType":"PLAN_TYPE_MAPD",
-                "monthlyPremium":"35.00"
-             },
-             {
-                "planName":"AARP Medicare Advantage Choice Plan 2 (Regional PPO)(R0759-001-0)",
-                "planId":"R0759-001-0",
-                "planType":"PLAN_TYPE_MAPD",
-                "monthlyPremium":"0.00"
-             }
-          ],
-          "attributes":[
-             {
-                "category":"Key_Benefits",
-                "displayOrder":1,
-                "attribute":[
-                   {
-                      "planType":"1",
-                      "apiParameter":"annual_deductible",
-                      "attributeName":"Deductible",
-                      "categoryOrderProposals":"1",
-                      "attributeOrderProposals":"1",
-                      "data":[
-                         {
-                            "displayValue":"$0"
-                         },
-                         {
-                            "displayValue":"$0"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"maximum_oopc",
-                      "attributeName":"Max OOP",
-                      "categoryOrderProposals":"1",
-                      "attributeOrderProposals":"2",
-                      "data":[
-                         {
-                            "displayValue":"$0"
-                         },
-                         {
-                            "displayValue":"$0"
-                         }
-                      ]
-                   }
-                ]
-             },
-             {
-                "category":"Inpatient_Services",
-                "displayOrder":2,
-                "attribute":[
-                   {
-                      "planType":"1",
-                      "apiParameter":"BENEFIT_INPATIENT_HOSPITAL",
-                      "attributeName":"Inpatient Facility Fees",
-                      "categoryOrderProposals":"2",
-                      "attributeOrderProposals":"1",
-                      "data":[
-                         {
-                            "displayValue":"$0 copay per stay"
-                         },
-                         {
-                            "displayValue":"$0"
-                         }
-                      ]
-                   }
-                ]
-             },
-             {
-                "category":"Additional_Benefits",
-                "displayOrder":3,
-                "attribute":[
-                   {
-                      "planType":"1",
-                      "apiParameter":"transportation",
-                      "attributeName":"Transportation",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"1",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"false"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"emergency_response_device",
-                      "attributeName":"Emergency Response Device",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"2",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"home_safety_devices",
-                      "attributeName":"Home Safety Devices & Modifications",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"3",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"home_safety_devices",
-                      "attributeName":"Home Safety Devices & Modifications",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"4",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"vision_services",
-                      "attributeName":"Vision",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"5",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"dental_services",
-                      "attributeName":"Dental",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"6",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"hearing_services",
-                      "attributeName":"Hearing",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"7",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"true"
-                         }
-                      ]
-                   },
-                   {
-                      "planType":"1",
-                      "apiParameter":"otc_drugs",
-                      "attributeName":"Over-The-Counter Drugs",
-                      "categoryOrderProposals":"3",
-                      "attributeOrderProposals":"8",
-                      "data":[
-                         {
-                            "displayValue":"true"
-                         },
-                         {
-                            "displayValue":"false"
-                         }
-                      ]
-                   }
-                ]
-             }
-          ]
-       }
+         "planDetail":[
+            {
+               "planName":"HealthSun MediMax (HMO)(H5431-006-0)",
+               "planId":"H5431-006-0",
+               "planType":"PLAN_TYPE_MAPD",
+               "monthlyPremium":"35.00"
+            },
+            {
+               "planName":"AARP Medicare Advantage Choice Plan 2 (Regional PPO)(R0759-001-0)",
+               "planId":"R0759-001-0",
+               "planType":"PLAN_TYPE_MAPD",
+               "monthlyPremium":"0.00"
+            }
+         ],
+         "attributes":[
+            {
+               "category":"Key_Benefits",
+               "displayOrder":1,
+               "attribute":[
+                  {
+                     "planType":"1",
+                     "apiParameter":"annual_deductible",
+                     "attributeName":"Deductible",
+                     "categoryOrderProposals":"1",
+                     "attributeOrderProposals":"1",
+                     "data":[
+                        {
+                           "displayValue":"3",
+                     "isSymbol": 0,
+                        "isStarRating": 1,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"$0",
+                     "isSymbol": 0,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"maximum_oopc",
+                     "attributeName":"Max OOP",
+                     "categoryOrderProposals":"1",
+                     "attributeOrderProposals":"2",
+                     "data":[
+                        {
+                           "displayValue":"$0",
+                     "isSymbol": 0,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"$0",
+                     "isSymbol": 0,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                    
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "category":"Inpatient_Services",
+               "displayOrder":2,
+               "attribute":[
+                  {
+                     "planType":"1",
+                     "apiParameter":"BENEFIT_INPATIENT_HOSPITAL",
+                     "attributeName":"Inpatient Facility Fees",
+                     "categoryOrderProposals":"2",
+                     "attributeOrderProposals":"1",
+                     "data":[
+                        {
+                           "displayValue":"$0 copay per stay",
+                     "isSymbol": 0,
+                        "isStarRating": 0,
+                        "isHyperLink":1
+                        },
+                        {
+                           "displayValue":"$0",
+                     "isSymbol": 0,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  }
+               ]
+            },
+            {
+               "category":"Additional_Benefits",
+               "displayOrder":3,
+               "attribute":[
+                  {
+                     "planType":"1",
+                     "apiParameter":"transportation",
+                     "attributeName":"Transportation",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"1",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"false",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"emergency_response_device",
+                     "attributeName":"Emergency Response Device",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"2",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"home_safety_devices",
+                     "attributeName":"Home Safety Devices & Modifications",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"3",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"home_safety_devices",
+                     "attributeName":"Home Safety Devices & Modifications",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"4",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"vision_services",
+                     "attributeName":"Vision",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"5",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"dental_services",
+                     "attributeName":"Dental",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"6",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"hearing_services",
+                     "attributeName":"Hearing",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"7",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  },
+                  {
+                     "planType":"1",
+                     "apiParameter":"otc_drugs",
+                     "attributeName":"Over-The-Counter Drugs",
+                     "categoryOrderProposals":"3",
+                     "attributeOrderProposals":"8",
+                     "data":[
+                        {
+                           "displayValue":"true",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        },
+                        {
+                           "displayValue":"false",
+                     "isSymbol": 1,
+                        "isStarRating": 0,
+                        "isHyperLink":0
+                        }
+                     ]
+                  }
+               ]
+            }
+         ]
+      }
         console.log('this.planCompare',this.planCompare)
   })
   }
