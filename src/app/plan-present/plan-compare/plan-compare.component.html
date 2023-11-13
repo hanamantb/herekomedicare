@@ -28,16 +28,16 @@
   </table>
   <!--<h4>Star Rating</h4>-->  
 
- <div *ngFor="let  pc of planCompare?.attributes">
+ <div *ngFor="let  pc of planCompare?.segment">
   <h4><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{pc.category}}</h4>
   <table class="table table-striped">
-    <tr *ngFor="let  row of pc.attribute">
+    <tr *ngFor="let  row of pc.attributesList">
       <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{row.attributeName}}</label></th>
-      <td *ngFor="let  co of row.data">
-        <p *ngIf="co.isSymbol === 0 && co.isHyperLink === 0 && co.isStarRating === 0">{{co.displayValue}}</p>
-        <li *ngIf="co.isSymbol === 1"><mat-icon>check</mat-icon><span>{{co.displayValue}}</span></li>
-        <a href="#" target="_blank" *ngIf="co.isHyperLink === 1">{{co.displayValue}}</a>
-        <div class="star-rating" *ngIf="co.isStarRating === 1">
+      <td *ngFor="let  co of row.atrributeData">
+        <p *ngIf="row.isSymobl === 0 && row.isUrlLink === 0 && row.isStarRating === 0">{{co.displayValue}}</p>
+        <li *ngIf="row.isSymobl === 1"><mat-icon>check</mat-icon><span>{{co.displayValue}}</span></li>
+        <a href="#" target="_blank" *ngIf="row.isUrlLink === 1">{{co.displayValue}}</a>
+        <div class="star-rating" *ngIf="row.isStarRating === 1">
           <span *ngFor="let star of stars"
                 [ngClass]="{'filled': star < co.displayValue, 'half-filled': star === co.displayValue - 0.5}"></span>
         </div>
