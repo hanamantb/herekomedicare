@@ -14,7 +14,7 @@ export class PlanCompareComponent implements OnInit {
   details: any
   plans:any
   drugsArray: any;
-  planCompare: any;
+  planCompare: any; 
   stars: number[] = [0, 1, 2, 3, 4];
   constructor(private dialog: MatDialog,private commonservice: CommonService,
    private spinner: SpinnerService) { }
@@ -25,6 +25,13 @@ export class PlanCompareComponent implements OnInit {
     const year = sessionStorage.getItem('effectyear')  
     const planCompareData = sessionStorage.getItem('planCompareData')
     const drugs = sessionStorage.getItem('drugs')
+    const npis = sessionStorage.getItem('pharmacies')
+    let npiArray: any[] = [];
+   
+    if (npis) {
+      npiArray = JSON.parse(npis);
+    }
+    console.log(' A npiArray',npiArray)
     if(drugs){
       this.drugsArray =JSON.parse(drugs);
     }
@@ -37,9 +44,9 @@ export class PlanCompareComponent implements OnInit {
           planId:element.planID,
           additionalBenefits:element.attributes.Additional_Benefits,
           isOptionalPackages:{
-            "package1": "true",
-            "package2": "true",
-            "package3": "true",
+            "package1": "false",
+            "package2": "false",
+            "package3": "false",
             "package4": "false",
             "package5": "false"
         },
@@ -76,6 +83,7 @@ export class PlanCompareComponent implements OnInit {
   openCompareConfirm() {
     window.print();
   }
+
 
 }
 

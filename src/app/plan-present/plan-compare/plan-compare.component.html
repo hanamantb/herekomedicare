@@ -12,7 +12,7 @@
       <th></th>
       <th *ngFor="let pc of planCompare?.planDetail">
         <div class="compare-logo p-0 mb-2">
-          <img src="../../assets/simplymore.png"  />
+          <img src="data:image/png;base64,{{pc.logo}}" />
         </div>
         <h3>{{pc.planName}}</h3>
         <h5 class="c-price">$0.00</h5>
