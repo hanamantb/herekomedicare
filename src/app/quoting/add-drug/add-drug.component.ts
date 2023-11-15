@@ -44,7 +44,7 @@ export class AddDrugComponent implements OnInit {
     },
     {field: 'drugName', headerName: 'Drug Name', filter: true, width: 200, flex: 1},
     {field: 'dosage', headerName: 'Dosage', filter: true, width: 180},
-    {field: 'package', headerName: 'Package', filter: true, width: 180},
+    {field: 'packageDescription', headerName: 'Package', filter: true, width: 180},
     {field: 'quantity', headerName: 'Quantity', filter: true, width: 110},
     {field: 'frequency', headerName: 'Frequency', filter: true, width: 150},
     {
@@ -94,7 +94,7 @@ export class AddDrugComponent implements OnInit {
       ndc: [null],
       drugName: [null],
       dosage: [null, [Validators.required]],
-      package: [null],
+      packageDescription: [null],
       quantity: [null, [Validators.required, Validators.min(0)]],
       frequency: ['Every month', [Validators.required]],
     })
@@ -199,7 +199,7 @@ export class AddDrugComponent implements OnInit {
 
   addDrug() {
     console.log('rowData11---', this.rowData)
-    let pack = this.drugForm.value.package
+    let pack = this.drugForm.value.packageDescription
 
     const datachck = this.rowData.filter((x: any) => x.ndc === this.drugForm.value.ndc)
     console.log('pack', datachck)
@@ -213,7 +213,7 @@ export class AddDrugComponent implements OnInit {
         frequency: "Every month"
       })
       this.drugname.reset()
-    }else if(this.packages.length !==0 && this.drugForm.value.package === null){
+    }else if(this.packages.length !==0 && this.drugForm.value.packageDescription === null){
       this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'Please select a package.'}, width: '600px'})
 
     } else if (this.drugForm.valid) {
@@ -221,7 +221,7 @@ export class AddDrugComponent implements OnInit {
       if (pack === null || pack === '') {
         pack = ''
       } else {
-        pack = this.drugForm.value.package.package_description
+        pack = this.drugForm.value.packageDescription.package_description
       }
 
       let gen = ''
@@ -235,7 +235,7 @@ export class AddDrugComponent implements OnInit {
       this.drugForm.patchValue({
         rxcui: this.rxcui,
         drugName: this.itemName + ' ' + gen,
-        package: pack,
+        packageDescription: pack,
         dosage: this.drugForm.value.dosage.strength + ' ' + this.drugForm.value.dosage.dosage_form,
         ndc: this.drugForm.value.dosage.ndc
       })
@@ -338,7 +338,7 @@ export class AddDrugComponent implements OnInit {
         console.log('editndc', editndc)
         this.drugForm.patchValue({
             dosage: editndc[0],
-            package: editndc[0],
+            packageDescription: editndc[0],
           }
         )
         this.packages.push(editndc[0])
@@ -366,7 +366,7 @@ export class AddDrugComponent implements OnInit {
     const defaultQtyEmpty = quantityDefault == 0 ? '' : quantityDefault;
     this.drugForm.patchValue({
       ndc: event.value.ndc,
-      package: event.value,
+      packageDescription: event.value,
       quantity: defaultQtyEmpty
     })
 
@@ -410,7 +410,7 @@ export class AddDrugComponent implements OnInit {
         ndc: data.ndc,
         drugName: data.drugName,
         dosage: data.dosage,
-        package: data.package,
+        packageDescription: data.packageDescription,
         quantity: data.quantity,
         frequency: data.frequency,
       })

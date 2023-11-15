@@ -12,5 +12,6 @@ export class UrlConstants {
   public static drugCost = UrlConstants.api + "drug-cost"
   public static planDetails = UrlConstants.api + "plan-details"
   public static processPlans = UrlConstants.api + "process-plans"
+  public static planCompare = UrlConstants.api + "plan-compare"
 
 }

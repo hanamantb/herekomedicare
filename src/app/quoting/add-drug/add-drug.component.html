@@ -49,7 +49,7 @@
             </div>
             <div class="col-2 p-2" *ngIf="packages.length != 0">
               <p>Package</p>
-              <mat-select placeholder="Select" formControlName="package" (selectionChange)="packageChange($event)">
+              <mat-select placeholder="Select" formControlName="packageDescription" (selectionChange)="packageChange($event)">
                 <mat-option *ngFor="let option of packages" [value]="option">
                   {{option.package_description}}
                 </mat-option>
