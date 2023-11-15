@@ -267,3 +267,51 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
     color: #005875;
     border: 1px solid #005875;
 }
+.cdk-global-overlay-wrapper .cdk-overlay-pane.alert-popup {
+  max-width: 360px !important
+}
+.cdk-overlay-pane.alert-popup .mat-dialog-container{
+    padding: 0;
+    border: 1px solid;
+}
+.cdk-overlay-pane.alert-popup .alert-msg-icon {
+  width: 100%;
+  height: 88px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cdk-overlay-pane.alert-popup .alert-msg-icon mat-icon{
+    color: #fff;
+    font-size: 54px;
+    width: auto;
+    height: auto;
+}
+.cdk-overlay-pane.alert-popup.alert-error .alert-msg-icon{
+    background-color: #D5492E;
+}
+.cdk-overlay-pane.alert-popup.alert-error .mat-dialog-container{
+    border-color: #D5492E;
+}
+.cdk-overlay-pane.alert-popup .popup-body-wrapper {
+  overflow-x: hidden
+}
+.cdk-overlay-pane.alert-popup .zipcode-val-popup-body .container-fluid {
+  padding: 25px 15px;
+}
+.cdk-overlay-pane.alert-popup .popup-close-btn button {
+  position: absolute;
+  top: 3px;
+  right: 7px;
+  border: 0;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border-radius: 2px;
+  font-size: 18px;
+  background-color: transparent;
+  z-index: 1;
+}
+.cdk-overlay-pane.alert-popup .popup-close-btn button mat-icon{
+    color: #fff;
+}

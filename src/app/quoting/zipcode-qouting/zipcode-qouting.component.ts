@@ -64,7 +64,8 @@ export class ZipcodeQoutingComponent implements OnInit {
     if (!this.zipcodeForm.valid || this.selectedCountie.length === 0) {
       this.dialog.open(ErrorPopupComponent, {
         data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
-        width: '600px'
+        width: '600px',
+        panelClass: ['alert-popup', 'alert-error']
       })
     } else {
 
