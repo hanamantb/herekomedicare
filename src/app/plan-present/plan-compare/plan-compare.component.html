@@ -47,8 +47,8 @@
       <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{row.attributeName}}</label></th>
       <td *ngFor="let  co of row.atrributeData">
         <p *ngIf="row.isSymobl === 0 && row.isUrlLink === 0 && row.isStarRating === 0">{{co.displayValue}}</p>
-        <ul><li *ngIf="row.isSymobl === 1 && co.displayValue ==='true'"><mat-icon>check</mat-icon><span>{{co.displayValue}}</span></li></ul>
-        <ul class="cancel-icon"><li *ngIf="row.isSymobl === 1 && co.displayValue ==='false'"><mat-icon>close</mat-icon><span>{{co.displayValue}}</span></li></ul>
+        <ul><li *ngIf="row.isSymobl === 1 && co.displayValue ==='true'"><mat-icon>check</mat-icon></li></ul>
+        <ul class="cancel-icon"><li *ngIf="row.isSymobl === 1 && co.displayValue ==='false'"><mat-icon>close</mat-icon></li></ul>
         <a href="#" target="_blank" *ngIf="row.isUrlLink === 1">{{co.displayValue}}</a>
         <div class="star-rating" *ngIf="row.isStarRating === 1">
           <span *ngFor="let star of stars"
