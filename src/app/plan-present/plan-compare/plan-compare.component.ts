@@ -56,7 +56,7 @@ export class PlanCompareComponent implements OnInit {
       this.drugsArray =JSON.parse(drugs);
       this.updateApidrugs(this.drugsArray)
     }
-    const planTiles: { planId: any; additionalBenefits: any; isOptionalPackages: { package1: string; package2: string; package3: string; package4: string; package5: string; }; drugDetails: any; drugCoverageAndCosts: { tier: string; remainingPremiumAndDrugsRetail: { pharmacyName: string; isInNetwork: string; premiumCost: string; }[]; }; }[] =[]
+    const planTiles: { planId: any; additionalBenefits: any; monthlypremium:any; drugsCoveredCount:any; drugDetails: any; drugCoverageAndCosts: { tier: string; remainingPremiumAndDrugsRetail: { pharmacyName: string; isInNetwork: string; premiumCost: string; }[]; }; }[] =[]
     if(planCompareData){
       this.plans = JSON.parse(planCompareData)
       
@@ -64,13 +64,8 @@ export class PlanCompareComponent implements OnInit {
         const plan = {
           planId:element.planID,
           additionalBenefits:element.attributes.Additional_Benefits,
-          isOptionalPackages:{
-            "package1": "false",
-            "package2": "false",
-            "package3": "false",
-            "package4": "false",
-            "package5": "false"
-        },
+          monthlypremium:element.monthlypremium,
+          drugsCoveredCount:element.drugsCoveredCount,        
         optionalPackages:element.optional_benefits,
         npis:npiArray,
         drugDetails:this.drugsArray,
