@@ -99,7 +99,14 @@ export class PlanCompareComponent implements OnInit {
   openCompareConfirm() {
     window.print();
   }
+  toggleChildCheckbox(pc: any): void {
+    pc.isSelected = pc.attributesList.some((row: any) => row.isSelected);
+  }
 
-
+  toggleParentCheckbox(pc: any): void {
+    pc.attributesList.forEach((row: any) => {
+      row.isSelected = pc.isSelected;
+    });
+  }
 }
 

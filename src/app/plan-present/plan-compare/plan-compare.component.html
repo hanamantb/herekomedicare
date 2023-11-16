@@ -41,10 +41,10 @@
   <!--<h4>Star Rating</h4>-->  
 
  <div *ngFor="let  pc of planCompare?.segment">
-  <h4><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{pc.category}}</h4>
+  <h4><input type="checkbox" matTooltip="Tooltip text placeholder" [(ngModel)]="pc.isSelected" (ngModelChange)="toggleParentCheckbox(pc)"/>{{pc.category}}</h4>
   <table class="table table-striped">
     <tr *ngFor="let  row of pc.attributesList">
-      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder"/>{{row.attributeName}}</label></th>
+      <th><label><input type="checkbox" matTooltip="Tooltip text placeholder" [(ngModel)]="row.isSelected" (ngModelChange)="toggleChildCheckbox(pc)"/>{{row.attributeName}}</label></th>
       <td *ngFor="let  co of row.atrributeData">
         <p *ngIf="row.isSymobl === 0 && row.isUrlLink === 0 && row.isStarRating === 0">{{co.displayValue}}</p>
         <ul><li *ngIf="row.isSymobl === 1 && co.displayValue ==='true'"><mat-icon>check</mat-icon></li></ul>
