@@ -15,6 +15,26 @@ export class PlanCompareComponent implements OnInit {
   plans:any
   drugsArray: any;
   planCompare: any; 
+  frequency = [{
+    name: 'Every month',
+    values: 'FREQUENCY_30_DAYS'
+  },
+    {
+      name: 'Every 2 months',
+      values: 'FREQUENCY_60_DAYS'
+    },
+    {
+      name: 'Every 3 months',
+      values: 'FREQUENCY_90_DAYS'
+    },
+    {
+      name: 'Every 6 months',
+      values: 'FREQUENCY_180_DAYS'
+    },
+    {
+      name: 'Every 12 months',
+      values: 'FREQUENCY_360_DAYS'
+    }]
   stars: number[] = [0, 1, 2, 3, 4];
   constructor(private dialog: MatDialog,private commonservice: CommonService,
    private spinner: SpinnerService) { }
@@ -34,8 +54,9 @@ export class PlanCompareComponent implements OnInit {
     console.log(' A npiArray',npiArray)
     if(drugs){
       this.drugsArray =JSON.parse(drugs);
+      this.updateApidrugs(this.drugsArray)
     }
-    const planTiles: { planId: any; additionalBenefits: any; isOptionalPackages: { package1: string; package2: string; package3: string; package4: string; package5: string; }; drugDetails: any; drugCoverageAndCosts: { tier: string; remainingPremiumAndDrugsRetail: { pharmacyName: string; isInNetwork: string; premiumCost: string; }[]; }; }[] =[]
+    const planTiles: { planId: any; additionalBenefits: any; monthlypremium:any; drugsCoveredCount:any; drugDetails: any;  }[] =[]
     if(planCompareData){
       this.plans = JSON.parse(planCompareData)
       
@@ -43,29 +64,11 @@ export class PlanCompareComponent implements OnInit {
         const plan = {
           planId:element.planID,
           additionalBenefits:element.attributes.Additional_Benefits,
-          isOptionalPackages:{
-            "package1": "false",
-            "package2": "false",
-            "package3": "false",
-            "package4": "false",
-            "package5": "false"
-        },
-        drugDetails:this.drugsArray,
-        drugCoverageAndCosts:{
-          "tier": "0",
-          "remainingPremiumAndDrugsRetail": [
-              {
-                  "pharmacyName": "WINN DIXIE",
-                  "isInNetwork": "true",
-                  "premiumCost": "$0.0"
-              },
-              {
-                  "pharmacyName": "WALGREENS #6385",
-                  "isInNetwork": "true",
-                  "premiumCost": "$0.0"
-              }
-          ]
-      }
+          monthlypremium:element.monthlypremium,
+          drugsCoveredCount:element.drugsCoveredCount,        
+        optionalPackages:element.optional_benefits,
+        npis:npiArray,
+        drugDetails:this.drugsArray
         }
         console.log('pcp element',element.attributes.Additional_Benefits)
         
@@ -79,6 +82,19 @@ export class PlanCompareComponent implements OnInit {
         console.log('this.planCompare',this.planCompare)
         this.spinner.stop(spine)
   })
+  }
+  updateApidrugs(data: any) {
+    console.log('data-----------', data)
+    if (data !== undefined) {
+      data.forEach((drugsObj: any) => {
+        this.frequency.forEach((freobj: any) => {
+          if (freobj.name === drugsObj.frequency) {
+            drugsObj.frequency = freobj.values
+          }
+        })
+
+      });
+    }
   }
   openCompareConfirm() {
     window.print();
