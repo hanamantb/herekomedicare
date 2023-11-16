@@ -1,18 +1,16 @@
 <div class="toolbar">
-<nav class="navbar navbar-expand-lg py-4 navbar-light shadow">
-  <div class="container">
-    <a class="navbar-brand .text-primary fs-1 fw-bold" href="#">Medicare</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor03">
+  <nav class="navbar navbar-expand-lg py-4 navbar-light shadow">
+    <div class="container d-flex align-items-center">
+      <a class="navbar-brand fs-1 fw-bold" href="#">Medicare</a>
+      <div class="collapse navbar-collapse" id="navbarColor03">
+      </div>
+      <div class="logout-btn ms-auto" *ngIf="!hideButton">
+        <button mat-button (click)="onLogout()"><mat-icon>logout</mat-icon>Logout</button>
+      </div>
+      <div class="d-flex me-5" style="font-size: 12px" (click)="cart()" matBadge="{{number}}" [matBadgeColor]="'accent'" matBadgeOverlap="false"
+        *ngIf="number !== undefined && !hideButton">
+        <mat-icon class="cart-color">shopping_cart</mat-icon>
+      </div>
     </div>
-  </div>
-  <div class="logout-btn" *ngIf="!hideButton">
-    <button mat-raised-button color="primary" (click)="onLogout()"><mat-icon>logout</mat-icon>Logout</button>
-  </div>
-  <div class="d-flex justify-content-end me-5"  style="font-size: 12px" (click)="cart()" matBadge="{{number}}" matBadgeOverlap="false" *ngIf="number !>=0 && !hideButton">
-    <mat-icon>shopping_cart</mat-icon> Cart
-  </div>
-</nav>
+  </nav>
 </div>

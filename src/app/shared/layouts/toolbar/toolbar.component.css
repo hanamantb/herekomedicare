@@ -1,49 +1,59 @@
-/* navbar*/
-.navbar.navbar .navlink{
+.navbar.navbar .navlink {
   font-size: 14px;
   font-weight: 600;
 }
-.toolbar{
-  background-color: #d9e3f1;
-}
-.navbar.navbar .navlink.active{
-  color: #7b8ab8;
+
+.toolbar {
+  background-color: #fff;
 }
 
+.navbar.navbar .navlink.active {
+  color: #fff;
+}
 
-@media (min-width: 992px){
-  .navbar-expand-lg .navbar-nav .nav-link{
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 16px;
     padding-left: 16px;
   }
 }
-.navbar-brand{
-  color: #485785;
+
+.navbar-brand {
+  color: #005875;
 }
 
-.nav-link{
-  color: #7b8ab8;
+.nav-link {
+  color: #005875;
 }
 
-.btn{
+.btn {
   position: relative;
-  color: #7b8ab8;
+  color: #005875;
   border-radius: 50rem;
   background-color: #d9e3f1;
   border: none;
   box-shadow: 5px 5px 10px rgba(55, 94, 148, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.4);
   transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out, box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
 }
+
 .logout-btn {
   margin-right: 15px;
 }
-.logout-btn button{
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    min-height: 36px;
+
+.logout-btn button {
+  background: #005875;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
-.logout-btn mat-icon{
-    font-size: 18px;
-    height: 20px;
+
+.logout-btn mat-icon {
+  font-size: 18px;
+  height: 20px;
+}
+
+.cart-color {
+  color: #005875;
 }

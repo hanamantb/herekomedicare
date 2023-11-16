@@ -1,6 +1,10 @@
 p{
   text-align: center;
 }
+
+.elements{
+  max-width: 100px;
+}
 .card {
   width: 100%;
   background-color: #ffffff;
@@ -14,15 +18,16 @@ p{
   border-radius: 4px;
 }
 select {
-  background-color: white;
+  background-color: #F9F9F9;
   height: 30px;
-  border: #B8C0D4 1px ridge;
-  border-radius: 2px;
+  border: #fff 0px;
+  border-radius: 0px;
   padding: 4px;
-  width: 100%;
+  width: 60%;
+  border-bottom: #005875 3px solid;
 }
 .selected {
-  background-color: #4b8bb2;
+  background-color: #005875;
   color: white;
   font-weight: bold;
 }
@@ -43,7 +48,7 @@ ul {
   padding: 0;
   border-radius: 2px;
   color: #fff;
-  background-color: #4b8bb2;
+  background-color: #005875;
   font-size: 18px;
 }
 .browse-drug-footer{
@@ -52,8 +57,7 @@ ul {
     right: 0;
 }
 button{
-    border-radius: 2px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .drugs-list ul {
@@ -65,6 +69,7 @@ button{
   padding: 10px 15px;
   cursor: pointer;
   width: 100%;
+  border-radius: 6px;
 }
 .drugs-list li .li-card.selected{
     font-weight: normal;
