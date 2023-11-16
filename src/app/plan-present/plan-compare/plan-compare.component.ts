@@ -56,7 +56,7 @@ export class PlanCompareComponent implements OnInit {
       this.drugsArray =JSON.parse(drugs);
       this.updateApidrugs(this.drugsArray)
     }
-    const planTiles: { planId: any; additionalBenefits: any; monthlypremium:any; drugsCoveredCount:any; drugDetails: any; drugCoverageAndCosts: { tier: string; remainingPremiumAndDrugsRetail: { pharmacyName: string; isInNetwork: string; premiumCost: string; }[]; }; }[] =[]
+    const planTiles: { planId: any; additionalBenefits: any; monthlypremium:any; drugsCoveredCount:any; drugDetails: any;  }[] =[]
     if(planCompareData){
       this.plans = JSON.parse(planCompareData)
       
@@ -68,22 +68,7 @@ export class PlanCompareComponent implements OnInit {
           drugsCoveredCount:element.drugsCoveredCount,        
         optionalPackages:element.optional_benefits,
         npis:npiArray,
-        drugDetails:this.drugsArray,
-        drugCoverageAndCosts:{
-          "tier": "0",
-          "remainingPremiumAndDrugsRetail": [
-              {
-                  "pharmacyName": "WINN DIXIE",
-                  "isInNetwork": "true",
-                  "premiumCost": "$0.0"
-              },
-              {
-                  "pharmacyName": "WALGREENS #6385",
-                  "isInNetwork": "true",
-                  "premiumCost": "$0.0"
-              }
-          ]
-      }
+        drugDetails:this.drugsArray
         }
         console.log('pcp element',element.attributes.Additional_Benefits)
         
