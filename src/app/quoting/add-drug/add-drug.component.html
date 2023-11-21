@@ -1,16 +1,19 @@
-<div class="container">
+<h2 class="text-center">Add your prescription drugs</h2>
+<div class="container container-box">
   <div class="d-flex">
-    <div class="col-3 side-img">
-      <img src="../../../assets/sidepic.png" alt="">
-    </div>
-    <div class="col-9 add-drugs-info p-4">
-      <h2>Add your prescription drugs</h2>
-      <!--      <app-time-line [curentWorkStageId]="2"></app-time-line>-->
-      <div class="d-flex col-5">
-        <h3>Drug Name (Begin Typing)</h3>
+    <div class="add-drugs-info p-4 w-100">
+      <div class="drug-main-input-wrapper d-flex">
+        <div>
+          <!--      <app-time-line [curentWorkStageId]="2"></app-time-line>-->
+          <h3>Drug Name (Begin Typing)</h3>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" (click)="open()">Browse Drugs (A-Z)</button>
+        </div>
       </div>
-      <div class="row py-2 mb-3">
-        <div class="d-flex col-3">
+
+      <div class="row mb-3">
+        <div class="d-flex">
           <form class="example-form w-100">
             <input type="text" class="mat-in" placeholder="Search"
                    matInput
@@ -25,21 +28,17 @@
             </mat-autocomplete>
           </form>
         </div>
-        <div class="d-flex col-3 ps-0">
-          <button mat-raised-button color="primary" (click)="open()">Browse Drugs (A-Z)</button>
-        </div>
       </div>
-      <mat-divider class="mb-3"></mat-divider>
       <div *ngIf="itemName.length != 0" class="drug-dosage-info">
         <div class="d-flex col-12 p-2 px-3 drug-dosage-head">
           <h3>You can edit the information below.</h3>
         </div>
-        <div class="px-3 py-3 selected-drug-label">
-          Selected Drug : <strong>{{itemName}}</strong>
+        <div class="px-3 pt-3 selected-drug-label">
+          <p>Selected Drug : <strong>{{itemName}}</strong></p>
         </div>
         <form [formGroup]="drugForm" *ngIf="itemName.length != 0">
-          <div class="d-flex px-2 pb-3 drug-dosage-info">
-            <div class="col-2 p-2">
+          <div class=" px-2 pb-3 drug-dosage-info-inputs">
+            <div class="p-2">
               <p>Dosage</p>
               <mat-select placeholder="Select" formControlName="dosage" (selectionChange)="dosageChange($event)">
                 <mat-option *ngFor="let option of dosages" [value]="option">
@@ -47,7 +46,7 @@
                 </mat-option>
               </mat-select>
             </div>
-            <div class="col-2 p-2" *ngIf="packages.length != 0">
+            <div class=" p-2" *ngIf="packages.length != 0">
               <p>Package</p>
               <mat-select placeholder="Select" formControlName="packageDescription" (selectionChange)="packageChange($event)">
                 <mat-option *ngFor="let option of packages" [value]="option">
@@ -55,7 +54,7 @@
                 </mat-option>
               </mat-select>
             </div>
-            <div class="col-2 p-2">
+            <div class="p-2">
               <p>Quantity</p>
               <input type="tel" formControlName="quantity"
                      [ngClass]="{'ng-invalid-input': quantity.touched && quantity.invalid}">
@@ -63,7 +62,7 @@
                 The entered quantity is not valid.
               </div>
             </div>
-            <div class="col-2 p-2">
+            <div class="p-2">
               <p>Frequency</p>
               <mat-select placeholder="Select" formControlName="frequency" value="Every month">
                 <mat-option value="{{freq.name}}" *ngFor="let freq of frequency">
@@ -81,34 +80,14 @@
           </button>
         </div>
       </div>
-      <div *ngIf="rowData.length !=0" class="py-2">
-        <div class="d-flex col-12 pb-2">
-          <h3 class="mb-0 prescription-drugs-title">Your Prescription Drugs</h3>
-        </div>
-        <div class="d-flex col-12 pb-2 justify-content-center">
-          <ag-grid-angular style="width: 100%;height: auto" class="ag-theme-alpine"
-                           [scrollbarWidth]="8" [headerHeight]="35"
-                           rowSelection="multiple" (cellClicked)="onGridCellClicked($event)"
-                           (gridReady)="onGridReady($event)"
-                           [rowHeight]="35" [rowData]="rowData" domLayout='autoHeight'
-                           [columnDefs]="columnDefs"  [getRowHeight]="getRowHeight">
-          </ag-grid-angular>
-        </div>
-      </div>
-      <div class="d-flex col-12  py-2 justify-content-end add-drugs-actions">
-        <button mat-raised-button color="secondary" (click)="navPlans()" *ngIf="rowData.length !=0">See Plans without drugs</button>
-        <button mat-raised-button color="primary" class="ms-2" (click)="addPharmacy()">
-          Continue
-        </button>
-      </div>
+      
       <!--  <app-bottom-bar></app-bottom-bar>-->
 
     </div>
   </div>
-
 </div>
 
-<ng-template #generic >
+<ng-template #generic>
   <div class="container-fluid keep-drug-brand-popup">
     <h3 style="font-weight: 500">You have selected {{itemName}}</h3>
     <p>A lower generic is available for the drug you selected.</p>
@@ -129,3 +108,24 @@
 
   </div>
 </ng-template>
+<div *ngIf="rowData.length !=0" class="py-2 custom-table-wrapper">
+  <div class="d-flex col-12 pb-2">
+    <h3 class="mb-0 prescription-drugs-title">Your Prescription Drugs</h3>
+  </div>
+  <div class="d-flex col-12 pb-2 justify-content-center">
+    <ag-grid-angular style="width: 100%;height: auto" class="ag-theme-alpine"
+                     [scrollbarWidth]="8" [headerHeight]="35"
+                     rowSelection="multiple" (cellClicked)="onGridCellClicked($event)"
+                     (gridReady)="onGridReady($event)"
+                     [rowHeight]="35" [rowData]="rowData" domLayout='autoHeight'
+                     [columnDefs]="columnDefs" [getRowHeight]="getRowHeight">
+    </ag-grid-angular>
+  </div>
+</div>
+
+<div class="d-flex py-2 justify-content-stretch add-drugs-actions">
+  <button mat-raised-button color="secondary" (click)="navPlans()" *ngIf="rowData.length !=0">See Plans without drugs</button>
+  <button mat-raised-button color="primary" (click)="addPharmacy()">
+    Continue <mat-icon class="ms-2">arrow_forward</mat-icon>
+  </button>
+</div>
