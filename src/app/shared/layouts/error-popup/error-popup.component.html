@@ -13,12 +13,15 @@
 <div class="container-fluid position-relative popup-body-wrapper">
   <div class="row">
     <div class="col-md-2 popup-close-btn" align="right">
-      <button mat-dialog-close (click)="close()">X</button>
+      <button mat-dialog-close (click)="close()"><mat-icon>close</mat-icon></button>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12 zipcode-val-popup-body">
-      <div class="container-fluid p-3">
+    <div class="zipcode-val-popup-body px-0">
+      <div class="alert-msg-icon">
+        <mat-icon>highlight_off</mat-icon>
+      </div>
+      <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
             <p>{{data.customMsg}}</p>
