@@ -170,7 +170,7 @@
                 <a href="">About this rate</a>-->
                 <p class="estimated-cost-label">Estimated Annual Cost<small class="d-block">(Drug Cost + Premium)</small></p>
                 <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                <a href="/drug-cost">Drug Cost Details</a><br>
+                <a href="/drug-cost" *ngIf="showDrugs">Drug Cost Details</a><br>
               </div>
             </div>
           </div>
@@ -192,9 +192,9 @@
             <!--                <mat-icon class="ms-2">edit</mat-icon>-->
             <!--              </button>-->
             <!--            </div>-->
-            <div class="ms-2 optional-packages-btn d-flex align-items-center">
+            <div class="ms-2 optional-packages-btn d-flex align-items-center" *ngIf=" plan.optional_benefits.length !==0">
               <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
-                <p class="mb-0">Optional Packages</p>
+                <p class="mb-0" >Optional Packages</p>
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </span>
             </div>
