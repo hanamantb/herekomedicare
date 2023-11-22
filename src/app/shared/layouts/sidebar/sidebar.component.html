@@ -1,14 +1,16 @@
 <!--<mat-drawer-container class="example-container" autosize>-->
 <!--  <mat-drawer #drawer class="example-sidenav" mode="side">-->
-<div class="card rounded-0 sidebar-top">
-  <div class="d-flex p-2  align-items-center justify-space-between">
+<div class="sidebar-top">
+  <div class="d-flex p-2  align-items-center justify-space-between " style="
+  background-color: #005875; border-radius: 6px;">
     <div class="col-8 p-2">
       <h3>
         <strong>{{planCount}}</strong> out of {{totalCount}} Medicare Advantage / Medicare Part D
         Plans
       </h3>
     </div>
-    <div class="col-4 justify-content-center d-flex align-items-center refresh-btn">
+    <div class="col-4 justify-content-center d-flex align-items-center refresh-btn" style="
+    background-color:#005875">
       <!--      <img src="../../../../assets/refresh.png" style="height: 50px" alt="">-->
       <button (click)="clearFilters()"><mat-icon>refresh</mat-icon></button>
     </div>
@@ -16,307 +18,323 @@
   </div>
 
 </div>
-<div class="p-2 d-flex add-drugs-docs">
-  <button mat-raised-button style="color: white;background-color:#3c6f8e " (click)="navToPages('add-drugs')">
-    <mat-icon>library_add</mat-icon>
-    Add Drugs
-  </button> &nbsp;
-  <button mat-raised-button style="color: white;background-color:#3c6f8e " class="add-doctors-btn">
-    <mat-icon>playlist_add</mat-icon>
-    Add Doctors/Hospitals
-  </button>
+<div style="background-color: white; margin-top: 10px; margin-left: 2px; border:#005875 2px solid; border-radius: 6px;" >
+  <div class="p-2  add-drugs-docs">
+    <button mat-raised-button style="white-space: pre-wrap !important;
+     color: white;background-color:#005875 " (click)="navToPages('add-drugs')">
+      <mat-icon>library_add</mat-icon>
+      Add Drugs
+    </button> &nbsp;
+    <button mat-raised-button style="
+    color: #BBBBBB;width: 220px; border: #707070 1px solid; " class="add-doctors-btn">
+      <mat-icon>playlist_add</mat-icon>
+      Add Doctors/Hospitals
+    </button>
+  </div>
+  <div>
+    <mat-tab-group class="sidebar-content-wrapper">
+      <mat-tab label="Filter By">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-heaseders" style="padding: 10px; color: #005875;">Company</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2" *ngFor="let carrier of carrierNames">
+              <input class="form-check-input" type="radio" [checked]="carrier === carrierVal" name="carrier"
+                value="{{carrier}}" (change)="carrierFilter($event)"> &nbsp;
+              <label class="form-check-label">
+                {{carrier}}
+              </label>
+            </div>
+            <div class="d-flex sidebar-filter-actions">
+              <button mat-flat-button (click)="clearCompanies()">Clear</button>
+            </div>
+          </mat-expansion-panel>
+
+          <!--Premium filter-->
+          <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+          <!--                           (closed)="panelOpenState = true">-->
+          <!--        <mat-expansion-panel-header>-->
+          <!--          <p class="panel-headers">Premium</p>-->
+          <!--        </mat-expansion-panel-header>-->
+          <!--        <mat-slider min="200" max="500">-->
+          <!--          <input value="300" matSliderStartThumb>-->
+          <!--          <input value="400" matSliderEndThumb>-->
+          <!--        </mat-slider>-->
+          <!--        <div class="d-flex justify-content-center">-->
+          <!--          <div class="d-flex">-->
+          <!--            <em class="material-icons prefix">attach_money</em>-->
+          <!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
+          <!--                   type="text">-->
+          <!--          </div>-->
+          <!--          <div class="d-flex">-->
+          <!--            <em class="material-icons prefix">attach_money</em>-->
+          <!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
+          <!--                   type="text">-->
+          <!--          </div>-->
+          <!--          <div class="col s2 input-field filter-go-btn ">-->
+          <!--            <button mat-raised-button>Go</button>-->
+          <!--          </div>-->
+          <!--        </div>-->
+          <!--      </mat-expansion-panel>-->
+          <!--Deductible-->
+          <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+          <!--                           (closed)="panelOpenState = true">-->
+          <!--        <mat-expansion-panel-header>-->
+          <!--          <p class="panel-headers">Deductible</p>-->
+          <!--        </mat-expansion-panel-header>-->
+          <!--        <mat-slider min="200" max="500">-->
+          <!--          <input value="300" matSliderStartThumb>-->
+          <!--          <input value="400" matSliderEndThumb>-->
+          <!--        </mat-slider>-->
+          <!--        <div class="d-flex justify-content-center">-->
+          <!--          <div class="d-flex">-->
+          <!--            <em class="material-icons prefix">attach_money</em>-->
+          <!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
+          <!--                   type="text">-->
+          <!--          </div>-->
+          <!--          <div class="d-flex">-->
+          <!--            <em class="material-icons prefix">attach_money</em>-->
+          <!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
+          <!--                   type="text">-->
+          <!--          </div>-->
+          <!--          <div class="col s2 input-field filter-go-btn">-->
+          <!--            <button mat-raised-button>Go</button>-->
+          <!--          </div>-->
+          <!--        </div>-->
+          <!--      </mat-expansion-panel>-->
+          <!--Plan Type-->
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngIf="selectedFilters">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Special Needs Plans</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2" *ngFor="let item of snpPlanTypes">
+              <input class="form-check-input" type="checkbox" value="{{item.value}}" [(ngModel)]="item.isChecked"
+                (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                {{item.label}}
+              </label>
+            </div>
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" value="SNP_TYPE_DUAL_ELIGIBLE" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Plans for people who have both Medicare and Medicaid.-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" value="SNP_TYPE_INSTITUTIONAL" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Plans for people who need long-term care in a facility or at home.-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <div class="d-flex sidebar-filter-actions">
+              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
+              <button mat-flat-button (click)="clearsnpTypes()">Clear</button>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngIf="selectedFilters">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Plan Type</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2" *ngFor="let item of planTypes">
+              <input class="form-check-input" type="checkbox" value="{{item.value}}" [(ngModel)]="item.checked"
+                (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                {{item.label}}
+              </label>
+            </div>
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_PPO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            PPO (Preferred Provider Organization)-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            MSA (Medical Savings Account)-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <div class="d-flex sidebar-filter-actions">
+              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
+              <button mat-flat-button (click)="clearplanTypes()">Clear</button>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngIf="selectedFilters">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Plan Benefits</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2" *ngFor="let item of planBenefits">
+              <input class="form-check-input" type="checkbox" [(ngModel)]="item.checked"
+                (change)="updateBenefits(item.value,$event)">
+              <label class="form-check-label">{{ item.name }}</label>
+            </div>
+
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Hearing-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox"  (change)="updateBenefits('dental',$event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Dental-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Hearing-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('transportation',$event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Transportation-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <!--        <div class="d-flex p-2">-->
+            <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('silver_snekers',$event)" id="flexCheckChecked"> &nbsp;-->
+            <!--          <label class="form-check-label" for="flexCheckChecked">-->
+            <!--            Fitness benefits-->
+            <!--          </label>-->
+            <!--        </div>-->
+            <div class="d-flex sidebar-filter-actions">
+              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
+              <button mat-flat-button (click)="clearbenefits()">Clear</button>
+            </div>
+          </mat-expansion-panel>
+
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Overall Star Rating</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2">
+              <input class="form-check-input" type="radio" value="4" name="star" [(ngModel)]="selectedOption"
+                id="flexCheckChecked" (change)="starRating(4)"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                ⭐⭐⭐⭐ & above
+              </label>
+            </div>
+            <div class="d-flex p-2">
+              <input class="form-check-input" type="radio" value="3" name="star" [(ngModel)]="selectedOption"
+                id="flexCheckChecked" (change)="starRating(3)"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                ⭐⭐ ⭐ & above
+              </label>
+            </div>
+            <div class="d-flex p-2">
+              <input class="form-check-input" type="radio" value="2" name="star" [(ngModel)]="selectedOption"
+                id="flexCheckChecked" (change)="starRating(2)"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                ⭐ ⭐ & above
+              </label>
+            </div>
+            <div class="d-flex p-2">
+              <input class="form-check-input" type="radio" value="1" name="star" [(ngModel)]="selectedOption"
+                id="flexCheckChecked" (change)="starRating(1)"> &nbsp;
+              <label class="form-check-label" for="flexCheckChecked">
+                ⭐ & above
+              </label>
+            </div>
+            <div class="d-flex sidebar-filter-actions">
+              <button mat-flat-button (click)="clearStarRating()">Clear</button>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+            *ngIf="selectedFilters">
+            <mat-expansion-panel-header>
+              <p class="panel-headers">Optional Packages</p>
+            </mat-expansion-panel-header>
+            <div class="d-flex p-2">
+              <input class="form-check-input" type="checkbox" checked (change)="optnchk($event)" value=""
+                id="flexCheckChecked"> &nbsp;
+              <!--          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
+              <label class="form-check-label" for="flexCheckChecked">
+                Yes, show optional packages
+              </label>
+            </div>
+          </mat-expansion-panel>
+
+          <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+          <!--                           (closed)="panelOpenState = false">-->
+          <!--        <mat-expansion-panel-header>-->
+          <!--          <p class="panel-headers">Insulin Support</p>-->
+          <!--        </mat-expansion-panel-header>-->
+          <!--        <div class="d-flex p-2">-->
+          <!--          <input class="form-check-input" type="radio"> &nbsp;-->
+          <!--          <label class="form-check-label" for="flexCheckChecked">-->
+          <!--            Yes-->
+          <!--          </label>-->
+          <!--        </div>-->
+          <!--        <div class="d-flex p-2">-->
+          <!--          <input class="form-check-input" type="radio" > &nbsp;-->
+          <!--          <label class="form-check-label" for="flexCheckChecked">-->
+          <!--            No-->
+          <!--          </label>-->
+          <!--        </div>-->
+          <!--      </mat-expansion-panel>-->
+          <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
+          <!--                           (closed)="panelOpenState = false">-->
+          <!--        <mat-expansion-panel-header>-->
+          <!--          <p class="panel-headers">Additional Benefits</p>-->
+          <!--        </mat-expansion-panel-header>-->
+          <!--        <div class="d-flex p-2">-->
+          <!--          <input class="form-check-input" type="radio" checked-->
+          <!--                 value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;-->
+          <!--&lt;!&ndash;          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >&ndash;&gt;-->
+          <!--          <label class="form-check-label" for="flexCheckChecked">-->
+          <!--            Yes, show additional benefits-->
+          <!--          </label>-->
+          <!--        </div>-->
+          <!--      </mat-expansion-panel>-->
+        </mat-accordion>
+        <!--    <div class="p-2">-->
+        <!--      <p>Providers</p>-->
+        <!--      <div class=" form-check">-->
+        <!--        <input class="form-check-input" type="radio" value="" id="flexCheckChecked">-->
+        <!--        <label class="form-check-label" for="flexCheckChecked">-->
+        <!--          Dr. Sheena Mehta Zapata M>D - (Internal Medicine. Hospice and Palliative)-->
+        <!--        </label>-->
+        <!--      </div>-->
+        <!--    </div>-->
+        <!--    <div class="justify-content-end p-2">-->
+        <!--    <button mat-raised-button style="color: white;background-color:#3c6f8e " (click)="navToPages('doctors')">-->
+        <!--      <mat-icon >playlist_add</mat-icon>-->
+        <!--      Add Doctors/Hospitals</button>-->
+        <!--    </div>-->
+      </mat-tab>
+      <mat-tab label="Sort By">
+        <div class="sort mt-3">
+          <div class="d-flex  p-2">
+            <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)">
+            Lowest yearly drug deductible
+          </div>
+          <div class="d-flex  p-2" *ngIf="selectedFilters">
+            <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)">
+            Lowest health plan deductible
+          </div>
+          <div class="d-flex  p-2">
+            <input type="radio" style="height: 20px" checked name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)">
+            Lowest drug + premium cost
+          </div>
+          <div class="d-flex  p-2">
+            <input type="radio" style="height: 20px" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)">
+            Lowest monthly premium
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <!--  </mat-drawer>-->
+    <!--  <button type="button" mat-button (click)="drawer.toggle()">-->
+    <!--    Toggle sidenav-->
+    <!--  </button>-->
+    <!--</mat-drawer-container>-->
+  </div>
 </div>
-<mat-tab-group class="sidebar-content-wrapper">
-  <mat-tab label="Filter By">
-    <mat-accordion>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Company</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2" *ngFor="let carrier of carrierNames">
-          <input class="form-check-input" type="radio" [checked]="carrier === carrierVal" name="carrier" value="{{carrier}}" (change)="carrierFilter($event)"> &nbsp;
-          <label class="form-check-label">
-            {{carrier}}
-          </label>
-        </div>
-        <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button (click)="clearCompanies()">Clear</button>
-        </div>
-      </mat-expansion-panel>
-
-      <!--Premium filter-->
-      <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
-      <!--                           (closed)="panelOpenState = true">-->
-      <!--        <mat-expansion-panel-header>-->
-      <!--          <p class="panel-headers">Premium</p>-->
-      <!--        </mat-expansion-panel-header>-->
-      <!--        <mat-slider min="200" max="500">-->
-      <!--          <input value="300" matSliderStartThumb>-->
-      <!--          <input value="400" matSliderEndThumb>-->
-      <!--        </mat-slider>-->
-      <!--        <div class="d-flex justify-content-center">-->
-      <!--          <div class="d-flex">-->
-      <!--            <em class="material-icons prefix">attach_money</em>-->
-      <!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
-      <!--                   type="text">-->
-      <!--          </div>-->
-      <!--          <div class="d-flex">-->
-      <!--            <em class="material-icons prefix">attach_money</em>-->
-      <!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
-      <!--                   type="text">-->
-      <!--          </div>-->
-      <!--          <div class="col s2 input-field filter-go-btn ">-->
-      <!--            <button mat-raised-button>Go</button>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </mat-expansion-panel>-->
-      <!--Deductible-->
-      <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
-      <!--                           (closed)="panelOpenState = true">-->
-      <!--        <mat-expansion-panel-header>-->
-      <!--          <p class="panel-headers">Deductible</p>-->
-      <!--        </mat-expansion-panel-header>-->
-      <!--        <mat-slider min="200" max="500">-->
-      <!--          <input value="300" matSliderStartThumb>-->
-      <!--          <input value="400" matSliderEndThumb>-->
-      <!--        </mat-slider>-->
-      <!--        <div class="d-flex justify-content-center">-->
-      <!--          <div class="d-flex">-->
-      <!--            <em class="material-icons prefix">attach_money</em>-->
-      <!--            <input id="pricevaluemin_value" class="pricevaluesliderValue" name="pricevaluemin_value" data-index="0"-->
-      <!--                   type="text">-->
-      <!--          </div>-->
-      <!--          <div class="d-flex">-->
-      <!--            <em class="material-icons prefix">attach_money</em>-->
-      <!--            <input id="pricevaluemax_value" class="pricevaluesliderValue" name="pricevaluemax_value" data-index="1"-->
-      <!--                   type="text">-->
-      <!--          </div>-->
-      <!--          <div class="col s2 input-field filter-go-btn">-->
-      <!--            <button mat-raised-button>Go</button>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </mat-expansion-panel>-->
-      <!--Plan Type-->
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Special Needs Plans</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2" *ngFor="let item of snpPlanTypes">
-          <input class="form-check-input" type="checkbox" value="{{item.value}}" [(ngModel)]="item.isChecked" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            {{item.label}}
-          </label>
-        </div>
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" value="SNP_TYPE_DUAL_ELIGIBLE" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Plans for people who have both Medicare and Medicaid.-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" value="SNP_TYPE_INSTITUTIONAL" (change)="snpTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Plans for people who need long-term care in a facility or at home.-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-          <button mat-flat-button (click)="clearsnpTypes()">Clear</button>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Plan Type</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2" *ngFor="let item of planTypes">
-          <input class="form-check-input" type="checkbox" value="{{item.value}}" [(ngModel)]="item.checked" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-            {{item.label}}
-          </label>
-        </div>
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_PPO" (change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            PPO (Preferred Provider Organization)-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="planTypeFilter($event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            MSA (Medical Savings Account)-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-          <button mat-flat-button (click)="clearplanTypes()">Clear</button>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Plan Benefits</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2" *ngFor="let item of planBenefits">
-          <input class="form-check-input" type="checkbox" [(ngModel)]="item.checked" (change)="updateBenefits(item.value,$event)">
-          <label class="form-check-label">{{ item.name }}</label>
-        </div>
-
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" value="PLAN_FILTER_MSA"(change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Hearing-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox"  (change)="updateBenefits('dental',$event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Dental-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('hearing',$event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Hearing-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('transportation',$event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Transportation-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <!--        <div class="d-flex p-2">-->
-        <!--          <input class="form-check-input" type="checkbox" (change)="updateBenefits('silver_snekers',$event)" id="flexCheckChecked"> &nbsp;-->
-        <!--          <label class="form-check-label" for="flexCheckChecked">-->
-        <!--            Fitness benefits-->
-        <!--          </label>-->
-        <!--        </div>-->
-        <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-          <button mat-flat-button (click)="clearbenefits()">Clear</button>
-        </div>
-      </mat-expansion-panel>
-
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false" >
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Overall Star Rating</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="4" name="star" [(ngModel)]="selectedOption" id="flexCheckChecked" (change)="starRating(4)"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-          ⭐⭐⭐⭐ & above
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="3" name="star" [(ngModel)]="selectedOption"  id="flexCheckChecked" (change)="starRating(3)"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-          ⭐⭐ ⭐ & above
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="2" name="star" [(ngModel)]="selectedOption"  id="flexCheckChecked" (change)="starRating(2)"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-          ⭐ ⭐ & above
-          </label>
-        </div>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="radio" value="1" name="star" [(ngModel)]="selectedOption"  id="flexCheckChecked" (change)="starRating(1)"> &nbsp;
-          <label class="form-check-label" for="flexCheckChecked">
-          ⭐ & above
-          </label>
-        </div>
-        <div class="d-flex sidebar-filter-actions">
-          <button mat-flat-button (click)="clearStarRating()" >Clear</button>
-        </div>
-      </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false" *ngIf="selectedFilters">
-        <mat-expansion-panel-header>
-          <p class="panel-headers">Optional Packages</p>
-        </mat-expansion-panel-header>
-        <div class="d-flex p-2">
-          <input class="form-check-input" type="checkbox" checked (change)="optnchk($event)"
-                 value="" id="flexCheckChecked"> &nbsp;
-          <!--          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >-->
-          <label class="form-check-label" for="flexCheckChecked">
-            Yes, show optional packages
-          </label>
-        </div>
-      </mat-expansion-panel>
-
-      <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
-      <!--                           (closed)="panelOpenState = false">-->
-      <!--        <mat-expansion-panel-header>-->
-      <!--          <p class="panel-headers">Insulin Support</p>-->
-      <!--        </mat-expansion-panel-header>-->
-      <!--        <div class="d-flex p-2">-->
-      <!--          <input class="form-check-input" type="radio"> &nbsp;-->
-      <!--          <label class="form-check-label" for="flexCheckChecked">-->
-      <!--            Yes-->
-      <!--          </label>-->
-      <!--        </div>-->
-      <!--        <div class="d-flex p-2">-->
-      <!--          <input class="form-check-input" type="radio" > &nbsp;-->
-      <!--          <label class="form-check-label" for="flexCheckChecked">-->
-      <!--            No-->
-      <!--          </label>-->
-      <!--        </div>-->
-      <!--      </mat-expansion-panel>-->
-      <!--      <mat-expansion-panel (opened)="panelOpenState = true"-->
-      <!--                           (closed)="panelOpenState = false">-->
-      <!--        <mat-expansion-panel-header>-->
-      <!--          <p class="panel-headers">Additional Benefits</p>-->
-      <!--        </mat-expansion-panel-header>-->
-      <!--        <div class="d-flex p-2">-->
-      <!--          <input class="form-check-input" type="radio" checked-->
-      <!--                 value="" id="flexCheckChecked" (change)="benefit($event)"> &nbsp;-->
-      <!--&lt;!&ndash;          <input class="form-check-input" type="radio" value="" id="flexCheckChecked" [(ngModel)]="benefitchck" (change)="benefit($event)" >&ndash;&gt;-->
-      <!--          <label class="form-check-label" for="flexCheckChecked">-->
-      <!--            Yes, show additional benefits-->
-      <!--          </label>-->
-      <!--        </div>-->
-      <!--      </mat-expansion-panel>-->
-    </mat-accordion>
-    <!--    <div class="p-2">-->
-    <!--      <p>Providers</p>-->
-    <!--      <div class=" form-check">-->
-    <!--        <input class="form-check-input" type="radio" value="" id="flexCheckChecked">-->
-    <!--        <label class="form-check-label" for="flexCheckChecked">-->
-    <!--          Dr. Sheena Mehta Zapata M>D - (Internal Medicine. Hospice and Palliative)-->
-    <!--        </label>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="justify-content-end p-2">-->
-    <!--    <button mat-raised-button style="color: white;background-color:#3c6f8e " (click)="navToPages('doctors')">-->
-    <!--      <mat-icon >playlist_add</mat-icon>-->
-    <!--      Add Doctors/Hospitals</button>-->
-    <!--    </div>-->
-  </mat-tab>
-  <mat-tab label="Sort By">
-    <div class="sort mt-3">
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)" > Lowest yearly drug deductible
-      </div>
-      <div class="d-flex  p-2" *ngIf="selectedFilters">
-        <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)"> Lowest health plan deductible
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px" checked name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)"> Lowest drug + premium cost
-      </div>
-      <div class="d-flex  p-2">
-        <input type="radio" style="height: 20px" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)"> Lowest monthly premium
-      </div>
-    </div>
-  </mat-tab>
-</mat-tab-group>
-<!--  </mat-drawer>-->
-<!--  <button type="button" mat-button (click)="drawer.toggle()">-->
-<!--    Toggle sidenav-->
-<!--  </button>-->
-<!--</mat-drawer-container>-->

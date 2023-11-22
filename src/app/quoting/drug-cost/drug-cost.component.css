@@ -7,7 +7,7 @@
 }
 .d-cost-label{
   font-size: 18px;
-  color: #4b8bb2;
+  color: #005875;
   font-weight: 500;
 }
 .btn-icon{
@@ -27,6 +27,7 @@
 .mat-expansion-panel{
   background:  white;
   margin-bottom: 15px;
+  overflow-x: auto;
 }
 
 .panel-headers{
@@ -35,8 +36,8 @@
   font-weight: 500;
 }
 .main-panel-headers{
-  font-size: 15px;
-  color: black;
+  font-size: 16px;
+  color: #252525;
   font-weight: 500;
 }
 .mat-expansion-panel {
@@ -67,6 +68,7 @@
 }
 .mat-accordion table {
   margin-bottom: 0;
+  overflow-x: auto;
 }
 .mat-accordion table td {
   font-size: 14px;
@@ -128,12 +130,12 @@ th h4{
     vertical-align: middle;
 }
 .d-cost-label {
-  font-family: 'Merriweather', serif !important;
+  font-family: 'Roboto Condensed', serif !important;
 }
 .dcd-content {
-  background-color: #cae3f3;
-  border-radius: 2px;
-  border: 1px solid #aad0e9;
+  background-color: #CCDDE3;
+  border-radius: 6px;
+  border: 1px solid #005875;
 }
 .dcd-content p, .dcd-content h3{
     color: #252525;
@@ -173,3 +175,16 @@ th h4{
 ::ng-deep .mat-tooltip {
     white-space: pre-line;
 }
+@media (max-width: 767px) {
+  .drug-cost-heading{
+    flex-direction: column;
+  }
+  .drug-cost-heading .col-md-6{
+    order: 2;
+  }
+  .drug-cost-heading .col-md-6.drug-cost-buttons{
+    order: 1;
+    justify-content: flex-start !important;
+  }
+ }
+

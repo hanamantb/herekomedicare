@@ -7,7 +7,7 @@
 }
 
 .plan-details-wrapper .card {
-  border-radius: 2px;
+  border-radius: 6px;
   box-shadow: 0 0 0 0 rgba(0,0,0,0.14), 0 2px 1px -3px rgba(0,0,0,0.12), 0 3px 8px 0 rgba(0,0,0,0.2);
 }
 
@@ -28,7 +28,7 @@
 }
 
 .plan-cost-info {
-  background-color: #485785;
+  background-color: #005875;
 }
 
   .plan-cost-info h2 {
@@ -80,8 +80,9 @@
 }
 
 .mat-expansion-panel-header-title {
+  font-family: 'Roboto Condensed';
   font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .plan-details-accordion table {
@@ -93,11 +94,13 @@
 .plan-details-accordion td, .plan-details-accordion th {
   padding: 15px;
   border-bottom: 1px solid #c7d5ff;
-  font-size: 16px;
+  color: black;
+  font-size: 15px;
 }
 
 .plan-details-accordion th {
-  background: aliceblue;
+  background: #EAF0F2;
+  color: black;
   font-weight: 500;
   line-height: 24px;
 }
@@ -172,4 +175,17 @@
 
 .star-rating span.half-filled {
   background-image: url('../../../assets/half.png');
+}
+
+@media (max-width: 767px){
+  .plan-details-wrapper{
+      padding-left: 30px;
+      padding-right: 30px;
+  }
+}
+
+@media (max-width: 576px){
+  .plan-cost-info h2{
+    font-size: 32px;
+  }
 }
