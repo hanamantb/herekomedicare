@@ -4,10 +4,11 @@ h2 {
 }
 h4{
     font-size: 18px;
-    background: #e1e5fb;
+    background: #CCDDE3;
+    font-weight: 500;
     padding: 10px 15px;
     margin-bottom: 0;
-    color: #0f1e6c;
+    color: #005875;
     display: flex;
     align-items: center;
 }
@@ -50,6 +51,7 @@ table {
 }
 table a{
     text-decoration: none;
+    color:#005875;
 }
 th {
   padding: 10px 15px;
@@ -57,12 +59,12 @@ th {
 }
 
 .table-striped tr:nth-of-type(odd), .compare-head {
-  background-color: rgba(136, 155, 183, .05);
+  background-color: #F9F9F9;
 }
 .compare-head {
   padding: 10px 15px;
   text-align: center;
-  background: #3f51b5;
+  background: #005875;
   color: #fff;
 }
 
@@ -84,12 +86,16 @@ th {
 }
 
 .table-striped th label {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
 }
 
-.rating-stars mat-icon {
+.rating-stars {
   color: #f9c800;
+}
+.rating-stars mat-icon{
+  height: 22px;
+  width: 22px;
 }
 
 .table-striped td {
@@ -118,9 +124,9 @@ th {
 }
 
 .additional-benfits-btn {
-  border: 1px solid #4b8bb2;
-  border-radius: 3px;
-  color: #4b8bb2;
+  border: 1px solid #005875;
+  border-radius: 6px;
+  color: #005875;
   padding: 5px 20px;
   margin-bottom: 10px;
   display: inline-block;
@@ -135,11 +141,7 @@ th {
 }
 
 .compare-main-th button {
-  line-height: normal;
-  border-radius: 2px;
-  padding: 5px 15px;
-  font-size: 15px;
-  box-shadow: none;
+  min-height: 40px;
 }
 
 .compare-item-actions {
@@ -164,7 +166,7 @@ th {
     bottom: 15px;
 }
 .compare-main-th button[color="primary"]:hover {
-  background-color: #3f51b5;
+  background-color: #005875;
   color: #fff;
 }
 
@@ -185,12 +187,12 @@ th {
 .compare-main-th h3 {
   font-weight: 600;
   font-size: 17px;
-  min-height: 42px;
+  min-height: 60px;
   line-height: normal;
 }
 
 .compare-main-th h5 {
-  color: #3f51b5;
+  color: #005875;
   font-size: 18px;
 }
 
@@ -214,7 +216,7 @@ th {
   font-weight: 500;
   height: 17px;
   width: 17px;
-  color: #8f8f8f;
+  color: #005875;
 }
 .compare-top-links button{
     display: inline-flex;

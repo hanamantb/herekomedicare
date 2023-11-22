@@ -129,7 +129,7 @@
       </div>
       <div class="col-12">
         <div class="d-flex p-2 justify-content-end ">
-          <button mat-raised-button color="primary" class="btn" (click)="nav()">See Plans</button>
+          <button mat-raised-button color="white" class="btn" (click)="nav()">See Plans</button>
         </div>
       </div>
     </div>
@@ -142,7 +142,7 @@
     <ul>
       <li *ngFor="let pharm of rowData">
         <div class="sticky-c-item">
-          <h4>{{pharm.name}}</h4>
+          <h4 class="m-0">{{pharm.name}}</h4>
           <span *ngIf="pharm.distance_miles">Distance: {{pharm.distance_miles}} Miles</span>
 
           <div class="s-c-close">
@@ -153,6 +153,6 @@
       </li>
 
     </ul>
-    <button mat-raised-button class="btn-done" color="secondary" (click)="nav()">See Plans</button>
+    <button mat-raised-button class="btn-done m-0 p-0" color="primary" (click)="nav()">See Plans</button>
   </div>
 </div>

@@ -49,10 +49,15 @@ button{
     border-radius: 2px;
     font-weight: 400;
     font-size: 15px;
-}
+    border-radius: 3px;
+    background-color: #005875;
+    height: 80px;
+    width: 86px;
+  }
   button:hover {
-    color: #fff;
-    background-color: #3f51b5;
+    color: #005875;
+    background-color: #fff;
+    height: 80px;
   }
 .add-pharmacy-checkbox {
   border-radius: 2px;
@@ -107,7 +112,7 @@ button{
   left: 0;
   bottom: 0;
   z-index: 99;
-  background: #105681;
+  background: #D0E7EF;
   width: 100%;
   padding: 15px;
   box-shadow: 0 -3px 11px rgba(0, 0, 0, .2);
@@ -124,25 +129,28 @@ button{
 }
 .sticky-c-item {
     border: 2px solid rgba(255, 255, 255, .3);
-    border-radius: 17px;
+    border-radius: 3px;
     padding: 15px 20px 15px 10px;
     position: relative;
-    min-height: 100%;
-    color:white;
+    min-height: 80px;
+    color:rgb(0, 0, 0);
+    background-color: white;
     font-size:14px;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
+    box-shadow: 6px 6px 15px rgb(0 0 0 / 0.3);
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);
 }
 .sticky-c-item h4{
-  color: #fff;
+  color: #000;
   font-size: 16px;
+  font-weight: bold;
 }
 .s-c-close mat-icon{
-    color: rgba(255, 255, 255, .9);
+    color: #005875;
     position: absolute;
     right: 5px;
     top:7px;

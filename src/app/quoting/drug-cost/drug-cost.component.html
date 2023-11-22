@@ -4,15 +4,15 @@
       <img src="../../../assets/sidepic.png" alt="">
     </div>-->
     <div class="col-12 px-3 pt-4">
-      <div class="d-flex p-2">
-        <div class="col-6">
+      <div class="d-flex p-2 drug-cost-heading ">
+        <div class="col-md-6 " style="margin-top: 25px;" >
           <span class="d-cost-label">Estimated Cost and Savings</span>
           <p>Plan - {{planName}}</p>
         </div>
-        <div class="col-6 d-flex justify-content-end drug-cost-buttons">
+        <div class="col-md-6 d-flex justify-content-end drug-cost-buttons ">
 
           <div class="me-2 back-to-all">
-            <button mat-raised-button color="primary" style="width:100%;" class="ms-2" (click)="plansNav()">
+            <button mat-raised-button color="primary" style="width:100%;" class="m-0" (click)="plansNav()">
               <mat-icon>arrow_back</mat-icon>
               Back to all plans
             </button>
@@ -219,7 +219,7 @@
       <div class="p-2 mb-3">
         <div class="col-12">
           <div class="dcd-content p-3">
-            <h3 class="mb-1">Estimated drug costs during coverage phases</h3>
+            <h3 class="mb-1" style="font-size: 20px;">Estimated drug costs during coverage phases</h3>
             <p class="mb-1">The drug prices shown may vary based on the plan and pharmacy you've selected. Contact the plan if you have specific questions about drug costs.</p>
           </div>
         </div>
