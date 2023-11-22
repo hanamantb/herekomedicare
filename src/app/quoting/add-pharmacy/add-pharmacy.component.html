@@ -69,8 +69,8 @@
         
         
         
-        <div class="d-flex">
-          <div class="col-6">
+        <div class="pharmacy-second-section">
+          <div>
             <div class="ph-items-checks-wrapper container-box">
               <div class="d-flex include-mail-pharmacy">
                 <div class="d-flex sub-head flex-column">
@@ -113,7 +113,7 @@
           </div>
 
 
-          <div class="col-6 px-3">
+          <div>
             <img src="../../../assets/pharmacy.jpg" class="map-img sticky-top" alt="">
           </div>
 
@@ -122,11 +122,11 @@
       </div>
 
 
-      <div class="d-flex p-2" *ngIf="rowData.length !==0">
-        <ag-grid-angular style="width: 80%;margin-top: 1%;min-height: 100px" class="ag-theme-alpine"
+      <div class="d-flex p-0 custom-table-wrapper" *ngIf="rowData.length !==0">
+        <ag-grid-angular style="width: 100%;min-height: 100px" class="ag-theme-alpine"
                          [scrollbarWidth]="8" [headerHeight]="35"
                          rowSelection="multiple"
-                         [rowHeight]="35" [rowData]="rowData" [getRowHeight]="getRowHeight"
+                         [rowData]="rowData"
                          [columnDefs]="columnDefs" (cellClicked)="onGridCellClicked($event)"
                          (gridReady)="onGridReady($event)" domLayout='autoHeight'>
         </ag-grid-angular>

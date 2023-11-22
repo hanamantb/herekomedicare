@@ -28,8 +28,9 @@
   width: 92%;
 }
 .container{
-  padding: 0;
-  margin: 0;
+  padding: 0 15px;
+  margin: 0 auto;
+  max-width: 1264px !important;
 }
 .pharmacy-head-section{
     padding: 40px 30px;
@@ -89,8 +90,8 @@ h3 + p {
     font-size: 13px;
 }
 .sub-head strong{
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 400;
+    font-size: 20px;
     font-family: 'Roboto Condensed', sans-serif;
 }
 .sub-head + p{
@@ -191,4 +192,12 @@ h3 + p {
 }
 .include-mail-pharmacy{
     margin-bottom: 15px;
+}
+.pharmacy-second-section{
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+}
+.custom-table-wrapper{
+    margin-top: 25px;
 }
