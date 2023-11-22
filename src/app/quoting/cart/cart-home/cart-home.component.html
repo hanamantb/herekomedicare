@@ -192,9 +192,9 @@
             <!--                <mat-icon class="ms-2">edit</mat-icon>-->
             <!--              </button>-->
             <!--            </div>-->
-            <div class="ms-2 optional-packages-btn d-flex align-items-center">
+            <div class="ms-2 optional-packages-btn d-flex align-items-center" *ngIf=" plan.optional_benefits.length !==0">
               <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
-                <p class="mb-0">Optional Packages</p>
+                <p class="mb-0" >Optional Packages</p>
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </span>
             </div>

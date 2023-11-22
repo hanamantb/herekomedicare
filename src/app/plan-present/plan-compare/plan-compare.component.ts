@@ -40,6 +40,7 @@ export class PlanCompareComponent implements OnInit {
    private spinner: SpinnerService) { }
 
   ngOnInit(): void {
+    
    const spine = this.spinner.start()
     const lis = sessionStorage.getItem('lis')
     const year = sessionStorage.getItem('effectyear')  
