@@ -7,7 +7,7 @@ body {
   /*font-family: 'Roboto Condensed', sans-serif;*/
   margin: 0;
   font-family: 'Roboto', sans-serif;
-  background-color: aliceblue;
+  background-color: #fcfcfc !important;
   overflow-x: hidden;
 }
 
@@ -31,10 +31,16 @@ mat-select {
   border: 0;
   border-bottom: 2px solid #005875;
   background-color: #F9F9F9;
+  color: #4D4D4D
 }
-
-p{
-  font-size:16px;
+.mat-select-value {
+  color: #4D4D4D;
+}
+.mat-raised-button:not([class*=mat-elevation-z]){
+    box-shadow: none;
+}
+p, label {
+  font-size: 16px;
 }
 p, button, select, textarea, input, .ag-theme-alpine, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif !important;
@@ -93,7 +99,7 @@ h1,h2,h3,h4,h5,h6{
   color: #252525;
 }
 p{
-  font-size: 15px;
+  font-size: 16px;
   color: #252525;
 }
 .btn{
@@ -120,6 +126,7 @@ mat-select {
   padding: 0 10px;
   height: 48px;
   border-radius: 0;
+  font-size: 16px;
 }
 .mat-select-trigger{
     height: 100%;
@@ -263,9 +270,46 @@ button[color="primary"], .mat-raised-button.mat-primary {
   background-color: #005875;
   border-color: transparent;
 }
+button[color="primary"]:hover, .mat-raised-button.mat-primary:hover{
+    background: #002d3c;
+    color: #fff;
+}
 button[color="secondary"], .mat-raised-button.mat-secondary{
     color: #005875;
     border: 1px solid #005875;
+}
+.container-box{
+    box-shadow: 6px 6px 15px rgba(135, 135, 135, .35);
+    border-radius: 6px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.mb-30{
+    margin-bottom: 30px;
+}
+.page-main-action{
+    border-top: 1px solid rgba(0, 0, 0, .15);
+    margin-top: 20px;
+    padding-top: 20px;
+}
+.mat-select-arrow {
+   color: #005875;
+}
+.custom-table-wrapper{
+    max-width: 1264px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.custom-table-wrapper .ag-theme-alpine .ag-root-wrapper{
+    border: 0 !important;
+    border-radius: 6px;
+}
+.custom-table-wrapper .ag-theme-alpine .ag-header{
+    border-radius: 6px 6px 0 0;
+    background-color: rgba(0, 88, 117, .2)
+}
+.ag-theme-alpine .ag-row.ag-row-odd{
+    background-color: #EAF0F2;
 }
 .cdk-global-overlay-wrapper .cdk-overlay-pane.alert-popup {
   max-width: 360px !important

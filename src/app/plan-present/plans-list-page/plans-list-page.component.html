@@ -239,7 +239,7 @@
               <div class="card p-3 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
                 <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
                   <div class="d-flex mb-2 align-items-center">
-                    <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked" (change)="packageSelection($event,plan,optbenefits.monthly_premium)"> &nbsp;
+                    <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked" (change)="packageSelection($event,plan,optbenefits.monthly_premium,optbenefits.package_number)"> &nbsp;
                     <label class="form-check-label" for="flexCheckChecked">
                       {{optbenefits.package_number}}
                     </label>
@@ -275,7 +275,7 @@
               <mat-icon> clear_all</mat-icon>
               Clear
             </button>
-            <button mat-button class="comparebtn">
+            <button mat-button class="comparebtn" (click)="planCompare()">
               <mat-icon>compare</mat-icon>
               Compare Plans
             </button>

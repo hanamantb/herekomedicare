@@ -226,7 +226,7 @@ export class PlansListPageComponent implements OnInit {
     plan.cartAdded = true
     console.log('cli',this.cart)
 
-sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
+    sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
   }
 
@@ -295,6 +295,12 @@ Promise.all([searchPlans, processPlans]).then(results => {
     sessionStorage.setItem('planResponse', JSON.stringify(this.response))
     const resp = response.data.plans
     const addedplans = resp.map((element: any, index: any) => {
+      if(element.optional_benefits.length !== 0){
+      console.log('element plp',element)
+      element.optional_benefits.forEach((op:any) => {
+        op.checked = false 
+      })
+      }
       return {
         ...element, checked: false,
         showmore: false,
@@ -598,8 +604,15 @@ Promise.all([searchPlans, processPlans]).then(results => {
   handleToggleClick(value:boolean) {   
     this.shouldHideSpan = value;   
   }
+  planCompare(){
+    console.log('plan compare')
+    console.log('this.checkedData',this.checkedData)
+    sessionStorage.setItem('planCompareData', JSON.stringify(this.checkedData))
+    this.route.navigate(['plan-compare'])
+  }
 
-  packageSelection(event:any,plan:any,monthlypremium:any){
+  packageSelection(event:any,plan:any,monthlypremium:any,packageNumber:any){
+    console.log('packageNumber',packageNumber)
     const stringWithoutFirstLetter = monthlypremium.slice(1);
     console.log('stringWithoutFirstLetter',stringWithoutFirstLetter);
     const packageValue = parseFloat(stringWithoutFirstLetter);
@@ -607,18 +620,34 @@ Promise.all([searchPlans, processPlans]).then(results => {
     const monthlyPremiumParseValue = parseFloat(plan.monthlypremium);
     console.log('monthlyPremiumParseValue',monthlyPremiumParseValue)
     this.plans.forEach((element: any) => {
+     
       if(element.planID === plan.planID){
+        
         if(event.target.checked === true){
           const finalMonthlyPremium = packageValue + monthlyPremiumParseValue;
+          console.log('plan in package selection',element)
+        element.optional_benefits.forEach((op:any) => {
+          if(op.package_number === packageNumber){
+            op.checked = true;
+          }
+        })
+        
           console.log('finalMonthlyPremium',finalMonthlyPremium)
         element.monthlypremium = finalMonthlyPremium.toString();        
-      }else{       
+      }else{   
+        element.optional_benefits.forEach((op:any) => {
+          if(op.package_number === packageNumber){
+            op.checked = false;
+          }
+        })    
         const finalMonthlyPremium = monthlyPremiumParseValue - packageValue;
           element.monthlypremium = finalMonthlyPremium.toString();
           console.log('result false'+finalMonthlyPremium)
       }
+      console.log('plan after selection or unselect'+plan)
     }
     })
    
   }
+ 
 }

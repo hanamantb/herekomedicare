@@ -1,13 +1,12 @@
 button {
-  background-color: #ccc;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
 }
 
 button.active {
-  background-color: #4b8bb2; /* Change to your desired active color */
-  color: #fff; /* Change to your desired active text color */
+  background-color: #005875;
+  color: #fff; 
 }
 .bottom-bar{
   bottom: 0;
@@ -21,14 +20,6 @@ button{
   height: 40px;
 }
 
-
-.container{
-  background-color: aliceblue;
-  padding: 0px;
-  margin: 2px;
-}
-
-
 .side-img{
   background-color:#4b8bb2 ;
   /*height: calc(100vh - 77px);*/
@@ -38,16 +29,21 @@ button{
   width: 92%;
 }
 .container{
-  padding: 0;
+  padding: 0 15px;
   margin: 0;
 }
 .zip-code-btn{
-    border-radius: 2px 0 0 2px;
+    border-radius: 6px 0 0 6px;
 }
 .customer-lookup-btn{
-    border-radius: 0 2px 2px 0;
+    border-radius: 0 6px 6px 0;
 }
 .customer-lookup-btn,
 .zip-code-btn {
   font-weight: 400;
+}
+.zip-tab-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }

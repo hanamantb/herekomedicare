@@ -2,8 +2,7 @@ p{
   margin-bottom: 0;
 }
 .btn{
-  width: 160px;
-  height:35px;
+  width: 100%;
 }
 
 img{
@@ -26,28 +25,30 @@ mat-select{
 /*}*/
 
 /deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
-  background-color: #6ea9d0;
+  background-color: #4088E6;
 }
 
 /deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
-  background-color: #4b8bb2;
+  background-color: #005875;
 }
 ::ng-deep .mat-form-field-underline {
   display: none;
 }
 .add-change-prescription{
-    border-radius: 2px;
+    border-radius: 6px;
+    border: 1px solid #E7E7E7;
+    padding: 15px;
 }
 .add-change-prescription p{
     font-weight: 400;
     margin-bottom: 0;
     line-height: 26px;
 }
-.seeplan{
+.seeplan {
   width: 22px;
   height: 20px;
   border-radius: 2px;
-  border: #B8C0D4 solid 1px;
+  border: #005875 solid 1px;
   margin-right: 6px;
 }
 .benfit-btn{
@@ -78,7 +79,44 @@ input[type=number] {
     height: 21px;
 }
 .effective-year-container {
-  border-top:1px solid rgba(0,0,0,.12);
-  margin-top: 20px;
-  padding: 20px 0;
+  padding: 0;
+}
+.container.container-box{
+    max-width: 600px !important;
+    margin: 0 auto 25px;
+    padding: 40px 60px;
+}
+label{
+    margin-bottom: 10px;
+}
+.drugs-toggle{
+    min-width: 110px;
+    font-size: 16px;
+}
+.ey-inputs{
+    font-size: 16px;
+    font-weight: 500;
+}
+@media (max-width: 550px){
+  .container.container-box{
+      padding: 40px;
+  }
+}
+@media (max-width: 480px){
+    .add-change-prescription .body{
+        flex-direction: column;
+        gap: 10px;
+    }
+    .container.container-box{
+        padding: 30px;
+    }
+    .mb-30{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width: 359px){
+    .container.container-box{
+        padding: 20px;
+    }
+    
 }

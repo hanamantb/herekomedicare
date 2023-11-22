@@ -1,18 +1,19 @@
 
 <div class="container">
-  <div class="d-flex" style="height: 86vh">
-      <div class="col-3 side-img">
+  <div class="d-flex">
+      <!--<div class="col-3 side-img">
         <img src="../../../assets/sidepic.png" alt="">
+      </div>-->
+    <div class="col-12 mt-2 pt-4 quoting-tab-btn">
+      <!--<div class=" d-flex justify-content-end me-4">
+  <p> Click <a href="">here</a> to see plans for 2023.</p>
+    </div>-->
+      <!--      <app-time-line></app-time-line>-->
+      <div class="zip-tab-btn-container">
+        <button mat-raised-button color="secondary" [ngClass]="{'active': button1Active}" (click)="toggleButton1()" class="zip-code-btn">Zip Code</button>
+        <button mat-raised-button color="secondary" [ngClass]="{'active': button2Active}" (click)="toggleButton2()" class="customer-lookup-btn">Customer Lookup</button>
       </div>
-    <div class="col-9 mt-2 pt-4">
-      <div class=" d-flex justify-content-end me-4">
-<!--      <p> Click <a href="">here</a> to see plans for 2023.</p>-->
-      </div>
-<!--      <app-time-line></app-time-line>-->
-      <button [ngClass]="{'active': button1Active}" (click)="toggleButton1()" class="zip-code-btn ms-3">Zip Code</button>
-      <button [ngClass]="{'active': button2Active}" (click)="toggleButton2()" class="customer-lookup-btn">Customer Lookup</button>
-
-      <app-zipcode-qouting *ngIf="button1Active" ></app-zipcode-qouting>
+      <app-zipcode-qouting *ngIf="button1Active"></app-zipcode-qouting>
       <app-customer-qouting *ngIf="!button1Active"></app-customer-qouting>
 
 
