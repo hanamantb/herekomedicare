@@ -16,10 +16,12 @@ export class CartHomeComponent implements OnInit {
   emailProposal: boolean = false
   cartShow: boolean = false
   cartItems:any
+  showDrugs:boolean =false;
   zipcode:any
   totalAmt:any=0
   stars: number[] = [1, 2, 3, 4, 5];
   today:Date = new Date();
+  drugsArray: any;
   constructor(private route: Router,private sharedService: SharedService) {
   }
 
@@ -27,6 +29,14 @@ export class CartHomeComponent implements OnInit {
     this.zipcode = sessionStorage.getItem('zipcode')
     this.zipcode += ' ' + sessionStorage.getItem('countie')
     let cartArray: any[] = [];
+    const drugs = sessionStorage.getItem('drugs')
+    if (drugs) {
+      this.drugsArray = JSON.parse(drugs);
+      if(this.drugsArray.length !== 0){
+        console.log('this.drugsArray',this.drugsArray)
+        this.showDrugs = !this.showDrugs
+      }
+    }
     const cart = sessionStorage.getItem('cart')
     if (cart) {
       this.cartItems = JSON.parse(cart);
