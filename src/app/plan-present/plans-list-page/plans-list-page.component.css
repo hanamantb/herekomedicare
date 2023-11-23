@@ -9,9 +9,6 @@
 /*p{*/
 /*  text-align: center;*/
 /*}*/
-mat-icon {
-  color: black;
-}
 .sub-line{
   font-size: 11px;
   color: gray;
@@ -216,14 +213,23 @@ mat-button-toggle{
   background-color: blue;
   color: white;
 }
-.plan-presentation-top > div{
-  border: solid 1px #e8e8e8;
+.plan-presentation-top{
+    padding: 10px;
+    box-shadow: 6px 6px 15px rgba(0 , 0, 0, .35);
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.plan-presentation-top p{
+    margin: 0;
 }
 .plan-presentation-top .plan-edit-btn mat-icon{
   color: #fff;
 }
 .plan-presentation-top input[type="text"]{
   height: 32px;
+}
+.plan-list-right {
+  padding-left: 20px;
 }
 mat-select{
   border-radius: 2px;
@@ -250,18 +256,32 @@ mat-select{
     color: #252525;
 }
 .plan-main-tabs {
-  border-radius: 0
+  border-radius: 6px;
+  border: 1px solid #005875;
+
 }
 .plan-main-tabs .mat-button-toggle {
-  background: #eaeaea;
+  font-weight: 500;
+  color: #4D4D4D;
+  font-size: 15px;
+}
+.plan-presentation-top button{
+    width: 34px;
+    height: 34px;
+    min-height: inherit;
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+  border-left: none;
 }
 .plan-main-tabs .mat-button-toggle-checked {
   background-color: #fff;
-  color: #4b8bb2;
-  font-weight: 500;
-}
-.plan-listing-wrapper{
-    background: #fff;
+  color: #005875;
+  border-bottom: 2px solid #005875;
 }
 .premium {
   border-left: solid 1px #ebebeb;
@@ -319,9 +339,9 @@ mat-select{
 .item-optional-packages p{
     margin-top: 5px;
 }
-  .item-optional-packages span.rate {
-    font-weight: 500;
-  }
+.item-optional-packages span.rate {
+  font-weight: 500;
+}
 .drug-cost-details-btn button {
   cursor: pointer;
   color: #3c6f8e;
@@ -360,9 +380,6 @@ h1{
 }
 .listing-to-cart-btn{
     max-width: 222px;
-}
-.side-bar-toggle{
-    border-right: 1px solid #e8e8e8;
 }
 .list-top-edit-btn{
     max-width: 42px;
@@ -452,3 +469,17 @@ mat-select mat-option{
 .card-footer input[disabled] ~ .form-check-label {
   opacity: 1;
 }
+.filter-sidebar-container {
+  height: 100vh;
+  position: sticky;
+  top: 0.011px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 400px;
+}
+.container.plan-list-main-wrapper{
+    max-width: 1264px !important;
+    margin: 0 auto;
+    padding: 25px 15px 0;
+}
+

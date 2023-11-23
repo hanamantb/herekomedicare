@@ -1,14 +1,14 @@
-<div class="container ">
+<div class="container plan-list-main-wrapper">
   <div class="d-flex position-relative">
 
 
-    <div class="col-3 side-img" style="height: 100vh;position: sticky;top: 0.011px; overflow-y: auto;overflow-x: hidden"
+    <div class="col-3 filter-sidebar-container side-img"
          *ngIf="sideopen">
       <app-sidebar [planCount]="plans.length" [totalCount]="response.total_results" [selectedFilters]="selectedFilter"></app-sidebar>
     </div>
-    <div class="col mt-2 p-2">
-      <div class="p-2 plan-presentation-top">
-        <div class="d-flex justify-content-center" style="background-color: white">
+    <div class="col plan-list-right">
+      <div class="plan-presentation-top">
+        <div class="d-flex justify-content-center" >
           <div class="d-flex align-items-center side-bar-toggle">
             <button mat-icon-button color="primary" (click)="sidebar()">
               <mat-icon (click)="onMenuClicked()">menu</mat-icon>
@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="plan-listing-wrapper">
-        <div class="p-2">
+        <div>
           <mat-button-toggle-group class="plan-main-tabs" name="fontStyle" aria-label="Font Style"
                                    (change)="planType($event)"
                                    [(ngModel)]="planTypes">
@@ -72,7 +72,7 @@
             <mat-button-toggle value="PLAN_TYPE_PDP" (click)="handleToggleClick(true)">Prescription Plans (Part D)</mat-button-toggle>
           </mat-button-toggle-group>
         </div>
-        <div class="section p-2">
+        <div class="section">
           <p class="p-2">
             Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{response.total_results}}</span> {{planTypeName}}
           </p>
