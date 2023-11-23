@@ -273,11 +273,15 @@ export class AddDrugComponent implements OnInit {
 
 
   getDrugs(event: any) {
-    console.log(event)
+    console.log(event.target.value)
+    if(event.target.value.length > 1){
     this.commonservice.searchDrug(event.target.value,this.effYear).subscribe((response) => {
       this.drugs = response.data.drugs
       console.log(response)
     })
+  }else{
+    this.drugs =[]
+  }
   }
 
   _displayplantname(drug: any) {
