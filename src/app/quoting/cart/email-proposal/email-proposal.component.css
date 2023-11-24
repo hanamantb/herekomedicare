@@ -7,11 +7,13 @@ mat-select{
 .email-proposal-container {
   background: #fff;
   padding-bottom: 25px;
+  border: #005875 2px solid;
   padding-top: 5px;
-  border-radius: 2px;
+  border-radius: 6px;
 }
 .email-proposal-container button{
-    border-radius: 2px;
+    border-radius: 6px;
+    border: 2px solid #005875;
 }
 .email-proposal-container label{
     margin-bottom: 5px;
