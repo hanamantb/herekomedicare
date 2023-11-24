@@ -9,9 +9,6 @@
 /*p{*/
 /*  text-align: center;*/
 /*}*/
-mat-icon {
-  color: black;
-}
 .sub-line{
   font-size: 11px;
   color: gray;
@@ -48,24 +45,12 @@ mat-select{
   background-color:#ffffff ;
   color: white;
 }
-.mat-icon-button{
-  width: 38px;
-}
 .benfit-btn{
   font-size: 12.5px;
   width: 100%;
   text-align: left;
 }
-.premium .card{
-  margin: 2px;
-  height: auto;
-  border: none;
-  font-size: 15px;
-}
-.card{
-  margin: 2px;
-  height: auto;
-}
+
 .rate{
   font-weight: bold;
 }
@@ -162,9 +147,6 @@ mat-select{
   font-size: 14px;
   font-weight: 400;
 }
-.base-dtl{
-    border-top: 1px solid #ddd;
-}
 .base-dtl p {
   font-size: 17px;
   font-weight: 300;
@@ -193,7 +175,7 @@ h6{
   line-height: normal;
 }
 .sub-prop bdo{
-    font-weight: 600;
+    font-weight: 500;
     color: #252525 !important;
 }
 .clear{
@@ -216,14 +198,23 @@ mat-button-toggle{
   background-color: blue;
   color: white;
 }
-.plan-presentation-top > div{
-  border: solid 1px #e8e8e8;
+.plan-presentation-top{
+    padding: 10px;
+    box-shadow: 6px 6px 15px rgba(0 , 0, 0, .35);
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.plan-presentation-top p{
+    margin: 0;
 }
 .plan-presentation-top .plan-edit-btn mat-icon{
   color: #fff;
 }
 .plan-presentation-top input[type="text"]{
   height: 32px;
+}
+.plan-list-right {
+  padding-left: 20px;
 }
 mat-select{
   border-radius: 2px;
@@ -250,36 +241,33 @@ mat-select{
     color: #252525;
 }
 .plan-main-tabs {
-  border-radius: 0
+  border-radius: 6px;
+  border: 1px solid #005875;
+  margin-bottom: 15px;
+
 }
 .plan-main-tabs .mat-button-toggle {
-  background: #eaeaea;
+  font-weight: 500;
+  color: #4D4D4D;
+  font-size: 15px;
+}
+.plan-presentation-top button{
+    width: 34px;
+    height: 34px;
+    min-height: inherit;
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mat-button-toggle-group-appearance-standard .mat-button-toggle + .mat-button-toggle {
+  border-left: none;
 }
 .plan-main-tabs .mat-button-toggle-checked {
   background-color: #fff;
-  color: #4b8bb2;
-  font-weight: 500;
-}
-.plan-listing-wrapper{
-    background: #fff;
-}
-.premium {
-  border-left: solid 1px #ebebeb;
-}
-.base-dtl {
-  border-bottom: 1px solid #ebebeb;
-}
-.monthly-premium, .estimated-annual-cost {
-  font-size: 38px;
-  color: #4b8bb2;
-  font-weight: 300;
-  font-family: Lato,sans-serif !important;
-}
-.monthly-premium{
-    font-size: 38px;
-}
-.estimated-annual-cost {
-  font-size: 25px;
+  color: #005875;
+  border-bottom: 2px solid #005875;
 }
 .original-rate{
     font-size: 16px;
@@ -299,9 +287,6 @@ mat-select{
 .material-icons{
     font-size: 21px;
 }
-.card-footer {
-  background: #fff;
-}
 .plan-details-btn{
     border-radius: 0;
     box-shadow: none;
@@ -319,17 +304,10 @@ mat-select{
 .item-optional-packages p{
     margin-top: 5px;
 }
-  .item-optional-packages span.rate {
-    font-weight: 500;
-  }
-.drug-cost-details-btn button {
-  cursor: pointer;
-  color: #3c6f8e;
-  text-decoration: underline;
-  padding: 0;
+.item-optional-packages span.rate {
+  font-weight: 500;
 }
 .drug-cost-details-btn mat-icon{
-    color: #3c6f8e;
     font-size: 19px;
 }
 .drug-cost-details-btn button:hover, .drug-cost-details-btn button:focus-within, .drug-cost-details-btn button:active {
@@ -358,12 +336,6 @@ h1{
     font-size: 14px;
     font-weight: normal;
 }
-.listing-to-cart-btn{
-    max-width: 222px;
-}
-.side-bar-toggle{
-    border-right: 1px solid #e8e8e8;
-}
 .list-top-edit-btn{
     max-width: 42px;
     margin-left: 15px;
@@ -374,9 +346,6 @@ mat-select mat-option{
 .compare-checkbox input{
    position: relative;
    top: -2px;
-}
-.drug-cost-details-btn button{
-    font-weight: 400;
 }
 .item-show-btn mat-icon{
     color: #4b8bb2;
@@ -392,32 +361,17 @@ mat-select mat-option{
     display: flex;
     align-items: center;
 }
-#highlighted-text {
-    color: blue; /* Set the text color */
-    text-decoration: underline; /* Underline the text */
-    cursor: pointer; /* Change cursor to indicate interactivity */
-}
+/*#highlighted-text {
+    color: blue;*/ /* Set the text color */
+    /*text-decoration: underline;*/ /* Underline the text */
+    /*cursor: pointer;*/ /* Change cursor to indicate interactivity */
+/*}*/
 .plan-benefits-items-list{
     display: flex;
     gap: 10px;
     padding-bottom: 10px;
+    flex-wrap: wrap;
 
-}
-.plan-benefits-items-list .cols {
-  border: 1px solid #ddd;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  width: auto;
-  padding: 5px;
-  background-color: #fff;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, .05);
-}
-.plan-benefits-items-list .cols small{
-    font-size: 12.5px;
-    display: flex;
-    align-items: center;
 }
 .plan-benefits-items-list .cols .benfit-btn{
     display: flex;
@@ -452,3 +406,23 @@ mat-select mat-option{
 .card-footer input[disabled] ~ .form-check-label {
   opacity: 1;
 }
+.filter-sidebar-container {
+  height: 100vh;
+  position: sticky;
+  top: 0.011px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 400px;
+}
+.container.plan-list-main-wrapper{
+    max-width: 1264px !important;
+    margin: 0 auto;
+    padding: 25px 15px 0;
+}
+.side-bar-toggle{
+    margin-right: 15px;
+}
+.loc-info button, .lis-info p{
+    margin-right: 10px;
+}
+

@@ -173,9 +173,10 @@ label {
   justify-content: space-between;
 }
 
-.sort>div {
+.sort > div {
   font-size: 13px;
   font-weight: 300 !important;
+  color: #003648;
 }
 
 .sort input[type="radio"] {
@@ -233,4 +234,9 @@ mat-expansion-panel input[type="radio"] {
   border: 0;
   color: #fff;
 }
-    
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    box-shadow: none !important;
+}
+.mat-expansion-panel{
+    border-radius: 6px;
+}

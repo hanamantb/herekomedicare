@@ -23,6 +23,7 @@
 .login-form-container{
     max-width: 480px;
     min-height: 320px;
+    border: 0;
 }
 .login-form-row{
     max-width: 1234px;

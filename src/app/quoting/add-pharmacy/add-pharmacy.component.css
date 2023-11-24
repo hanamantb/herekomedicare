@@ -139,7 +139,8 @@ button{
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
-    box-shadow: 6px 6px 15px rgb(0 0 0 / 0.3);
+    box-shadow: 6px 6px 15px rgba(135, 135, 135, .35);
+    min-height: 100%;
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);
@@ -147,7 +148,7 @@ button{
 .sticky-c-item h4{
   color: #000;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 500;
 }
 .s-c-close mat-icon{
     color: #005875;

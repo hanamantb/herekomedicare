@@ -172,8 +172,9 @@ button{
 }
 .plan-item-card {
   border: 0;
-  border-radius: 0;
   box-shadow: 0 0 0 0 rgba(0,0,0,0.14), 0 2px 1px -3px rgba(0,0,0,0.12), 0 3px 8px 0 rgba(0,0,0,0.3);
+  background-color: unset;
+  margin-bottom: 15px;
 }
 .item-show-btn {
   color: #4b8bb2;
@@ -358,4 +359,164 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 }
 .cdk-overlay-pane.alert-popup .popup-close-btn button mat-icon{
     color: #fff;
+}
+.planItem-left {
+  width: calc(100% - 212px);
+  padding: 25px 20px 0;
+  background-color: #fff;
+  border-radius: 6px 0 0 6px;
+}
+.planItem-right{
+    width: 212px;
+    background: rgba(0, 113, 155, .05);
+    border: 1px dashed rgba(0, 113, 155, .4);
+    padding: 20px 20px 15px;
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 0 6px 6px 0;
+}
+.listing-to-cart-btn{
+    align-self: flex-end;
+}
+.planItem-right > div{
+    flex-basis: 100%;
+}
+.plan-item-card-row{
+    display: flex;
+}
+.planItem-left .card-footer{
+    border-top: 0;
+}
+.planItem-right .card {
+  margin: 0;
+  height: auto;
+  border: none;
+  font-size: 15px;
+  text-align: right;
+  background: unset;
+}
+.mat-typography .monthly-premium, .mat-typography .estimated-annual-cost {
+  color: #005875;
+  font-weight: 500;
+}
+.mat-typography .monthly-premium{
+    font-size: 44px;
+}
+.mat-typography .estimated-annual-cost {
+  font-size: 28px;
+}
+.base-dtl {
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(0, 113, 155, .05);
+    padding: 10px 15px;
+    border: 1px dashed rgba(0, 113, 155, .4);
+    border-radius: 6px;
+}
+:root .plan-item-card-row .mat-icon-button {
+    width: auto;
+}
+.btn-showMoreLess{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+.btn-showMoreLess button {
+  width: 120px !important;
+  height: 30px;
+  border-radius: 6px;
+  background: rgba(0, 113, 155, .05);
+  border: 1px solid rgba(0, 113, 155, .4);
+  line-height: 30px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #005875;
+}
+.additionalDet-wrapper {
+  display: flex;
+  padding-top: 10px;
+}
+.plan-benefits-items-list .cols {
+  border: 1px solid rgba(0, 113, 155, .4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  width: auto;
+  padding: 5px 10px;
+  background-color: #fff;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, .05);
+}
+.plan-benefits-items-list .cols small{
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+.plan-item-head-wrapper{
+    display: flex;
+    align-items: center;
+}
+.planItem-logo {
+  margin-right: 10px;
+  border: 1px solid #DBDBDB;
+  border-radius: 3px;
+  padding: 3px 5px;
+  height: 42px;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+.planItem-logo img{
+  border-radius: 3px;
+  height: 36px;
+  width: auto;
+}
+.drugcost-det-btn{
+    color: #005875;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: flex-end;
+}
+.drugcost-det-btn mat-icon {
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+    font-size: 24px !important;
+}
+.card-footer{
+    background-color: transparent;
+    padding: 15px 0;
+}
+.card-footer label, .card-footer button, .card-footer span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #005875;
+    padding: 0;
+    line-height: normal;
+}
+.card-footer-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+.form-check.compare-checkbox {
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.drug-cost-details-btn button {
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid #005875;
+  border-radius: 0;
+  margin-left: 5px;
+}
+.drug-cost-details-btn button:hover{
+    background-color: transparent !important;
 }
