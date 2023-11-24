@@ -14,7 +14,7 @@
               <mat-icon (click)="onMenuClicked()">menu</mat-icon>
             </button>
           </div>
-          <div class="d-flex col-3 align-items-center ">
+          <div class="d-flex col-3 align-items-center loc-info ">
             <button mat-icon-button color="primary">
               <mat-icon> location_on</mat-icon>
             </button>
@@ -23,7 +23,7 @@
             </form>
 
           </div>
-          <div class="col d-flex align-items-center">
+          <div class="col d-flex align-items-center lis-info">
             <p class="lis d-flex align-items-center">LIS</p>
             <mat-select placeholder="LIS" value="LIS_NO_HELP" [(ngModel)]="lis" (selectionChange)="lisChange()">
               <mat-option value="LIS_NO_HELP">
@@ -43,8 +43,8 @@
               </mat-option>
             </mat-select>
           </div>
-          <div class="col d-flex align-items-center ps-3 ms-auto justify-content-end" *ngIf="showDiv">
-            <p class="text-nowrap d-flex align-items-center me-2 mb-0">Effective year</p>
+          <div class="col d-flex align-items-center justify-content-end" *ngIf="showDiv">
+            <p class="text-nowrap d-flex align-items-center">Effective year</p>
             <mat-select placeholder="2024" [(ngModel)]="effYear" (selectionChange)="effectYearChange($event)">
               <mat-option value="2023">
                 2023
@@ -73,26 +73,26 @@
           </mat-button-toggle-group>
         </div>
         <div class="section">
-          <p class="p-2">
-            Showing <span style="font-weight: bold;font-size: large">{{plans.length}}</span> of <span style="font-weight: bold;font-size: large">{{response.total_results}}</span> {{planTypeName}}
+          <p>
+            Showing <span>{{plans.length}}</span> of <span>{{response.total_results}}</span> {{planTypeName}}
           </p>
 
-          <div class="card mb-3 plan-item-card" *ngFor="let plan of plans ; let i = index">
-            <div class="row">
-              <div class="col-9">
-                <div class="row">
-                  <div class="col-2" style="display: flex; align-items: center;justify-content: center">
-                    <img src="data:image/png;base64,{{plan.logo}}" alt="" style="width: 90%">
+          <div class="card plan-item-card" *ngFor="let plan of plans ; let i = index">
+            <div class="plan-item-card-row">
+              <div class="planItem-left">
+                <div class="plan-item-head-wrapper">
+                  <div class="planItem-logo">
+                    <img src="data:image/png;base64,{{plan.logo}}" alt="">
                   </div>
-                  <div class="col-10 p-2 plan-head">
-                    <h1 style="font-weight: 300;">{{plan.planName}}</h1>
+                  <div class="col-10 plan-head">
+                    <h1>{{plan.planName}}</h1>
                     <div class="d-flex">
-                      <p class="mb-0">Plan ID:{{plan.planID}}</p>
-                      <button class="ms-2">{{plan.planCategory}}</button>
+                      <p>Plan ID:{{plan.planID}}</p>
+                      <button>{{plan.planCategory}}</button>
                     </div>
                   </div>
                 </div>
-                <div class="row p-2 base-dtl mx-0">
+                <div class="base-dtl">
                   <div class="col" *ngFor="let benefits of  plan.segments[1].attributeList">
                     <div class="attribute-name">
                       <h2>{{ benefits.attributeName }}</h2>
@@ -104,7 +104,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="row p-2" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
+                <div class="additionalDet-wrapper" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
                   <div class="col s6 m4 l4">
                     <h6>{{plan.segments[3].attributeName}}</h6>
                     <div class="clear"></div>
@@ -132,13 +132,13 @@
                     </span>
                   </div>
                 </div>
-                <div class="d-flex col-12 justify-content-center p-2">
+                <div class="btn-showMoreLess">
                   <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore && plan.planCategory !='PDP'" class="item-show-btn">
                     Show more
                     <mat-icon>keyboard_arrow_down</mat-icon>
                   </button>
                 </div>
-                <div class="d-flex col-12 justify-content-center p-2">
+                <div class="btn-showMoreLess">
                   <button mat-icon-button *ngIf="plan.showmore && plan.planCategory !='PDP'" (click)="showLess(plan)" class="item-show-btn">
                     Show Less
                     <mat-icon>keyboard_arrow_up</mat-icon>
@@ -146,11 +146,11 @@
                 </div>
                 <div class="row" *ngIf="plan.benefits && plan.segments[0].attributeList">
                   <div class="col-12">
-                    <h6 class="add-benefit-head ms-3">{{plan.segments[0].attributeName}}</h6>
+                    <h6 class="add-benefit-head">{{plan.segments[0].attributeName}}</h6>
                   </div>
                 </div>
-                <div class="row px-3 mx-0 plan-benefits-items-list" *ngIf="plan.benefits && plan.segments[0].attributeList">
-                  <div class="cols px-3" *ngFor="let additionalbenefits of  plan.segments[0].attributeList"  >
+                <div class="plan-benefits-items-list" *ngIf="plan.benefits && plan.segments[0].attributeList">
+                  <div class="cols" *ngFor="let additionalbenefits of  plan.segments[0].attributeList"  >
                     <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                       <mat-icon class="benefit-icon-true">check</mat-icon>
                       <small>{{additionalbenefits.attributeName}}</small>
@@ -161,35 +161,10 @@
                     </span>
                   </div>
                 </div>
-              </div>
-
-              <div class="col-3 premium">
-                <div class="card p-2 list-card-right">
-                  <div class="card-title">
-                    <h2 class="premium-title" style="text-align: right">Monthly Premium</h2>
-                    <h2 class="monthly-premium text-end">${{plan.monthlypremium}}</h2>
-                  </div>
-                  <div class="p-2 justify-content-end" style="text-align: end">
-                    
-                    <div class="original-rate-container" *ngIf="originalRateC">
-                      <p>Orginal Rate:</p>
-                      <h2 class="original-rate">${{plan.orginalRate}}</h2>
-                      <!--<a href="">About this rate</a><br>-->
-                    </div>
-                    <div *ngIf="eacDrugcostPre" class="mt-3">
-                      <p class="estimated-cost-label">Estimated Annual Cost<small> (Drug Cost + Premium)</small></p>
-                      <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                      <span *ngIf="shouldHideSpan && showDrugs" id="highlighted-text" (click)="drugCost(plan)">Drug Cost Details<br></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div class="card-footer pe-2">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="form-check d-flex align-items-center compare-checkbox" (mouseenter)="tooltipIndex = i" (mouseleave)="tooltipIndex = -1">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckChecked"
+                <div class="card-footer">
+              <div class="card-footer-info">
+                <div class="form-check compare-checkbox" (mouseenter)="tooltipIndex = i" (mouseleave)="tooltipIndex = -1">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
                          [(ngModel)]="plan.checked" (change)="onCheckboxChange(plan)" [disabled]="checkedData.length >= maxSelections && !plan.checked">
                   <label class="form-check-label" for="flexCheckChecked">
                     Compare
@@ -198,15 +173,15 @@
                     Only a maximum of 5 plans can be compared.
                   </span>
                 </div>
-                <div class="ms-2 optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
-                <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)" *ngIf="plan.alloptnpkShow">
-                  <p>Optional Packages</p>
-                  <mat-icon>keyboard_arrow_down</mat-icon>
-                </span>
+                <div class="optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
+                  <span class="opt-pkg-btn" (click)="showOp(plan)" *ngIf="plan.alloptnpkShow">
+                    <p>Optional Packages</p>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </span>
                 </div>
-                <div>
+                <div class="documents-dropdown-wrapper">
                   <div class="dropdown documents-dropdown">
-                    <button class="btn  dropdown-toggle" style="padding: 0" type="button"
+                    <button class="btn  dropdown-toggle" type="button"
                             id="dropdownMenuButton1" data-bs-toggle="dropdown">
                       Documents <mat-icon>keyboard_arrow_down</mat-icon>
                     </button>
@@ -216,12 +191,12 @@
                   </div>
                 </div>
                 <div class="d-flex drug-cost-details-btn" *ngIf="shouldHideSpan && showDrugs">
-                  <span class="me-2 d-flex align-items-center" >Drugs Covered:</span>
+                  <span class="d-flex align-items-center" >Drugs Covered:</span>
                   <button mat-button (click)="openDrugsCovered(plan.drugInfoList)">{{plan.drugsCoveredCount}} of {{drugsArray.length}}
-                    <mat-icon class="ms-2">edit</mat-icon>
+                    <mat-icon>edit</mat-icon>
                   </button>
                 </div>
-                <div class=" d-flex">
+                <div class="cardfooter-plan-details">
                   <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
                   <!--                <label  class="ms-2"> Additional Details</label>-->
                   <button mat-raised-button class="plan-details-btn" (click)="planDetail(plan)">
@@ -229,17 +204,12 @@
                     Plan Details
                   </button>
                 </div>
-                <div class=" d-flex justify-content-end listing-to-cart-btn w-100">
-                  <button mat-raised-button color="primary" class="item-add-to-cart px-5"
-                          [ngClass]="{'clicked': plan.cartAdded}" (click)="addToCart(plan)">
-                    Add to cart
-                  </button>
-                </div>
+                
               </div>
-              <div class="card p-3 item-optional-packages mt-2" *ngIf="plan.optnpkShow">
+              <div class="card item-optional-packages" *ngIf="plan.optnpkShow">
                 <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
-                  <div class="d-flex mb-2 align-items-center">
-                    <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked" (change)="packageSelection($event,plan,optbenefits.monthly_premium,optbenefits.package_number)"> &nbsp;
+                  <div class="d-flex align-items-center">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" (change)="packageSelection($event,plan,optbenefits.monthly_premium,optbenefits.package_number)"> &nbsp;
                     <label class="form-check-label" for="flexCheckChecked">
                       {{optbenefits.package_number}}
                     </label>
@@ -250,6 +220,38 @@
                 </div>
               </div>
             </div>
+              </div>
+
+              <div class="planItem-right premium">
+                <div class="card list-card-right">
+                  <div class="card-title">
+                    <h2 class="premium-title">Monthly Premium</h2>
+                    <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
+                  </div>
+                  <div class="justify-content-end">
+
+                    <div class="original-rate-container" *ngIf="originalRateC">
+                      <p>Orginal Rate:</p>
+                      <h2 class="original-rate">${{plan.orginalRate}}</h2>
+                      <!--<a href="">About this rate</a><br>-->
+                    </div>
+                    <div *ngIf="eacDrugcostPre">
+                      <p class="estimated-cost-label">Estimated Annual Cost<small> (Drug Cost + Premium)</small></p>
+                      <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
+                      <span *ngIf="shouldHideSpan && showDrugs" id="highlighted-text" class="drugcost-det-btn" (click)="drugCost(plan)"><mat-icon>arrow_right</mat-icon>Drug Cost Details<br></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="listing-to-cart-btn">
+                  <button mat-raised-button color="primary" class="item-add-to-cart px-5"
+                          [ngClass]="{'clicked': plan.cartAdded}" (click)="addToCart(plan)">
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+
+            </div>
+            
           </div>
         </div>
 
@@ -260,13 +262,13 @@
                        showFirstLastButtons
                        aria-label="Select page">
         </mat-paginator>
-        <div style="margin-bottom: 100px"></div>
+        <div></div>
       </div>
 
 
       <div class="sectionbtm d-flex align-items-center" *ngIf="isChecked">
         <!-- Your section content here -->
-        <div class="d-flex p-2 justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center">
           <div class="col-6">
             {{this.checkedData.length}} plans selected for comparison
           </div>
@@ -285,11 +287,11 @@
 
       <ng-template #Zipchange>
         <div class="container-fluid">
-          <h3 style="font-size: 18px;">
+          <h3>
             Would you like to select pharmacies from the county that is associated with the entered ZIP Code?</h3>
-          <div class="d-flex p-2 justify-content-end">
-            <button mat-raised-button class="p-2 me-2" style="font-size: 15px" (click)="cancel()">No</button>
-            <button mat-raised-button class="p-2" color="primary" style="font-size: 15px" (click)="prescription()">Yes
+          <div class="d-flex justify-content-end">
+            <button mat-raised-button  (click)="cancel()">No</button>
+            <button mat-raised-button  color="primary" (click)="prescription()">Yes
             </button>
           </div>
         </div>

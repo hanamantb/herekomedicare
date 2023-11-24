@@ -45,24 +45,12 @@ mat-select{
   background-color:#ffffff ;
   color: white;
 }
-.mat-icon-button{
-  width: 38px;
-}
 .benfit-btn{
   font-size: 12.5px;
   width: 100%;
   text-align: left;
 }
-.premium .card{
-  margin: 2px;
-  height: auto;
-  border: none;
-  font-size: 15px;
-}
-.card{
-  margin: 2px;
-  height: auto;
-}
+
 .rate{
   font-weight: bold;
 }
@@ -159,9 +147,6 @@ mat-select{
   font-size: 14px;
   font-weight: 400;
 }
-.base-dtl{
-    border-top: 1px solid #ddd;
-}
 .base-dtl p {
   font-size: 17px;
   font-weight: 300;
@@ -190,7 +175,7 @@ h6{
   line-height: normal;
 }
 .sub-prop bdo{
-    font-weight: 600;
+    font-weight: 500;
     color: #252525 !important;
 }
 .clear{
@@ -258,6 +243,7 @@ mat-select{
 .plan-main-tabs {
   border-radius: 6px;
   border: 1px solid #005875;
+  margin-bottom: 15px;
 
 }
 .plan-main-tabs .mat-button-toggle {
@@ -283,24 +269,6 @@ mat-select{
   color: #005875;
   border-bottom: 2px solid #005875;
 }
-.premium {
-  border-left: solid 1px #ebebeb;
-}
-.base-dtl {
-  border-bottom: 1px solid #ebebeb;
-}
-.monthly-premium, .estimated-annual-cost {
-  font-size: 38px;
-  color: #4b8bb2;
-  font-weight: 300;
-  font-family: Lato,sans-serif !important;
-}
-.monthly-premium{
-    font-size: 38px;
-}
-.estimated-annual-cost {
-  font-size: 25px;
-}
 .original-rate{
     font-size: 16px;
     font-weight: 300;
@@ -318,9 +286,6 @@ mat-select{
 }
 .material-icons{
     font-size: 21px;
-}
-.card-footer {
-  background: #fff;
 }
 .plan-details-btn{
     border-radius: 0;
@@ -342,14 +307,7 @@ mat-select{
 .item-optional-packages span.rate {
   font-weight: 500;
 }
-.drug-cost-details-btn button {
-  cursor: pointer;
-  color: #3c6f8e;
-  text-decoration: underline;
-  padding: 0;
-}
 .drug-cost-details-btn mat-icon{
-    color: #3c6f8e;
     font-size: 19px;
 }
 .drug-cost-details-btn button:hover, .drug-cost-details-btn button:focus-within, .drug-cost-details-btn button:active {
@@ -378,9 +336,6 @@ h1{
     font-size: 14px;
     font-weight: normal;
 }
-.listing-to-cart-btn{
-    max-width: 222px;
-}
 .list-top-edit-btn{
     max-width: 42px;
     margin-left: 15px;
@@ -391,9 +346,6 @@ mat-select mat-option{
 .compare-checkbox input{
    position: relative;
    top: -2px;
-}
-.drug-cost-details-btn button{
-    font-weight: 400;
 }
 .item-show-btn mat-icon{
     color: #4b8bb2;
@@ -409,32 +361,17 @@ mat-select mat-option{
     display: flex;
     align-items: center;
 }
-#highlighted-text {
-    color: blue; /* Set the text color */
-    text-decoration: underline; /* Underline the text */
-    cursor: pointer; /* Change cursor to indicate interactivity */
-}
+/*#highlighted-text {
+    color: blue;*/ /* Set the text color */
+    /*text-decoration: underline;*/ /* Underline the text */
+    /*cursor: pointer;*/ /* Change cursor to indicate interactivity */
+/*}*/
 .plan-benefits-items-list{
     display: flex;
     gap: 10px;
     padding-bottom: 10px;
+    flex-wrap: wrap;
 
-}
-.plan-benefits-items-list .cols {
-  border: 1px solid #ddd;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  width: auto;
-  padding: 5px;
-  background-color: #fff;
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, .05);
-}
-.plan-benefits-items-list .cols small{
-    font-size: 12.5px;
-    display: flex;
-    align-items: center;
 }
 .plan-benefits-items-list .cols .benfit-btn{
     display: flex;
@@ -481,5 +418,11 @@ mat-select mat-option{
     max-width: 1264px !important;
     margin: 0 auto;
     padding: 25px 15px 0;
+}
+.side-bar-toggle{
+    margin-right: 15px;
+}
+.loc-info button, .lis-info p{
+    margin-right: 10px;
 }
 
