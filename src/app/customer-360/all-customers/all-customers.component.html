@@ -1,0 +1,34 @@
+<div class="container customer-360-wrapper">
+  <div class="row">
+    <div class="col-12 c360-main-action">
+      <button mat-raised-button color="secondary"><mat-icon>event_note</mat-icon>Quick note</button>
+      <button mat-raised-button color="primary"><mat-icon>person_outline</mat-icon>Add customer</button>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <tr>
+      <th>Customer</th>
+      <th>Date of birth</th>
+      <th>Phone</th>
+      <th>Created date</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <td>John Doe <span>(M)</span></td>
+      <td>01-01-1955</td>
+      <td>+00987654321</td>
+      <td>01-01-2023</td>
+      <td>
+        <div class="table-actions px-0">
+          <div class="dropdown">
+            <button (click)="toggleDropdown()" class="dropbtn"><mat-icon>playlist_add</mat-icon></button>
+            <div [ngClass]="{'dropdown-content': true, 'show': isDropdownOpen}">
+              <a href="#">Create quote</a>
+            </div>
+          </div>
+
+          <button class="c360-delete" mat-raised-button matTooltip="Delete" aria-label="Delete" (click)="openConfirmationPopup()"><mat-icon>delete_outline</mat-icon></button>        </div>
+      </td>
+    </tr>
+  </table>
+</div>
