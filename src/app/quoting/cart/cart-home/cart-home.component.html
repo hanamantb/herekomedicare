@@ -36,7 +36,7 @@
           </div>
           <div class="col-4 p-2">
             <mat-form-field appearance="fill">
-              <label>Select the format to generate proposal</label>
+              <label>Format </label>
               <mat-select value="0">
                 <mat-option [value]="0">
                   PDF Format
@@ -51,8 +51,8 @@
         </div>
         <div class="d-flex p-2 justify-content-end">
           <button mat-raised-button STYLE="background-color: white">Cancel</button>
-          <button mat-raised-button style="background-color: #4b8bb2;color: white" class="ms-2">
-            Send
+          <button mat-raised-button style="background-color: #005875; color: white" class="ms-2">
+            Copy
           </button>
         </div>
       </div>
@@ -170,7 +170,7 @@
                 <a href="">About this rate</a>-->
                 <p class="estimated-cost-label">Estimated Annual Cost<small class="d-block">(Drug Cost + Premium)</small></p>
                 <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                <a href="/drug-cost">Drug Cost Details</a><br>
+                <a href="/drug-cost" *ngIf="showDrugs">Drug Cost Details</a><br>
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@
           <div class="d-flex">
             <div class="col">
               <button mat-button style="color: red; background-color: #ff595959" (click)="remove(plan)" [ngClass]="{'unselected': plan.selected}">
-                <mat-icon>delete_forever</mat-icon>
+                <mat-icon style="color: red;">delete_forever</mat-icon>
                 Remove from cart
               </button>
             </div>
@@ -192,9 +192,9 @@
             <!--                <mat-icon class="ms-2">edit</mat-icon>-->
             <!--              </button>-->
             <!--            </div>-->
-            <div class="ms-2 optional-packages-btn d-flex align-items-center">
+            <div class="ms-2 optional-packages-btn d-flex align-items-center" *ngIf=" plan.optional_benefits.length !==0">
               <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
-                <p class="mb-0">Optional Packages</p>
+                <p class="mb-0" >Optional Packages</p>
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </span>
             </div>
@@ -215,7 +215,7 @@
             <div class=" d-flex col-2">
               <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
               <!--                <label  class="ms-2"> Additional Details</label>-->
-              <button mat-raised-button>
+              <button mat-raised-button (click)="planDetail(plan)">
                 <mat-icon>remove_red_eye</mat-icon>
                 Plan Details
               </button>
@@ -252,13 +252,13 @@
       </div>
       <div class="d-flex justify-content-end pb-4">
         <button mat-button style="background-color: white" class="ms-2" (click)="continueShopping()"> Continue Shopping</button>
-        <button mat-button style="background-color: #4b8bb2; color: white" class="ms-2">Begin Enrollment</button>
+        <button mat-button style="background-color: #005875; color: white" class="ms-2">Begin Enrollment</button>
       </div>
     </div>
     <div class="col-3">
       <div class="card cart-total ms-2 mt-5">
         <div class="d-flex justify-content-center p-2 cart-total-head flex-column align-items-center">
-          <mat-icon>add_shopping_cart</mat-icon>
+          <mat-icon class="shopping_cart">add_shopping_cart</mat-icon>
           My cart
         </div>
         <div class="body p-5 ">

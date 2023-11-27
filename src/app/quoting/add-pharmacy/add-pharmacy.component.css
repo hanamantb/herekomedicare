@@ -127,7 +127,7 @@ h3 + p {
   left: 0;
   bottom: 0;
   z-index: 99;
-  background: #105681;
+  background: #D0E7EF;
   width: 100%;
   padding: 15px;
   box-shadow: 0 -3px 11px rgba(0, 0, 0, .2);
@@ -144,25 +144,29 @@ h3 + p {
 }
 .sticky-c-item {
     border: 2px solid rgba(255, 255, 255, .3);
-    border-radius: 17px;
+    border-radius: 3px;
     padding: 15px 20px 15px 10px;
     position: relative;
-    min-height: 100%;
-    color:white;
+    min-height: 80px;
+    color:rgb(0, 0, 0);
+    background-color: white;
     font-size:14px;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
+    box-shadow: 6px 6px 15px rgba(135, 135, 135, .35);
+    min-height: 100%;
 }
 .sticky-c-item.empty {
   border: 2px solid rgba(255, 255, 255, .1);
 }
 .sticky-c-item h4{
-  color: #fff;
+  color: #000;
   font-size: 16px;
+  font-weight: 500;
 }
 .s-c-close mat-icon{
-    color: rgba(255, 255, 255, .9);
+    color: #005875;
     position: absolute;
     right: 5px;
     top:7px;
