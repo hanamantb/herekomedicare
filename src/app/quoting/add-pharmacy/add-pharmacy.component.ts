@@ -84,7 +84,9 @@ export class AddPharmacyComponent implements OnInit {
       if (this.rowData.length >= 5){
         this.dialog.open(ErrorPopupComponent,{
           data:{
-            customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
+            customMsg: 'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'
+          }, width: '600px', panelClass: ['alert-popup', 'alert-error']
+})
         event.target.checked =false
       }else {
         this.rowData.push(data);
@@ -93,7 +95,7 @@ export class AddPharmacyComponent implements OnInit {
       if (this.rowData.length >= 6){
         this.dialog.open(ErrorPopupComponent,{
           data:{
-            customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px'})
+            customMsg:'You have already selected 5 pharmacies. Remove one of the selected pharmacies and add this pharmacy.'},width: '600px', panelClass: ['alert-popup', 'alert-error']})
         event.target.checked =false
       }else {
         this.rowData.push(data);
@@ -171,7 +173,7 @@ export class AddPharmacyComponent implements OnInit {
           data: {
             buttons: true,
             customMsg: 'We couldn\'t find any pharmacies matching your search in this area.'
-          }
+          }, panelClass: ['alert-popup', 'alert-error']
         })
       }
       this.spinner.stop(spine)

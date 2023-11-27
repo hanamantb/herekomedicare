@@ -2,7 +2,7 @@
   <div class="d-flex">
     <div class="col-12 pt-4 px-3">
       <div class="d-flex">
-        <div class="p-2" style="margin-right: auto">
+        <div class="backto-drugs-page">
           <p routerLink="/add-drugs">
             <mat-icon>chevron_left</mat-icon>
             Back to Drug Selection
@@ -132,8 +132,8 @@
         </ag-grid-angular>
       </div>
       <div class="col-12">
-        <div class="d-flex p-2 justify-content-end ">
-          <button mat-raised-button color="white" class="btn" (click)="nav()">See Plans</button>
+        <div class="d-flex justify-content-end pharmacy-see-plans">
+          <button mat-raised-button color="primary" class="btn" (click)="nav()">See Plans</button>
         </div>
       </div>
     </div>
@@ -142,7 +142,7 @@
 <!-- bottom cards -->
 
 <div class="sticky-content-wrapper" *ngIf="rowData.length !==0 && !ribbonShow">
-  <div class="sticky-content-info d-flex align-items-center justify-content-center">
+  <div class="sticky-content-info d-flex justify-content-center">
     <ul>
       <li *ngFor="let pharm of rowData">
         <div class="sticky-c-item">

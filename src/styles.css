@@ -338,8 +338,21 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .cdk-overlay-pane.alert-popup.alert-error .mat-dialog-container{
     border-color: #D5492E;
 }
+.cdk-overlay-pane.alert-popup.alert-error .popup-btn button{
+    background-color: #D5492E;
+    min-height: 35px;
+    margin: -10px 0 25px;
+}
+.cdk-overlay-pane.alert-popup button:focus-visible{
+    outline: none !important
+}
 .cdk-overlay-pane.alert-popup .popup-body-wrapper {
   overflow-x: hidden
+}
+.cdk-overlay-pane.alert-popup .popup-body-wrapper p {
+    text-align: center;
+    margin-bottom: 0;
+
 }
 .cdk-overlay-pane.alert-popup .zipcode-val-popup-body .container-fluid {
   padding: 25px 15px;
