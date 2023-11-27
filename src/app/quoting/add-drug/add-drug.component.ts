@@ -120,12 +120,12 @@ export class AddDrugComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<i class="material-icons action-btns" (click)="delete($event)">delete</i>' +
-      '<i class="material-icons action-btns">edit</i>';
+    return '<i class="material-icons action-btns" (click)="delete($event)">delete_outline</i>' +
+      '<i class="material-icons action-btns">edit_outline</i>';
   };
 
   colDef6 = function () {
-    return '<i class="material-icons action-btns">edit</i>';
+    return '<i class="material-icons action-btns">edit_outline</i>';
   };
 
   delete(event: any) {

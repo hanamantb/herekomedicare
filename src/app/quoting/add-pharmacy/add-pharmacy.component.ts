@@ -50,7 +50,7 @@ export class AddPharmacyComponent implements OnInit {
   }
 
   colDef5 = function () {
-    return '<i class="material-icons action-btns">delete</i>';
+    return '<i class="material-icons action-btns">delete_outline</i>';
   };
   columnDefs = [
     {
