@@ -520,3 +520,16 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .drug-cost-details-btn button:hover{
     background-color: transparent !important;
 }
+.custom-table-wrapper .ag-theme-alpine .ag-ltr .ag-cell {
+    display: flex;
+    align-items: center;
+}
+
+.custom-table-wrapper .ag-ltr .ag-header {
+    margin-bottom: 0;
+}
+
+.custom-table-wrapper .ag-theme-alpine .ag-layout-auto-height .ag-center-cols-container,
+.custom-table-wrapper .ag-theme-alpine .ag-layout-auto-height .ag-center-cols-clipper {
+    min-height: inherit;
+}
