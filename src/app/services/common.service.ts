@@ -136,5 +136,8 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.processPlans,
       requestBody, '');
   }
+  public viewCustomer(agentId: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.viewCustomer, {agentId}, '');
+  }
  
 }

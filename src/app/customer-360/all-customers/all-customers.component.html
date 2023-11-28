@@ -13,11 +13,11 @@
       <th>Created date</th>
       <th>Actions</th>
     </tr>
-    <tr>
-      <td>John Doe <span>(M)</span></td>
-      <td>01-01-1955</td>
+    <tr *ngFor="let customer of output">
+      <td>{{customer.customerName}}<span>(M)</span></td>
+      <td>{{customer.dateOfBirth}}</td>
       <td>+00987654321</td>
-      <td>01-01-2023</td>
+      <td>{{customer.createdDate}}</td>
       <td>
         <div class="table-actions px-0">
           <div class="dropdown">

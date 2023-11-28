@@ -13,5 +13,6 @@ export class UrlConstants {
   public static planDetails = UrlConstants.api + "plan-details"
   public static processPlans = UrlConstants.api + "process-plans"
   public static planCompare = UrlConstants.api + "plan-compare"
+  public static viewCustomer = UrlConstants.api + "viewCustomerList"
 
 }
