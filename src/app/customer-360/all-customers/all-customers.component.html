@@ -1,34 +1,221 @@
 <div class="container customer-360-wrapper">
   <div class="row">
     <div class="col-12 c360-main-action">
-      <button mat-raised-button color="secondary"><mat-icon>event_note</mat-icon>Quick note</button>
-      <button mat-raised-button color="primary"><mat-icon>person_outline</mat-icon>Add customer</button>
+      <button mat-raised-button color="secondary"><mat-icon>event_note</mat-icon>Quick quote</button>
+      <button mat-raised-button color="primary" (click)="addCustomerForm()"><mat-icon>person_outline</mat-icon>Add customer</button>
     </div>
   </div>
-  <table class="table table-striped">
-    <tr>
-      <th>Customer</th>
-      <th>Date of birth</th>
-      <th>Phone</th>
-      <th>Created date</th>
-      <th>Actions</th>
-    </tr>
-    <tr>
-      <td>John Doe <span>(M)</span></td>
-      <td>01-01-1955</td>
-      <td>+00987654321</td>
-      <td>01-01-2023</td>
-      <td>
-        <div class="table-actions px-0">
-          <div class="dropdown">
-            <button (click)="toggleDropdown()" class="dropbtn"><mat-icon>playlist_add</mat-icon></button>
-            <div [ngClass]="{'dropdown-content': true, 'show': isDropdownOpen}">
-              <a href="#">Create quote</a>
+  <div class="c360-form-wrapper container-box" *ngIf="showAddCustomerForm">
+    <div class="c360-form-item">
+      <div class="row">
+        <h3>Basic Info</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>First name</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Middle name</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Last name</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Prefix</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label>Suffix</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Gender</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Date of birth</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Email</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-3">
+          <label>Written Language</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Spoken Language</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>Household income</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="c360-form-item">
+      <div class="row">
+        <h3>Home Address (Do not use PO box numbers)</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Enter your address</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>Zip</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>County</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>City</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>State</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+    </div>
+
+    <div class="c360-form-item">
+      <div class="row mx-0">
+        <div class="c360-checkbox d-flex">
+          <input type="checkbox" name="name" value="" />
+          <label>Is the mailing address same as Home address?</label>
+        </div>
+      </div>
+      <div class="row">
+        <h3>Mailing address</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Enter your address</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          <label>Zip</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>County</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>City</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-3">
+          <label>State</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="c360-form-item">
+      <div class="row">
+        <h3>Contact Information</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Phone</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-6">
+          <label>Phone Type</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Phone</label>
+          <input type="text" name="name" value="" />
+        </div>
+        <div class="col-md-6">
+          <label>Phone Type</label>
+          <input type="text" name="name" value="" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end mb-2">
+          <button mat-raised-button color="secondary" class="sm-btn"><mat-icon>remove</mat-icon>Remove phone number</button>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-end mb-0">
+          <button mat-raised-button color="primary" class="sm-btn"><mat-icon>add</mat-icon>Add phone number</button>
+        </div>
+
+      </div>
+    </div>
+    <div class="c360-form-item">
+      <div class="row">
+        <div class="col-md-6 mb-sm-2">
+          <label>Do you want to complete scope of appointment?</label>
+          <div class="c360-main-radio d-flex align-items-center">
+            <div class="radio-item d-flex align-items-center">
+              <input type="radio" />
+              <label class="mb-0">Yes</label>
+            </div>
+            <div class="radio-item d-flex align-items-center">
+              <input type="radio" />
+              <label class="mb-0">No</label>
             </div>
           </div>
+        </div>
+        <div class="col-md-6 d-flex justify-content-end c360-form-main-actions">
+          <button mat-raised-button color="secondary">Cancel</button>
+          <button mat-raised-button color="primary">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+    <table class="table table-striped">
+      <tr>
+        <th>Customer</th>
+        <th>Date of birth</th>
+        <th>Phone</th>
+        <th>Created date</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>John Doe <span>(M)</span></td>
+        <td>01-01-1955</td>
+        <td>+00987654321</td>
+        <td>01-01-2023</td>
+        <td>
+          <div class="table-actions px-0">
+            <div class="dropdown">
+              <button (click)="toggleDropdown()" class="dropbtn"><mat-icon>playlist_add</mat-icon></button>
+              <div [ngClass]="{'dropdown-content': true, 'show': isDropdownOpen}">
+                <a href="#">Create quote</a>
+              </div>
+            </div>
 
-          <button class="c360-delete" mat-raised-button matTooltip="Delete" aria-label="Delete" (click)="openConfirmationPopup()"><mat-icon>delete_outline</mat-icon></button>        </div>
-      </td>
-    </tr>
-  </table>
-</div>
+            <button class="c360-delete" mat-raised-button matTooltip="Delete" aria-label="Delete" (click)="openConfirmationPopup()"><mat-icon>delete_outline</mat-icon></button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>

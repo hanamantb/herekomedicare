@@ -9,6 +9,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 })
 export class AllCustomersComponent implements OnInit {
   isDropdownOpen: boolean = false;
+  showAddCustomerForm: boolean = false;
   
   constructor(private elementRef: ElementRef, public dialog: MatDialog) {
   }
@@ -17,6 +18,9 @@ export class AllCustomersComponent implements OnInit {
   }
   openConfirmationPopup() {
     this.dialog.open(DeleteConfirmationComponent, { width: '600px', panelClass: ['alert-popup', 'alert-warning'] })
+  }
+  addCustomerForm() {
+    this.showAddCustomerForm = !this.showAddCustomerForm;
   }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
