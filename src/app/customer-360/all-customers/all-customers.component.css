@@ -18,7 +18,7 @@ th {
 .table-striped td p,
 .table-striped td li {
   font-size: 16px;
-  color: #555;
+  color: #212529;
 }
 
 .table-striped td p {
@@ -177,7 +177,27 @@ th {
 }
 .customer-360-wrapper td ul li{
     margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.customer-360-wrapper td ul li mat-icon {
+    font-size: 18px;
+    display: flex; align-items: center;
+    width: auto;
+    justify-content: center
 }
 .customer-360-wrapper td ul li:last-child{
     margin-bottom: 0;
+}
+.c360-form-wrapper .col-md-3 label{
+    width: 100%;
+}
+/deep/.c360-form-wrapper .mat-form-field-infix{
+    min-width: 100%;
+    padding: 0;
+    border: 0;
+}
+.c360-form-wrapper .mat-form-field{
+    width: 100%;
 }
