@@ -15,6 +15,8 @@ import {PlanCompareComponent} from "./plan-present/plan-compare/plan-compare.com
 import { PlansListPageComponent } from './plan-present/plans-list-page/plans-list-page.component';
 import { PlanDetailsComponent } from "./plan-present/plan-details/plan-details.component";
 import { SavedProposalsComponent } from './quoting/saved-proposals/saved-proposals.component';
+import { AllCustomersComponent } from './customer-360/all-customers/all-customers.component';
+import { DeleteConfirmationComponent } from './customer-360/all-customers/delete-confirmation/delete-confirmation.component';
 
 
 const routes: Routes = [
@@ -69,7 +71,13 @@ const routes: Routes = [
   },
   {
     path: 'saved-proposals', component: SavedProposalsComponent
-  }
+  },
+  {
+    path: 'all-customers', component: AllCustomersComponent
+  },
+  {
+    path: 'delete-confirmation', component: DeleteConfirmationComponent
+  },
   // {
   //   path:'Plans',loadChildren: ()=> import('./plan-present/plan-present.module').then(m=> PlanPresentModule),
   // },

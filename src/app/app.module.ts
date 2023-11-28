@@ -44,6 +44,8 @@ import {PlansListPageComponent} from "./plan-present/plans-list-page/plans-list-
 import {DrugsCoveredDialogboxComponent} from "./shared/layouts/drugs-covered-dialogbox/drugs-covered-dialogbox.component";
 import { EditPlansPopupComponent } from './shared/layouts/edit-plans-popup/edit-plans-popup.component';
 import { SavedProposalsComponent } from './quoting/saved-proposals/saved-proposals.component';
+import { AllCustomersComponent } from './customer-360/all-customers/all-customers.component';
+import { DeleteConfirmationComponent } from './customer-360/all-customers/delete-confirmation/delete-confirmation.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { SavedProposalsComponent } from './quoting/saved-proposals/saved-proposa
     PlansListPageComponent,
     EditPlansPopupComponent,
     PlanCompareComponent,
-    SavedProposalsComponent
+    SavedProposalsComponent,
+    AllCustomersComponent,
+    DeleteConfirmationComponent
 
   ],
   imports: [
