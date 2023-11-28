@@ -2,18 +2,22 @@ import { Component, ElementRef, HostListener, Inject, OnInit } from '@angular/co
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 import {CommonService} from "../../services/common.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'all-customers',
   templateUrl: './all-customers.component.html',
   styleUrls: ['./all-customers.component.css']
 })
 export class AllCustomersComponent implements OnInit {
+quickQuote() {
+  this.route.navigate(['quoting'])
+}
   isDropdownOpen: boolean = false;
     output: any;
   showAddCustomerForm: boolean = false;
 
   
-  constructor(private elementRef: ElementRef, private commonservice: CommonService, public dialog: MatDialog) {
+  constructor(private elementRef: ElementRef, private commonservice: CommonService, public dialog: MatDialog,private route: Router) {
   }
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
