@@ -1,0 +1,120 @@
+table {
+  background: #FFF;
+  border: 1px solid rgba(0,0,0,.05);
+  table-layout: fixed;
+}
+th {
+  padding: 10px 15px;
+  border-right: 1px solid rgba(0,0,0,.1);
+}
+.table-striped tr:nth-of-type(odd) {
+  background-color: #F9F9F9;
+}
+.table-striped td {
+  border-right: 1px solid rgba(0,0,0,.05);
+  font-size: 16px;
+  padding: 5px 15px;
+}
+
+.table-striped td p,
+.table-striped td li {
+  font-size: 16px;
+  color: #555;
+}
+
+.table-striped td p {
+  margin-bottom: 0;
+  line-height: 26px;
+}
+
+.table-striped th label {
+  font-weight: 500;
+  font-size: 16px;
+}
+.container.customer-360-wrapper{
+    max-width: 1264px !important;
+    padding: 0 15px ;
+    margin-top: 30px;
+}
+.table-actions{
+    display: flex;
+}
+.table-actions > a{
+    color: #005875;
+    line-height: normal;
+    min-width: inherit;
+    padding: 0 !important;
+}
+.dropbtn {
+  color: #005875;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  min-width: 160px;
+  z-index: 1;
+  border: 1px solid #005875;
+  border-radius: 3px;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-bottom: 1px solid #E7E7E7
+}
+.dropdown-content a:last-child{
+    border-bottom: none !important;
+}
+
+.dropdown-content a:hover {
+  background-color: #005875;
+  color: #fff;
+
+}
+
+/* Show the dropdown menu */
+.dropdown-content.show {
+  display: block;
+}
+.c360-main-action{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+.c360-main-action button{
+    font-size: 16px;
+}
+.c360-main-action mat-icon{
+    margin-right: 5px;
+}
+.table.table-striped{
+    border-radius: 6px;
+    border: 0;
+    overflow: hidden;
+    box-shadow: 6px 6px 15px #87878759;
+}
+.table.table-striped tr th{
+    background: rgba(0, 88, 117, .2);
+    font-size: 16px;
+    font-weight: 500;
+}
+.table.table-striped tr td span{
+    padding: 0 !important;
+}
+.table.table-striped tr td .table-actions .c360-delete{
+    background-color: transparent !important;
+    color: #005875;
+    padding: 0;
+    min-width: inherit;
+    line-height: normal;
+}
