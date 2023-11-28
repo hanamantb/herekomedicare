@@ -9,7 +9,9 @@ import {CommonService} from "../../services/common.service";
 })
 export class AllCustomersComponent implements OnInit {
   isDropdownOpen: boolean = false;
-  output: any;
+    output: any;
+  showAddCustomerForm: boolean = false;
+
   
   constructor(private elementRef: ElementRef, private commonservice: CommonService, public dialog: MatDialog) {
   }
@@ -18,6 +20,9 @@ export class AllCustomersComponent implements OnInit {
   }
   openConfirmationPopup() {
     this.dialog.open(DeleteConfirmationComponent, { width: '600px', panelClass: ['alert-popup', 'alert-warning'] })
+  }
+  addCustomerForm() {
+    this.showAddCustomerForm = !this.showAddCustomerForm;
   }
   @HostListener('document:click', ['$event'])
   onClick(event: MouseEvent) {
