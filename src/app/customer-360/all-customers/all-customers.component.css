@@ -1,7 +1,6 @@
 table {
   background: #FFF;
   border: 1px solid rgba(0,0,0,.05);
-  table-layout: fixed;
 }
 th {
   padding: 10px 15px;
@@ -13,7 +12,7 @@ th {
 .table-striped td {
   border-right: 1px solid rgba(0,0,0,.05);
   font-size: 16px;
-  padding: 5px 15px;
+  padding: 8px 15px;
 }
 
 .table-striped td p,
@@ -38,6 +37,7 @@ th {
 }
 .table-actions{
     display: flex;
+    align-items: flex-start
 }
 .table-actions > a{
     color: #005875;
@@ -80,8 +80,6 @@ th {
   color: #fff;
 
 }
-
-/* Show the dropdown menu */
 .dropdown-content.show {
   display: block;
 }
@@ -171,4 +169,15 @@ th {
 }
 .c360-form-main-actions{
     gap: 15px;
+}
+.customer-360-wrapper td ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.customer-360-wrapper td ul li{
+    margin-bottom: 6px;
+}
+.customer-360-wrapper td ul li:last-child{
+    margin-bottom: 0;
 }
