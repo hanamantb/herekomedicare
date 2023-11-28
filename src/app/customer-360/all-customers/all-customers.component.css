@@ -1,7 +1,6 @@
 table {
   background: #FFF;
   border: 1px solid rgba(0,0,0,.05);
-  table-layout: fixed;
 }
 th {
   padding: 10px 15px;
@@ -13,13 +12,13 @@ th {
 .table-striped td {
   border-right: 1px solid rgba(0,0,0,.05);
   font-size: 16px;
-  padding: 5px 15px;
+  padding: 8px 15px;
 }
 
 .table-striped td p,
 .table-striped td li {
   font-size: 16px;
-  color: #555;
+  color: #212529;
 }
 
 .table-striped td p {
@@ -33,11 +32,12 @@ th {
 }
 .container.customer-360-wrapper{
     max-width: 1264px !important;
-    padding: 0 15px ;
+    padding: 0 15px 20px;
     margin-top: 30px;
 }
 .table-actions{
     display: flex;
+    align-items: flex-start
 }
 .table-actions > a{
     color: #005875;
@@ -80,8 +80,6 @@ th {
   color: #fff;
 
 }
-
-/* Show the dropdown menu */
 .dropdown-content.show {
   display: block;
 }
@@ -117,4 +115,89 @@ th {
     padding: 0;
     min-width: inherit;
     line-height: normal;
+}
+.c360-form-wrapper{
+    padding: 30px 25px 10px;
+    margin-bottom: 20px;
+}
+.c360-form-wrapper h3{
+    font-size: 24px;
+    font-weight: 500;
+}
+.c360-form-wrapper [class^="col"]{
+    margin-bottom: 20px;
+}
+.c360-form-wrapper label{
+    margin-bottom: 10px;
+}
+.c360-form-item{
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.c360-form-item:last-child{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+.c360-checkbox input[type="checkbox"] {
+    height: 16px;
+    width: 16px;
+    margin-right: 10px;
+}
+.c360-checkbox label{
+    margin-bottom: 0;
+}
+.c360-checkbox{
+    background: #fcfcfc;
+    border: 1px solid #ddd;
+    align-items: center;
+    border-radius: 6px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+.c360-form-wrapper .checkbox-item{
+  margin-right: 20px;
+}
+.c360-form-wrapper .checkbox-item input{
+    margin-right: 10px;
+}
+.c360-main-radio input{
+    margin-right: 10px;
+}
+.c360-main-radio .radio-item {
+  margin-right: 20px;
+}
+.c360-form-main-actions{
+    gap: 15px;
+}
+.customer-360-wrapper td ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.customer-360-wrapper td ul li{
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.customer-360-wrapper td ul li mat-icon {
+    font-size: 18px;
+    display: flex; align-items: center;
+    width: auto;
+    justify-content: center
+}
+.customer-360-wrapper td ul li:last-child{
+    margin-bottom: 0;
+}
+.c360-form-wrapper .col-md-3 label{
+    width: 100%;
+}
+/deep/.c360-form-wrapper .mat-form-field-infix{
+    min-width: 100%;
+    padding: 0;
+    border: 0;
+}
+.c360-form-wrapper .mat-form-field{
+    width: 100%;
 }

@@ -275,6 +275,9 @@ button[color="primary"]:hover, .mat-raised-button.mat-primary:hover{
     background: #002d3c;
     color: #fff;
 }
+button[color="secondary"]:hover, .mat-raised-button.mat-secondary:hover {
+    background: #e5f7fd;
+}
 button[color="secondary"], .mat-raised-button.mat-secondary{
     color: #005875;
     border: 1px solid #005875;
@@ -309,8 +312,11 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
     border-radius: 6px 6px 0 0;
     background-color: rgba(0, 88, 117, .2)
 }
-.ag-theme-alpine .ag-row.ag-row-odd{
-    background-color: #EAF0F2;
+.sm-btn{
+    min-height: 35px !important;
+}
+.ag-theme-alpine .ag-row.ag-row-odd {
+  background-color: #EAF0F2;
 }
 .cdk-global-overlay-wrapper .cdk-overlay-pane.alert-popup {
   max-width: 360px !important
