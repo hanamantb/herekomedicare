@@ -214,7 +214,7 @@ export class AddDrugComponent implements OnInit {
       })
       this.drugname.reset()
     }else if(this.packages.length !==0 && this.drugForm.value.packageDescription === null){
-      this.dialog.open(ErrorPopupComponent, {data: {customMsg: 'Please select a package.'}, width: '600px'})
+      this.dialog.open(ErrorPopupComponent, { data: { customMsg: 'Please select a package.' }, width: '600px', panelClass: ['alert-popup', 'alert-error'] })
 
     } else if (this.drugForm.valid) {
 
