@@ -25,18 +25,64 @@
         </div>
         <div class="col-md-3">
           <label>Prefix</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Miss
+              </mat-option>
+              <mat-option value="option2">
+                Mr.
+              </mat-option>
+              <mat-option value="option3">
+                Ms.
+              </mat-option>
+              <mat-option value="option3">
+                Mrs.
+              </mat-option>
+              <mat-option value="option3">
+                Dr.
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">
           <label>Suffix</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Jr.
+              </mat-option>
+              <mat-option value="option2">
+                Sr.
+              </mat-option>
+              <mat-option value="option3">
+                II
+              </mat-option>
+              <mat-option value="option3">
+                III
+              </mat-option>
+              <mat-option value="option3">
+                IV
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
           <label>Gender</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Male
+              </mat-option>
+              <mat-option value="option2">
+                Female
+              </mat-option>
+
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
           <label>Date of birth</label>
@@ -51,15 +97,69 @@
       <div class="row">
         <div class="col-md-3">
           <label>Written Language</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                English
+              </mat-option>
+              <mat-option value="option2">
+                Spanish
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
           <label>Spoken Language</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                English
+              </mat-option>
+              <mat-option value="option2">
+                Spanish
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
-          <label>Household income</label>
-          <input type="text" name="name" value="" />
+          <label>Where did you hear about us from?</label>
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Referral
+              </mat-option>
+              <mat-option value="option2">
+                TV
+              </mat-option>
+              <mat-option value="option2">
+                Radio
+              </mat-option>
+              <mat-option value="option2">
+                Google Search Bar
+              </mat-option>
+              <mat-option value="option2">
+                Facebook
+              </mat-option>
+              <mat-option value="option2">
+                Youtube
+              </mat-option>
+              <mat-option value="option2">
+                Post Card Mailer
+              </mat-option>
+              <mat-option value="option2">
+                Physical Newspaper
+              </mat-option>
+              <mat-option value="option2">
+                Newsapaper - Online Digital
+              </mat-option>
+              <mat-option value="option2">
+                Renewal
+              </mat-option>
+              <mat-option value="option2">
+                Others
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
     </div>
@@ -143,7 +243,19 @@
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Work
+              </mat-option>
+              <mat-option value="option2">
+                Home
+              </mat-option>
+              <mat-option value="option2">
+                Cell
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
@@ -153,7 +265,19 @@
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
-          <input type="text" name="name" value="" />
+          <mat-form-field>
+            <mat-select>
+              <mat-option value="option1">
+                Work
+              </mat-option>
+              <mat-option value="option2">
+                Home
+              </mat-option>
+              <mat-option value="option2">
+                Cell
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
       </div>
       <div class="row">
@@ -204,9 +328,9 @@
       <td>{{customer.dateOfBirth}}</td>
       <td>
         <ul>
-          <li>+00987654321</li>
-          <li>+00987654322</li>
-          <li>+00987654323</li>
+          <li><mat-icon>work</mat-icon>+00987654321</li>
+            <li><mat-icon>home</mat-icon>+00987654322</li>
+            <li><mat-icon>smartphone</mat-icon>+00987654323</li>
         </ul></td>
       <td>{{customer.createdDate}}</td>
       <td>
