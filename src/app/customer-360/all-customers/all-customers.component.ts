@@ -107,6 +107,7 @@ quickQuote() {
   isDropdownOpen: boolean = false;
     output: any;
   showAddCustomerForm: boolean = false;
+  hideQuickQuoteBtn: boolean = true;
   firstName:any
   middleName:any
   selectedAbout:any
@@ -127,6 +128,7 @@ quickQuote() {
   }
   addCustomerForm() {
     this.showAddCustomerForm = !this.showAddCustomerForm;
+    this.hideQuickQuoteBtn = !this.hideQuickQuoteBtn;
   }
   // @HostListener('document:click', ['$event'])
   // onClick(event: MouseEvent) {
