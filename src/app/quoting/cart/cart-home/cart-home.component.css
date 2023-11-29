@@ -263,9 +263,6 @@ mat-select{
 .component {
   position: relative;
 }
-.plan-item-card h1{
-  font-size: 18px;
-}
 
 .content {
   /* Your component styles here */
