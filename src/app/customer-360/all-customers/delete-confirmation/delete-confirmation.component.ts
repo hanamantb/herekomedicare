@@ -37,8 +37,7 @@ buttons=false
           console.log('response',response) 
 
         } 
-         this.dialog.open(AllCustomersComponent);
-         this.dialog.closeAll;
+        this.dialogRef.close(false)
       });
     }
     
