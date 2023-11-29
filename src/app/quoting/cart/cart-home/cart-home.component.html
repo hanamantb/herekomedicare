@@ -73,22 +73,22 @@
 
 
 
-      <div class="card mt-2 plan-item-card" *ngFor="let plan of cartItems ; let i = index">
-        <div class="d-flex">
-          <div class="col-9">
-            <div class="row">
-              <div class="col-2" style="display: flex; align-items: center;justify-content: center">
-                <img src="data:image/png;base64,{{plan.logo}}" alt="" style="width: 90%">
+      <div class="card plan-item-card" *ngFor="let plan of cartItems ; let i = index">
+        <div class="plan-item-card-row">
+          <div class="planItem-left">
+            <div class="plan-item-head-wrapper">
+              <div class="planItem-logo">
+                <img src="data:image/png;base64,{{plan.logo}}" alt="">
               </div>
-              <div class="col-10 p-2 plan-head">
-                <h1 style="font-weight: 300;">{{plan.planName}}</h1>
+              <div class="col-10 plan-head">
+                <h1>{{plan.planName}}</h1>
                 <div class="d-flex">
                   <p class="mb-0">Plan ID:{{plan.planID}}</p>
                   <button class="ms-2">{{plan.planCategory}}</button>
                 </div>
               </div>
             </div>
-            <div class="row p-2 base-dtl mx-0">
+            <div class="base-dtl">
               <div class="col" *ngFor="let benefits of  plan.attributes['Key_Benefits']">
                 <div class="attribute-name">
                   <h2>{{ benefits.attributeName }}</h2>
@@ -100,7 +100,7 @@
                 </div>
               </div>
             </div>
-            <div class="row p-2" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
+            <div class="additionalDet-wrapper" *ngIf="plan.showmore && plan.planCategory !='PDDP'">
               <div class="col s6 m4 l4">
                 <h6>Office Visits</h6>
                 <div class="clear"></div>
@@ -128,13 +128,13 @@
                 </span>
               </div>
             </div>
-            <div class="d-flex col-12 justify-content-center p-2">
+            <div class="btn-showMoreLess">
               <button mat-icon-button (click)="showMore(plan)" *ngIf="!plan.showmore && plan.planCategory !=='PDP'" class="item-show-btn">
                 Show more
                 <mat-icon>keyboard_arrow_down</mat-icon>
               </button>
             </div>
-            <div class="d-flex col-12 justify-content-center p-2">
+            <div class="btn-showMoreLess">
               <button mat-icon-button *ngIf="plan.showmore && plan.planCategory !=='PDP'" (click)="showLess(plan)" class="item-show-btn">
                 Show Less
                 <mat-icon>keyboard_arrow_up</mat-icon>
@@ -142,11 +142,11 @@
             </div>
             <div class="row" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
               <div class="col-12">
-                <h6 class="add-benefit-head ms-3">Additional Benefits</h6>
+                <h6 class="add-benefit-head">Additional Benefits</h6>
               </div>
             </div>
-            <div class="row px-3 plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
-              <div class="cols px-3" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
+            <div class="plan-benefits-items-list" *ngIf="plan.benefits && plan.attributes['Additional_Benefits']">
+              <div class="cols" *ngFor="let additionalbenefits of  plan.attributes['Additional_Benefits']">
                 <span class="benfit-btn" *ngIf="additionalbenefits.displayValue=== 'true'">
                   <mat-icon class="benefit-icon-true">check</mat-icon>
                   {{additionalbenefits.attributeName}}
@@ -157,90 +157,91 @@
                 </span>
               </div>
             </div>
-          </div>
-          <div class="col-3 premium">
-            <div class="card p-2">
-              <div class="card-title">
-                <h2 class="premium-title" style="text-align: right">Monthly Premium</h2>
-                <h2 class="monthly-premium text-end">${{plan.monthlypremium}}</h2>
+            <div class="card-footer">
+              <div class="card-footer-info">
+                <div class="col remove-plan-btn">
+                  <button mat-button (click)="remove(plan)" [ngClass]="{'unselected': plan.selected}">
+                    <mat-icon style="color: red;">delete_forever</mat-icon>
+                    Remove from cart
+                  </button>
+                </div>
+                <!--            <div class="d-flex drug-cost-details-btn">-->
+                <!--              <span class="me-2 d-flex align-items-center">Drugs Covered:</span>-->
+                <!--              <button mat-button >2 of 2-->
+                <!--                <mat-icon class="ms-2">edit</mat-icon>-->
+                <!--              </button>-->
+                <!--            </div>-->
+                <div class="optional-packages-btn" *ngIf=" plan.optional_benefits.length !==0">
+                  <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
+                    <p class="mb-0">Optional Packages</p>
+                    <mat-icon>keyboard_arrow_down</mat-icon>
+                  </span>
+                </div>
+                <div class="documents-dropdown-wrapper">
+                  <div class="dropdown documents-dropdown">
+                    <button class="btn dropdown-toggle" type="button"
+                            id="dropdownMenuButton1" data-bs-toggle="dropdown">
+                      Documents <mat-icon>keyboard_arrow_down</mat-icon>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="#">Documents</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <!--            <div class="d-flex col-2">-->
+                <!--              <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>-->
+                <!--            </div>-->
+                <div class="cardfooter-plan-details">
+                  <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
+                  <!--                <label  class="ms-2"> Additional Details</label>-->
+                  <button mat-raised-button (click)="planDetail(plan)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                    Plan Details
+                  </button>
+                </div>
               </div>
-              <div class="p-2 justify-content-end" style="text-align: end" *ngIf="plan.planType !== 'MA'">
+
+              <div class="card p-3 item-optional-packages mt-2 me-2" *ngIf="plan.optnpkShow">
+                <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
+                  <div class="d-flex mb-2 align-items-center">
+                    <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
+                    <label class="form-check-label" for="flexCheckChecked">
+                      {{optbenefits.package_number}}
+                    </label>
+                  </div>
+                  <p>{{optbenefits.benefits}}</p>
+                  <p>Monthly premium - <span class="rate">{{optbenefits.monthly_premium}}</span></p>
+                  <p>deductible - <span class="rate">{{optbenefits.deductible}}</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="planItem-right premium">
+            <div class="card list-card-right">
+              <div class="card-title">
+                <h2 class="premium-title">Monthly Premium</h2>
+                <h2 class="monthly-premium">${{plan.monthlypremium}}</h2>
+              </div>
+              <div class="justify-content-end" *ngIf="plan.planType !== 'MA'">
                 <!--<p>Orginal Rate:</p>
-                <h2 class="original-rate">${{plan.orginalRate}}</h2>
-                <a href="">About this rate</a>-->
+      <h2 class="original-rate">${{plan.orginalRate}}</h2>
+      <a href="">About this rate</a>-->
                 <p class="estimated-cost-label">Estimated Annual Cost<small class="d-block">(Drug Cost + Premium)</small></p>
                 <h2 class="estimated-annual-cost">${{plan.estimatedannualCost}}</h2>
-                <a href="/drug-cost" *ngIf="showDrugs">Drug Cost Details</a><br>
+                <a href="/drug-cost" *ngIf="showDrugs" class="drugcost-det-btn"><mat-icon>arrow_right</mat-icon>Drug Cost Details</a><br>
               </div>
             </div>
-          </div>
-
-        </div>
-
-
-        <div class="card-footer p-2 pe-0">
-          <div class="d-flex">
-            <div class="col">
-              <button mat-button style="color: red; background-color: #ff595959" (click)="remove(plan)" [ngClass]="{'unselected': plan.selected}">
-                <mat-icon style="color: red;">delete_forever</mat-icon>
-                Remove from cart
-              </button>
-            </div>
-            <!--            <div class="d-flex drug-cost-details-btn">-->
-            <!--              <span class="me-2 d-flex align-items-center">Drugs Covered:</span>-->
-            <!--              <button mat-button >2 of 2-->
-            <!--                <mat-icon class="ms-2">edit</mat-icon>-->
-            <!--              </button>-->
-            <!--            </div>-->
-            <div class="ms-2 optional-packages-btn d-flex align-items-center" *ngIf=" plan.optional_benefits.length !==0">
-              <span class="d-flex justify-content-center opt-pkg-btn" (click)="showOp(plan)">
-                <p class="mb-0" >Optional Packages</p>
-                <mat-icon>keyboard_arrow_down</mat-icon>
-              </span>
-            </div>
-            <div class="col-2 d-flex align-items-center justify-content-center">
-              <div class="dropdown documents-dropdown">
-                <button class="btn  dropdown-toggle" style="padding: 0" type="button"
-                        id="dropdownMenuButton1" data-bs-toggle="dropdown">
-                  Documents <mat-icon>keyboard_arrow_down</mat-icon>
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a class="dropdown-item" href="#">Documents</a></li>
-                </ul>
-              </div>
-            </div>
-            <!--            <div class="d-flex col-2">-->
-            <!--              <a (click)="benefitShow()" style="color: blue;cursor: pointer">Additional Benefits</a>-->
-            <!--            </div>-->
-            <div class=" d-flex col-2">
-              <!--                <mat-icon id="eye" class="ms-2">remove_red_eye</mat-icon>-->
-              <!--                <label  class="ms-2"> Additional Details</label>-->
-              <button mat-raised-button (click)="planDetail(plan)">
-                <mat-icon>remove_red_eye</mat-icon>
-                Plan Details
-              </button>
-            </div>
-            <div class=" d-flex col-3 justify-content-end me-2 ps-1">
+            <div class="listing-to-cart-btn">
               <button class="cart-select-btn" mat-raised-button color="primary" (click)="cart(plan)" [ngClass]="{'selected': plan.selected}">
                 {{plan.selected?'Selected':'Select'}}
               </button>
             </div>
           </div>
 
-          <div class="card p-3 item-optional-packages mt-2 me-2" *ngIf="plan.optnpkShow">
-            <div class="optional-pkg-item" *ngFor="let optbenefits of  plan.optional_benefits;let i = index">
-              <div class="d-flex mb-2 align-items-center">
-                <input class="form-check-input mt-0 me-1" type="checkbox" value="" id="flexCheckChecked"> &nbsp;
-                <label class="form-check-label" for="flexCheckChecked">
-                  {{optbenefits.package_number}}
-                </label>
-              </div>
-              <p>{{optbenefits.benefits}}</p>
-              <p>Monthly premium - <span class="rate">{{optbenefits.monthly_premium}}</span></p>
-              <p>deductible - <span class="rate">{{optbenefits.deductible}}</span></p>
-            </div>
-          </div>
         </div>
+
+
+        
       </div>
 
       <div class="py-2 pb-0 mt-3">

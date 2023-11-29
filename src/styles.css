@@ -475,6 +475,7 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .additionalDet-wrapper {
   display: flex;
   padding-top: 10px;
+  gap: 10px;
 }
 .plan-benefits-items-list .cols {
   border: 1px solid rgba(0, 113, 155, .4);
