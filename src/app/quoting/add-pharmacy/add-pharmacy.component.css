@@ -179,6 +179,7 @@ h3 + p {
     margin-left: 15px;
     font-weight: 500;
     min-width: 80px;
+    border-radius: 3px;
 
 }
 .container{
@@ -193,6 +194,7 @@ h3 + p {
 }
 .choose-ph-items .find-pharmacy-btn button{
     width: 100%;
+    font-size: 16px;
 }
 .include-mail-pharmacy{
     margin-bottom: 15px;
@@ -205,3 +207,17 @@ h3 + p {
 .custom-table-wrapper{
     margin-top: 25px;
 }
+.backto-drugs-page p{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+.sticky-content-info{
+    gap: 10px;
+    align-items: stretch;
+}
+.pharmacy-see-plans{
+    margin: 15px 0 25px;
+}
+

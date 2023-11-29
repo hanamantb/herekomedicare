@@ -3,18 +3,10 @@
   font-size: 18px;
 }
 .card{
-  height: 20vh;
   width: 100%
 }
-/deep/.mat-dialog-container{
-    padding: 40px 20px;
-}
-.zipcode-val-popup-body p{
-    margin: 0;
-    text-align: center;
-}
 .popup-body-wrapper button {
-  border-radius: 2px !important;
+  height: 36px !important;
 }
 
 
