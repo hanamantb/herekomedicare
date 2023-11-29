@@ -178,17 +178,17 @@
       <div class="row">
         <div class="col-md-3">
           <label>Zip</label>
-          <input type="text" name="name" formControlName="zip" required/>
+          <input type="text" name="name" formControlName="zip"
+          
+          matInput maxlength="5" type="tel"
+          (input)="inputCounties($event)">
         </div>
         <div class="col-md-3">
           <label>County</label>
           <mat-form-field>
-            <mat-select formControlName="county">
-              <mat-option value="county1">
-                County 1
-              </mat-option>
-              <mat-option value="county2">
-                County 2
+            <mat-select formControlName="county" (selectionChange)="county($event)">
+              <mat-option *ngFor="let option of couties" [value]="option">
+                {{option.name}}, {{option.state}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -330,7 +330,7 @@
           </div>
         </div>
         <div class="col-md-6 d-flex justify-content-end c360-form-main-actions">
-          <button mat-raised-button color="secondary">Cancel</button>
+          <button mat-raised-button color="secondary" (click)="cancel()">Cancel</button>
           <button mat-raised-button color="primary" (click)="save()">Save</button>
         </div>
       </div>
@@ -351,9 +351,9 @@
       <td>
         <ul>
           <li *ngFor="let ph of customer.phone">
-            <mat-icon *ngIf="ph.phoneType === 'Work'">work</mat-icon>
+            <mat-icon *ngIf="ph.phozipcodeZipneType === 'Work'">work</mat-icon>
             <mat-icon *ngIf="ph.phoneType === 'Home'">home</mat-icon>
-            <mat-icon *ngIf="ph.phoneType === 'SmartPhone'">smartphone</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'Cell'">smartphone</mat-icon>
             {{ph.phoneNo}}</li>
             <!-- <li><mat-icon>home</mat-icon>+00987654322</li>
             <li><mat-icon>smartphone</mat-icon>+00987654323</li> -->

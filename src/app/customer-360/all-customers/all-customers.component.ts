@@ -10,6 +10,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./all-customers.component.css']
 })
 export class AllCustomersComponent implements OnInit {
+  selectedCountie: any;
+  couties: any;
+cancel() {
+  this.showAddCustomerForm = !this.showAddCustomerForm;
+}
 customerForm!: FormGroup;
 lastName: any;
 selectedPrefix: any;
@@ -26,6 +31,7 @@ mailingAddress: any;
   agentId: any;
   phone: any;
   isMailingAddressSame: boolean = false;
+  addresses!: { addressLine1: any; zip: any; countyName: string; county: any; city: any; state: any; };
 
 save() {
   const selectedPrefixValue = this.customerForm.get('selectedPrefix')!.value;
@@ -53,16 +59,31 @@ save() {
       city:this.customerForm.get('city')!.value,
       state:this.customerForm.get('state')!.value
     }
-    const mailingAddress = 
-    {
-      addressLine1:this.customerForm.get('mailingAddress')!.value,
-      zip:this.customerForm.get('mailingZip')!.value,
+    
+    if(this.isMailingAddressSame){
+      this.addresses = 
+      {
+        addressLine1:this.customerForm.get('address')!.value,
+      zip:this.customerForm.get('zip')!.value,
+      county:this.customerForm.get('county')!.value,
       countyName:'los',
-      county:this.customerForm.get('mailingCounty')!.value,      
-      city:this.customerForm.get('mailingCity')!.value,
-      state:this.customerForm.get('mailingState')!.value
-
-    }    
+      city:this.customerForm.get('city')!.value,
+      state:this.customerForm.get('state')!.value
+  
+      } 
+    }else{
+       this.addresses = 
+      {
+        addressLine1:this.customerForm.get('mailingAddress')!.value,
+        zip:this.customerForm.get('mailingZip')!.value,
+        countyName:'los',
+        county:this.customerForm.get('mailingCounty')!.value,      
+        city:this.customerForm.get('mailingCity')!.value,
+        state:this.customerForm.get('mailingState')!.value
+  
+      } 
+    }
+       
     const contactInformation= [
         {
           phoneNo: this.customerForm.get('phone1')!.value,
@@ -75,16 +96,44 @@ save() {
       ]
     const isSoa = this.customerForm.get('completeScope')!.value
 
-    this.commonservice.addCustomer(this.agentId,basicInformation,homeAddress,mailingAddress,contactInformation,isSoa).subscribe(response => {
+    this.commonservice.addCustomer(this.agentId,basicInformation,homeAddress,this.addresses,contactInformation,isSoa).subscribe(response => {
       console.log('response.data',response.data)
       this.commonservice.viewCustomer(this.agentId).subscribe((response: any) => {
         if (response.status==true) {
           this.output =response.data 
-          this.phone = response.data.phone  
-        } 
-        this.showAddCustomerForm = !this.showAddCustomerForm;
+          this.phone = response.data.phone 
+          this.showAddCustomerForm = !this.showAddCustomerForm; 
+        }         
+        this.customerForm.reset();
       });
     })
+}
+inputCounties(event: any) {
+  if (event.target.value.length === 5) {
+    console.log('event', event.target.value)
+    this.selectedCountie = event.target.value
+    this.selectedCountie = []
+    this.couties = []
+    this.getCounties(event.target.value)
+  } else {
+    this.couties = []
+    this.selectedCountie = []
+    console.log('Not valid')
+  }
+}
+getCounties(zip: any) {
+  this.selectedCountie=[]
+  this.couties=[]
+  this.commonservice.getCounties(zip).subscribe(response => {
+    this.couties = response.data.counties
+
+    if (this.couties && this.couties.length === 1) {
+      this.selectedCountie = this.couties[0]
+      // console.log('selectedCountie', this.selectedCountie)
+      // sessionStorage.setItem('fip', this.selectedCountie.fips)
+    }
+    console.log('Counties', response.data)
+  })
 }
 createQuote(customerId:any,zipCode:any){
   console.log('zipCode',zipCode)
@@ -132,11 +181,15 @@ quickQuote() {
   }
   addCustomerForm() {
     this.showAddCustomerForm = !this.showAddCustomerForm;
-    this.hideQuickQuoteBtn = !this.hideQuickQuoteBtn;
+    this.hideQuickQuoteBtn = !this.hideQuickQuoteBtn;    
   }
   onCheckboxChange() {
     this.isMailingAddressSame =!this.isMailingAddressSame;
     console.log('this.isMailingAddressSame',this.isMailingAddressSame)
+  }
+  county(event: any) {
+    console.error('event:', event);
+    sessionStorage.setItem('fip', event.value.fips)
   }
   // @HostListener('document:click', ['$event'])
   // onClick(event: MouseEvent) {
