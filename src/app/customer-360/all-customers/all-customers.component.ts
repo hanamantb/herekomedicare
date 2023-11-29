@@ -24,6 +24,7 @@ zip: any;
 mailingZip: any;
 mailingAddress: any;
   agentId: any;
+  phone: any;
 
 save() {
   const selectedPrefixValue = this.customerForm.get('selectedPrefix')!.value;
@@ -63,12 +64,12 @@ save() {
     }    
     const contactInformation= [
         {
-          phoneNo: "9810000000",
-          phoneType: "Cell",
+          phoneNo: this.customerForm.get('phone1')!.value,
+          phoneType: this.customerForm.get('phoneType1')!.value,
         },
         {
-          phoneNo: "9810000001",
-          phoneType: "Work",
+          phoneNo: this.customerForm.get('phone1')!.value,
+          phoneType: this.customerForm.get('phoneType2')!.value,
         },
       ]
     const isSoa = this.customerForm.get('completeScope')!.value
@@ -77,11 +78,27 @@ save() {
       console.log('response.data',response.data)
       this.commonservice.viewCustomer(this.agentId).subscribe((response: any) => {
         if (response.status==true) {
-          this.output =response.data          
+          this.output =response.data 
+          this.phone = response.data.phone  
         } 
         this.showAddCustomerForm = !this.showAddCustomerForm;
       });
     })
+}
+createQuote(customerId:any){
+  console.log('customerId',customerId)
+  this.commonservice.createQuote(customerId,this.agentId).subscribe((response: any) => {
+
+    if (response.status==true) {
+      console.log('response.data.zipCode',response.data.zipCode)
+      sessionStorage.setItem('zipcode',response.data.zipCode)  
+    } 
+    this.showAddCustomerForm = !this.showAddCustomerForm;
+  });
+ 
+  this.route.navigate(['quoting'])
+
+  
 }
 quickQuote() {
   this.route.navigate(['quoting'])
@@ -101,21 +118,22 @@ quickQuote() {
      public dialog: MatDialog,private route: Router) {
   }
   
-  toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  toggleDropdown(customer: any) {
+    customer.isDropdownOpen = !customer.isDropdownOpen;
   }
-  openConfirmationPopup() {
+  openConfirmationPopup(customerId:any) {
+    sessionStorage.setItem('customerId',customerId)
     this.dialog.open(DeleteConfirmationComponent, { width: '600px', panelClass: ['alert-popup', 'alert-warning'] })
   }
   addCustomerForm() {
     this.showAddCustomerForm = !this.showAddCustomerForm;
   }
-  @HostListener('document:click', ['$event'])
-  onClick(event: MouseEvent) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
-      this.isDropdownOpen = false;
-    }
-  }
+  // @HostListener('document:click', ['$event'])
+  // onClick(event: MouseEvent) {
+  //   if (!this.elementRef.nativeElement.contains(event.target)) {
+  //     this.isDropdownOpen = false;
+  //   }
+  // }
   ngOnInit(): void {
     this.customerForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -140,7 +158,11 @@ quickQuote() {
       formControlName: ['', Validators.required],
       selectedAbout: ['', Validators.required],
       spokenLanguage: ['', Validators.required],
-      completeScope:['', Validators.required]
+      completeScope:['', Validators.required],
+      phone1: ['', Validators.required],
+      phoneType1: ['', Validators.required],
+      phone2: ['', Validators.required],
+      phoneType2:['', Validators.required]
       // ... other form controls
     });
     console.log('this.firstName',this.firstName)
@@ -148,11 +170,8 @@ quickQuote() {
     if(this.agentId) {    
     this.commonservice.viewCustomer(this.agentId).subscribe((response: any) => {
       if (response.status==true) {
-        this.output =response.data
-        
-      } else {
-        alert('User not found.');
-      }
+        this.output =response.data        
+      } 
     });
   }
     
