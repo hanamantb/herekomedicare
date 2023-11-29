@@ -25,6 +25,7 @@ mailingZip: any;
 mailingAddress: any;
   agentId: any;
   phone: any;
+  isMailingAddressSame: boolean = false;
 
 save() {
   const selectedPrefixValue = this.customerForm.get('selectedPrefix')!.value;
@@ -133,6 +134,10 @@ quickQuote() {
     this.showAddCustomerForm = !this.showAddCustomerForm;
     this.hideQuickQuoteBtn = !this.hideQuickQuoteBtn;
   }
+  onCheckboxChange() {
+    this.isMailingAddressSame =!this.isMailingAddressSame;
+    console.log('this.isMailingAddressSame',this.isMailingAddressSame)
+  }
   // @HostListener('document:click', ['$event'])
   // onClick(event: MouseEvent) {
   //   if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -167,7 +172,9 @@ quickQuote() {
       phone1: ['', Validators.required],
       phoneType1: ['', Validators.required],
       phone2: ['', Validators.required],
-      phoneType2:['', Validators.required]
+      phoneType2:['', Validators.required],
+      isMailingAddressSame:[false, Validators.required]
+      
       // ... other form controls
     });
     console.log('this.firstName',this.firstName)

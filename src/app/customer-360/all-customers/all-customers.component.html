@@ -207,10 +207,11 @@
     <div class="c360-form-item">
       <div class="row mx-0">
         <div class="c360-checkbox d-flex">
-          <input type="checkbox" name="name" value="" />
+          <input type="checkbox" formControlName="isMailingAddressSame" (change)="onCheckboxChange()"/>
           <label>Is the mailing address same as Home address?</label>
         </div>
       </div>
+      <div *ngIf="!isMailingAddressSame">
       <div class="row">
         <h3>Mailing address<span style="color: red;">*</span></h3>
       </div>
@@ -247,6 +248,7 @@
           <input type="text" name="name" formControlName="mailingState"/>
         </div>
       </div>
+    </div>
     </div>
 
 
