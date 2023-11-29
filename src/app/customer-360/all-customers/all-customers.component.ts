@@ -101,6 +101,7 @@ createQuote(customerId:any){
   
 }
 quickQuote() {
+  sessionStorage.setItem('zipcode','')
   this.route.navigate(['quoting'])
 }
 

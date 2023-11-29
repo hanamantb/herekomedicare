@@ -348,9 +348,13 @@
       <td>{{customer.dateOfBirth}}</td>
       <td>
         <ul>
-          <li><mat-icon>work</mat-icon>+00987654321</li>
-            <li><mat-icon>home</mat-icon>+00987654322</li>
-            <li><mat-icon>smartphone</mat-icon>+00987654323</li>
+          <li *ngFor="let ph of customer.phone">
+            <mat-icon *ngIf="ph.phoneType === 'Work'">work</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'Home'">home</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'SmartPhone'">smartphone</mat-icon>
+            {{ph.phoneNo}}</li>
+            <!-- <li><mat-icon>home</mat-icon>+00987654322</li>
+            <li><mat-icon>smartphone</mat-icon>+00987654323</li> -->
         </ul></td>
       <td>{{customer.createdDate}}</td>
       <td>
