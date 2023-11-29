@@ -34,10 +34,11 @@ buttons=false
       this.commonservice.deleteCustomer(customerId,agentId).subscribe((response: any) => {
 
         if (response.status==true) {
-          console.log('response',response) 
-
+          console.log('response',response)           
+          location.reload();
+          this.dialogRef.close(true)
         } 
-        this.dialogRef.close(false)
+       
       });
     }
     
