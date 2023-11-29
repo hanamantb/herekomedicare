@@ -199,7 +199,7 @@ button{
 }
 .action-btns {
   font-size: 21px;
-  color: #3f51b5;
+  color: #005875;
   cursor: pointer;
   margin-right: 10px;
 }
@@ -483,6 +483,7 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .additionalDet-wrapper {
   display: flex;
   padding-top: 10px;
+  gap: 10px;
 }
 .plan-benefits-items-list .cols {
   border: 1px solid rgba(0, 113, 155, .4);
@@ -503,6 +504,19 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .plan-item-head-wrapper{
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+}
+.plan-head button {
+  background-color: #005875;
+  border-radius: 3px;
+  color: white;
+  border: none;
+  padding: 0 8px;
+  height: 25px;
+  line-height: 25px;
+  width: auto;
+  font-size: 14px;
+  font-weight: 400;
 }
 .planItem-logo {
   margin-right: 10px;

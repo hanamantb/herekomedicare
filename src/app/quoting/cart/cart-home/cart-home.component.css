@@ -1,10 +1,6 @@
 .top-btn button{
-  font-size: 10px;
-  border: solid #d2caca 1px;
+  font-size: 13px;
   border-radius: 0;
-}
-.card-footer{
-  padding: 0;
 }
 .mat-form-field{
   display: block !important;
@@ -45,9 +41,6 @@ mat-select{
 .card-footer button{
     box-shadow: none
 }
-.cart-total{
-    border-radius: 2px;
-}
 .cart-total .card-title{
     font-weight: 300;
 }
@@ -65,22 +58,25 @@ mat-select{
   font-weight: 300;
 }
 .cart-total-head {
-  background-color: white;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
   color: #005875;
-  font-weight: bold;
-  font-size: medium;
+  font-weight: 500;
+  font-size: 18px;
   min-height: 70px;
+  text-transform: uppercase;
+  padding: 15px;
+}
+.cart-total-head mat-icon{
+    font-size: 28px;
+    margin-bottom: 10px;
 }
 .cart-total .body {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 300;
   line-height: 34px;
   text-align: center;
 }
 .cart-total .body strong {
-  font-weight: 600;
+  font-weight: 500;
   color: #005875;
 }
 .shopping_cart{
@@ -97,17 +93,26 @@ mat-select{
 }
 .total-amnt{
     font-size: 13px;
+    display: flex; align-items: center;
+    flex-direction: column;
+    min-height: 70px;
+    justify-content: center;
 }
-  .total-amnt strong {
-    font-size: 27px;
-    font-weight: 500;
-    color: #005875
-  }
+.total-amnt strong {
+  font-size: 27px;
+  font-weight: 500;
+  color: #005875
+}
 .begin-enrollment {
   font-size: 16px;
   font-weight: 500;
   background-color: #005875;
   color: white;
+  height: 70px;
+  border-radius: 6px;
+  justify-content: center;
+  display: flex;
+  align-items: center
 }
 .copy-proposal-drodown {
   border-radius: 6px;
@@ -139,24 +144,31 @@ mat-select{
   color: #7e7e7e;
 }
 .plan-info-strip {
-  border: solid 1px #ebebeb;
+    margin: 15px 0;
+    padding: 18px 20px;
+}
+.plan-info-strip div{
+    font-size: 16px;
 }
 .top-btn button{
     background-color: #005875;
-    margin: 5px;
+    margin: 0 5px;
     border-radius: 6px;
     padding-bottom: 5px;
     padding-top: 5px;
-    font-size: 11px;
+    font-size: 13px;
     color: #fff;
-    font-weight: 600;
-}
-button{
-    border-radius: 6px;
-    border: 2px solid #005875;
-}
-.plan-info-strip > .col-4{
     font-weight: 500;
+}
+.custom-plans-wrapper{
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.cart-left-section button[color="primary"]{
+    color: #fff;
+}
+.plan-info-strip > .col-4 {
+  font-weight: 500;
 }
 .documents-dropdown button {
   font-weight: 400 !important;
@@ -196,9 +208,6 @@ button{
 /*  text-align: center;*/
 /*}*/
 
-mat-icon{
-  color: #fff;
-}
 .sub-line{
   font-size: 11px;
   color: gray;
@@ -244,13 +253,6 @@ mat-select{
   height: auto;
   border: none;
   font-size: 15px;
-}
-.card{
-  margin: 2px;
-  height: auto;
-  border: #005875 2px solid;
-  padding: 2px;
-  border-radius: 6px
 }
 .shopping_cart{
   color: #005875;
@@ -316,23 +318,9 @@ mat-select{
 .plan-head h1{
   width: 100%;
 }
-.plan-head button {
-  background-color: #777777;
-  color: white;
-  border: none;
-  padding: 2px 8px;
-  height: 24px;
-  width: auto;
-  font-size: 12px;
-  font-weight: 400;
-}
-
 .plan-head p {
   font-size: 14px;
   font-weight: 400;
-}
-.base-dtl{
-  border-top: 1px solid #ddd;
 }
 .base-dtl p {
   font-size: 17px;
@@ -347,11 +335,10 @@ mat-select{
   margin-bottom: 1px;
 }
 h6{
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 10px;
   float: left;
-  border-bottom: dashed 1px #ccc;
-  font-weight: 400;
+  font-weight: 500;
 }
 .sub-prop {
   display: block;
@@ -428,34 +415,13 @@ mat-select{
 .plan-listing-wrapper{
   background: #fff;
 }
-.premium {
-  border-left: solid 1px #ebebeb;
-}
-.base-dtl {
-  border-bottom: 1px solid #ebebeb;
-}
-.monthly-premium, .estimated-annual-cost {
-  font-size: 38px;
-  color: #4b8bb2;
-  font-weight: 300;
-  font-family: Lato,sans-serif !important;
-}
-.monthly-premium{
-  font-size: 38px;
-}
+
 .estimated-annual-cost {
   font-size: 25px;
 }
 .original-rate{
   font-size: 16px;
   font-weight: 300;
-}
-.premium a{
-  color: blue;
-  font-weight: 400;
-  font-size: 13px;
-  text-decoration: underline;
-  text-decoration-style: dashed;
 }
 .premium .premium-title, .estimated-annual-cost-label {
   font-size: 16px;
@@ -466,6 +432,12 @@ mat-select{
 }
 .card-footer {
   background: #fff;
+}
+.card-footer-buttons{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    padding: 0 15px;
 }
 .plan-details-btn{
   border-radius: 0;
@@ -583,14 +555,14 @@ mat-select mat-option{
     background-color: #fff;
 }
 .sub-prop bdo {
-  font-weight: 600;
+  font-weight: 500;
   color: #252525 !important;
 }
 .plan-benefits-items-list{
     display: flex;
     gap: 10px;
     padding-bottom: 10px;
-
+    flex-wrap: wrap;
 }
 .plan-benefits-items-list .cols {
   border: 1px solid #ddd;
@@ -620,7 +592,7 @@ mat-select mat-option{
   border-color: #bdc7ff;
 }
 .card.item-optional-packages label{
-    font-weight: 600;
+    font-weight: 500;
 }
 .opt-pkg-btn {
     cursor: pointer;
@@ -630,4 +602,19 @@ mat-select mat-option{
   border-radius: 6px;
   border:  2px solid;
   border-color: #005875;
+}
+.cart-left-section{
+    width: calc(100% - 380px);
+}
+.cart-right-section{
+    max-width: 380px;
+    width: 100%;
+}
+.cart-content-container{
+    width: 100%;
+    max-width: 1264px;
+    padding: 0 15px;
+    margin: 30px auto 0;
+    display: flex;
+    gap: 20px;
 }
