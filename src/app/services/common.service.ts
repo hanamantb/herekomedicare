@@ -136,5 +136,19 @@ export class CommonService {
     return this.apiProvider.post(UrlConstants.processPlans,
       requestBody, '');
   }
+  public viewCustomer(agentId: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.viewCustomer, {agentId}, '');
+  }
+  public deleteCustomer(customerId:any,agentId: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.deleteCustomer, {customerId,agentId}, '');
+  }
+  public addCustomer(agentId: any,basicInformation:any,homeAddress:any,mailingAddress:any,
+    contactInformation:any,isSoa:any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.addCustomer, {agentId,basicInformation,
+      homeAddress,mailingAddress,contactInformation,isSoa}, '');
+  }
+  public createQuote(customerId:any,agentId: any): Observable<any> {
+    return this.apiProvider.post(UrlConstants.createQuote, {customerId,agentId}, '');
+  }
  
 }

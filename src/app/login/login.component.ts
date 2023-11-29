@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    sessionStorage.setItem('agentId', formValues.Email)
     this.commonService.checkEmail(formValues.Email).subscribe((response: any) => {
       if (response.status==true) {
-        this.route.navigate(['quoting'])
+        this.route.navigate(['all-customers'])
       } else {
         alert('User not found.');
       }

@@ -44,6 +44,7 @@ export class ZipcodeQoutingComponent implements OnInit {
     // localStorage.clear()
     this.yeargetter()
     const zip = sessionStorage.getItem('zipcode')
+    console.log('zip',zip)
     this.zipcodeForm.patchValue({
       myControl: zip
     })
