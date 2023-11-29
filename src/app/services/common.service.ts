@@ -142,10 +142,10 @@ export class CommonService {
   public deleteCustomer(customerId:any,agentId: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.deleteCustomer, {customerId,agentId}, '');
   }
-  public addCustomer(agentId: any,basicInformation:any,homeAddres:any,mailingAddress:any,
+  public addCustomer(agentId: any,basicInformation:any,homeAddress:any,mailingAddress:any,
     contactInformation:any,isSoa:any): Observable<any> {
     return this.apiProvider.post(UrlConstants.addCustomer, {agentId,basicInformation,
-      homeAddres,mailingAddress,contactInformation,isSoa}, '');
+      homeAddress,mailingAddress,contactInformation,isSoa}, '');
   }
   public createQuote(customerId:any,agentId: any): Observable<any> {
     return this.apiProvider.post(UrlConstants.createQuote, {customerId,agentId}, '');
