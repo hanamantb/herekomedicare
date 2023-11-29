@@ -75,6 +75,12 @@ save() {
 
     this.commonservice.addCustomer(this.agentId,basicInformation,homeAddress,mailingAddress,contactInformation,isSoa).subscribe(response => {
       console.log('response.data',response.data)
+      this.commonservice.viewCustomer(this.agentId).subscribe((response: any) => {
+        if (response.status==true) {
+          this.output =response.data          
+        } 
+        this.showAddCustomerForm = !this.showAddCustomerForm;
+      });
     })
 }
 quickQuote() {
