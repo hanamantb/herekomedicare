@@ -1,7 +1,7 @@
 <div class="container customer-360-wrapper">
   <div class="row">
     <div class="col-12 c360-main-action">
-      <button mat-raised-button color="secondary" (click)="quickQuote()"><mat-icon>event_note</mat-icon>Quick quote</button>
+      <button mat-raised-button color="secondary" (click)="quickQuote()" *ngIf="hideQuickQuoteBtn"><mat-icon>event_note</mat-icon>Quick quote</button>
       <button mat-raised-button color="primary" (click)="addCustomerForm()"><mat-icon>person_outline</mat-icon>Add customer</button>
     </div>
   </div>
@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-3">
           <label>First name</label>
-          <input type="text" formControlName="firstName"/>
+          <input type="text" formControlName="firstName" required/>
         </div>
         <div class="col-md-3">
           <label>Middle name</label>
@@ -22,7 +22,7 @@
         </div>
         <div class="col-md-3">
           <label>Last name</label>
-          <input type="text" name="name" formControlName="lastName"/>
+          <input type="text" name="name" formControlName="lastName" required/>
         </div>
         <div class="col-md-3">
           <label>Prefix</label>
@@ -73,8 +73,8 @@
         </div>
         <div class="col-md-3">
           <label>Gender</label>
-          <mat-form-field>
-            <mat-select formControlName="selectedGender">
+          <mat-form-field >
+            <mat-select formControlName="selectedGender" required>
               <mat-option value="option1">
                 Male
               </mat-option>
@@ -99,7 +99,7 @@
         <div class="col-md-3">  
           <label>Written Language</label>
           <mat-form-field>
-            <mat-select formControlName="selectedLanguage">
+            <mat-select formControlName="selectedLanguage" required>
               <mat-option value="English">
                 English
               </mat-option>
@@ -112,7 +112,7 @@
         <div class="col-md-3">
           <label>Spoken Language</label>
           <mat-form-field>
-            <mat-select formControlName="spokenLanguage">
+            <mat-select formControlName="spokenLanguage" required>
               <mat-option value="English">
                 English
               </mat-option>
@@ -172,17 +172,26 @@
       <div class="row" >
         <div class="col-md-12" >
           <label>Enter your address</label>
-          <input type="text" name="name" formControlName="address"/>
+          <input type="text" name="name" formControlName="address" required/>
         </div>
       </div>
       <div class="row">
         <div class="col-md-3">
           <label>Zip</label>
-          <input type="text" name="name" formControlName="zip" />
+          <input type="text" name="name" formControlName="zip" required/>
         </div>
         <div class="col-md-3">
           <label>County</label>
-          <input type="text" name="name" formControlName="county" />
+          <mat-form-field>
+            <mat-select formControlName="county">
+              <mat-option value="county1">
+                County 1
+              </mat-option>
+              <mat-option value="county2">
+                County 2
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
           <label>City</label>
@@ -208,7 +217,7 @@
       <div class="row">
         <div class="col-md-12">
           <label>Enter your address</label>
-          <input type="text" name="name" formControlName="mailingAddress"/>
+          <input type="text" name="name" formControlName="mailingAddress" required/>
         </div>
       </div>
       <div class="row">
@@ -218,7 +227,16 @@
         </div>
         <div class="col-md-3">
           <label>County</label>
-          <input type="text" name="name" formControlName="mailingCounty"/>
+          <mat-form-field>
+            <mat-select formControlName="mailingCounty">
+              <mat-option value="county1">
+                County 1
+              </mat-option>
+              <mat-option value="county2">
+                County 2
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
         </div>
         <div class="col-md-3">
           <label>City</label>
@@ -240,12 +258,12 @@
       <div class="row">
         <div class="col-md-6">
           <label>Phone</label>
-          <input type="text" name="name" formControlName="phone1" />
+          <input type="text" name="name" formControlName="phone1" required/>
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
           <mat-form-field>
-            <mat-select formControlName="phoneType1">
+            <mat-select formControlName="phoneType1" required>
               <mat-option value="Work">
                 Work
               </mat-option>
@@ -262,12 +280,12 @@
       <div class="row">
         <div class="col-md-6">
           <label>Phone</label>
-          <input type="text" name="name" formControlName="phone2" />
+          <input type="text" name="name" formControlName="phone2" required/>
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
           <mat-form-field>
-            <mat-select formControlName="phoneType2">
+            <mat-select formControlName="phoneType2" required>
               <mat-option value="Work">
                 Work
               </mat-option>
@@ -300,7 +318,7 @@
           <label>Do you want to complete scope of appointment?</label>
           <div class="c360-main-radio d-flex align-items-center">
             <div class="radio-item d-flex align-items-center">
-              <input type="radio" formControlName="completeScope" value="Yes"/>
+              <input type="radio" formControlName="completeScope" value="Yes" checked/>
               <label class="mb-0">Yes</label>
             </div>
             <div class="radio-item d-flex align-items-center">
