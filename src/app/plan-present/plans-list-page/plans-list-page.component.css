@@ -132,16 +132,6 @@ mat-select{
   .plan-head h1{
       width: 100%;
   }
-  .plan-head button {
-    background-color: #777777;
-    color: white;
-    border: none;
-    padding: 2px 8px;
-    height: 24px;
-    width: auto;
-    font-size: 12px;
-    font-weight: 400;
-  }
 
 .plan-head p {
   font-size: 14px;

@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="d-flex">
-    <div class="col-9 ps-5 pt-5">
+  <div class="cart-content-container">
+    <div class="cart-left-section">
       <div class="d-flex justify-content-end top-btn">
         <button mat-button (click)="cpyShowtog()">
           <mat-icon>file_copy</mat-icon>
@@ -50,8 +50,8 @@
 
         </div>
         <div class="d-flex p-2 justify-content-end">
-          <button mat-raised-button STYLE="background-color: white">Cancel</button>
-          <button mat-raised-button style="background-color: #005875; color: white" class="ms-2">
+          <button mat-raised-button>Cancel</button>
+          <button mat-raised-button class="ms-2">
             Copy
           </button>
         </div>
@@ -59,20 +59,14 @@
 
       <app-email-proposal *ngIf="emailProposal"></app-email-proposal>
       <app-cart *ngIf="cartShow"></app-cart>
-      <div class="d-flex mt-2 plan-info-strip">
-        <div class="col-5 p-2" style="background-color: white">
+      <div class="d-flex plan-info-strip container-box">
+        <div class="col-md-5">
           {{zipcode}}
         </div>
-        <div class="col-7 d-flex p-2 justify-content-end" style="background-color: white;color: green">
+        <div class="col-md-7 d-flex justify-content-end">
           Effective date: {{ today | date:'dd MMMM yyyy'  }}
         </div>
       </div>
-
-
-
-
-
-
       <div class="card plan-item-card" *ngFor="let plan of cartItems ; let i = index">
         <div class="plan-item-card-row">
           <div class="planItem-left">
@@ -82,7 +76,7 @@
               </div>
               <div class="col-10 plan-head">
                 <h1>{{plan.planName}}</h1>
-                <div class="d-flex">
+                <div class="d-flex align-items-center">
                   <p class="mb-0">Plan ID:{{plan.planID}}</p>
                   <button class="ms-2">{{plan.planCategory}}</button>
                 </div>
@@ -244,7 +238,7 @@
         
       </div>
 
-      <div class="py-2 pb-0 mt-3">
+      <div class="py-2 pb-0 mt-3 container-box custom-plans-wrapper">
         <h2 class="mb-0">Custom Plans</h2>
         <p>
           Do you want to add custom plan in proposal? &nbsp;&nbsp; NO
@@ -252,13 +246,13 @@
         </p>
       </div>
       <div class="d-flex justify-content-end pb-4">
-        <button mat-button style="background-color: white" class="ms-2" (click)="continueShopping()"> Continue Shopping</button>
-        <button mat-button style="background-color: #005875; color: white" class="ms-2">Begin Enrollment</button>
+        <button mat-button color="secondary" class="ms-2" (click)="continueShopping()"> Continue Shopping</button>
+        <button mat-button color="primary" class="ms-2">Begin Enrollment</button>
       </div>
     </div>
-    <div class="col-3">
-      <div class="card cart-total ms-2 mt-5">
-        <div class="d-flex justify-content-center p-2 cart-total-head flex-column align-items-center">
+    <div class="cart-right-section">
+      <div class="card cart-total container-box">
+        <div class="d-flex justify-content-center cart-total-head flex-column align-items-center">
           <mat-icon class="shopping_cart">add_shopping_cart</mat-icon>
           My cart
         </div>
@@ -266,12 +260,12 @@
           You have <strong>{{cartItems.length}} item(s)</strong> to apply & enroll
         </div>
         <div class="card-footer">
-          <div class="d-flex ">
-            <div class="col-6 p-2 total-amnt">
+          <div class="card-footer-buttons ">
+            <div class="total-amnt">
               Total Amount
               <strong>${{totalAmt}}</strong>
             </div>
-            <div class="col-6 p-2 begin-enrollment">
+            <div class="begin-enrollment" >
               Begin Enrollment
             </div>
           </div>
