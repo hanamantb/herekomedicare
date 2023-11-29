@@ -203,7 +203,7 @@ quickQuote() {
       middleName: [''],
       lastName: ['', Validators.required],
       dateOfBirth: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       zip: ['', Validators.required],
       county: ['', Validators.required],

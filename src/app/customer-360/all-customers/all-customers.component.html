@@ -92,6 +92,10 @@
         <div class="col-md-3">
           <label>Email</label>
           <input type="text" name="name" formControlName="email"/>
+          <div *ngIf="customerForm.get('email')!.touched && customerForm.get('email')!.invalid">
+            <div *ngIf="customerForm.get('email')!.hasError('required')">Email is required.</div>
+            <div *ngIf="customerForm.get('email')!.hasError('email')">Invalid email format.</div>
+          </div>
         </div>
       </div>
 
@@ -351,7 +355,7 @@
       <td>
         <ul>
           <li *ngFor="let ph of customer.phone">
-            <mat-icon *ngIf="ph.phozipcodeZipneType === 'Work'">work</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'Work'">work</mat-icon>
             <mat-icon *ngIf="ph.phoneType === 'Home'">home</mat-icon>
             <mat-icon *ngIf="ph.phoneType === 'Cell'">smartphone</mat-icon>
             {{ph.phoneNo}}</li>
