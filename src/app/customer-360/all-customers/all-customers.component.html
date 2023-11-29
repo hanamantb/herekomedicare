@@ -362,7 +362,7 @@
           <div class="dropdown">
             <button (click)="toggleDropdown(customer)" class="dropbtn"><mat-icon>playlist_add</mat-icon></button>
             <div [ngClass]="{'dropdown-content': true, 'show': customer.isDropdownOpen}">
-              <a  (click)="createQuote(customer.customerId)">Create quote</a>
+              <a  (click)="createQuote(customer.customerId,customer.zipCode)">Create quote</a>
             </div>
           </div>
 

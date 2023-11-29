@@ -85,7 +85,9 @@ save() {
       });
     })
 }
-createQuote(customerId:any){
+createQuote(customerId:any,zipCode:any){
+  console.log('zipCode',zipCode)
+  sessionStorage.setItem('zipcode',zipCode)
   console.log('customerId',customerId)
   this.commonservice.createQuote(customerId,this.agentId).subscribe((response: any) => {
 
