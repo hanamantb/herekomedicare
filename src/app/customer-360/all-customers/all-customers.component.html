@@ -13,7 +13,7 @@
       </div>
       <div class="row">
         <div class="col-md-3">
-          <label>First name</label>
+          <label>First name<span style="color: red;">*</span></label>
           <input type="text" formControlName="firstName" required/>
         </div>
         <div class="col-md-3">
@@ -21,7 +21,7 @@
           <input type="text" name="name" formControlName="middleName" />
         </div>
         <div class="col-md-3">
-          <label>Last name</label>
+          <label>Last name<span style="color: red;">*</span></label>
           <input type="text" name="name" formControlName="lastName" required/>
         </div>
         <div class="col-md-3">
@@ -72,7 +72,7 @@
           </mat-form-field>
         </div>
         <div class="col-md-3">
-          <label>Gender</label>
+          <label>Gender<span style="color: red;">*</span></label>
           <mat-form-field >
             <mat-select formControlName="selectedGender" required>
               <mat-option value="option1">
@@ -92,12 +92,16 @@
         <div class="col-md-3">
           <label>Email</label>
           <input type="text" name="name" formControlName="email"/>
+          <div *ngIf="customerForm.get('email')!.touched && customerForm.get('email')!.invalid">
+            <div *ngIf="customerForm.get('email')!.hasError('required')">Email is required.</div>
+            <div *ngIf="customerForm.get('email')!.hasError('email')">Invalid email format.</div>
+          </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-3">  
-          <label>Written Language</label>
+          <label>Written Language<span style="color: red;">*</span></label>
           <mat-form-field>
             <mat-select formControlName="selectedLanguage" required>
               <mat-option value="English">
@@ -110,7 +114,7 @@
           </mat-form-field>
         </div>
         <div class="col-md-3">
-          <label>Spoken Language</label>
+          <label>Spoken Language<span style="color: red;">*</span></label>
           <mat-form-field>
             <mat-select formControlName="spokenLanguage" required>
               <mat-option value="English">
@@ -167,7 +171,7 @@
 
     <div class="c360-form-item">
       <div class="row">
-        <h3>Home Address (Do not use PO box numbers)</h3>
+        <h3>Home Address (Do not use PO box numbers)<span style="color: red;">*</span></h3>
       </div>
       <div class="row" >
         <div class="col-md-12" >
@@ -178,17 +182,17 @@
       <div class="row">
         <div class="col-md-3">
           <label>Zip</label>
-          <input type="text" name="name" formControlName="zip" required/>
+          <input type="text" name="name" formControlName="zip"
+          
+          matInput maxlength="5" type="tel"
+          (input)="inputCounties($event)">
         </div>
         <div class="col-md-3">
           <label>County</label>
           <mat-form-field>
-            <mat-select formControlName="county">
-              <mat-option value="county1">
-                County 1
-              </mat-option>
-              <mat-option value="county2">
-                County 2
+            <mat-select formControlName="county" (selectionChange)="county($event)">
+              <mat-option *ngFor="let option of couties" [value]="option">
+                {{option.name}}, {{option.state}}
               </mat-option>
             </mat-select>
           </mat-form-field>
@@ -207,12 +211,13 @@
     <div class="c360-form-item">
       <div class="row mx-0">
         <div class="c360-checkbox d-flex">
-          <input type="checkbox" name="name" value="" />
+          <input type="checkbox" formControlName="isMailingAddressSame" (change)="onCheckboxChange()"/>
           <label>Is the mailing address same as Home address?</label>
         </div>
       </div>
+      <div *ngIf="!isMailingAddressSame">
       <div class="row">
-        <h3>Mailing address</h3>
+        <h3>Mailing address<span style="color: red;">*</span></h3>
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -248,12 +253,13 @@
         </div>
       </div>
     </div>
+    </div>
 
 
 
     <div class="c360-form-item">
       <div class="row">
-        <h3>Contact Information</h3>
+        <h3>Contact Information<span style="color: red;">*</span></h3>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -328,7 +334,7 @@
           </div>
         </div>
         <div class="col-md-6 d-flex justify-content-end c360-form-main-actions">
-          <button mat-raised-button color="secondary">Cancel</button>
+          <button mat-raised-button color="secondary" (click)="cancel()">Cancel</button>
           <button mat-raised-button color="primary" (click)="save()">Save</button>
         </div>
       </div>
@@ -348,9 +354,13 @@
       <td>{{customer.dateOfBirth}}</td>
       <td>
         <ul>
-          <li><mat-icon>work</mat-icon>+00987654321</li>
-            <li><mat-icon>home</mat-icon>+00987654322</li>
-            <li><mat-icon>smartphone</mat-icon>+00987654323</li>
+          <li *ngFor="let ph of customer.phone">
+            <mat-icon *ngIf="ph.phoneType === 'Work'">work</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'Home'">home</mat-icon>
+            <mat-icon *ngIf="ph.phoneType === 'Cell'">smartphone</mat-icon>
+            {{ph.phoneNo}}</li>
+            <!-- <li><mat-icon>home</mat-icon>+00987654322</li>
+            <li><mat-icon>smartphone</mat-icon>+00987654323</li> -->
         </ul></td>
       <td>{{customer.createdDate}}</td>
       <td>
@@ -358,7 +368,7 @@
           <div class="dropdown">
             <button (click)="toggleDropdown(customer)" class="dropbtn"><mat-icon>playlist_add</mat-icon></button>
             <div [ngClass]="{'dropdown-content': true, 'show': customer.isDropdownOpen}">
-              <a  (click)="createQuote(customer.customerId)">Create quote</a>
+              <a  (click)="createQuote(customer.customerId,customer.zipCode)">Create quote</a>
             </div>
           </div>
 
