@@ -350,8 +350,16 @@ button[color="secondary"], .mat-raised-button.mat-secondary{
 .cdk-overlay-pane.alert-popup.alert-warning .mat-dialog-container{
     border-color: #FE9600;
 }
+.cdk-overlay-pane.alert-popup button:focus-visible {
+    outline: none !important
+}
 .cdk-overlay-pane.alert-popup .popup-body-wrapper {
   overflow-x: hidden
+}
+.cdk-overlay-pane.alert-popup .popup-body-wrapper p {
+    text-align: center;
+    margin-bottom: 0;
+
 }
 .cdk-overlay-pane.alert-popup .zipcode-val-popup-body .container-fluid {
   padding: 25px 15px;

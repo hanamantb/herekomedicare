@@ -1,16 +1,14 @@
 <!--<mat-drawer-container class="example-container" autosize>-->
 <!--  <mat-drawer #drawer class="example-sidenav" mode="side">-->
 <div class="sidebar-top">
-  <div class="d-flex p-2  align-items-center justify-space-between " style="
-  background-color: #005875; border-radius: 6px;">
+  <div class="d-flex p-2  align-items-center justify-space-between ">
     <div class="col-8 p-2">
       <h3>
         <strong>{{planCount}}</strong> out of {{totalCount}} Medicare Advantage / Medicare Part D
         Plans
       </h3>
     </div>
-    <div class="col-4 justify-content-center d-flex align-items-center refresh-btn" style="
-    background-color:#005875">
+    <div class="col-4 justify-content-center d-flex align-items-center refresh-btn">
       <!--      <img src="../../../../assets/refresh.png" style="height: 50px" alt="">-->
       <button (click)="clearFilters()"><mat-icon>refresh</mat-icon></button>
     </div>
@@ -18,9 +16,9 @@
   </div>
 
 </div>
-<div>
-  <div class="p-2  add-drugs-docs">
-    <button mat-raised-button (click)="navToPages('add-drugs')">
+<div class="sidebar-bottom-main">
+  <div class="add-drugs-docs">
+    <button mat-raised-button color="primary" (click)="navToPages('add-drugs')">
       <mat-icon>library_add</mat-icon>
       Add Drugs
     </button> &nbsp;
@@ -35,7 +33,7 @@
         <mat-accordion>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
             <mat-expansion-panel-header>
-              <p class="panel-heaseders" style="padding: 10px; color: #005875;">Company</p>
+              <p class="panel-headers">Company</p>
             </mat-expansion-panel-header>
             <div class="d-flex p-2" *ngFor="let carrier of carrierNames">
               <input class="form-check-input" type="radio" [checked]="carrier === carrierVal" name="carrier"
@@ -45,7 +43,7 @@
               </label>
             </div>
             <div class="d-flex sidebar-filter-actions">
-              <button mat-flat-button (click)="clearCompanies()">Clear</button>
+              <button mat-raised-button color="secondary" class="sm-btn" (click)="clearCompanies()">Clear</button>
             </div>
           </mat-expansion-panel>
 
@@ -127,8 +125,8 @@
             <!--          </label>-->
             <!--        </div>-->
             <div class="d-flex sidebar-filter-actions">
-              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-              <button mat-flat-button (click)="clearsnpTypes()">Clear</button>
+              <button mat-raised-button color="primary" class="sm-btn" (click)="benefitapply()">Apply</button>
+              <button mat-raised-button color="secondary" class="sm-btn" (click)="clearsnpTypes()">Clear</button>
             </div>
           </mat-expansion-panel>
 
@@ -157,8 +155,8 @@
             <!--          </label>-->
             <!--        </div>-->
             <div class="d-flex sidebar-filter-actions">
-              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-              <button mat-flat-button (click)="clearplanTypes()">Clear</button>
+              <button mat-raised-button color="primary" class="sm-btn" (click)="benefitapply()">Apply</button>
+              <button mat-raised-button color="secondary" class="sm-btn" (click)="clearplanTypes()">Clear</button>
             </div>
           </mat-expansion-panel>
 
@@ -204,8 +202,8 @@
             <!--          </label>-->
             <!--        </div>-->
             <div class="d-flex sidebar-filter-actions">
-              <button mat-flat-button (click)="benefitapply()" color="primary">Apply</button>
-              <button mat-flat-button (click)="clearbenefits()">Clear</button>
+              <button mat-raised-button color="primary" class="sm-btn" (click)="benefitapply()">Apply</button>
+              <button mat-raised-button color="secondary" class="sm-btn" (click)="clearbenefits()">Clear</button>
             </div>
           </mat-expansion-panel>
 
@@ -242,7 +240,7 @@
               </label>
             </div>
             <div class="d-flex sidebar-filter-actions">
-              <button mat-flat-button (click)="clearStarRating()">Clear</button>
+              <button mat-raised-button color="secondary" class="sm-btn" (click)="clearStarRating()">Clear</button>
             </div>
           </mat-expansion-panel>
           <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
@@ -311,19 +309,19 @@
       <mat-tab label="Sort By">
         <div class="sort mt-3">
           <div class="d-flex  p-2">
-            <input type="radio" style="height: 20px" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)">
+            <input type="radio" name="sort" value="DRUG_PLAN_DEDUCTIBLE" (change)="sortBy($event)">
             Lowest yearly drug deductible
           </div>
           <div class="d-flex  p-2" *ngIf="selectedFilters">
-            <input type="radio" style="height: 20px" name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)">
+            <input type="radio"  name="sort" value="ANNUAL_DEDUCTIBLE" (change)="sortBy($event)">
             Lowest health plan deductible
           </div>
           <div class="d-flex  p-2">
-            <input type="radio" style="height: 20px" checked name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)">
+            <input type="radio" checked name="sort" value="ANNUAL_TOTAL" (change)="sortBy($event)">
             Lowest drug + premium cost
           </div>
           <div class="d-flex  p-2">
-            <input type="radio" style="height: 20px" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)">
+            <input type="radio" name="sort" value="MONTHLY_PREMIUM" (change)="sortBy($event)">
             Lowest monthly premium
           </div>
         </div>

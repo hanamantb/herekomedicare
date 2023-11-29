@@ -160,11 +160,10 @@ mat-select{
   margin-bottom: 1px;
 }
 h6{
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 10px;
   float: left;
-  border-bottom: dashed 1px #ccc;
-  font-weight: 400;
+  font-weight: 500;
 }
 .sub-prop {
   display: block;

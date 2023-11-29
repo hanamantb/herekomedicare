@@ -387,7 +387,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
       this.commonservice.getCounties(event.target.value).subscribe(response => {
         this.couties = response.data.counties
       })
-    } else {
+    } else {  
       console.log('Not valid')
     }
   }
