@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 import {SpinnerService} from "../../services/spinner.service";
 import { PlansListPageComponent } from 'src/app/plan-present/plans-list-page/plans-list-page.component';
-
+import {SharedService} from "../../services/shared.service";
 @Component({
   selector: 'app-drug-cost',
   templateUrl: './drug-cost.component.html',
@@ -54,14 +54,64 @@ export class DrugCostComponent implements OnInit {
       name: 'Every 12 months',
       values: 'FREQUENCY_360_DAYS'
     }]
+  plan: any=[]
+  cartArray: any;
+  cartPlanIds: any;
+  
   constructor(private route: Router,private commonservice: CommonService,
+    private sharedService: SharedService,
     private spinner: SpinnerService) { }
 
     addToCart() {
-      // Your logic for adding to the cart goes here
-  
-      // Set the property to true to disable the button
       this.isButtonClicked = !this.isButtonClicked;
+      if(this.isButtonClicked){
+      const plan = sessionStorage.getItem('plan');
+      console.log('plan',plan)
+      // Your logic for adding to the cart goes here
+      if(plan){
+        this.plan = JSON.parse(plan);       
+        
+      if (!this.plan.cartAdded) {
+        const cart = sessionStorage.getItem('cart')
+    if (cart) {
+      this.cartArray = JSON.parse(cart);
+    }
+    this.cartArray.push(this.plan)
+    const planIds = sessionStorage.getItem('cart')
+    
+    if(planIds){
+      this.cartPlanIds=JSON.parse(planIds)
+    }    
+        this.cartPlanIds.push(this.plan.planID)
+        this.sharedService.cartCount(this.cartArray.length);
+      }
+      this.plan.cartAdded = true
+      console.log('cli',this.cartArray)
+  
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
+      sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
+    }
+    }else {
+      const planIds= sessionStorage.getItem('cartPlanIds') 
+      if(planIds){  
+        let planIdsArray: any[] = [];
+        this.cartPlanIds=JSON.parse(planIds);
+        this.cartPlanIds = planIdsArray.filter(item => item !==this.plan.planID)
+        sessionStorage.setItem('cartPlanIds',JSON.stringify(this.cartPlanIds));
+      }
+      this.cartArray.forEach((element: any, index: any) => {
+        console.log('remove', element.planID)
+        if (this.plan.planID === element.planID) {
+          console.log('remove', element.monthlypremium)
+          this.cartArray.splice(index, 1)
+          sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
+          this.sharedService.cartCount(this.cartArray.length);          
+        }
+      })
+    }
+    
+      // Set the property to true to disable the button
+      
     }
   ngOnInit(): void {
 

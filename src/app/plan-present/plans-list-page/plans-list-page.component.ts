@@ -599,6 +599,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
   }
 
   drugCost(drug: any) { 
+    sessionStorage.setItem('plan', JSON.stringify(drug))
     sessionStorage.setItem('planName', drug.planName)
     sessionStorage.setItem('planID', drug.planID)
     sessionStorage.setItem('monthlypremium', drug.monthlypremium)
