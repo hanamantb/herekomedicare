@@ -47,7 +47,8 @@ export class EditPlansPopupComponent implements OnInit {
       if ( !response?.data?.counties ) {
         this.dialog.open(ErrorPopupComponent, {
           data: {customMsg: 'Enter a valid ZIP code and select the relevant county to view the list of plans.'},
-          width: '600px'
+          width: '600px',
+          panelClass: ['alert-popup', 'alert-error']
         })
       }
       else{

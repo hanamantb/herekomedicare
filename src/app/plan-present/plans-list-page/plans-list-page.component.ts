@@ -337,7 +337,10 @@ Promise.all([searchPlans, processPlans]).then(results => {
     console.log('response', response)
   } else {
     this.spinner.stop(spine)
-    this.dialog.open(ErrorPopupComponent, {data: {customMsg: response.message}, width: '600px'})
+    this.dialog.open(ErrorPopupComponent, {
+      data: { customMsg: response.message }, width: '600px',
+      panelClass: ['alert-popup', 'alert-error']
+})
 
     console.log('response false', response)
   }
@@ -394,7 +397,10 @@ Promise.all([searchPlans, processPlans]).then(results => {
 
 
   zipChange() {
-    this.dialog.open(this.Zipchange, {width: '400px'})
+    this.dialog.open(this.Zipchange, {
+      width: '400px',
+      panelClass: ['alert-popup', 'alert-warning']
+})
   }
 
   cancel() {
