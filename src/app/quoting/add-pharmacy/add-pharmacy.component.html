@@ -83,7 +83,7 @@
                 </div>
               </div>
               <div class="card pharmacy-list-item d-flex flex-row align-items-center" *ngFor="let pharm of pharmacies; index as i">
-                <div class="pharmacy-list-item-left pe-2">
+                <div class="pharmacy-list-item-left">
                   <div class="title">
                     <h3 class="mb-2">{{i+1}}. {{pharm.name}}</h3>
                   </div>
@@ -96,8 +96,13 @@
                     <p>Distance: {{pharm.distance_miles}} miles</p>
                   </div>
                 </div>
-                <div class="d-flex justify-content-end add-pharmacy-checkbox ms-auto mb-2">
-                  Add Pharmacy
+                <div class="d-flex add-pharmacy-checkbox ms-auto mb-2">
+                  <span *ngIf="!pharm.checked">
+                    Add Pharmacy
+                  </span>
+                  <span *ngIf="pharm.checked">
+                    Pharmacy Added
+                  </span>
                   <input class="form-check-input" type="checkbox" value="" [(ngModel)]="pharm.checked" id="flexCheckChecked" (change)="check($event,pharm)">
                 </div>
               </div>

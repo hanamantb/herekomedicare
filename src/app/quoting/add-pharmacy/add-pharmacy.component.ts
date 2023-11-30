@@ -48,7 +48,9 @@ export class AddPharmacyComponent implements OnInit {
     this.findPharmacy(this.page,5)
 
   }
-
+  pharm = {
+    checked: false
+  };
   colDef5 = function () {
     return '<i class="material-icons action-btns">delete_outline</i>';
   };
