@@ -238,6 +238,9 @@ quickQuote() {
     this.customerForm.get('phone1')!.valueChanges.subscribe(value => {
       this.customerForm.patchValue({ phone1: value.replace(/[^0-9]/g, '') }, { emitEvent: false });
     });
+    this.customerForm.get('phone2')!.valueChanges.subscribe(value => {
+      this.customerForm.patchValue({ phone2: value.replace(/[^0-9]/g, '') }, { emitEvent: false });
+    });
     console.log('this.firstName',this.firstName)
     this.agentId = sessionStorage.getItem('agentId')
     if(this.agentId) {    
