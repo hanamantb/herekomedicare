@@ -10,7 +10,7 @@ import { PlansListPageComponent } from 'src/app/plan-present/plans-list-page/pla
   styleUrls: ['./drug-cost.component.css']
 })
 export class DrugCostComponent implements OnInit {
-
+  isButtonClicked = false;
   has_deductible: boolean = false;
   opened: boolean = false;
   panelOpenState = false;
@@ -57,6 +57,12 @@ export class DrugCostComponent implements OnInit {
   constructor(private route: Router,private commonservice: CommonService,
     private spinner: SpinnerService) { }
 
+    addToCart() {
+      // Your logic for adding to the cart goes here
+  
+      // Set the property to true to disable the button
+      this.isButtonClicked = !this.isButtonClicked;
+    }
   ngOnInit(): void {
 
     const spine = this.spinner.start()
