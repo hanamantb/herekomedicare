@@ -50,36 +50,39 @@ save() {
       spokenLanguage:this.customerForm.get('spokenLanguage')!.value,
       hearAboutUsFrom:this.customerForm.get('selectedAbout')!.value
     }
+    const values = this.customerForm.get('county')!.value;
+    console.log
     const homeAddress = 
     {
       addressLine1:this.customerForm.get('address')!.value,
       zip:this.customerForm.get('zip')!.value,
-      county:this.customerForm.get('county')!.value,
-      countyName:'los',
+      county:values.fips,
+      countyName:values.name,
       city:this.customerForm.get('city')!.value,
-      state:this.customerForm.get('state')!.value
+      state:values.state
     }
     
     if(this.isMailingAddressSame){
       this.addresses = 
       {
-        addressLine1:this.customerForm.get('address')!.value,
-      zip:this.customerForm.get('zip')!.value,
-      county:this.customerForm.get('county')!.value,
-      countyName:'los',
-      city:this.customerForm.get('city')!.value,
-      state:this.customerForm.get('state')!.value
+        addressLine1:homeAddress.addressLine1,
+      zip:homeAddress.zip,
+      county:homeAddress.county,
+      countyName:homeAddress.countyName,
+      city:homeAddress.city,
+      state:homeAddress.state,
   
       } 
     }else{
+      const values = this.customerForm.get('mailingCounty')!.value;
        this.addresses = 
       {
         addressLine1:this.customerForm.get('mailingAddress')!.value,
         zip:this.customerForm.get('mailingZip')!.value,
-        countyName:'los',
-        county:this.customerForm.get('mailingCounty')!.value,      
+        county:values.fips,
+        countyName:values.name,      
         city:this.customerForm.get('mailingCity')!.value,
-        state:this.customerForm.get('mailingState')!.value
+        state:values.state
   
       } 
     }
