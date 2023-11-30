@@ -4,6 +4,7 @@ import { DeleteConfirmationComponent } from './delete-confirmation/delete-confir
 import {CommonService} from "../../services/common.service";
 import {Router} from "@angular/router";
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'all-customers',
   templateUrl: './all-customers.component.html',
@@ -231,7 +232,11 @@ quickQuote() {
       phoneType2:['', Validators.required],
       isMailingAddressSame:[false, Validators.required]
       
+      
       // ... other form controls
+    });
+    this.customerForm.get('phone1')!.valueChanges.subscribe(value => {
+      this.customerForm.patchValue({ phone1: value.replace(/[^0-9]/g, '') }, { emitEvent: false });
     });
     console.log('this.firstName',this.firstName)
     this.agentId = sessionStorage.getItem('agentId')

@@ -264,7 +264,7 @@
       <div class="row">
         <div class="col-md-6">
           <label>Phone</label>
-          <input type="text" name="name" formControlName="phone1" required/>
+          <input type="text" name="name" formControlName="phone1" required pattern="[0-9]+"/>
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
@@ -286,7 +286,7 @@
       <div class="row">
         <div class="col-md-6">
           <label>Phone</label>
-          <input type="text" name="name" formControlName="phone2" required/>
+          <input type="text" name="name" formControlName="phone2" appNumericOnly required/>
         </div>
         <div class="col-md-6">
           <label>Phone Type</label>
