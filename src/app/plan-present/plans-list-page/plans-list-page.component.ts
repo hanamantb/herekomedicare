@@ -110,24 +110,15 @@ export class PlansListPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    window.addEventListener('message', (event: CustomMessageEvent) => {
-      console.log('inside window')
-      console.log('event.source',event.source)
-      console.log('window.opener',window.opener)
-      // Check if the message is from the expected source
-      if (event.source === window.opener) {
-          // Handle the received data as needed
-          const receivedData = event.data;
-          console.log('Received data from another window:', receivedData);
-
-          // Example: Update sessionStorage based on received data
-          sessionStorage.setItem('cart', receivedData.keyCart);
-          sessionStorage.setItem('cartPlanIds', receivedData.keyCartPlanIds);
-          
-
-          // You can perform additional actions based on the received data
-      }
-  });
+    const channel = new BroadcastChannel('myChannel');
+    channel.onmessage = (event: CustomMessageEvent) => {
+      const receivedData = event.data;
+      sessionStorage.setItem('cart', JSON.stringify(receivedData.keyCart));
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(receivedData.keyCartPlanIds));
+      console.log('Received data in another tab:', receivedData);
+      console.log( 'receivedData.keyCart:', receivedData.keyCart)
+      this.sharedService.cartCount(receivedData.keyCart.length);
+  };   
     this.zipcode = sessionStorage.getItem('zipcode')
     this.fips = sessionStorage.getItem('fips')
     this.lis = sessionStorage.getItem('lis')

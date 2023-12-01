@@ -4,11 +4,19 @@ import {CommonService} from "../../services/common.service";
 import {SpinnerService} from "../../services/spinner.service";
 import { PlansListPageComponent } from 'src/app/plan-present/plans-list-page/plans-list-page.component';
 import {SharedService} from "../../services/shared.service";
+interface CustomMessageEvent extends MessageEvent {
+  data: {
+      keyCart?: any;
+      keyCartPlanIds?: any;
+      // Add more properties as needed
+  };
+}
 @Component({
   selector: 'app-drug-cost',
   templateUrl: './drug-cost.component.html',
   styleUrls: ['./drug-cost.component.css']
 })
+
 export class DrugCostComponent implements OnInit {
   isButtonClicked = false;
   isRemoved = true;
@@ -64,12 +72,8 @@ export class DrugCostComponent implements OnInit {
     private spinner: SpinnerService) { }
  
     addToCart(isRemoved:Boolean) {      
-      this.isButtonClicked = !this.isButtonClicked;
-      const dataToSend = {
-        keyCart:'',
-        keyCartPlanIds:''
-    };
-      console.log('Add to cart this.isButtonClicked',this.isButtonClicked)
+      const channel = new BroadcastChannel('myChannel');
+      this.isButtonClicked = !this.isButtonClicked; 
       if(isRemoved){
        this.isRemoved =!this.isRemoved
       const plan = sessionStorage.getItem('plan');
@@ -85,7 +89,7 @@ export class DrugCostComponent implements OnInit {
       this.sharedService.cartCount(this.cartArray.length);
       console.log('this.cartArray.length',this.cartArray.length)
       sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
-      dataToSend.keyCart = this.cartArray;           
+                 
             this.sharedService.cartCount(this.cartArray.length); 
             console.log('remove', this.cartArray.length)    
       const planIds = sessionStorage.getItem('cartPlanIds')    
@@ -93,10 +97,7 @@ export class DrugCostComponent implements OnInit {
       this.cartPlanIds=JSON.parse(planIds)
     }
       this.cartPlanIds.push(this.plan.planID)
-      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))   
-      dataToSend.keyCartPlanIds = this.cartPlanIds;
-     
-        
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     this.plan.cartAdded = true
         
       }
@@ -111,8 +112,7 @@ export class DrugCostComponent implements OnInit {
           if (this.planID === element.planID) {
             console.log('splice cart plan')
             this.cartArray.splice(index, 1)
-            sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
-            dataToSend.keyCart = this.cartArray;
+            sessionStorage.setItem('cart', JSON.stringify(this.cartArray))            
             this.sharedService.cartCount(this.cartArray.length); 
             console.log('remove', this.cartArray.length)       
           }
@@ -124,18 +124,23 @@ export class DrugCostComponent implements OnInit {
         this.cartPlanIds=JSON.parse(planIds);
         this.cartPlanIds = planIdsArray.filter(item => item !==this.plan.planID)
         sessionStorage.setItem('cartPlanIds',JSON.stringify(this.cartPlanIds));
-        dataToSend.keyCartPlanIds = this.cartPlanIds;
       }
       this.plan.cartAdded = false
-    
     }
-    window.postMessage(dataToSend, '*');
-    console.log('dataToSend',dataToSend)
       // Set the property to true to disable the button
-      
+      channel.postMessage({ keyCart: this.cartArray, keyCartPlanIds: this.cartPlanIds });
+      console.log('add to cart end')
     }
   ngOnInit(): void {
-  
+    const channel = new BroadcastChannel('myChannel');
+    channel.onmessage = (event: CustomMessageEvent) => {
+      const receivedData = event.data;
+      sessionStorage.setItem('cart', JSON.stringify(receivedData.keyCart));
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(receivedData.keyCartPlanIds));
+      console.log('Received data in another tab:', receivedData);
+      console.log( 'receivedData.keyCart:', receivedData.keyCart)
+      this.sharedService.cartCount(receivedData.keyCart.length);
+  };   
     const spine = this.spinner.start()
     const cart = sessionStorage.getItem('cart')
 
