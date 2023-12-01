@@ -15,6 +15,7 @@ interface CustomMessageEvent extends MessageEvent {
   data: {
       keyCart?: any;
       keyCartPlanIds?: any;
+      shouldRefresh?:boolean;
       // Add more properties as needed
   };
 }
@@ -118,6 +119,9 @@ export class PlansListPageComponent implements OnInit {
       console.log('Received data in another tab:', receivedData);
       console.log( 'receivedData.keyCart:', receivedData.keyCart)
       this.sharedService.cartCount(receivedData.keyCart.length);
+      if(receivedData.shouldRefresh){
+        location.reload();
+      }
   };   
     this.zipcode = sessionStorage.getItem('zipcode')
     this.fips = sessionStorage.getItem('fips')
@@ -227,6 +231,7 @@ export class PlansListPageComponent implements OnInit {
   }
 
   addToCart(plan: any) {
+    const channel = new BroadcastChannel('myChannel');
     if (!plan.cartAdded) {
       this.cart.push(plan)
       this.cartPlanIds.push(plan.planID)
@@ -236,6 +241,7 @@ export class PlansListPageComponent implements OnInit {
 
     sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
+    channel.postMessage({ keyCart: this.cart, keyCartPlanIds: this.cartPlanIds,shouldRefresh: true });
   }
 
   selectButton() {

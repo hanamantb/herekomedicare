@@ -8,6 +8,7 @@ interface CustomMessageEvent extends MessageEvent {
   data: {
       keyCart?: any;
       keyCartPlanIds?: any;
+      shouldRefresh?:boolean;
       // Add more properties as needed
   };
 }
@@ -128,7 +129,7 @@ export class DrugCostComponent implements OnInit {
       this.plan.cartAdded = false
     }
       // Set the property to true to disable the button
-      channel.postMessage({ keyCart: this.cartArray, keyCartPlanIds: this.cartPlanIds });
+      channel.postMessage({ keyCart: this.cartArray, keyCartPlanIds: this.cartPlanIds,shouldRefresh: true });
       console.log('add to cart end')
     }
   ngOnInit(): void {
