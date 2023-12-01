@@ -97,12 +97,13 @@ export class DrugCostComponent implements OnInit {
       if (cart) {
         this.cartArray.forEach((element: any, index: any) => {
           console.log('remove', element.planID)
-          if (this.plan.planID === element.planID) {
+          console.log('this.planID', this.planID)
+          if (this.planID === element.planID) {
             console.log('splice cart plan')
             this.cartArray.splice(index, 1)
             sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
             this.sharedService.cartCount(this.cartArray.length); 
-                     
+            console.log('remove', this.cartArray.length)       
           }
         })
       }
@@ -137,6 +138,7 @@ export class DrugCostComponent implements OnInit {
       this.cartArray.forEach((element: any, index: any) => {       
         if (this.planID === element.planID) {
           this.isButtonClicked = !this.isButtonClicked;
+          this.isRemoved = !this.isRemoved;
         }
       })
     }
