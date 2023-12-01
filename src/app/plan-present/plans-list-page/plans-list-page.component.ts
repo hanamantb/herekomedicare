@@ -11,7 +11,13 @@ import {DrugsCoveredDialogboxComponent} from '../../shared/layouts/drugs-covered
 import {EditPlansPopupComponent} from '../../shared/layouts/edit-plans-popup/edit-plans-popup.component';
 import {ErrorPopupComponent} from "../../shared/layouts/error-popup/error-popup.component";
 import { forkJoin } from 'rxjs';
-
+interface CustomMessageEvent extends MessageEvent {
+  data: {
+      keyCart?: any;
+      keyCartPlanIds?: any;
+      // Add more properties as needed
+  };
+}
 
 @Component({
   selector: 'app-plans-list-page',
@@ -104,6 +110,24 @@ export class PlansListPageComponent implements OnInit {
 
 
   ngOnInit(): void {
+    window.addEventListener('message', (event: CustomMessageEvent) => {
+      console.log('inside window')
+      console.log('event.source',event.source)
+      console.log('window.opener',window.opener)
+      // Check if the message is from the expected source
+      if (event.source === window.opener) {
+          // Handle the received data as needed
+          const receivedData = event.data;
+          console.log('Received data from another window:', receivedData);
+
+          // Example: Update sessionStorage based on received data
+          sessionStorage.setItem('cart', receivedData.keyCart);
+          sessionStorage.setItem('cartPlanIds', receivedData.keyCartPlanIds);
+          
+
+          // You can perform additional actions based on the received data
+      }
+  });
     this.zipcode = sessionStorage.getItem('zipcode')
     this.fips = sessionStorage.getItem('fips')
     this.lis = sessionStorage.getItem('lis')
@@ -112,11 +136,9 @@ export class PlansListPageComponent implements OnInit {
     if (drugs) {
       this.drugsArray = JSON.parse(drugs);
       if(this.drugsArray.length !== 0){
-        console.log('this.drugsArray',this.drugsArray)
         this.showDrugs = !this.showDrugs
       }
     }
-    console.log("this.showDrugs"+this.showDrugs)
     this.sharedService.benefitcheck$.subscribe((value: any) => {
       this.benefitChange(value)
     });
@@ -125,22 +147,19 @@ export class PlansListPageComponent implements OnInit {
     });
     this.sharedService.carrierFilter.subscribe((value: any) => {
       if (this.filterEnable) {
-        this.filterCarrier = value
-        console.log('filterCarrier', this.filterCarrier)
+        this.filterCarrier = value;
         this.getPlans('0')
       }
     });
 
     this.sharedService.starRatings.subscribe((value) => {
       if (this.filterEnable) {
-        console.log('starRating', value)
         this.starRating = value;
         this.getPlans('0')
       }
     });
 
-    this.sharedService.planTypeFilter.subscribe((value: any) => {
-      console.log('plantype', value)
+    this.sharedService.planTypeFilter.subscribe((value: any) => {    
       if (this.filterEnable) {
         this.filterplanType = value;
       }
@@ -208,7 +227,6 @@ export class PlansListPageComponent implements OnInit {
   }
 
   onMenuClicked() {
-    console.log('menu clicked inside toolbar');
     // this.menuClicked.emit('');
   }
 
@@ -224,7 +242,6 @@ export class PlansListPageComponent implements OnInit {
       this.sharedService.cartCount(this.cart.length);
     }
     plan.cartAdded = true
-    console.log('cli',this.cart)
 
     sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
     sessionStorage.setItem('cart', JSON.stringify(this.cart))
@@ -245,7 +262,6 @@ export class PlansListPageComponent implements OnInit {
     const npis = sessionStorage.getItem('pharmacies')
     const lis = sessionStorage.getItem('lis')
     this.effYear = sessionStorage.getItem('effectyear')
-    console.log('this.effYear',this.effYear)
     let npiArray: any[] = [];
     let drugsArray: any[] = [];   
     if (drugs) {
@@ -256,11 +272,8 @@ export class PlansListPageComponent implements OnInit {
     }   
     this.updateApidrugs(this.drugsArray)
     if(drugsArray.length === 0){
-      console.log('inside null')
       npiArray = []; 
     }
-    console.log(' A this.drugsArray',this.drugsArray)
-    console.log(' A npiArray',npiArray)
     const searchPlanReqBody = {
       npis: npiArray,
       prescriptions: this.drugsArray,
@@ -274,7 +287,6 @@ export class PlansListPageComponent implements OnInit {
     if (this.drugsArray.length === 0) {
       isDrugAdded = false
     }
-    console.log('this.effYear plan list',this.effYear)
     const searchPlans = this.commonservice.searchPlans(searchPlanReqBody, plan_type, this.snp_type, zip,
       fips, this.effYear,page, isDrugAdded, this.starRating, this.filterCarrier,
       this.filterplanType, this.sort_order, this.vision, this.dental, this.hearing, this.transportation,
@@ -295,8 +307,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
     sessionStorage.setItem('planResponse', JSON.stringify(this.response))
     const resp = response.data.plans
     const addedplans = resp.map((element: any, index: any) => {
-      if(element.optional_benefits.length !== 0){
-      console.log('element plp',element)
+      if(element.optional_benefits.length !== 0){      
       element.optional_benefits.forEach((op:any) => {
         op.checked = false 
       })
@@ -312,6 +323,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
     });
   const planIds= sessionStorage.getItem('cartPlanIds')
   const cart=    sessionStorage.getItem('cart')
+  
   if(planIds && cart){
     let planIdsArray: any[] = [];
     planIdsArray=JSON.parse(planIds);
@@ -324,7 +336,7 @@ Promise.all([searchPlans, processPlans]).then(results => {
       this.plans.push(element)
     })
 }else{
-  console.log('response', response)
+  
   addedplans.forEach((element: any) => {
     this.plans.push(element)
   })
@@ -342,14 +354,14 @@ Promise.all([searchPlans, processPlans]).then(results => {
       panelClass: ['alert-popup', 'alert-error']
 })
 
-    console.log('response false', response)
+  
   }
 })
  
   results[1].subscribe((response) => {
     this.processPlans = 
     response
-    console.log('this.processPlans',this.processPlans)
+    
    });
   
 });
@@ -366,7 +378,6 @@ Promise.all([searchPlans, processPlans]).then(results => {
       this.checkedData.splice(index, 1);
     }
 
-    console.log('checkkkk', this.checkedData.length);
 
     if (this.checkedData.length >= 2) {
       this.isChecked = true;
@@ -414,7 +425,6 @@ Promise.all([searchPlans, processPlans]).then(results => {
 
 
   planType(event: any) {
-    console.log(event.value)
     this.planTypes = event.value
     this.clearCompare();
 
@@ -445,13 +455,10 @@ Promise.all([searchPlans, processPlans]).then(results => {
   onPageChange(event: any) {
     const startIndex = event.pageIndex;
     const endIndex = startIndex + event.pageSize;
-    this.getPlans(startIndex)
-    console.log('startIndex', event.pageIndex)
-    console.log('endIndex', endIndex)
+    this.getPlans(startIndex)   
   }
 
   updateApidrugs(data: any) {
-    console.log('data-----------', data)
     if (data !== undefined) {
       data.forEach((drugsObj: any) => {
         this.frequency.forEach((freobj: any) => {
@@ -473,7 +480,6 @@ Promise.all([searchPlans, processPlans]).then(results => {
   }
 
   benefitChange(value: any) {
-    console.log('benefitChange', value)
     this.plans.forEach((x: any) => {
       x.benefits = value
     })
@@ -512,12 +518,11 @@ Promise.all([searchPlans, processPlans]).then(results => {
 }
 
   openDrugsCovered(plan:any) {
-    console.log('plan',plan)
     const drugs = sessionStorage.getItem('drugs')
     let drugList:[]=[];
     if (drugs) {
       drugList = JSON.parse(drugs);      
-        console.log('drugList',drugList)
+        
     }
     plan.forEach((plan:any) => {
       drugList.forEach((drug:any) => {
@@ -528,7 +533,6 @@ Promise.all([searchPlans, processPlans]).then(results => {
       
     });
     sessionStorage.setItem('drugs', JSON.stringify(drugList))
-    console.log('updated drug list',drugList)
     this.dialog.open(DrugsCoveredDialogboxComponent);
   }
 
@@ -574,7 +578,6 @@ Promise.all([searchPlans, processPlans]).then(results => {
 
   planbenefitcheck(attribute: any) {
     const filData = attribute.filter((x: any) => x.displayValue === 'true')
-    console.log('planbenefitcheck', filData)
     if (filData.length !== 0) {
       return true
     } else {
@@ -612,34 +615,25 @@ Promise.all([searchPlans, processPlans]).then(results => {
     this.shouldHideSpan = value;   
   }
   planCompare(){
-    console.log('plan compare')
-    console.log('this.checkedData',this.checkedData)
     sessionStorage.setItem('planCompareData', JSON.stringify(this.checkedData))
     this.route.navigate(['plan-compare'])
   }
 
-  packageSelection(event:any,plan:any,monthlypremium:any,packageNumber:any){
-    console.log('packageNumber',packageNumber)
+  packageSelection(event:any,plan:any,monthlypremium:any,packageNumber:any){    
     const stringWithoutFirstLetter = monthlypremium.slice(1);
-    console.log('stringWithoutFirstLetter',stringWithoutFirstLetter);
     const packageValue = parseFloat(stringWithoutFirstLetter);
-    console.log('packageValue',packageValue);
     const monthlyPremiumParseValue = parseFloat(plan.monthlypremium);
-    console.log('monthlyPremiumParseValue',monthlyPremiumParseValue)
     this.plans.forEach((element: any) => {
      
       if(element.planID === plan.planID){
         
         if(event.target.checked === true){
           const finalMonthlyPremium = packageValue + monthlyPremiumParseValue;
-          console.log('plan in package selection',element)
         element.optional_benefits.forEach((op:any) => {
           if(op.package_number === packageNumber){
             op.checked = true;
           }
         })
-        
-          console.log('finalMonthlyPremium',finalMonthlyPremium)
         element.monthlypremium = finalMonthlyPremium.toString();        
       }else{   
         element.optional_benefits.forEach((op:any) => {
@@ -648,10 +642,8 @@ Promise.all([searchPlans, processPlans]).then(results => {
           }
         })    
         const finalMonthlyPremium = monthlyPremiumParseValue - packageValue;
-          element.monthlypremium = finalMonthlyPremium.toString();
-          console.log('result false'+finalMonthlyPremium)
-      }
-      console.log('plan after selection or unselect'+plan)
+          element.monthlypremium = finalMonthlyPremium.toString();          
+      }     
     }
     })
    

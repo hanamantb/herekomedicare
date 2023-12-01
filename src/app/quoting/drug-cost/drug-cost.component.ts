@@ -62,9 +62,13 @@ export class DrugCostComponent implements OnInit {
   constructor(private route: Router,private commonservice: CommonService,
     private sharedService: SharedService,
     private spinner: SpinnerService) { }
-
+ 
     addToCart(isRemoved:Boolean) {      
       this.isButtonClicked = !this.isButtonClicked;
+      const dataToSend = {
+        keyCart:'',
+        keyCartPlanIds:''
+    };
       console.log('Add to cart this.isButtonClicked',this.isButtonClicked)
       if(isRemoved){
        this.isRemoved =!this.isRemoved
@@ -72,6 +76,7 @@ export class DrugCostComponent implements OnInit {
       // Your logic for adding to the cart goes here
       if(plan){
         this.plan = JSON.parse(plan);
+        console.log('this.plan',this.plan)
         const cart = sessionStorage.getItem('cart')        
     if (cart) {
       this.cartArray = JSON.parse(cart);
@@ -80,13 +85,18 @@ export class DrugCostComponent implements OnInit {
       this.sharedService.cartCount(this.cartArray.length);
       console.log('this.cartArray.length',this.cartArray.length)
       sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
-     
+      dataToSend.keyCart = this.cartArray;           
+            this.sharedService.cartCount(this.cartArray.length); 
+            console.log('remove', this.cartArray.length)    
       const planIds = sessionStorage.getItem('cartPlanIds')    
     if(planIds){
       this.cartPlanIds=JSON.parse(planIds)
+    }
       this.cartPlanIds.push(this.plan.planID)
-      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
-    }    
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))   
+      dataToSend.keyCartPlanIds = this.cartPlanIds;
+     
+        
     this.plan.cartAdded = true
         
       }
@@ -102,6 +112,7 @@ export class DrugCostComponent implements OnInit {
             console.log('splice cart plan')
             this.cartArray.splice(index, 1)
             sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
+            dataToSend.keyCart = this.cartArray;
             this.sharedService.cartCount(this.cartArray.length); 
             console.log('remove', this.cartArray.length)       
           }
@@ -113,11 +124,13 @@ export class DrugCostComponent implements OnInit {
         this.cartPlanIds=JSON.parse(planIds);
         this.cartPlanIds = planIdsArray.filter(item => item !==this.plan.planID)
         sessionStorage.setItem('cartPlanIds',JSON.stringify(this.cartPlanIds));
+        dataToSend.keyCartPlanIds = this.cartPlanIds;
       }
       this.plan.cartAdded = false
     
     }
-    
+    window.postMessage(dataToSend, '*');
+    console.log('dataToSend',dataToSend)
       // Set the property to true to disable the button
       
     }
