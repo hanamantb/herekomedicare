@@ -3,14 +3,23 @@ import {Router} from "@angular/router";
 import {CommonService} from "../../services/common.service";
 import {SpinnerService} from "../../services/spinner.service";
 import { PlansListPageComponent } from 'src/app/plan-present/plans-list-page/plans-list-page.component';
-
+import {SharedService} from "../../services/shared.service";
+interface CustomMessageEvent extends MessageEvent {
+  data: {
+      keyCart?: any;
+      keyCartPlanIds?: any;
+      // Add more properties as needed
+  };
+}
 @Component({
   selector: 'app-drug-cost',
   templateUrl: './drug-cost.component.html',
   styleUrls: ['./drug-cost.component.css']
 })
-export class DrugCostComponent implements OnInit {
 
+export class DrugCostComponent implements OnInit {
+  isButtonClicked = false;
+  isRemoved = true;
   has_deductible: boolean = false;
   opened: boolean = false;
   panelOpenState = false;
@@ -54,17 +63,103 @@ export class DrugCostComponent implements OnInit {
       name: 'Every 12 months',
       values: 'FREQUENCY_360_DAYS'
     }]
+  plan: any=[]
+  cartArray: any =[];
+  cartPlanIds: any=[];
+  
   constructor(private route: Router,private commonservice: CommonService,
+    private sharedService: SharedService,
     private spinner: SpinnerService) { }
-
+ 
+    addToCart(isRemoved:Boolean) {      
+      const channel = new BroadcastChannel('myChannel');
+      this.isButtonClicked = !this.isButtonClicked; 
+      if(isRemoved){
+       this.isRemoved =!this.isRemoved
+      const plan = sessionStorage.getItem('plan');
+      // Your logic for adding to the cart goes here
+      if(plan){
+        this.plan = JSON.parse(plan);
+        console.log('this.plan',this.plan)
+        const cart = sessionStorage.getItem('cart')        
+    if (cart) {
+      this.cartArray = JSON.parse(cart);
+    }
+      this.cartArray.push(this.plan)
+      this.sharedService.cartCount(this.cartArray.length);
+      console.log('this.cartArray.length',this.cartArray.length)
+      sessionStorage.setItem('cart', JSON.stringify(this.cartArray))
+                 
+            this.sharedService.cartCount(this.cartArray.length); 
+            console.log('remove', this.cartArray.length)    
+      const planIds = sessionStorage.getItem('cartPlanIds')    
+    if(planIds){
+      this.cartPlanIds=JSON.parse(planIds)
+    }
+      this.cartPlanIds.push(this.plan.planID)
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(this.cartPlanIds))
+    this.plan.cartAdded = true
+        
+      }
+    }else {  
+      this.isRemoved =!this.isRemoved   
+      console.log('this.isButtonClicked ',this.isButtonClicked)
+      const cart = sessionStorage.getItem('cart')
+      if (cart) {
+        this.cartArray.forEach((element: any, index: any) => {
+          console.log('remove', element.planID)
+          console.log('this.planID', this.planID)
+          if (this.planID === element.planID) {
+            console.log('splice cart plan')
+            this.cartArray.splice(index, 1)
+            sessionStorage.setItem('cart', JSON.stringify(this.cartArray))            
+            this.sharedService.cartCount(this.cartArray.length); 
+            console.log('remove', this.cartArray.length)       
+          }
+        })
+      }
+      const planIds= sessionStorage.getItem('cartPlanIds') 
+      if(planIds){  
+        let planIdsArray: any[] = [];
+        this.cartPlanIds=JSON.parse(planIds);
+        this.cartPlanIds = planIdsArray.filter(item => item !==this.plan.planID)
+        sessionStorage.setItem('cartPlanIds',JSON.stringify(this.cartPlanIds));
+      }
+      this.plan.cartAdded = false
+    }
+      // Set the property to true to disable the button
+      channel.postMessage({ keyCart: this.cartArray, keyCartPlanIds: this.cartPlanIds });
+      console.log('add to cart end')
+    }
   ngOnInit(): void {
-
+    const channel = new BroadcastChannel('myChannel');
+    channel.onmessage = (event: CustomMessageEvent) => {
+      const receivedData = event.data;
+      sessionStorage.setItem('cart', JSON.stringify(receivedData.keyCart));
+      sessionStorage.setItem('cartPlanIds', JSON.stringify(receivedData.keyCartPlanIds));
+      console.log('Received data in another tab:', receivedData);
+      console.log( 'receivedData.keyCart:', receivedData.keyCart)
+      this.sharedService.cartCount(receivedData.keyCart.length);
+  };   
     const spine = this.spinner.start()
+    const cart = sessionStorage.getItem('cart')
+
     const currentDate = new Date();
     this.effYear= currentDate.getFullYear()   
     const planId = sessionStorage.getItem('planID')
     if(planId)
     this.planID = planId.replace(/"/g, '');
+    if(cart){
+      this.cartArray =JSON.parse(cart)      
+      console.log('this.cartArray',this.cartArray)
+      this.sharedService.cartCount(this.cartArray.length);
+      this.cartArray.forEach((element: any, index: any) => {       
+        if (this.planID === element.planID) {
+          this.isButtonClicked = !this.isButtonClicked;
+          this.isRemoved = !this.isRemoved;
+        }
+      })
+    }
     const lis = sessionStorage.getItem('lis')
     if(lis)
     this.lis = lis.replace(/"/g, '');
@@ -91,7 +186,7 @@ export class DrugCostComponent implements OnInit {
 
     const drugs = sessionStorage.getItem('drugs')
     let drugsArrayPayload: any[] = [];    
-    if (drugs) {
+  if (drugs) {
       drugsArrayPayload = JSON.parse(drugs);
       this.drugsArray = JSON.parse(drugs);
       this.drugsSize=drugsArrayPayload.length
